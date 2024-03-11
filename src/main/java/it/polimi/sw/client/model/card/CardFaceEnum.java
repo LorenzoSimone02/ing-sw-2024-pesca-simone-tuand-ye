@@ -1,4 +1,6 @@
 package it.polimi.sw.client.model.card;
 
 public enum CardFaceEnum {
+    FRONT,
+    BACK
 }

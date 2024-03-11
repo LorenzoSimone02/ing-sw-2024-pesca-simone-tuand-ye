@@ -1,4 +1,8 @@
 package it.polimi.sw.client.model.player;
 
-public class TokenColorEnum {
+public enum TokenColorEnum {
+    RED,
+    YELLOW,
+    GREEN,
+    BLUE
 }
