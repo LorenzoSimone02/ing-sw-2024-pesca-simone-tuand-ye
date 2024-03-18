@@ -55,4 +55,13 @@ public class Player {
     public boolean canPlaceCard(Card card) {
         return false;
     }
+
+
+    public void endTurn() {
+
+    }
+
+    public void chooseObjectiveCard(){
+
+    }
 }

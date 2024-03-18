@@ -11,6 +11,9 @@ public class GoldCard {
     private List<Object> objectsNeeded;
     private int points;
 
+    private int xCoord;
+    private int yCoord;
+
     public List<Corner> getCorners() {
         return corners;
     }
@@ -25,5 +28,13 @@ public class GoldCard {
 
     public int getPoints() {
         return points;
+    }
+
+    public int getxCoord() {
+        return xCoord;
+    }
+
+    public int getyCoord() {
+        return yCoord;
     }
 }
