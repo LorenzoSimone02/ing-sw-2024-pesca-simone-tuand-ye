@@ -4,14 +4,15 @@
 
 Lo sviluppo del gioco da tavolo *Codex Naturalis* è la prova finale del corso di **Ingegneria del Software** tenuto al Politecnico di Milano (2023/2024).
 
+**Docente**: Cugola Gianpaolo Saverio
+
+**Voto**: -/30
+
 ## Membri del gruppo
 * [Mario Pesca](https://github.com/ziomekk-dev)
 * [Lorenzo Simone](https://github.com/LorenzoSimone02)
 * [Salvatore Tuand](https://github.com/Sa1vatoreTuand)
 * [Xuwen Ye](https://github.com/xuwenye01)
-
-**Docente** : Cugola Gianpaolo Saverio
-
 
 ## Descrizione del progetto
 Il progetto consiste nello sviluppo di una versione virtuale, scritta in Java, del gioco da tavolo *Codex Naturalis*, creato dalla Cranio Creations.
