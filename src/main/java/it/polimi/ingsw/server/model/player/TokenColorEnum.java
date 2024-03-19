@@ -4,5 +4,6 @@ public enum TokenColorEnum {
     RED,
     YELLOW,
     GREEN,
-    BLUE
+    BLUE,
+    BLACK
 }

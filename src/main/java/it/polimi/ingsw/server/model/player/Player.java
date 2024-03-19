@@ -7,19 +7,23 @@ import it.polimi.ingsw.server.model.resources.Resource;
 import java.util.List;
 
 public class Player {
-    private String nickname;
+    private final String nickname;
     private final PlayerToken token;
-    private Game game;
+    private final Game game;
     private Card[][] cards;
     private List<Card> cardsInHand;
-    private StarterCard starterCard;
+    private final StarterCard starterCard;
     private ObjectiveCard objectiveCard;
     private List<Resource> resources;
-    private boolean first;
+    private final boolean first;
     private int score;
 
-    public Player(PlayerToken token) {
+    public Player(PlayerToken token, String nickname, Game game, StarterCard starterCard, boolean first) {
         this.token = token;
+        this.nickname = nickname;
+        this.game = game;
+        this.starterCard = starterCard;
+        this.first = first;
     }
 
     public String getNickname() {
@@ -62,8 +66,12 @@ public class Player {
         return score;
     }
 
-    public void placeCard(Card card) {
+    public void placeCard(ResourceCard card) {
+    }
+    public void placeCard(GoldCard card) {
+        if(canPlaceCard(card)){
 
+        }
     }
 
     public boolean canPlaceCard(GoldCard card) {
