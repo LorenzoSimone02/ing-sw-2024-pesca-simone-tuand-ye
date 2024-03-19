@@ -68,13 +68,16 @@ public class Player {
 
     public void placeCard(ResourceCard card) {
     }
-    public void placeCard(GoldCard card) {
-        if(canPlaceCard(card)){
 
+    public void placeCard(GoldCard card, int x, int y) {
+        if(canPlaceCard(card, x, y)){
+            card.setXCoord(x);
+            card.setYCoord(y);
+            cards[x][y] = card;
         }
     }
 
-    public boolean canPlaceCard(GoldCard card) {
+    public boolean canPlaceCard(GoldCard card, int x, int y) {
         return this.getResources().containsAll(card.getResourcesNeeded());
     }
 
