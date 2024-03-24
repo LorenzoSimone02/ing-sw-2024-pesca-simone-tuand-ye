@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Properties;
 
-public class ObjectiveCard extends Card{
+public class ObjectiveCard extends Card {
     private Objective objective;
 
     public ObjectiveCard(File jsonFile) {
@@ -16,7 +16,6 @@ public class ObjectiveCard extends Card{
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(jsonFile));
             Properties data = gson.fromJson(reader, Properties.class);
-
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

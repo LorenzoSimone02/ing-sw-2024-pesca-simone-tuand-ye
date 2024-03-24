@@ -29,22 +29,43 @@ public class ClientMain extends Application {
 
         try {
             do {
-                System.out.println("Seleziona l'interfaccia di visualizzazione:");
+                System.out.println("Please choose between CLI technology and GUI technology:");
                 System.out.println("[1] CLI - [2] GUI");
-                selected = scanner.nextLine();
+                selected = scanner.nextLine().trim();
 
                 if (selected.equals("1") || selected.equals("CLI")) {
-                   System.out.println("Hai selezionato la CLI.");
+                    System.out.println("You have selected CLI technology.");
                 } else if (selected.equals("2") || selected.equals("GUI")) {
-                    System.out.println("Hai selezionato la GUI.");
+                    System.out.println("You have selected GUI technology.");
                     launch();
-                }else{
-                    System.out.println("L'interfaccia selezionata non è valida.");
+                } else {
+                    System.out.println("\"" + selected + "\" is not a valid option. Please try again.");
                 }
 
-            } while (!(selected.equals("1") || selected.equals("2") || selected.equals("CLI") || selected.equals("GUI")));
+            } while (!(selected.equals("1") || selected.equals("2") || selected.equalsIgnoreCase("CLI") || selected.equalsIgnoreCase("GUI")));
         } catch (Exception e) {
-            System.err.println("Si è verificato un errore!");
+            System.err.println("An error occured!");
+            System.err.println(e.getMessage());
         }
+        try {
+            do {
+                System.out.println("Now please choose between Socket technology and RMI technology:");
+                System.out.println("[1] Socket - [2] RMI");
+                selected = scanner.nextLine().trim();
+
+                if (selected.equals("1") || selected.equals("Socket")) {
+                    System.out.println("You have selected Socket technology.");
+                } else if (selected.equals("2") || selected.equals("RMI")) {
+                    System.out.println("You have selected RMI technology.");
+                } else {
+                    System.out.println("\"" + selected + "\" is not a valid option. Please try again.");
+                }
+
+            } while (!(selected.equals("1") || selected.equals("2") || selected.equalsIgnoreCase("Socket") || selected.equalsIgnoreCase("RMI")));
+        } catch (Exception e) {
+            System.err.println("An error occured!");
+            System.err.println(e.getMessage());
+        }
+
     }
 }

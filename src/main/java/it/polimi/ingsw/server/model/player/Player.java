@@ -1,29 +1,31 @@
 package it.polimi.ingsw.server.model.player;
 
-import it.polimi.ingsw.server.model.card.*;
+import it.polimi.ingsw.server.model.card.Card;
+import it.polimi.ingsw.server.model.card.ObjectiveCard;
+import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.util.List;
+import java.util.Optional;
 
 public class Player {
     private final String nickname;
-    private final PlayerToken token;
+    private PlayerToken token;
     private final Game game;
     private Card[][] cards;
     private List<Card> cardsInHand;
-    private final StarterCard starterCard;
+    private StarterCard starterCard;
     private ObjectiveCard objectiveCard;
     private List<Resource> resources;
-    private final boolean first;
+    private boolean first;
     private int score;
 
-    public Player(PlayerToken token, String nickname, Game game, StarterCard starterCard, boolean first) {
-        this.token = token;
+    public Player(String nickname, Game game) {
         this.nickname = nickname;
         this.game = game;
-        this.starterCard = starterCard;
-        this.first = first;
+        this.score = 0;
     }
 
     public String getNickname() {
@@ -34,6 +36,10 @@ public class Player {
         return token;
     }
 
+    public void setToken(PlayerToken token) {
+        this.token = token;
+    }
+
     public Game getGame() {
         return game;
     }
@@ -42,12 +48,20 @@ public class Player {
         return cards;
     }
 
+    public Optional<Card> getCardAt(int x, int y) {
+        return Optional.ofNullable(getCards()[x][y]);
+    }
+
     public List<Card> getCardsInHand() {
         return cardsInHand;
     }
 
     public StarterCard getStarterCard() {
         return starterCard;
+    }
+
+    public void setStarterCard(StarterCard starterCard) {
+        this.starterCard = starterCard;
     }
 
     public ObjectiveCard getObjectiveCard() {
@@ -62,25 +76,35 @@ public class Player {
         return first;
     }
 
+    public void setFirst(boolean first) {
+        this.first = first;
+    }
+
     public int getScore() {
         return score;
     }
 
-    public void placeCard(ResourceCard card) {
+    public void setScore(int score) {
+        this.score = score;
     }
 
-    public void placeCard(GoldCard card, int x, int y) {
-        if(canPlaceCard(card, x, y)){
+    public void placeCard(ResourceCard card, int x, int y) {
+        if (card.canBePlaced(x, y)) {
             card.setXCoord(x);
             card.setYCoord(y);
             cards[x][y] = card;
         }
     }
 
-    public boolean canPlaceCard(GoldCard card, int x, int y) {
-        return this.getResources().containsAll(card.getResourcesNeeded());
+    public void chooseToken(PlayerToken token) {
+        for (Player player : game.getPlayers()) {
+            if (player.getToken().color().equals(token.color())) {
+                // inserire commento da mostrare al player di cambiare colore
+                return;
+            }
+        }
+        this.setToken(token);
     }
-
 
     public void endTurn() {
 

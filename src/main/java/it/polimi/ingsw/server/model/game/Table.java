@@ -7,17 +7,11 @@ import it.polimi.ingsw.server.model.objectives.Objective;
 import java.util.List;
 
 public class Table {
-    private final ScoreTrack scoreTrack;
     private List<Deck> decks;
     private List<Objective> objectives;
     private List<Card> cardsOnGround;
 
-    public Table(ScoreTrack scoreTrack){
-        this.scoreTrack = scoreTrack;
-    }
-
-    public ScoreTrack getScoreTrack() {
-        return scoreTrack;
+    public Table(){
     }
 
     public List<Deck> getDecks() {
@@ -40,11 +34,11 @@ public class Table {
         return cardsOnGround;
     }
 
-    public void addCardonGround(Card card){
+    public void addCardOnGround(Card card){
         this.cardsOnGround.add(card);
     }
 
-    public void removeCardonGround(Card card){
+    public void removeCardOnGround(Card card){
         this.cardsOnGround.remove(card);
     }
 }

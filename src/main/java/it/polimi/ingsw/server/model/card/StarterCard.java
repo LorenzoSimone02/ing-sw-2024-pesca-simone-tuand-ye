@@ -2,7 +2,7 @@ package it.polimi.ingsw.server.model.card;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
-import it.polimi.ingsw.server.model.corner.Corner;
+import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.File;
@@ -10,9 +10,9 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Properties;
 
-public class StarterCard extends Card{
+public class StarterCard extends Card {
     private List<Corner> corners;
-    private List<Resource> backResources;
+    private List<Resource> frontResources;
 
     public StarterCard(File jsonFile) {
         try {
@@ -29,7 +29,11 @@ public class StarterCard extends Card{
         return corners;
     }
 
-    public List<Resource> getBackResources() {
-        return backResources;
+    public List<Resource> getFrontResources() {
+        return frontResources;
+    }
+
+    public void placeCard(){
+
     }
 }

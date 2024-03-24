@@ -4,13 +4,12 @@ import it.polimi.ingsw.server.model.player.Player;
 
 public class GameInfo {
     private final int playersNumber;
-    private final Player firstPlayer;
+    private Player firstPlayer;
     private Player winner;
     private GameStatusEnum gameStatus;
 
-    public GameInfo(int playersNumber, Player firstPlayer, GameStatusEnum gameStatus) {
+    public GameInfo(int playersNumber, GameStatusEnum gameStatus) {
         this.playersNumber = playersNumber;
-        this.firstPlayer = firstPlayer;
         this.gameStatus = gameStatus;
     }
 
@@ -20,6 +19,10 @@ public class GameInfo {
 
     public Player getFirstPlayer() {
         return firstPlayer;
+    }
+
+    public void setFirstPlayer(Player firstPlayer) {
+        this.firstPlayer = firstPlayer;
     }
 
     public Player getWinner() {

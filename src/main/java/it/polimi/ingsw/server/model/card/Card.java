@@ -3,7 +3,7 @@ package it.polimi.ingsw.server.model.card;
 public abstract class Card {
     int id;
     private CardColorEnum color;
-    private CardFaceEnum face;
+    private FaceEnum face;
 
     public int getId() {
         return id;
@@ -13,15 +13,15 @@ public abstract class Card {
         return color;
     }
 
-    public CardFaceEnum getFace() {
+    public FaceEnum getFace() {
         return face;
     }
 
     public void turnCard() {
-        if (this.face == CardFaceEnum.FRONT) {
-            this.face = CardFaceEnum.BACK;
-        } else if (this.face == CardFaceEnum.BACK) {
-            this.face = CardFaceEnum.FRONT;
+        if (this.face == FaceEnum.FRONT) {
+            this.face = FaceEnum.BACK;
+        } else if (this.face == FaceEnum.BACK) {
+            this.face = FaceEnum.FRONT;
         }
     }
 

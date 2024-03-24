@@ -1,4 +1,4 @@
-package it.polimi.ingsw.server.model.corner;
+package it.polimi.ingsw.server.model.card.corner;
 
 public enum CornerLocationEnum {
     TOP_LEFT,

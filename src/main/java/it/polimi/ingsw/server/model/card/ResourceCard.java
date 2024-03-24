@@ -1,9 +1,9 @@
 package it.polimi.ingsw.server.model.card;
 
-import com.google.gson.stream.JsonReader;
-import it.polimi.ingsw.server.model.corner.Corner;
-import it.polimi.ingsw.server.model.resources.Resource;
 import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+import it.polimi.ingsw.server.model.card.corner.Corner;
+import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.File;
 import java.io.FileReader;
@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Properties;
 
 public class ResourceCard extends Card {
-    private List<Corner> corners;
-    private int points;
-    private Resource backResource;
     private int xCoord;
     private int yCoord;
+    private int points;
+    private List<Corner> corners;
+    private Resource backResource;
 
     public ResourceCard(File jsonFile) {
         try {
@@ -24,22 +24,10 @@ public class ResourceCard extends Card {
             Properties data = gson.fromJson(reader, Properties.class);
 
             //Esempio
-            this.points = Integer.parseInt(data.getProperty("points"));
+            this.id = Integer.parseInt(data.getProperty("id"));
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
-    }
-
-    public List<Corner> getCorners() {
-        return corners;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public Resource getBackResource() {
-        return backResource;
     }
 
     public int getXCoord() {
@@ -57,4 +45,22 @@ public class ResourceCard extends Card {
     public void setYCoord(int yCoord) {
         this.yCoord = yCoord;
     }
+
+    private int getPoints() {
+        return points;
+    }
+
+    public List<Corner> getCorners() {
+        return corners;
+    }
+
+    public Resource getBackResource() {
+        return backResource;
+    }
+
+    public boolean canBePlaced(int x, int y){
+
+        return false;
+    }
+
 }

@@ -1,5 +1,5 @@
 package it.polimi.ingsw.server.model.card;
 
-public enum CardFaceEnum {
+public enum FaceEnum {
     FRONT, BACK
 }

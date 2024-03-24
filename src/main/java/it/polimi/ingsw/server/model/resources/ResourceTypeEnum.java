@@ -4,5 +4,6 @@ public enum ResourceTypeEnum {
     PLANT,
     ANIMAL,
     FUNGI,
-    INSECT
+    INSECT,
+    EMPTY
 }

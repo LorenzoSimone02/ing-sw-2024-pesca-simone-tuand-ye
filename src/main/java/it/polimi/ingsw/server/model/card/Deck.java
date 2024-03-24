@@ -10,7 +10,6 @@ public class Deck {
         this.shuffleDeck();
     }
 
-
     public void shuffleDeck() {
         Collections.shuffle(cards);
     }
