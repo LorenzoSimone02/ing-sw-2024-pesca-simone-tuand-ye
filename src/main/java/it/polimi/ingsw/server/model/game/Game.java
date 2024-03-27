@@ -11,11 +11,7 @@ public class Game {
     private final int id;
     private final Table table;
     private List<Player> players;
-
     private Player activePlayer;
-
-
-
     private Objective objective;
     private GameInfo info;
 
@@ -89,8 +85,6 @@ public class Game {
 
     }
 
-
-
     public Optional<Player> getPlayerByNick(String nick) {
         for (Player p : players) {
             if(p.getNickname().equalsIgnoreCase(nick)) {
@@ -99,4 +93,6 @@ public class Game {
         }
         return Optional.empty();
     }
+
+
 }

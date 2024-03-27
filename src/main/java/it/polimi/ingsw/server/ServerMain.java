@@ -1,14 +1,14 @@
 package it.polimi.ingsw.server;
 
-import it.polimi.ingsw.server.model.game.Game;
-
-import java.util.ArrayList;
-import java.util.List;
+import it.polimi.ingsw.network.ServerNetworkHandler;
 
 public class ServerMain {
 
     public static void main(String[] args) {
-        System.out.println("Starting server...");
-    }
 
+        ServerNetworkHandler networkHandler = new ServerNetworkHandler("Server", 1099, 5000);
+        networkHandler.start();
+
+        System.out.println("Server ready");
+    }
 }

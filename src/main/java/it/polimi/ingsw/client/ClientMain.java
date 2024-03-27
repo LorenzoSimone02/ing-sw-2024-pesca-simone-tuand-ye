@@ -1,5 +1,9 @@
 package it.polimi.ingsw.client;
 
+import it.polimi.ingsw.network.ClientNetworkHandler;
+import it.polimi.ingsw.network.packets.InfoPacket;
+import it.polimi.ingsw.network.rmi.RMIClient;
+import it.polimi.ingsw.network.socket.SocketClient;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,6 +30,7 @@ public class ClientMain extends Application {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String selected;
+        ClientNetworkHandler client;
 
         try {
             do {
@@ -55,8 +60,17 @@ public class ClientMain extends Application {
 
                 if (selected.equals("1") || selected.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
+                    client = new SocketClient("localhost", 5000);
+                    client.sendPacket(new InfoPacket("Socket chosen!"));
                 } else if (selected.equals("2") || selected.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
+                    try {
+                        client = new RMIClient("Server", 1099);
+                        client.sendPacket(new InfoPacket("RMI chosen!"));
+                    } catch (IOException e) {
+                        System.err.println("An error occured!");
+                        System.err.println(e.getMessage());
+                    }
                 } else {
                     System.out.println("\"" + selected + "\" is not a valid option. Please try again.");
                 }
