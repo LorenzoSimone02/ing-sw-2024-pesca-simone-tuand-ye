@@ -1,0 +1,2626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-992.642 -440.345 1813.572 1679.229" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1, 0, 0, 1, -946.2373187875347, -675.1905007837787)">
+    <g shape-node="">
+      <rect cell-id="AE5dDDON6EbytI0MJ_Nr-1" x="1474.94" y="1150.55" width="223" height="265" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="AE5dDDON6EbytI0MJ_Nr-1" d="M 1474.94 1167.55 L 1697.94 1167.55" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="AE5dDDON6EbytI0MJ_Nr-1" d="M 1474.94 1252.55 L 1697.94 1252.55" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="AE5dDDON6EbytI0MJ_Nr-1" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="AE5dDDON6EbytI0MJ_Nr-1" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 221px; height: 1px; padding-top: 1152px; margin-left: 1476px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Game</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="2" x="1474.94" y="1170.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="2" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="2" x="1481.44" y="1183.05" style="white-space: pre;">-id: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="3" x="1474.94" y="1186.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="3" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="3" x="1481.44" y="1199.05" style="white-space: pre;">-table: Table</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="4" x="1474.94" y="1202.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="4" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="4" x="1481.44" y="1215.05" style="white-space: pre;">-players: List&lt;Player&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="5" x="1474.94" y="1218.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="5" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="5" x="1481.44" y="1231.05" style="white-space: pre;">-activePlayer: Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="6" x="1474.94" y="1234.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="6" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="6" x="1481.44" y="1247.05" style="white-space: pre;">-info: GameInfo</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="7" x="1474.94" y="1252.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="7" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="7" x="1481.44" y="1265.05" style="white-space: pre;">+geID(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8" x="1474.94" y="1268.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="8" x="1481.44" y="1281.05" style="white-space: pre;">+getTable(): Table</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9" x="1474.94" y="1284.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="9" x="1481.44" y="1297.05" style="white-space: pre;">+getPlayers(): List&lt;Player&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="10" x="1474.94" y="1300.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="10" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="10" x="1481.44" y="1313.05" style="white-space: pre;">+getActivePlayer(): Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="11" x="1474.94" y="1316.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="11" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="11" x="1481.44" y="1329.05" style="white-space: pre;">+getGameInfo(): GameInfo</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="12" x="1474.94" y="1332.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="12" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="12" x="1481.44" y="1345.05" style="white-space: pre;">+loadGame(game: SaveFileData): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="13" x="1474.94" y="1348.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="13" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="13" x="1481.44" y="1361.05" style="white-space: pre;">+saveGame(): SaveFileData</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="14" x="1474.94" y="1364.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="14" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="14" x="1481.44" y="1377.05" style="white-space: pre;">+initGame(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="15" x="1474.94" y="1380.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="15" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="15" x="1481.44" y="1393.05" style="white-space: pre;">+endGame(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="16" x="1474.94" y="1396.55" width="223" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="16" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="16" x="1481.44" y="1409.05" style="white-space: pre;">+addPlayer(player: Player): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-1" x="761" y="1211.83" width="184" height="137" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-1" d="M 761 1228.83 L 945 1228.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-1" d="M 761 1281.83 L 945 1281.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-1" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-1" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 182px; height: 1px; padding-top: 1213px; margin-left: 762px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">{abstract} Card</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="17" x="761" y="1231.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="17" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="17" x="767.5" y="1244.33" style="white-space: pre;">-id: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="18" x="761" y="1247.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="18" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="18" x="767.5" y="1260.33" style="white-space: pre;">-color: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="19" x="761" y="1263.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="19" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="19" x="767.5" y="1276.33" style="white-space: pre;">-face: CardFaceEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="20" x="761" y="1281.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="20" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="20" x="767.5" y="1294.33" style="white-space: pre;">+getID(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="21" x="761" y="1297.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="21" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="21" x="767.5" y="1310.33" style="white-space: pre;">+getCardColor(): ColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="22" x="761" y="1313.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="22" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="22" x="767.5" y="1326.33" style="white-space: pre;">+getCardFace(): CardFaceEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="23" x="761" y="1329.83" width="184" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="23" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="23" x="767.5" y="1342.33" style="white-space: pre;">+turnCard(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-3" x="1102.47" y="1539.33" width="182" height="58.67" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-3" d="M 1102.47 1556.33 L 1284.47 1556.33" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-3" d="M 1102.47 1577.33 L 1284.47 1577.33" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-3" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-3" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 180px; height: 1px; padding-top: 1540px; margin-left: 1103px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">PlayerToken</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="24" x="1102.47" y="1559.33" width="182" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="24" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="24" x="1108.97" y="1571.83" style="white-space: pre;">-color: TokenColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="25" x="1102.47" y="1577.33" width="182" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="25" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="25" x="1108.97" y="1589.83" style="white-space: pre;">+getColor(): TokenColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-4" x="1479.22" y="906" width="214" height="137" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-4" d="M 1479.22 923 L 1693.22 923" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-4" d="M 1479.22 976 L 1693.22 976" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-4" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-4" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 212px; height: 1px; padding-top: 907px; margin-left: 1480px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Table</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="26" x="1479.22" y="926" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="26" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="26" x="1485.72" y="938.5" style="white-space: pre;">-decks: List&lt;Deck&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="27" x="1479.22" y="942" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="27" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="27" x="1485.72" y="954.5" style="white-space: pre;">-objectivesCards: List&lt;ObjectiveCard&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="28" x="1479.22" y="958" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="28" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="28" x="1485.72" y="970.5" style="white-space: pre;">-cardsOnGround: List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="29" x="1479.22" y="976" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="29" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="29" x="1485.72" y="988.5" style="white-space: pre;">+getDecks(): List&lt;Deck&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="30" x="1479.22" y="992" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="30" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="30" x="1485.72" y="1004.5" style="white-space: pre;">+getObjectives(): Objective</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="31" x="1479.22" y="1008" width="214" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="31" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="31" x="1485.72" y="1020.5" style="white-space: pre;">+getCardsOnGround(): List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-8" x="74.5" y="896" width="233" height="57" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-8" d="M 74.5 913 L 307.5 913" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-8" d="M 74.5 934 L 307.5 934" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-8" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-8" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 231px; height: 1px; padding-top: 897px; margin-left: 76px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Resource</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="32" x="74.5" y="916" width="233" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="32" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="32" x="81" y="928.5" style="white-space: pre;">-type: ResourceTypeEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="33" x="74.5" y="934" width="233" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="33" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="33" x="81" y="946.5" style="white-space: pre;">+getResourceType(): ResourceTypeEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-9" x="1089.47" y="1091.83" width="208" height="377" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-9" d="M 1089.47 1108.83 L 1297.47 1108.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-9" d="M 1089.47 1257.83 L 1297.47 1257.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-9" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-9" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 206px; height: 1px; padding-top: 1093px; margin-left: 1090px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Player</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="34" x="1089.47" y="1111.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="34" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="34" x="1095.97" y="1124.33" style="white-space: pre;">-nickname: String</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="35" x="1089.47" y="1127.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="35" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="35" x="1095.97" y="1140.33" style="white-space: pre;">-token: PlayerToken</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="36" x="1089.47" y="1143.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="36" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="36" x="1095.97" y="1156.33" style="white-space: pre;">-cards: Card[][]</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="37" x="1089.47" y="1159.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="37" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="37" x="1095.97" y="1172.33" style="white-space: pre;">-cardsInHand: List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="38" x="1089.47" y="1175.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="38" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="38" x="1095.97" y="1188.33" style="white-space: pre;">-starterCard: StarterCard</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="39" x="1089.47" y="1191.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="39" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="39" x="1095.97" y="1204.33" style="white-space: pre;">-objectiveCard: ObjectiveCard</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="40" x="1089.47" y="1207.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="40" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="40" x="1095.97" y="1220.33" style="white-space: pre;">-resources: List&lt;Resource&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="41" x="1089.47" y="1223.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="41" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="41" x="1095.97" y="1236.33" style="white-space: pre;">-first: boolean</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="42" x="1089.47" y="1239.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="42" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="42" x="1095.97" y="1252.33" style="white-space: pre;">-score: int </text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="43" x="1089.47" y="1257.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="43" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="43" x="1095.97" y="1270.33" style="white-space: pre;">+getNickname(): String</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="44" x="1089.47" y="1273.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="44" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="44" x="1095.97" y="1286.33" style="white-space: pre;">+getToken(): PlayerToken</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="45" x="1089.47" y="1289.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="45" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="45" x="1095.97" y="1302.33" style="white-space: pre;">+getCards(): Card[][]</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="46" x="1089.47" y="1305.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="46" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="46" x="1095.97" y="1318.33" style="white-space: pre;">+getCardsInHand(): List&lt;Cards&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="47" x="1089.47" y="1321.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="47" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="47" x="1095.97" y="1334.33" style="white-space: pre;">+getStarterCard(): StarterCard</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="48" x="1089.47" y="1337.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="48" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="48" x="1095.97" y="1350.33" style="white-space: pre;">+getObjectiveCard(): ObjectiveCard</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="49" x="1089.47" y="1353.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="49" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="49" x="1095.97" y="1366.33" style="white-space: pre;">+getResources(): List&lt;Resources&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="50" x="1089.47" y="1369.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="50" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="50" x="1095.97" y="1382.33" style="white-space: pre;">+isFirst(): boolean</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="51" x="1089.47" y="1385.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="51" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="51" x="1095.97" y="1398.33" style="white-space: pre;">+placeCard(card: Card): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="52" x="1089.47" y="1401.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="52" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="52" x="1095.97" y="1414.33" style="white-space: pre;">+canPlaceCard(card: Card): boolean </text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="53" x="1089.47" y="1417.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="53" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="53" x="1095.97" y="1430.33" style="white-space: pre;">+getScore(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="54" x="1089.47" y="1433.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="54" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="54" x="1095.97" y="1446.33" style="white-space: pre;">+endTurn(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="55" x="1089.47" y="1449.83" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="55" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="55" x="1095.97" y="1462.33" style="white-space: pre;">+chooseObjectiveCard(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="WITI7P7XvJfkdMkRaR9J-11" x="0" y="1057" width="206" height="185" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-11" d="M 0 1074 L 206 1074" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="WITI7P7XvJfkdMkRaR9J-11" d="M 0 1159 L 206 1159" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="WITI7P7XvJfkdMkRaR9J-11" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="WITI7P7XvJfkdMkRaR9J-11" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 204px; height: 1px; padding-top: 1058px; margin-left: 1px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Corner</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="56" x="0" y="1077" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="56" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="56" x="6.5" y="1089.5" style="white-space: pre;">-card: Card</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="57" x="0" y="1093" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="57" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="57" x="6.5" y="1105.5" style="white-space: pre;">-resource: Resource</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="58" x="0" y="1109" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="58" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="58" x="6.5" y="1121.5" style="white-space: pre;">-object: Object</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="59" x="0" y="1125" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="59" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="59" x="6.5" y="1137.5" style="white-space: pre;">-visible: boolean</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="60" x="0" y="1141" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="60" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="60" x="6.5" y="1153.5" style="white-space: pre;">-location: CornerLocationEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="61" x="0" y="1159" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="61" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="61" x="6.5" y="1171.5" style="white-space: pre;">+getCard(): Card</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="62" x="0" y="1175" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="62" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="62" x="6.5" y="1187.5" style="white-space: pre;">+getResource(): Resource</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="63" x="0" y="1191" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="63" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="63" x="6.5" y="1203.5" style="white-space: pre;">+getObject(): Object</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="64" x="0" y="1207" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="64" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="64" x="6.5" y="1219.5" style="white-space: pre;">+isVisible(): boolean</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="65" x="0" y="1223" width="206" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="65" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="65" x="6.5" y="1235.5" style="white-space: pre;">+getLocation(): CornerLocationEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-13" x="126" y="701.5" width="130" height="120" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-13" d="M 126 733.5 L 256 733.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-13" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-13" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 703px; margin-left: 127px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+ResourceTypeEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="66" x="126" y="736.5" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="66" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="66" x="132.5" y="749" style="white-space: pre;">PLANT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="67" x="126" y="752.5" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="67" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="67" x="132.5" y="765" style="white-space: pre;">ANIMAL</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="68" x="126" y="768.5" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="68" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="68" x="132.5" y="781" style="white-space: pre;">FUNGI</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="69" x="126" y="784.5" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="69" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="69" x="132.5" y="797" style="white-space: pre;">INSECT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="70" x="126" y="800.5" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="70" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="70" x="132.5" y="813" style="white-space: pre;">EMPTY</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-24" x="449" y="906" width="200" height="58.38" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-24" d="M 449 923 L 649 923" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-24" d="M 449 944 L 649 944" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-24" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-24" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 907px; margin-left: 450px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Object</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="71" x="449" y="926" width="200" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="71" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="71" x="455.5" y="938.5" style="white-space: pre;">-type: ObjectTypeEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="72" x="449" y="944" width="200" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="72" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="72" x="455.5" y="956.5" style="white-space: pre;">+getObjectType(): ObjectTypeEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-25" x="412.5" y="1172" width="189" height="185" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-25" d="M 412.5 1189 L 601.5 1189" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-25" d="M 412.5 1274 L 601.5 1274" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-25" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-25" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 187px; height: 1px; padding-top: 1173px; margin-left: 414px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">ResourceCard</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="73" x="412.5" y="1192" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="73" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="73" x="419" y="1204.5" style="white-space: pre;">-corners: List&lt;Corner&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="74" x="412.5" y="1208" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="74" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="74" x="419" y="1220.5" style="white-space: pre;">-points: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="75" x="412.5" y="1224" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="75" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="75" x="419" y="1236.5" style="white-space: pre;">-backResource: Resource</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="76" x="412.5" y="1240" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="76" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="76" x="419" y="1252.5" style="white-space: pre;">-xCoord: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="77" x="412.5" y="1256" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="77" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="77" x="419" y="1268.5" style="white-space: pre;">-yCoord: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="78" x="412.5" y="1274" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="78" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="78" x="419" y="1286.5" style="white-space: pre;">+getCorners(): List&lt;Corner&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="79" x="412.5" y="1290" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="79" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="79" x="419" y="1302.5" style="white-space: pre;">+getPoints(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="80" x="412.5" y="1306" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="80" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="80" x="419" y="1318.5" style="white-space: pre;">+getBackResource(): Resource</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="81" x="412.5" y="1322" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="81" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="81" x="419" y="1334.5" style="white-space: pre;">+getXCoord(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="82" x="412.5" y="1338" width="189" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="82" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="82" x="419" y="1350.5" style="white-space: pre;">+getYCoord(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-26" x="225.5" y="1429" width="243" height="98" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-26" d="M 225.5 1446 L 468.5 1446" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-26" d="M 225.5 1483 L 468.5 1483" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-26" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-26" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 241px; height: 1px; padding-top: 1430px; margin-left: 227px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">GoldCard</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="84" x="225.5" y="1449" width="243" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="84" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="84" x="232" y="1461.5" style="white-space: pre;">-resourcesNeeded: List&lt;Resource&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="85" x="225.5" y="1465" width="243" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="85" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="85" x="232" y="1477.5" style="white-space: pre;">-objectsNeeded: List&lt;Object&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="86" x="225.5" y="1483" width="243" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="86" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="86" x="232" y="1495.5" style="white-space: pre;">+getPoints(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="87" x="225.5" y="1499" width="243" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="87" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="87" x="232" y="1511.5" style="white-space: pre;">+getResourcesNeeded(): List&lt;Resources&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="88" x="225.5" y="1515" width="243" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-29" d="M 750.88 1263.08 L 601.5 1263.95" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-29" d="M 762.88 1263.01 L 750.92 1269.08 L 750.85 1257.08 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-30" d="M 438.06 1367.91 L 396 1431" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-30" d="M 444.71 1357.93 L 443.05 1371.24 L 433.06 1364.59 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-31" x="1479.22" y="1514" width="215" height="155" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-31" d="M 1479.22 1531 L 1694.22 1531" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-31" d="M 1479.22 1600 L 1694.22 1600" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-31" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-31" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 213px; height: 1px; padding-top: 1515px; margin-left: 1480px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">GameInfo</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="89" x="1479.22" y="1534" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="89" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="89" x="1485.72" y="1546.5" style="white-space: pre;">-playersNumber: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="90" x="1479.22" y="1550" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="90" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="90" x="1485.72" y="1562.5" style="white-space: pre;">-firstPlayer: Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="91" x="1479.22" y="1566" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="91" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="91" x="1485.72" y="1578.5" style="white-space: pre;">-winner: Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="92" x="1479.22" y="1582" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="92" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="92" x="1485.72" y="1594.5" style="white-space: pre;">-gameStatus: GameStatusEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="93" x="1479.22" y="1600" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="93" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="93" x="1485.72" y="1612.5" style="white-space: pre;">+getPlayersNumber(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="94" x="1479.22" y="1616" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="94" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="94" x="1485.72" y="1628.5" style="white-space: pre;">+getFirstPlayer(): Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="95" x="1479.22" y="1632" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="95" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="95" x="1485.72" y="1644.5" style="white-space: pre;">+getWinner(): Player</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="96" x="1479.22" y="1648" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="96" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="96" x="1485.72" y="1660.5" style="white-space: pre;">+getGameStatus(): GameStatusEnum </text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-32" d="M 191.6 821.4 L 192 895" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-39" x="786.5" y="1083" width="147" height="58.67" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-39" d="M 786.5 1100 L 933.5 1100" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-39" d="M 786.5 1121 L 933.5 1121" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-39" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-39" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 145px; height: 1px; padding-top: 1084px; margin-left: 788px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">ObjectiveCard</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="97" x="786.5" y="1103" width="147" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="97" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="97" x="793" y="1115.5" style="white-space: pre;">-objective: Objective</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="98" x="786.5" y="1121" width="147" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="98" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="98" x="793" y="1133.5" style="white-space: pre;">+getObjective(): Objective</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="1J_uvc95y1O_2YFah6oi-40" x="519" y="1057" width="215" height="90.67" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-40" d="M 519 1074 L 734 1074" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-40" d="M 519 1111 L 734 1111" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="1J_uvc95y1O_2YFah6oi-40" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="1J_uvc95y1O_2YFah6oi-40" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 213px; height: 1px; padding-top: 1058px; margin-left: 520px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">StarterCard</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="99" x="519" y="1077" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="99" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="99" x="525.5" y="1089.5" style="white-space: pre;">-corners: List&lt;Corner&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="100" x="519" y="1093" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="100" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="100" x="525.5" y="1105.5" style="white-space: pre;">-frontResources: List&lt;Resource&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="101" x="519" y="1111" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="101" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="101" x="525.5" y="1123.5" style="white-space: pre;">+getCorners(): List&lt;Corner&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="102" x="519" y="1127" width="215" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="102" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="102" x="525.5" y="1139.5" style="white-space: pre;">+getFrontResources(): List&lt;Resource&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-42" d="M 852.41 1198.71 L 852 1143" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-42" d="M 852.49 1210.71 L 846.41 1198.76 L 858.41 1198.67 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="Jy7_1tJ_MMLhZrsVjyYc-47" x="697" y="1442" width="130" height="120" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-47" d="M 697 1474 L 827 1474" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="Jy7_1tJ_MMLhZrsVjyYc-47" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="Jy7_1tJ_MMLhZrsVjyYc-47" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 1443px; margin-left: 698px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+CardColorEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="103" x="697" y="1477" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="103" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="103" x="703.5" y="1489.5" style="white-space: pre;">RED</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="104" x="697" y="1493" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="104" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="104" x="703.5" y="1505.5" style="white-space: pre;">BLUE</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="105" x="697" y="1509" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="105" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="105" x="703.5" y="1521.5" style="white-space: pre;">GREEN</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="106" x="697" y="1525" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="106" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="106" x="703.5" y="1537.5" style="white-space: pre;">PURPLE</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="107" x="697" y="1541" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="107" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="107" x="703.5" y="1553.5" style="white-space: pre;">GOLD</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-52" d="M 755.52 1203.72 L 684.19 1147.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-52" d="M 764.95 1211.14 L 751.81 1208.44 L 759.23 1199.01 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-53" d="M 786.63 1442 L 824.88 1348.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="Jy7_1tJ_MMLhZrsVjyYc-54" x="484" y="741.62" width="130" height="104" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-54" d="M 484 773.62 L 614 773.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="Jy7_1tJ_MMLhZrsVjyYc-54" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="Jy7_1tJ_MMLhZrsVjyYc-54" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 743px; margin-left: 485px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+ObjectTypeEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="108" x="484" y="776.62" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="108" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="108" x="490.5" y="789.12" style="white-space: pre;">QUILL</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="109" x="484" y="792.62" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="109" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="109" x="490.5" y="805.12" style="white-space: pre;">INKWELL</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="110" x="484" y="808.62" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="110" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="110" x="490.5" y="821.12" style="white-space: pre;">MANUSCRIPT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="111" x="484" y="824.62" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="111" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="111" x="490.5" y="837.12" style="white-space: pre;">EMPTY</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-53" d="M 548.6 906.2 L 548 847" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-54" d="M 1588 1428.71 L 1588 1515" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="trWQWknTZg7wHPODSvmp-54" d="M 1588 1415.71 L 1594.5 1422.21 L 1588 1428.71 L 1581.5 1422.21 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-54" fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="11px">
+        <text cell-id="trWQWknTZg7wHPODSvmp-54" x="1595.5" y="1503" style="white-space: pre;">1</text>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-61" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-61" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1430px; margin-left: 1598px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-55" d="M 1462.3 1282.7 L 1296 1279" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="trWQWknTZg7wHPODSvmp-55" d="M 1475.29 1282.98 L 1468.65 1289.34 L 1462.3 1282.7 L 1468.94 1276.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-56" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-56" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1288px; margin-left: 1313px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">2...4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-62" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-62" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1302px; margin-left: 1461px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-63" d="M 1594.5 1088.83 L 1700.5 1088.83 L 1700.5 1103.83 L 1715.5 1103.83 L 1715.5 1141.67 L 1594.5 1141.67 Z" fill="#fff1aa" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="trWQWknTZg7wHPODSvmp-63" d="M 1594.5 1088.83 L 1700.5 1088.83 L 1715.5 1103.83 L 1700.5 1103.83 L 1700.5 1088.83 L 1715.5 1103.83 L 1715.5 1141.67 L 1594.5 1141.67 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-63" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-63" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe flex-start; width: 119px; height: 1px; padding-top: 1096px; margin-left: 1597px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: left;">
+              <div style="display: inline-block; font-size: 7px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; word-break: break-word; white-space: normal; word-wrap: normal;">
+                <font style="font-size: 7px">The Game class is the main                   <br />
+interface of the model towards the controller. It helds the complete state of the Game and some useful info about the specific Game.</font>
+              </div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="sKaqM7TLeenI8Wecn9yA-64" x="1128.47" y="1683" width="130" height="120" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-64" d="M 1128.47 1715 L 1258.47 1715" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-64" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-64" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 1684px; margin-left: 1129px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+TokenColorEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="112" x="1128.47" y="1718" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="112" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="112" x="1134.97" y="1730.5" style="white-space: pre;">RED</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="113" x="1128.47" y="1734" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="113" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="113" x="1134.97" y="1746.5" style="white-space: pre;">GREEN</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="114" x="1128.47" y="1750" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="114" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="114" x="1134.97" y="1762.5" style="white-space: pre;">YELLOW</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="115" x="1128.47" y="1766" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="115" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="115" x="1134.97" y="1778.5" style="white-space: pre;">BLUE</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="116" x="1128.47" y="1782" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="116" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="116" x="1134.97" y="1794.5" style="white-space: pre;">BLACK</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-71" d="M 1192.86 1683 L 1192 1599" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-72" d="M 1192.32 1482.54 L 1192 1539" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-72" d="M 1192.39 1469.54 L 1198.86 1476.07 L 1192.32 1482.54 L 1185.86 1476 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-74" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-74" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1531px; margin-left: 1201px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-75" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-75" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1486px; margin-left: 1202px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="sKaqM7TLeenI8Wecn9yA-76" x="904" y="1442" width="117.5" height="72" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-76" d="M 904 1474 L 1021.5 1474" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-76" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-76" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 116px; height: 1px; padding-top: 1443px; margin-left: 905px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+FaceEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="117" x="904" y="1477" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="117" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="117" x="910.5" y="1489.5" style="white-space: pre;">FRONT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="118" x="904" y="1493" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="118" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="118" x="910.5" y="1505.5" style="white-space: pre;">BACK</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-72" d="M 942.76 1442 L 891.03 1348.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="qiGPSFwZK5UaZUxJMsRo-73" x="1527.47" y="1735" width="117.5" height="120" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-73" d="M 1527.47 1767 L 1644.97 1767" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="qiGPSFwZK5UaZUxJMsRo-73" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="qiGPSFwZK5UaZUxJMsRo-73" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 116px; height: 1px; padding-top: 1736px; margin-left: 1528px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+GameStatusEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="119" x="1527.47" y="1770" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="119" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="119" x="1533.97" y="1782.5" style="white-space: pre;">WAITING</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="120" x="1527.47" y="1786" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="120" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="120" x="1533.97" y="1798.5" style="white-space: pre;">STARTING</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="121" x="1527.47" y="1802" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="121" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="121" x="1533.97" y="1814.5" style="white-space: pre;">PLAYING</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="122" x="1527.47" y="1818" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="122" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="122" x="1533.97" y="1830.5" style="white-space: pre;">ENDING</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="123" x="1527.47" y="1834" width="117.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="123" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="123" x="1533.97" y="1846.5" style="white-space: pre;">ERROR</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-76" d="M 1587.41 1669 L 1588 1735" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="qiGPSFwZK5UaZUxJMsRo-77" x="38" y="1322.72" width="130" height="104" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-77" d="M 38 1354.72 L 168 1354.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="qiGPSFwZK5UaZUxJMsRo-77" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="qiGPSFwZK5UaZUxJMsRo-77" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 128px; height: 1px; padding-top: 1324px; margin-left: 39px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">&lt;&lt;enumeration&gt;&gt;                <br />
+CornerLocationEnum</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="124" x="38" y="1357.72" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="124" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="124" x="44.5" y="1370.22" style="white-space: pre;">TOP_LEFT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="125" x="38" y="1373.72" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="125" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="125" x="44.5" y="1386.22" style="white-space: pre;">TOP_RIGHT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="126" x="38" y="1389.72" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="126" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="126" x="44.5" y="1402.22" style="white-space: pre;">BOTTOM_RIGHT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="127" x="38" y="1405.72" width="130" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="127" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="127" x="44.5" y="1418.22" style="white-space: pre;">BOTTOM_LEFT</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-82" d="M 103 1242 L 103 1322.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="qiGPSFwZK5UaZUxJMsRo-83" x="1128.47" y="756.62" width="199.5" height="89" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-83" d="M 1128.47 773.62 L 1327.97 773.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-83" d="M 1128.47 794.62 L 1327.97 794.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="qiGPSFwZK5UaZUxJMsRo-83" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="qiGPSFwZK5UaZUxJMsRo-83" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 758px; margin-left: 1129px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Deck</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="128" x="1128.47" y="776.62" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="128" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="128" x="1134.97" y="789.12" style="white-space: pre;">-cards: List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="129" x="1128.47" y="794.62" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="129" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="129" x="1134.97" y="807.12" style="white-space: pre;">+drawCard()</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="130" x="1128.47" y="810.62" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="130" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="130" x="1134.97" y="823.12" style="white-space: pre;">+shuffleDeck()</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="131" x="1128.47" y="826.62" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="131" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="131" x="1134.97" y="839.12" style="white-space: pre;">+getCards(): List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="f4gsfZ3gCOkLMV_2hHAU-119" x="1143.72" y="896" width="169" height="58.38" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="f4gsfZ3gCOkLMV_2hHAU-119" d="M 1143.72 913 L 1312.72 913" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="f4gsfZ3gCOkLMV_2hHAU-119" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="f4gsfZ3gCOkLMV_2hHAU-119" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 167px; height: 1px; padding-top: 897px; margin-left: 1145px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">ObjectivesDeck</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="132" x="1143.72" y="918" width="169" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="132" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="132" x="1150.22" y="930.5" style="white-space: pre;">+proposeCards(): void</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="f4gsfZ3gCOkLMV_2hHAU-122" d="M 1228.08 858.74 L 1228 895" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="f4gsfZ3gCOkLMV_2hHAU-122" d="M 1228.11 846.74 L 1234.08 858.75 L 1222.08 858.72 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="NIQelr1Emo_nYkEUVwuM-123" d="M 860 1069.29 L 860 975" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="NIQelr1Emo_nYkEUVwuM-123" d="M 860 1082.29 L 853.5 1075.79 L 860 1069.29 L 866.5 1075.79 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="NIQelr1Emo_nYkEUVwuM-125" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="NIQelr1Emo_nYkEUVwuM-125" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 987px; margin-left: 872px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="NIQelr1Emo_nYkEUVwuM-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="NIQelr1Emo_nYkEUVwuM-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1067px; margin-left: 877px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-125" d="M 1466.88 916.71 L 1320.1 845.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-125" d="M 1478.58 922.37 L 1469.9 925.39 L 1466.88 916.71 L 1475.57 913.69 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 905px; margin-left: 1470px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-127" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-127" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 847px; margin-left: 1344px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">3</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-128" d="M 1075.76 1280.33 L 945 1280.33" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-128" d="M 1088.76 1280.33 L 1082.26 1286.83 L 1075.76 1280.33 L 1082.26 1273.83 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-129" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-129" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1274px; margin-left: 1068px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-130" d="M 1466.35 993.77 L 948 947" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-130" d="M 1479.3 994.94 L 1472.24 1000.83 L 1466.35 993.77 L 1473.41 987.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-131" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-131" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 939px; margin-left: 958px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">2</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-151" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-151" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 981px; margin-left: 1467px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-132" d="M 505.35 1113.25 L 206 1140.22" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-132" d="M 518.3 1112.08 L 512.41 1119.14 L 505.35 1113.25 L 511.24 1106.19 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-148" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-148" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1132px; margin-left: 215px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-149" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-149" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1101px; margin-left: 506px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-133" d="M 399.32 1233.85 L 206 1178.82" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-133" d="M 411.82 1237.41 L 403.79 1241.88 L 399.32 1233.85 L 407.35 1229.38 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-134" d="M 302.43 1418 L 171.71 1242" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-134" d="M 310.18 1428.43 L 301.09 1427.09 L 302.43 1418 L 311.52 1419.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-136" d="M 144.17 1044.23 L 179.85 953" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-136" d="M 139.44 1056.34 L 135.75 1047.92 L 144.17 1044.23 L 147.86 1052.66 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-137" d="M 218.56 1098.93 L 520 967" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-137" d="M 206.65 1104.14 L 210 1095.58 L 218.56 1098.93 L 215.21 1107.49 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-140" d="M 649 936.87 L 776 939" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-140" fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="11px">
+        <text cell-id="oVG7tIlKLC-1zeAZktqR-140" x="768.6" y="935.88" style="white-space: pre;">1</text>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="OaGVsxtzMfalDlHIScce-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="OaGVsxtzMfalDlHIScce-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 930px; margin-left: 664px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1...3</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-145" d="M 1586.34 1136.84 L 1586.27 1043" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-145" d="M 1586.35 1149.84 L 1579.84 1143.35 L 1586.34 1136.84 L 1592.84 1143.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-146" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-146" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1053px; margin-left: 1583px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-147" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-147" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1145px; margin-left: 1576px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-129" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-129" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1228px; margin-left: 392px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-130" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-130" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1389px; margin-left: 296px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-132" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-132" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1178px; margin-left: 224px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1...4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-133" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-133" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1259px; margin-left: 204px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1...4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-135" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-135" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 965px; margin-left: 196px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-136" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-136" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1047px; margin-left: 125px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-138" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-138" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 982px; margin-left: 562px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="tBdnGqtquyMoa1KDeEky-139" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="tBdnGqtquyMoa1KDeEky-139" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1081px; margin-left: 211px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-154" d="M 1133.97 855.31 L 944 1243" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-154" d="M 1139.69 843.63 L 1142.67 852.33 L 1133.97 855.31 L 1130.99 846.61 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-165" x="779.25" y="895.99" width="161.5" height="78.39" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-165" d="M 779.25 912.99 L 940.75 912.99" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-165" d="M 779.25 949.99 L 940.75 949.99" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-165" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-165" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 160px; height: 1px; padding-top: 897px; margin-left: 780px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #333333; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Objective</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="133" x="779.25" y="915.99" width="161.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="133" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="133" x="785.75" y="928.49" style="white-space: pre;">-points: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="134" x="779.25" y="931.99" width="161.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="134" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="134" x="785.75" y="944.49" style="white-space: pre;">-strategy: ObjectiveStrategy</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="135" x="779.25" y="949.99" width="161.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="135" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="135" x="785.75" y="962.49" style="white-space: pre;">+getPoints(): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-167" x="732.5" y="501.5" width="201" height="60" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-167" d="M 732.5 533.5 L 933.5 533.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-167" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-167" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 199px; height: 1px; padding-top: 503px; margin-left: 734px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">       &lt;&lt;interface&gt;&gt;       ObjectiveStrategy</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="136" x="732.5" y="538.5" width="201" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="136" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="136" x="739" y="551" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-168" d="M 840 885.29 L 840 563" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-168" d="M 840 898.29 L 833.5 891.79 L 840 885.29 L 846.5 891.79 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-169" x="1007.5" y="555" width="198" height="76" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-169" d="M 1007.5 572 L 1205.5 572" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-169" d="M 1007.5 609 L 1205.5 609" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-169" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-169" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 196px; height: 1px; padding-top: 556px; margin-left: 1009px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">TopLeftDiagonal</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="137" x="1007.5" y="575" width="198" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="137" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="137" x="1014" y="587.5" style="white-space: pre;">-cardsColor[]: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="138" x="1007.5" y="591" width="198" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="138" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="138" x="1014" y="603.5" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="139" x="1007.5" y="609" width="198" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="139" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="139" x="1014" y="621.5" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-170" d="M 1007.5 577.73 L 914.21 563.34" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-170" d="M 925.88 559.07 L 913.1 563.17 L 924.05 570.93" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-171" x="894.47" y="661.5" width="208" height="76" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-171" d="M 894.47 678.5 L 1102.47 678.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-171" d="M 894.47 715.5 L 1102.47 715.5" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-171" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-171" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 206px; height: 1px; padding-top: 663px; margin-left: 895px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">TopRightDiagonal</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="140" x="894.47" y="681.5" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="140" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="140" x="900.97" y="694" style="white-space: pre;">-cardsColor[]: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="141" x="894.47" y="697.5" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="141" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="141" x="900.97" y="710" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="142" x="894.47" y="715.5" width="208" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="142" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="142" x="900.97" y="728" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-177" d="M 961.04 661.5 L 864.12 563.09" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-177" d="M 876.03 566.64 L 863.33 562.3 L 867.48 575.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-178" x="1044.5" y="441.53" width="222.97" height="89.95" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-178" d="M 1044.5 458.53 L 1267.47 458.53" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-178" d="M 1044.5 511.53 L 1267.47 511.53" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-178" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-178" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 221px; height: 1px; padding-top: 443px; margin-left: 1045px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">TopRightLShape</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="143" x="1044.5" y="461.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="143" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="143" x="1051" y="474.03" style="white-space: pre;">-columnCardsColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="144" x="1044.5" y="477.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="144" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="144" x="1051" y="490.03" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="145" x="1044.5" y="493.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="145" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="145" x="1051" y="506.03" style="white-space: pre;">-diagonalCardColor</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="146" x="1044.5" y="511.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="146" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="146" x="1051" y="524.03" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-182" d="M 1044.5 517.16 L 938.16 546.41" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-182" d="M 947.06 537.74 L 937.08 546.7 L 950.24 549.31" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-183" x="484" y="336.53" width="222.97" height="105" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-183" d="M 484 353.53 L 706.97 353.53" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-183" d="M 484 406.53 L 706.97 406.53" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-183" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-183" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 221px; height: 1px; padding-top: 338px; margin-left: 485px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">BottomRightLShape</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="147" x="484" y="356.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="147" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="147" x="490.5" y="369.03" style="white-space: pre;">-columnCardsColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="148" x="484" y="372.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="148" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="148" x="490.5" y="385.03" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="149" x="484" y="388.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="149" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="149" x="490.5" y="401.03" style="white-space: pre;">-diagonalCardColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="150" x="484" y="406.53" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="150" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="150" x="490.5" y="419.03" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-187" d="M 664 439 L 776.23 500.43" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-187" d="M 763.8 500.46 L 777.21 500.96 L 769.56 489.94" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-192" x="734" y="312" width="222.97" height="105" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-192" d="M 734 329 L 956.97 329" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-192" d="M 734 382 L 956.97 382" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-192" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-192" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 221px; height: 1px; padding-top: 313px; margin-left: 735px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">TopLeftLShape</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="151" x="734" y="332" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="151" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="151" x="740.5" y="344.5" style="white-space: pre;">-columnCardsColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="152" x="734" y="348" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="152" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="152" x="740.5" y="360.5" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="153" x="734" y="364" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="153" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="153" x="740.5" y="376.5" style="white-space: pre;">-diagonalCardColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="154" x="734" y="382" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="154" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="154" x="740.5" y="394.5" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-199" d="M 841.56 417 L 835.41 499.27" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-199" d="M 830.24 487.97 L 835.33 500.39 L 842.2 488.87" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-200" x="1007.5" y="312" width="222.97" height="105" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-200" d="M 1007.5 329 L 1230.47 329" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-200" d="M 1007.5 382 L 1230.47 382" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-200" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-200" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 221px; height: 1px; padding-top: 313px; margin-left: 1008px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">BottomLeftLShape</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="155" x="1007.5" y="332" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="155" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="155" x="1014" y="344.5" style="white-space: pre;">-columnCardsColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="156" x="1007.5" y="348" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="156" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="156" x="1014" y="360.5" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="157" x="1007.5" y="364" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="157" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="157" x="1014" y="376.5" style="white-space: pre;">-diagonalCardColor: CardColorEnum</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="158" x="1007.5" y="382" width="222.97" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="158" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="158" x="1014" y="394.5" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-205" d="M 1028 419 L 893.9 501.82" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-205" d="M 900.01 491 L 892.95 502.41 L 906.31 501.21" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-206" x="538" y="620" width="248.5" height="73" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-206" d="M 538 637 L 786.5 637" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-206" d="M 538 674 L 786.5 674" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-206" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-206" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 247px; height: 1px; padding-top: 621px; margin-left: 539px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">ObjectStrategy</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="159" x="538" y="640" width="248.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="159" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="159" x="544.5" y="652.5" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="160" x="538" y="656" width="248.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="160" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="160" x="544.5" y="668.5" style="white-space: pre;">-objectRequirement: List&lt;ObjectTypeEnum&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="161" x="538" y="674" width="248.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="161" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="161" x="544.5" y="686.5" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="8EngGBknKViWlShvgWQl-207" x="388.52" y="495" width="274.27" height="73" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-207" d="M 388.52 512 L 662.79 512" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-207" d="M 388.52 549 L 662.79 549" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="8EngGBknKViWlShvgWQl-207" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="8EngGBknKViWlShvgWQl-207" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 272px; height: 1px; padding-top: 496px; margin-left: 390px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">ResourceStrategy</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="162" x="388.52" y="515" width="274.27" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="162" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="162" x="395.02" y="527.5" style="white-space: pre;">-pointsPerPattern: int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="163" x="388.52" y="531" width="274.27" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="163" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="163" x="395.02" y="543.5" style="white-space: pre;">-resourceRequirement: List&lt;ResourceTypeEnum&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="164" x="388.52" y="549" width="274.27" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="164" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="164" x="395.02" y="561.5" style="white-space: pre;">+calculatePoints(Card cards[][]): int</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-210" d="M 712.11 620 L 790.22 562.82" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-210" d="M 784.98 574.09 L 791.12 562.16 L 777.89 564.41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-211" d="M 662.79 533.83 L 729.76 534.96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-211" d="M 718.78 540.78 L 730.88 534.98 L 718.99 528.78" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9dxftwUwyVxtIW85llbv-165" x="2012" y="0" width="199.5" height="89" fill="none" stroke="#000000" pointer-events="all"/>
+      <path cell-id="9dxftwUwyVxtIW85llbv-165" d="M 2012 17 L 2211.5 17" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+      <path cell-id="9dxftwUwyVxtIW85llbv-165" d="M 2012 38 L 2211.5 38" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9dxftwUwyVxtIW85llbv-165" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="9dxftwUwyVxtIW85llbv-165" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe flex-start; justify-content: unsafe center; width: 198px; height: 1px; padding-top: 1px; margin-left: 2013px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 12px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; font-weight: bold; word-break: break-word; white-space: normal; word-wrap: normal;">Deck</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9dxftwUwyVxtIW85llbv-166" x="2012" y="20" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9dxftwUwyVxtIW85llbv-166" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="9dxftwUwyVxtIW85llbv-166" x="2018.5" y="32.5" style="white-space: pre;">-cards: List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9dxftwUwyVxtIW85llbv-167" x="2012" y="38" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9dxftwUwyVxtIW85llbv-167" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="9dxftwUwyVxtIW85llbv-167" x="2018.5" y="50.5" style="white-space: pre;">+drawCard()</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9dxftwUwyVxtIW85llbv-168" x="2012" y="54" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9dxftwUwyVxtIW85llbv-168" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="9dxftwUwyVxtIW85llbv-168" x="2018.5" y="66.5" style="white-space: pre;">+shuffleDeck()</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <rect cell-id="9dxftwUwyVxtIW85llbv-169" x="2012" y="70" width="199.5" height="16" fill="none" stroke="none" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="9dxftwUwyVxtIW85llbv-169" fill="#000000" font-family="Helvetica" font-size="12px">
+        <text cell-id="9dxftwUwyVxtIW85llbv-169" x="2018.5" y="82.5" style="white-space: pre;">+getCards(): List&lt;Card&gt;</text>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-29" d="M 750.88 1263.08 L 601.5 1263.95" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-29" d="M 762.88 1263.01 L 750.92 1269.08 L 750.85 1257.08 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-30" d="M 438.06 1367.91 L 396 1431" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-30" d="M 444.71 1357.93 L 443.05 1371.24 L 433.06 1364.59 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-32" d="M 191.6 821.4 L 192 895" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="1J_uvc95y1O_2YFah6oi-42" d="M 852.41 1198.71 L 852 1143" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="1J_uvc95y1O_2YFah6oi-42" d="M 852.49 1210.71 L 846.41 1198.76 L 858.41 1198.67 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-52" d="M 755.52 1203.72 L 684.19 1147.67" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-52" d="M 764.95 1211.14 L 751.81 1208.44 L 759.23 1199.01 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="Jy7_1tJ_MMLhZrsVjyYc-53" d="M 786.63 1442 L 824.88 1348.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-53" d="M 548.6 906.2 L 548 847" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-54" d="M 1588 1428.71 L 1588 1515" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="trWQWknTZg7wHPODSvmp-54" d="M 1588 1415.71 L 1594.5 1422.21 L 1588 1428.71 L 1581.5 1422.21 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-54" fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="11px">
+        <text cell-id="trWQWknTZg7wHPODSvmp-54" x="1595.5" y="1503" style="white-space: pre;">1</text>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-61" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-61" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1430px; margin-left: 1598px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="trWQWknTZg7wHPODSvmp-55" d="M 1462.3 1282.7 L 1296 1279" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="trWQWknTZg7wHPODSvmp-55" d="M 1475.29 1282.98 L 1468.65 1289.34 L 1462.3 1282.7 L 1468.94 1276.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-56" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-56" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1288px; margin-left: 1313px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">2...4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="trWQWknTZg7wHPODSvmp-62" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="trWQWknTZg7wHPODSvmp-62" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1302px; margin-left: 1461px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-71" d="M 1192.86 1683 L 1192 1599" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-72" d="M 1192.32 1482.54 L 1192 1539" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="sKaqM7TLeenI8Wecn9yA-72" d="M 1192.39 1469.54 L 1198.86 1476.07 L 1192.32 1482.54 L 1185.86 1476 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-74" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-74" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1531px; margin-left: 1201px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="sKaqM7TLeenI8Wecn9yA-75" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="sKaqM7TLeenI8Wecn9yA-75" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1486px; margin-left: 1202px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-72" d="M 942.76 1442 L 891.03 1348.83" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-76" d="M 1587.41 1669 L 1588 1735" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="qiGPSFwZK5UaZUxJMsRo-82" d="M 103 1242 L 103 1322.72" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="f4gsfZ3gCOkLMV_2hHAU-122" d="M 1228.08 858.74 L 1228 895" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="f4gsfZ3gCOkLMV_2hHAU-122" d="M 1228.11 846.74 L 1234.08 858.75 L 1222.08 858.72 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="NIQelr1Emo_nYkEUVwuM-123" d="M 860 1069.29 L 860 975" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="NIQelr1Emo_nYkEUVwuM-123" d="M 860 1082.29 L 853.5 1075.79 L 860 1069.29 L 866.5 1075.79 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="NIQelr1Emo_nYkEUVwuM-125" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="NIQelr1Emo_nYkEUVwuM-125" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 987px; margin-left: 872px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="NIQelr1Emo_nYkEUVwuM-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="NIQelr1Emo_nYkEUVwuM-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1067px; margin-left: 877px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-125" d="M 1466.88 916.71 L 1320.1 845.62" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-125" d="M 1478.58 922.37 L 1469.9 925.39 L 1466.88 916.71 L 1475.57 913.69 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 905px; margin-left: 1470px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-127" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-127" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 847px; margin-left: 1344px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">3</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-128" d="M 1075.76 1280.33 L 945 1280.33" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-128" d="M 1088.76 1280.33 L 1082.26 1286.83 L 1075.76 1280.33 L 1082.26 1273.83 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-129" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-129" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1274px; margin-left: 1068px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-130" d="M 1466.35 993.77 L 948 947" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-130" d="M 1479.3 994.94 L 1472.24 1000.83 L 1466.35 993.77 L 1473.41 987.88 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-131" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-131" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 939px; margin-left: 958px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">2</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-151" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-151" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 981px; margin-left: 1467px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">0...1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-132" d="M 505.35 1113.25 L 206 1140.22" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-132" d="M 518.3 1112.08 L 512.41 1119.14 L 505.35 1113.25 L 511.24 1106.19 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-148" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-148" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1132px; margin-left: 215px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">4</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-149" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-149" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1101px; margin-left: 506px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-133" d="M 399.32 1233.85 L 206 1178.82" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-133" d="M 411.82 1237.41 L 403.79 1241.88 L 399.32 1233.85 L 407.35 1229.38 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-134" d="M 302.43 1418 L 171.71 1242" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-134" d="M 310.18 1428.43 L 301.09 1427.09 L 302.43 1418 L 311.52 1419.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-136" d="M 144.17 1044.23 L 179.85 953" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-136" d="M 139.44 1056.34 L 135.75 1047.92 L 144.17 1044.23 L 147.86 1052.66 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-137" d="M 218.56 1098.93 L 520 967" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-137" d="M 206.65 1104.14 L 210 1095.58 L 218.56 1098.93 L 215.21 1107.49 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-140" d="M 649 936.87 L 776 939" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-140" fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="11px">
+        <text cell-id="oVG7tIlKLC-1zeAZktqR-140" x="768.6" y="935.88" style="white-space: pre;">1</text>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="OaGVsxtzMfalDlHIScce-126" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="OaGVsxtzMfalDlHIScce-126" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 930px; margin-left: 664px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1...3</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-145" d="M 1586.34 1136.84 L 1586.27 1043" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-145" d="M 1586.35 1149.84 L 1579.84 1143.35 L 1586.34 1136.84 L 1592.84 1143.34 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-146" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-146" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1053px; margin-left: 1583px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="" text-node="">
+      <g cell-id="oVG7tIlKLC-1zeAZktqR-147" transform="translate(-0.5 -0.5)">
+        <foreignObject cell-id="oVG7tIlKLC-1zeAZktqR-147" style="overflow: visible; text-align: left;" pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility">
+          <div style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 1px; height: 1px; padding-top: 1145px; margin-left: 1576px;" xmlns="http://www.w3.org/1999/xhtml">
+            <div style="box-sizing: border-box; font-size: 0; text-align: center;">
+              <div style="display: inline-block; font-size: 11px; font-family: 'Helvetica', 'VP Default'; color: #000000; line-height: 1.2; pointer-events: all; background-color: #ffffff; white-space: nowrap;">1</div>
+            </div>
+          </div>
+        </foreignObject>
+      </g>
+    </g>
+    <g shape-node="">
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-154" d="M 1133.97 855.31 L 944 1243" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="oVG7tIlKLC-1zeAZktqR-154" d="M 1139.69 843.63 L 1142.67 852.33 L 1133.97 855.31 L 1130.99 846.61 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-168" d="M 840 885.29 L 840 563" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-168" d="M 840 898.29 L 833.5 891.79 L 840 885.29 L 846.5 891.79 Z" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-170" d="M 1007.5 577.73 L 914.21 563.34" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-170" d="M 925.88 559.07 L 913.1 563.17 L 924.05 570.93" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-177" d="M 961.04 661.5 L 864.12 563.09" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-177" d="M 876.03 566.64 L 863.33 562.3 L 867.48 575.06" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-182" d="M 1044.5 517.16 L 938.16 546.41" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-182" d="M 947.06 537.74 L 937.08 546.7 L 950.24 549.31" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-187" d="M 664 439 L 776.23 500.43" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-187" d="M 763.8 500.46 L 777.21 500.96 L 769.56 489.94" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-199" d="M 841.56 417 L 835.41 499.27" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-199" d="M 830.24 487.97 L 835.33 500.39 L 842.2 488.87" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-205" d="M 1028 419 L 893.9 501.82" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-205" d="M 900.01 491 L 892.95 502.41 L 906.31 501.21" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-210" d="M 712.11 620 L 790.22 562.82" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-210" d="M 784.98 574.09 L 791.12 562.16 L 777.89 564.41" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+    <g shape-node="">
+      <path cell-id="8EngGBknKViWlShvgWQl-211" d="M 662.79 533.83 L 729.76 534.96" fill="none" stroke="#000000" stroke-miterlimit="10" stroke-dasharray="5" pointer-events="stroke"/>
+      <path cell-id="8EngGBknKViWlShvgWQl-211" d="M 718.78 540.78 L 730.88 534.98 L 718.99 528.78" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/>
+    </g>
+  </g>
+</svg>

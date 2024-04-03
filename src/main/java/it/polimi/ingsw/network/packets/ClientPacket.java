@@ -1,7 +1,5 @@
 package it.polimi.ingsw.network.packets;
 
-import it.polimi.ingsw.network.ClientConnection;
-
 /**
  * Class that represents a packet sent exclusively by a client
  */

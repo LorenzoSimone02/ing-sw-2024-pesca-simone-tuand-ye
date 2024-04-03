@@ -39,12 +39,14 @@ public class SocketClient extends ClientNetworkHandler {
                 try {
                     Packet packet = (Packet) in.readObject();
                     receivePacket(packet);
-                } catch (IOException | ClassNotFoundException e) {
-                    System.err.println("Error receiving packet: " + e);
+                } catch (IOException e) {
+                    System.err.println("Lost connection with the server");
+                    Thread.currentThread().interrupt();
+                } catch (ClassNotFoundException e) {
+                    System.err.println("Error reading packet: " + e);
                 }
             }
         }).start();
-
     }
 
     public void sendPacket(ClientPacket packet) {
