@@ -3,7 +3,7 @@
   "yCoord": 0,
   "id": 1,
   "color": "RED",
-  "face": "FRONT"
+  "face": "FRONT",
   "points": 1,
   "corners": [
     {
@@ -35,5 +35,5 @@
   ],
   "backResource": {
     "type": "FUNGI"
-  },
+  }
 }
