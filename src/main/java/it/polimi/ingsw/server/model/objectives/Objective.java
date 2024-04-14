@@ -1,16 +1,10 @@
 package it.polimi.ingsw.server.model.objectives;
 
-public class Objective {
-    private int points;
-    private final ObjectiveStrategy strategy;
+import it.polimi.ingsw.server.model.card.Card;
 
-    public Objective(ObjectiveStrategy strategy) {
-        this.strategy = strategy;
+public record Objective(ObjectiveStrategy strategy) {
 
+    public int getPoints(Card[][] cards) {
+        return strategy.calculatePoints(cards);
     }
-
-    public int getPoints() {
-        return points;
-    }
-
 }

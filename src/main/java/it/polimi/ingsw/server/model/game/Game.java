@@ -1,23 +1,24 @@
 package it.polimi.ingsw.server.model.game;
 
-import it.polimi.ingsw.server.model.objectives.Objective;
+import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.player.Player;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.io.File;
+import java.util.*;
 
 public class Game {
+
     private final int id;
     private final Table table;
-    private List<Player> players;
-    private Player activePlayer;
-    private Objective objective;
+    private final List<Player> players;
+    private final ArrayList<ObjectiveCard> objectiveCards;
     private GameInfo info;
 
-    public Game(int id, Table table){
+    public Game(int id) {
         this.id = id;
-        this.table = table;
+        this.table = new Table();
+        this.players = new ArrayList<>();
+        this.objectiveCards = new ArrayList<>();
     }
 
     public int getId() {
@@ -32,20 +33,20 @@ public class Game {
         return players;
     }
 
-    public void addPlayer(Player player){
+    public void addPlayer(Player player) {
         this.players.add(player);
     }
 
-    public void removePlayer(Player player){
+    public void removePlayer(Player player) {
         this.players.remove(player);
     }
 
-    public Objective getObjective() {
-        return objective;
+    public ArrayList<ObjectiveCard> getObjectiveCards() {
+        return objectiveCards;
     }
 
-    public void setObjective(Objective objective){
-        this.objective = objective;
+    public void addObjectiveCard(ObjectiveCard objectiveCard) {
+        this.objectiveCards.add(objectiveCard);
     }
 
     public GameInfo getInfo() {
@@ -56,43 +57,108 @@ public class Game {
         this.info = info;
     }
 
-    public void assignStarterCard(){
-        for(Player player : players){
+    public void startGame() {
+        setInfo(new GameInfo(players.size()));
+
+        instantiateCards();
+        assignStarterCard();
+        assignCommonObjectives();
+        chooseFirstPlayer();
+
+        getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
+        getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
+        getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
+        getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
+
+
+        for(Player p : players) {
+            p.addCardInHand(getTable().getResourceDeck().drawCard());
+            p.addCardInHand(getTable().getResourceDeck().drawCard());
+            p.addCardInHand(getTable().getGoldDeck().drawCard());
         }
     }
 
-    public void assignCommonObjectives(){
-
+    public void assignStarterCard() {
+        int size = getTable().getStarterCards().size();
+        for (Player player : players) {
+            StarterCard starterCard = getTable().getStarterCards().remove(new Random().nextInt(size));
+            player.setStarterCard(starterCard);
+            size--;
+        }
     }
 
-    public Player nextPlayer(Player activePlayer){
-        int index = players.indexOf(activePlayer);
+    public void assignCommonObjectives() {
+        int size = getTable().getObjectiveCards().size();
+        addObjectiveCard(getTable().getObjectiveCards().remove(new Random().nextInt(size)));
+        addObjectiveCard(getTable().getObjectiveCards().remove(new Random().nextInt(size - 1)));
+    }
+
+    public void instantiateCards() {
+        File folder = new File("/resources/assets/resourcecards");
+        Deck resourceDeck = new Deck();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            ResourceCard card = new ResourceCard(file);
+            resourceDeck.addCard(card);
+        }
+        resourceDeck.shuffleDeck();
+        getTable().setResouceDeck(resourceDeck);
+
+        folder = new File("/resources/assets/goldcards");
+        Deck goldDeck = new Deck();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            GoldCard card = new GoldCard(file);
+            goldDeck.addCard(card);
+        }
+        goldDeck.shuffleDeck();
+        getTable().setGoldDeck(goldDeck);
+
+        folder = new File("/resources/assets/startercards");
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            StarterCard card = new StarterCard(file);
+            getTable().addStarterCard(card);
+        }
+
+        folder = new File("/resources/assets/objectivecards");
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            ObjectiveCard card = new ObjectiveCard(file);
+            getTable().addObjectiveCard(card);
+        }
+    }
+
+    public void nextTurn() {
+        Player next = nextPlayer();
+        getInfo().setActivePlayer(next);
+    }
+
+    public Player nextPlayer() {
+        int index = players.indexOf(getInfo().getActivePlayer());
         return players.get((index + 1) % players.size());
     }
 
-    public void chooseFirstPlayer(){
+    public void chooseFirstPlayer() {
         Player first = players.get(new Random().nextInt(players.size()));
         first.setFirst(true);
-        activePlayer = first;
-        this.getInfo().setFirstPlayer(first);
+        getInfo().setFirstPlayer(first);
+        getInfo().setActivePlayer(first);
     }
 
-    public void startGame(){
-
-    }
-
-    public void endGame(){
-
+    public void endGame() {
+        for (Player p : players) {
+            int secretObjectivePoints = p.getObjectiveCard().getObjective().getPoints(p.getCards());
+            int publicObjectivePoints = 0;
+            for (ObjectiveCard card : objectiveCards) {
+                publicObjectivePoints += card.getObjective().getPoints(p.getCards());
+            }
+            p.setScore(secretObjectivePoints + publicObjectivePoints);
+        }
     }
 
     public Optional<Player> getPlayerByNick(String nick) {
         for (Player p : players) {
-            if(p.getNickname().equalsIgnoreCase(nick)) {
+            if (p.getNickname().equalsIgnoreCase(nick)) {
                 return Optional.of(p);
             }
         }
         return Optional.empty();
     }
-
-
 }

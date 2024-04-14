@@ -1,9 +1,10 @@
 package it.polimi.ingsw.server.model.card;
 
 public abstract class Card {
+
     int id;
-    private CardColorEnum color;
-    private FaceEnum face;
+    CardColorEnum color;
+    FaceEnum face;
 
     public int getId() {
         return id;
@@ -24,6 +25,4 @@ public abstract class Card {
             this.face = FaceEnum.FRONT;
         }
     }
-
-
 }

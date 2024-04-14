@@ -7,6 +7,7 @@ import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 public class ObjectStrategy implements ObjectiveStrategy {
 
     private ObjectTypeEnum objectRequirment;
+    int pointsPerPattern;
 
     public int calculatePoints(Card[][] cards) {
         return 0;

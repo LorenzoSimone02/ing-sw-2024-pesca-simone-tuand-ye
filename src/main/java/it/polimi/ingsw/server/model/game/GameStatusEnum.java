@@ -1,7 +1,7 @@
 package it.polimi.ingsw.server.model.game;
 
 public enum GameStatusEnum {
-    WAITING,
+    WAITING_FOR_PLAYERS,
     STARTING,
     ASSIGNING_STARTER_CARDS,
     CHOOSING_COLOR,

@@ -2,20 +2,26 @@ package it.polimi.ingsw.server.model.card;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class Deck {
-    private List<Card> cards;
 
-    public Deck(int numCards) {
-        this.shuffleDeck();
+    private final Stack<Card> cards;
+
+    public Deck() {
+        cards = new Stack<>();
     }
 
     public void shuffleDeck() {
         Collections.shuffle(cards);
     }
 
+    public void addCard(Card card) {
+        cards.push(card);
+    }
+
     public Card drawCard() {
-        return cards.removeFirst();
+        return cards.pop();
     }
 
     public List<Card> getCards() {

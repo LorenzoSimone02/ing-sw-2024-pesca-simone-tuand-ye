@@ -3,14 +3,16 @@ package it.polimi.ingsw.server.model.game;
 import it.polimi.ingsw.server.model.player.Player;
 
 public class GameInfo {
+
     private final int playersNumber;
     private Player firstPlayer;
+    private Player activePlayer;
     private Player winner;
     private GameStatusEnum gameStatus;
 
-    public GameInfo(int playersNumber, GameStatusEnum gameStatus) {
+    public GameInfo(int playersNumber) {
         this.playersNumber = playersNumber;
-        this.gameStatus = gameStatus;
+        gameStatus = GameStatusEnum.WAITING_FOR_PLAYERS;
     }
 
     public int getPlayersNumber() {
@@ -19,6 +21,14 @@ public class GameInfo {
 
     public Player getFirstPlayer() {
         return firstPlayer;
+    }
+
+    public Player getActivePlayer() {
+        return activePlayer;
+    }
+
+    public void setActivePlayer(Player activePlayer) {
+        this.activePlayer = activePlayer;
     }
 
     public void setFirstPlayer(Player firstPlayer) {

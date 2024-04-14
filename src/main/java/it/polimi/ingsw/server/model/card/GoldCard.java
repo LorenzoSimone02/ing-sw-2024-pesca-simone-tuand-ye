@@ -5,31 +5,29 @@ import com.google.gson.stream.JsonReader;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
-import java.util.Properties;
 
 public class GoldCard extends ResourceCard {
-    private List<Resource> resourcesNeeded;
-    private List<Object> objectsNeeded;
-    private int points;
+
+    private final List<Resource> resourcesNeeded;
+    private final List<Object> objectsNeeded;
+    private final int points;
 
     public GoldCard(File jsonFile) {
         super(jsonFile);
-
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(jsonFile));
-            Properties data = gson.fromJson(reader, Properties.class);
-
-            //Esempio ma solo con attributi extra della gold card
-            this.points = Integer.parseInt(data.getProperty("points"));
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+            GoldCard proprieties = gson.fromJson(reader, GoldCard.class);
+            this.points = proprieties.getPoints();
+            this.resourcesNeeded = proprieties.getResourcesNeeded();
+            this.objectsNeeded = proprieties.getObjectsNeeded();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
-
     }
-
 
     public List<Resource> getResourcesNeeded() {
         return resourcesNeeded;

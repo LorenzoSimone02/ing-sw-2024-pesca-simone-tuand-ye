@@ -4,7 +4,7 @@ import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
-public class ReourceStrategy implements ObjectiveStrategy {
+public class TopLeftLShape implements ObjectiveStrategy {
 
     private ResourceTypeEnum resourceRequirment;
     int pointsPerPattern;
@@ -13,3 +13,5 @@ public class ReourceStrategy implements ObjectiveStrategy {
         return 0;
     }
 }
+
+
