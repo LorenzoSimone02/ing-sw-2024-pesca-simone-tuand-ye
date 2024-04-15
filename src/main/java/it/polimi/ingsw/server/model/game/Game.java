@@ -1,9 +1,13 @@
 package it.polimi.ingsw.server.model.game;
 
 import it.polimi.ingsw.server.model.card.*;
+import it.polimi.ingsw.server.model.exceptions.DuplicatePlayerException;
+import it.polimi.ingsw.server.model.exceptions.FullLobbyException;
+import it.polimi.ingsw.server.model.exceptions.GameStartException;
 import it.polimi.ingsw.server.model.player.Player;
 
 import java.io.File;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Game {
@@ -19,6 +23,7 @@ public class Game {
         this.table = new Table();
         this.players = new ArrayList<>();
         this.objectiveCards = new ArrayList<>();
+        this.info = new GameInfo(0);
     }
 
     public int getId() {
@@ -33,12 +38,20 @@ public class Game {
         return players;
     }
 
-    public void addPlayer(Player player) {
+    public void addPlayer(Player player) throws DuplicatePlayerException, FullLobbyException {
+        if (getPlayerByNick(player.getNickname()).isPresent()) {
+            throw new DuplicatePlayerException(player.getNickname());
+        }
+        if (players.size() >= 4) {
+            throw new FullLobbyException();
+        }
         this.players.add(player);
+        this.getInfo().setPlayersNumber(players.size());
     }
 
     public void removePlayer(Player player) {
         this.players.remove(player);
+        this.getInfo().setPlayersNumber(players.size());
     }
 
     public ArrayList<ObjectiveCard> getObjectiveCards() {
@@ -57,24 +70,29 @@ public class Game {
         this.info = info;
     }
 
-    public void startGame() {
-        setInfo(new GameInfo(players.size()));
+    public void startGame() throws GameStartException {
+        try {
+            getInfo().setGameStatus(GameStatusEnum.STARTING);
 
-        instantiateCards();
-        assignStarterCard();
-        assignCommonObjectives();
-        chooseFirstPlayer();
+            instantiateCards();
+            assignStarterCard();
+            assignCommonObjectives();
+            chooseFirstPlayer();
 
-        getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
-        getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
-        getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
-        getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
+            getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
+            getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
+            getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
+            getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
 
 
-        for(Player p : players) {
-            p.addCardInHand(getTable().getResourceDeck().drawCard());
-            p.addCardInHand(getTable().getResourceDeck().drawCard());
-            p.addCardInHand(getTable().getGoldDeck().drawCard());
+            for (Player p : players) {
+                p.addCardInHand(getTable().getResourceDeck().drawCard());
+                p.addCardInHand(getTable().getResourceDeck().drawCard());
+                p.addCardInHand(getTable().getGoldDeck().drawCard());
+            }
+        } catch (Exception e) {
+            getInfo().setGameStatus(GameStatusEnum.ERROR);
+            throw new GameStartException();
         }
     }
 
@@ -94,7 +112,7 @@ public class Game {
     }
 
     public void instantiateCards() {
-        File folder = new File("/resources/assets/resourcecards");
+        File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
         Deck resourceDeck = new Deck();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ResourceCard card = new ResourceCard(file);
@@ -103,7 +121,8 @@ public class Game {
         resourceDeck.shuffleDeck();
         getTable().setResouceDeck(resourceDeck);
 
-        folder = new File("/resources/assets/goldcards");
+
+        folder = Paths.get("src/main/resources/assets/goldcards").toFile();
         Deck goldDeck = new Deck();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             GoldCard card = new GoldCard(file);
@@ -112,13 +131,13 @@ public class Game {
         goldDeck.shuffleDeck();
         getTable().setGoldDeck(goldDeck);
 
-        folder = new File("/resources/assets/startercards");
+        folder = Paths.get("src/main/resources/assets/startercards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             StarterCard card = new StarterCard(file);
             getTable().addStarterCard(card);
         }
 
-        folder = new File("/resources/assets/objectivecards");
+        folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ObjectiveCard card = new ObjectiveCard(file);
             getTable().addObjectiveCard(card);

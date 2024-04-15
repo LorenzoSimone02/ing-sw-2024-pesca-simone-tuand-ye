@@ -4,7 +4,7 @@ import it.polimi.ingsw.server.model.player.Player;
 
 public class GameInfo {
 
-    private final int playersNumber;
+    private int playersNumber;
     private Player firstPlayer;
     private Player activePlayer;
     private Player winner;
@@ -17,6 +17,10 @@ public class GameInfo {
 
     public int getPlayersNumber() {
         return playersNumber;
+    }
+
+    public void setPlayersNumber(int playersNumber) {
+        this.playersNumber = playersNumber;
     }
 
     public Player getFirstPlayer() {

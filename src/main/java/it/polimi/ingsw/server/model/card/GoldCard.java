@@ -13,7 +13,6 @@ public class GoldCard extends ResourceCard {
 
     private final List<Resource> resourcesNeeded;
     private final List<Object> objectsNeeded;
-    private final int points;
 
     public GoldCard(File jsonFile) {
         super(jsonFile);
@@ -21,7 +20,6 @@ public class GoldCard extends ResourceCard {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(jsonFile));
             GoldCard proprieties = gson.fromJson(reader, GoldCard.class);
-            this.points = proprieties.getPoints();
             this.resourcesNeeded = proprieties.getResourcesNeeded();
             this.objectsNeeded = proprieties.getObjectsNeeded();
         } catch (FileNotFoundException e) {

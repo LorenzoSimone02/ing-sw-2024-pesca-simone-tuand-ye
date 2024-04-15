@@ -3,7 +3,6 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.CardColorEnum;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
-import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 public class BottomLeftLShape implements ObjectiveStrategy {
 
@@ -18,7 +17,7 @@ public class BottomLeftLShape implements ObjectiveStrategy {
                 if( cards[i][j].getColor() == columnCardsColor &&
                     cards[i+2][j].getColor() == columnCardsColor &&
                     cards[i+3][j-1].getColor() == diagonalCardColor) {
-                    points = points + pointsPerPattern;
+                    points += pointsPerPattern;
                 }
             }
         }

@@ -1,0 +1,8 @@
+{
+  "id": 2,
+  "color": "GOLD",
+  "face": "FRONT",
+  "objective": {
+    "type": "BOTTOM_LEFT_L_SHAPE"
+  }
+}

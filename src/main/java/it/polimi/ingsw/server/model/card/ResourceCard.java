@@ -15,7 +15,7 @@ import java.util.List;
 public class ResourceCard extends Card {
     private int xCoord;
     private int yCoord;
-    private final int points;
+    protected final int points;
     private final List<Corner> corners;
     private final Resource backResource;
 
@@ -57,7 +57,7 @@ public class ResourceCard extends Card {
         this.yCoord = yCoord;
     }
 
-    private int getPoints() {
+    public int getPoints() {
         return points;
     }
 

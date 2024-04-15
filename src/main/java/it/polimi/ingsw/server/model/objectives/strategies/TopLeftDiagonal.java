@@ -17,7 +17,7 @@ public class TopLeftDiagonal implements ObjectiveStrategy {
                 if( cards[i][j].getColor() == CardsColor &&
                     cards[i+1][j+1].getColor() == CardsColor &&
                     cards[i+2][j+2].getColor() == CardsColor) {
-                    points = points + pointsPerPattern;
+                    points += pointsPerPattern;
                 }
             }
         }

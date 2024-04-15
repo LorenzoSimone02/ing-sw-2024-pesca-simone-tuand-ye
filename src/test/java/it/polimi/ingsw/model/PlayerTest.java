@@ -1,36 +1,41 @@
-package model;
+package it.polimi.ingsw.model;
 
-import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
-import it.polimi.ingsw.server.model.exceptions.WrongTokenException;
-import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import static org.junit.jupiter.api.Assertions.*;
-
+import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
+import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
+import it.polimi.ingsw.server.model.exceptions.WrongTokenException;
 import it.polimi.ingsw.server.model.game.Game;
+import it.polimi.ingsw.server.model.objectives.Objective;
+import it.polimi.ingsw.server.model.objectives.ObjectiveType;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
+import it.polimi.ingsw.server.model.player.TokenColorEnum;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.nio.file.Paths;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
 
     Game game;
-    List<Player> activePlayers = new ArrayList<>();
-    File starterJson = new File("/resources/assets/startercards");
-    File resourceJson = new File("/resources/assets/resourcecards");
+    File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
+    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
 
     @BeforeEach
     void setup() {
         game = new Game(1);
-        activePlayers.add(new Player("p1", game));
-        activePlayers.add(new Player("p2", game));
-        activePlayers.add(new Player("p3", game));
-        activePlayers.add(new Player("p4", game));
+
+        game.addPlayer(new Player("p1", game));
+        game.addPlayer(new Player("p2", game));
+        game.addPlayer(new Player("p3", game));
+        game.addPlayer(new Player("p4", game));
+
+        game.startGame();
     }
 
     @Test
@@ -46,19 +51,19 @@ public class PlayerTest {
     public void validPlayerToken() {
 
         try {
-            activePlayers.get(0).chooseToken(PlayerToken.RED);
-            activePlayers.get(1).chooseToken(PlayerToken.GREEN);
-            activePlayers.get(2).chooseToken(PlayerToken.BLUE);
-            activePlayers.get(3).chooseToken(PlayerToken.YELLOW);
+            game.getPlayers().getFirst().chooseToken(new PlayerToken(TokenColorEnum.RED));
+            game.getPlayers().get(1).chooseToken(new PlayerToken(TokenColorEnum.GREEN));
+            game.getPlayers().get(2).chooseToken(new PlayerToken(TokenColorEnum.BLUE));
+            game.getPlayers().get(3).chooseToken(new PlayerToken(TokenColorEnum.YELLOW));
         } catch (AlreadyTakenColorException e) {
             fail("Token color already taken.");
         }
 
         try {
-            assertEquals("RED", activePlayers.get(0).getToken());
-            assertEquals("GREEN", activePlayers.get(1).getToken());
-            assertEquals("BLUE", activePlayers.get(2).getToken());
-            assertEquals("YELLOW", activePlayers.get(3).getToken());
+            assertEquals(TokenColorEnum.RED, game.getPlayers().getFirst().getToken().getColor());
+            assertEquals(TokenColorEnum.GREEN, game.getPlayers().get(1).getToken().getColor());
+            assertEquals(TokenColorEnum.BLUE, game.getPlayers().get(2).getToken().getColor());
+            assertEquals(TokenColorEnum.YELLOW, game.getPlayers().get(3).getToken().getColor());
         } catch (WrongTokenException e) {
             fail("Wrong token assigned.");
         }
@@ -68,17 +73,17 @@ public class PlayerTest {
     @DisplayName("Test valid First Player")
     public void validFirstPlayer() {
 
-        for(Player p : activePlayers) {
+        for(Player p : game.getPlayers()) {
             assertFalse(p.isFirst());
         }
 
-        activePlayers.get(2).setFirst(true);
-        assertTrue(activePlayers.get(2).isFirst());
+        game.getPlayers().get(2).setFirst(true);
+        assertTrue(game.getPlayers().get(2).isFirst());
         for(int i = 0; i < game.getInfo().getPlayersNumber() && i != 2; i++) {
-            assertFalse(activePlayers.get(i).isFirst());
+            assertFalse(game.getPlayers().get(i).isFirst());
         }
 
-        assertEquals(game.getInfo().getFirstPlayer(), activePlayers.get(2));
+        assertEquals(game.getInfo().getFirstPlayer(), game.getPlayers().get(2));
     }
 
     @Test

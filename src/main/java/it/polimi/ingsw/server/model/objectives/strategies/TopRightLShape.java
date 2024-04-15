@@ -18,7 +18,7 @@ public class TopRightLShape implements ObjectiveStrategy {
                 if( cards[i][j].getColor() == diagonalCardColor &&
                     cards[i+1][j-1].getColor() == columnCardsColor &&
                     cards[i+3][j-1].getColor() == columnCardsColor) {
-                    points = points + pointsPerPattern;
+                    points += pointsPerPattern;
                 }
             }
         }
