@@ -12,12 +12,18 @@ public class BottomLeftLShape implements ObjectiveStrategy {
 
     public int calculatePoints(Card[][] cards) {
         int points = 0;
-        for (int i = 0; i < 81 - 4; i++) {
-            for (int j = 1 ; j < 81; j++) {
-                if( cards[i][j].getColor() == columnCardsColor &&
-                    cards[i+2][j].getColor() == columnCardsColor &&
-                    cards[i+3][j-1].getColor() == diagonalCardColor) {
-                    points += pointsPerPattern;
+        int counter = 0;
+        for (int j = 1; j < 81; j++) {
+            for (int i = 0 ; i < 81 - 1; i ++) {
+                if(cards[i][j] != null) {
+                    if (counter == 2 && cards[i + 1][j - 1].getColor() == diagonalCardColor) {
+                        points = points + pointsPerPattern;
+                        counter = 0;
+                    }
+                    else if (cards[i][j].getColor() == columnCardsColor) {
+                        counter++;
+                    }
+                    else {counter = 0;}
                 }
             }
         }

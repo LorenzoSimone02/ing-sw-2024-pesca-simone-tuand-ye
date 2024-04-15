@@ -13,12 +13,18 @@ public class TopLeftLShape implements ObjectiveStrategy {
 
     public int calculatePoints(Card[][] cards) {
         int points = 0;
-        for (int i = 0; i < 81 - 4; i++) {
-            for (int j = 0 ; j < 81 - 1; j++) {
-                if( cards[i][j].getColor() == diagonalCardColor &&
-                    cards[i+1][j+1].getColor() == columnCardsColor &&
-                    cards[i+3][j+1].getColor() == columnCardsColor) {
-                    points += pointsPerPattern;
+        int counter = 0;
+        for (int j = 1; j < 81; j++) {
+            for (int i = 1 ; i < 81 - 1; i ++) {
+                if(cards[i][j] != null) {
+                    if (counter == 2 && cards[i - 1][j - 1].getColor() == diagonalCardColor) {
+                        points = points + pointsPerPattern;
+                        counter = 0;
+                    }
+                    else if (cards[i][j].getColor() == columnCardsColor) {
+                        counter++;
+                    }
+                    else {counter = 0;}
                 }
             }
         }

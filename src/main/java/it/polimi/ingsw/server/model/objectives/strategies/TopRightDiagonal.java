@@ -11,16 +11,6 @@ public class TopRightDiagonal implements ObjectiveStrategy {
     int pointsPerPattern;
 
     public int calculatePoints(Card[][] cards) {
-        int points = 0;
-        for (int i = 0; i < 81 - 3; i++) {
-            for(int j = 2; j < 81; j++) {
-                if( cards[i][j].getColor() == CardsColor &&
-                    cards[i+1][j-1].getColor() == CardsColor &&
-                    cards[i+2][j-2].getColor() == CardsColor) {
-                    points += pointsPerPattern;
-                }
-            }
-        }
-        return points;
+        return 0;
     }
 }
