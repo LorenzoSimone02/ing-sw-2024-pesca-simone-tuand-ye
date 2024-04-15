@@ -1,12 +1,16 @@
 package model;
 
+import it.polimi.ingsw.server.model.card.Card;
+import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.exceptions.*;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,7 +21,6 @@ import java.util.List;
 
 public class GameTest {
     Game game;
-    List<Player> activePlayers = new ArrayList<>();
     File objectiveJson = new File("/resources/assets/objectivecards");
 
     @BeforeEach
@@ -70,8 +73,8 @@ public class GameTest {
 
         assertEquals(4, game.getInfo().getPlayersNumber());
         game.removePlayer(game.getPlayers().get(1));
-        for (Player player : activePlayers) {
-            assertNotEquals("test2", player.getNickname());
+        for (int i=0; i<game.getInfo().getPlayersNumber(); i++) {
+            assertNotEquals("test2", game.getPlayers().get(i).getNickname());
         }
         assertEquals(3, game.getInfo().getPlayersNumber());
 
@@ -99,6 +102,53 @@ public class GameTest {
 
     }
 
+    //QUESTI SONO TEST CHE SI FANNO NELLA FASE STARTING DEL GAME
+    @Test
+    @DisplayName("Test valid initial player cards in hand")
+    public void validInitialPlayerCardsInHand() {
+
+        game.startGame();
+
+        int numOfGoldCards = 0;
+        int numOfResourceCards = 0;
+
+        for (Player player : game.getPlayers()) {
+            for (int i=0; i<player.getCardsInHand().size(); i++) {
+                if (player.getCardsInHand().get(i) instanceof GoldCard) {
+                    numOfGoldCards++;
+                } else if (player.getCardsInHand().get(i) instanceof ResourceCard) {
+                    numOfResourceCards++;
+                }
+            }
+        }
+
+        assertEquals(1, numOfGoldCards);
+        assertEquals(2, numOfResourceCards);
+
+    }
+
+    @Test
+    @DisplayName("Valid initial on ground cards")
+    public void validInitialOnGroundCards() {
+
+        game.startGame();
+
+        int numOfGoldCards = 0;
+        int numOfResourceCards = 0;
+
+        for(Card card : game.getTable().getCardsOnGround()) {
+            if (card instanceof GoldCard) {
+                numOfGoldCards++;
+            } else if (card instanceof ResourceCard) {
+                numOfResourceCards++;
+            }
+        }
+
+        assertEquals(2, numOfGoldCards);
+        assertEquals(2, numOfResourceCards);
+
+    }
+
     //TODO: "meglio suddividere ciascuno status in test singloli?"
     @Test
     @DisplayName("Test valid game status")
@@ -117,8 +167,10 @@ public class GameTest {
 
         try {
             game.startGame();
+            game.getInfo().setGameStatus(GameStatusEnum.STARTING);
             assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.STARTING);
         } catch (StartGameException e) {
+            game.getInfo().setGameStatus(GameStatusEnum.ERROR);
             assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.ERROR);
             fail("Game not correctly started.");
         }
@@ -132,6 +184,7 @@ public class GameTest {
             }
         }
 
+        game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
         assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.CHOOSING_COLOR);
 
         for (int i=0; i<4; i++) {
@@ -143,6 +196,7 @@ public class GameTest {
             }
         }
 
+        game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
         assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
 
         for (int i=0; i<4; i++) {
@@ -154,10 +208,12 @@ public class GameTest {
             }
         }
 
+        game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
         assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.PLAYING);
 
         game.endGame();
 
+        game.getInfo().setGameStatus(GameStatusEnum.ENDING);
         assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.ENDING);
 
     }

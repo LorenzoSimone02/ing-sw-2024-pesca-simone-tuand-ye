@@ -1,5 +1,7 @@
 package model;
 
+import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
+import it.polimi.ingsw.server.model.exceptions.WrongTokenException;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -35,6 +37,7 @@ public class PlayerTest {
     @DisplayName("Test valid player nickname")
     public void validNickname() {
         Player player = new Player("test", null);
+        assertNotNull(player.getNickname());
         assertEquals("test", player.getNickname());
     }
 
@@ -42,27 +45,40 @@ public class PlayerTest {
     @DisplayName("Test valid player token")
     public void validPlayerToken() {
 
-        Player player1 = new Player("test1", game);
-        Player player2 = new Player("test2", game);
+        try {
+            activePlayers.get(0).chooseToken(PlayerToken.RED);
+            activePlayers.get(1).chooseToken(PlayerToken.GREEN);
+            activePlayers.get(2).chooseToken(PlayerToken.BLUE);
+            activePlayers.get(3).chooseToken(PlayerToken.YELLOW);
+        } catch (AlreadyTakenColorException e) {
+            fail("Token color already taken.");
+        }
 
-
-        player1.setToken(PlayerToken.RED);
-        player2.setToken(PlayerToken.GREEN);
-
-        assertEquals(PlayerToken.RED, player1.getToken());
-        assertEquals(PlayerToken.GREEN, player2.getToken());
-
-        assertEquals(PlayerToken.RED.color(), "RED");
-        assertEquals(PlayerToken.GREEN.color(), "GREEN");
+        try {
+            assertEquals("RED", activePlayers.get(0).getToken());
+            assertEquals("GREEN", activePlayers.get(1).getToken());
+            assertEquals("BLUE", activePlayers.get(2).getToken());
+            assertEquals("YELLOW", activePlayers.get(3).getToken());
+        } catch (WrongTokenException e) {
+            fail("Wrong token assigned.");
+        }
     }
 
     @Test
     @DisplayName("Test valid First Player")
     public void validFirstPlayer() {
-        Player player = new Player("test", game);
-        assertFalse(player.isFirst());
-        player.setFirst(true);
-        assertTrue(player.isFirst());
+
+        for(Player p : activePlayers) {
+            assertFalse(p.isFirst());
+        }
+
+        activePlayers.get(2).setFirst(true);
+        assertTrue(activePlayers.get(2).isFirst());
+        for(int i = 0; i < game.getInfo().getPlayersNumber() && i != 2; i++) {
+            assertFalse(activePlayers.get(i).isFirst());
+        }
+
+        assertEquals(game.getInfo().getFirstPlayer(), activePlayers.get(2));
     }
 
     @Test
