@@ -175,8 +175,8 @@ public class Player {
         this.setToken(token);
     }
 
-    public void chooseObjectiveCard() {
-
+    public void chooseObjectiveCard(ObjectiveCard objectiveCard) {
+        this.objectiveCard = objectiveCard;
     }
 
     public void endTurn() {
