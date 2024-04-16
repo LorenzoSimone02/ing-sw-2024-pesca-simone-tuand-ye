@@ -10,6 +10,7 @@ public enum GameStatusEnum {
     CHOOSING_PERSONAL_OBJECTIVE,
     ASSIGNING_FIRST_PLAYER,
     PLAYING,
+    FINAL_TURNS,
     ENDING,
     ERROR
 }

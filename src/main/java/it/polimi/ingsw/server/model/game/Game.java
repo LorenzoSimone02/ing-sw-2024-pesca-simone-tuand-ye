@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server.model.game;
 
+import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.model.exceptions.FullLobbyException;
@@ -17,6 +18,7 @@ public class Game {
     private final List<Player> players;
     private final ArrayList<ObjectiveCard> objectiveCards;
     private GameInfo info;
+    private GameController controller;
 
     public Game(int id) {
         this.id = id;
@@ -24,6 +26,7 @@ public class Game {
         this.players = new ArrayList<>();
         this.objectiveCards = new ArrayList<>();
         this.info = new GameInfo(0);
+        this.info.setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
     }
 
     public int getId() {
@@ -83,7 +86,6 @@ public class Game {
             getTable().addCardOnGround(getTable().getResourceDeck().drawCard());
             getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
             getTable().addCardOnGround(getTable().getGoldDeck().drawCard());
-
 
             for (Player p : players) {
                 p.addCardInHand(getTable().getResourceDeck().drawCard());

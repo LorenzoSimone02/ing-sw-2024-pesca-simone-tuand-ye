@@ -1,6 +1,7 @@
 package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.game.Game;
 
 public class ServerMain {
@@ -15,6 +16,6 @@ public class ServerMain {
 
         gameNumber = 0;
 
-        Game game = new Game(++gameNumber);
+        GameController controller = new GameController(networkHandler);
     }
 }
