@@ -1,8 +1,8 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 8,
-  "color": "RED",
+  "id": 20,
+  "color": "GREEN",
   "face": "FRONT",
   "points": 1,
   "corners": [
@@ -12,17 +12,14 @@
       "location": "TOP_LEFT"
     },
     {
-      "resource": {
-        "type": "ANIMAL"
-      },
       "visible": true,
       "face": "FRONT",
-      "location": "TOP_RIGHT"
+      "location": "TOP_RIGHT",
+      "resource": {
+        "type": "PLANT"
+      }
     },
     {
-      "object": {
-        "type": "INKWELL"
-      },
       "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
@@ -34,6 +31,6 @@
     }
   ],
   "backResource": {
-    "type": "FUNGI"
+    "type": "PLANT"
   }
 }

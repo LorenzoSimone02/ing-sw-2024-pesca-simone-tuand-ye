@@ -1,34 +1,31 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 30,
+  "id": 8,
   "color": "RED",
   "face": "FRONT",
   "points": 1,
   "corners": [
     {
-      "visible": false,
+      "visible": true,
       "face": "FRONT",
       "location": "TOP_LEFT"
     },
     {
       "resource": {
-        "type": "ANIMAL"
+        "type": "FUNGI"
       },
       "visible": true,
       "face": "FRONT",
       "location": "TOP_RIGHT"
     },
     {
-      "object": {
-        "type": "INKWELL"
-      },
       "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
-      "visible": true,
+      "visible": false,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }

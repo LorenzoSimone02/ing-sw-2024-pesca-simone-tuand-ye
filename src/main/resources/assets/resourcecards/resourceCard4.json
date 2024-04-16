@@ -1,0 +1,39 @@
+{
+  "xCoord": 0,
+  "yCoord": 0,
+  "id": 4,
+  "color": "RED",
+  "face": "FRONT",
+  "points": 0,
+  "corners": [
+    {
+      "visible": false,
+      "face": "FRONT",
+      "location": "TOP_LEFT"
+    },
+    {
+      "resource": {
+        "type": "FUNGI"
+      },
+      "visible": true,
+      "face": "FRONT",
+      "location": "TOP_RIGHT"
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "BOTTOM_LEFT"
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "BOTTOM_RIGHT"
+      "resource": {
+        "type": "FUNGI"
+      }
+    }
+  ],
+  "backResource": {
+    "type": "FUNGI"
+  }
+}

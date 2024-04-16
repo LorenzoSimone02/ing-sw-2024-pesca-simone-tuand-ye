@@ -21,7 +21,7 @@ public class CornerTest {
     @DisplayName("Test Corner.setVisible() method")
     public void testSetVisibleMethod() {
 
-        File currFile = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
+        File currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
         ResourceCard currCard = new ResourceCard(currFile);
         List<Corner> currCorners = currCard.getCorners();
 
@@ -36,7 +36,7 @@ public class CornerTest {
     @DisplayName("Validate that corners in a single resource card have 4x2 different CornerLocationEnum")
     public void validateAllCornersLocation() {
 
-        File currFile = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
+        File currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
         ResourceCard currCard = new ResourceCard(currFile);
         List<Corner> currCorners = currCard.getCorners();
 

@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class PlayerTest {
 
     Game game;
-    File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
-    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
+    File starterJson = Paths.get("src/main/resources/assets/startercards/resourceCard1.json").toFile();
+    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
 
     @BeforeEach
     void setup() {

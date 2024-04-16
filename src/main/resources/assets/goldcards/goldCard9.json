@@ -1,29 +1,26 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 11,
+  "id": 49,
   "color": "RED",
   "face": "FRONT",
-  "points": 1,
+  "points": 3,
   "corners": [
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "TOP_RIGHT",
+      "object": {
+        "type": "MANUSCRIPT"
+      }
+    },
     {
       "visible": false,
       "face": "FRONT",
       "location": "TOP_LEFT"
     },
     {
-      "resource": {
-        "type": "ANIMAL"
-      },
-      "visible": true,
-      "face": "FRONT",
-      "location": "TOP_RIGHT"
-    },
-    {
-      "object": {
-        "type": "INKWELL"
-      },
-      "visible": true,
+      "visible": false,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
@@ -38,7 +35,13 @@
   },
   "resourcesNeeded": [
     {
-      "type": "ANIMAL"
+      "type": "FUNGI"
+    },
+    {
+      "type": "FUNGI"
+    },
+    {
+      "type": "FUNGI"
     }
   ],
   "objectsNeeded": [

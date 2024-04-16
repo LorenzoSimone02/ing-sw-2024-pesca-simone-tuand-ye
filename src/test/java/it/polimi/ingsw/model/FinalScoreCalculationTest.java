@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 public class FinalScoreCalculationTest {
     Game game;
     Player activePlayer;
-    File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/testCard1.json").toFile();
+    File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/resourceCard1.json").toFile();
 
     @BeforeEach
     void setup() {

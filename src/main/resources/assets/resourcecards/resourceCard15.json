@@ -1,0 +1,42 @@
+{
+  "xCoord": 0,
+  "yCoord": 0,
+  "id": 15,
+  "color": "GREEN",
+  "face": "FRONT",
+  "points": 0,
+  "corners": [
+    {
+      "visible": false,
+      "face": "FRONT",
+      "location": "TOP_LEFT"
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "TOP_RIGHT",
+      "resource": {
+        "type": "INSECT"
+      }
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "BOTTOM_LEFT",
+      "object": {
+        "type": "QUILL"
+      }
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "BOTTOM_RIGHT",
+      "resource": {
+        "type": "PLANT"
+      }
+    }
+  ],
+  "backResource": {
+    "type": "PLANT"
+  }
+}
