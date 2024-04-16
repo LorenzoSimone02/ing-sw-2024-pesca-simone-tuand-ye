@@ -1,4 +1,4 @@
-package model.corner;
+package it.polimi.ingsw.model.corner;
 
 import com.google.gson.Gson;
 
@@ -27,6 +27,21 @@ import java.util.List;
 public class CornerTest {
 
     final int numOfResourceCards = 10;
+
+    @Test
+    @DisplayName("Test Corner.setVisible() method")
+    public void testSetVisibleMethod() {
+
+        File currFile = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
+        ResourceCard currCard = new ResourceCard(currFile);
+        List<Corner> currCorners = currCard.getCorners();
+
+        boolean prevVisibility = currCorners.get(2).isVisible();
+        currCorners.get(2).setVisible(!prevVisibility);
+
+        assertEquals(!prevVisibility, currCorners.get(2).isVisible());
+
+    }
 
     @Test
     @DisplayName("Validate that corners in a single resource card have 4x2 different CornerLocationEnum")
@@ -98,7 +113,5 @@ public class CornerTest {
             }
 
         }
-
-        assertTrue(true);
     }
 }
