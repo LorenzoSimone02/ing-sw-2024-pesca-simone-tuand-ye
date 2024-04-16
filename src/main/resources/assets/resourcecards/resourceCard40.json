@@ -1,39 +1,36 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 9,
-  "color": "RED",
+  "id": 40,
+  "color": "PURPLE",
   "face": "FRONT",
-  "points": 1,
+  "points": 0,
   "corners": [
     {
-      "visible": ,
+      "visible": false,
       "face": "FRONT",
       "location": "TOP_LEFT"
     },
     {
       "resource": {
-        "type":
+        "type": "INSECT"
       },
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "TOP_RIGHT"
     },
     {
-      "object": {
-        "type": "INKWELL"
-      },
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }
   ],
   "backResource": {
-    "type": "FUNGI"
+    "type": "INSECT"
   }
 }

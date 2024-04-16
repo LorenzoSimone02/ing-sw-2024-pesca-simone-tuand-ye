@@ -1,39 +1,39 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 9,
-  "color": "RED",
+  "id": 21,
+  "color": "BLUE",
   "face": "FRONT",
-  "points": 1,
+  "points": 0,
   "corners": [
     {
-      "visible": ,
+      "resource": {
+        "type": "ANIMAL"
+      },
+      "visible": true,
       "face": "FRONT",
       "location": "TOP_LEFT"
     },
     {
       "resource": {
-        "type":
+        "type": "ANIMAL"
       },
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "TOP_RIGHT"
     },
     {
-      "object": {
-        "type": "INKWELL"
-      },
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
-      "visible": ,
+      "visible": false,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }
   ],
   "backResource": {
-    "type": "FUNGI"
+    "type": "ANIMAL"
   }
 }
