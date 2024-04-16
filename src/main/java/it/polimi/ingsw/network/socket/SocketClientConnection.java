@@ -1,7 +1,6 @@
 package it.polimi.ingsw.network.socket;
 
 import it.polimi.ingsw.network.ClientConnection;
-import it.polimi.ingsw.network.packets.ClientPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
 import java.io.IOException;
@@ -33,7 +32,7 @@ public class SocketClientConnection extends ClientConnection implements Runnable
         }
         while (!Thread.currentThread().isInterrupted()) {
             try {
-                ClientPacket packet = (ClientPacket) in.readObject();
+                Packet packet = (Packet) in.readObject();
                 socketServer.getServerNetworkHandler().addConnection(this);
                 socketServer.getServerNetworkHandler().receivePacket(packet);
             } catch (IOException e) {

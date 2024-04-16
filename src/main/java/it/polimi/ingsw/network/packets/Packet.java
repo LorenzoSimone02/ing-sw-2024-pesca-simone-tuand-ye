@@ -4,10 +4,18 @@ import java.io.Serializable;
 
 /**
  * Abstract Packet class
- * Packets are used to send messages between server and client
+ * Packets are used to send messages between Server and Client
  */
 public abstract class Packet implements Serializable {
-    public Packet(){
+
+    String sender;
+
+    public String getSender() {
+        return sender;
+    }
+
+    public void setSender(String sender) {
+        this.sender = sender;
     }
 
     abstract public void handle();

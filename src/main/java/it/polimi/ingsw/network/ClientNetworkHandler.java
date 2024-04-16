@@ -1,6 +1,5 @@
 package it.polimi.ingsw.network;
 
-import it.polimi.ingsw.network.packets.ClientPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
 import java.rmi.RemoteException;
@@ -14,7 +13,7 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
         this.nickname = "Unknown";
     }
 
-    public void sendPacket(ClientPacket packet) {
+    public void sendPacket(Packet packet) {
         packet.setSender(nickname);
     }
 

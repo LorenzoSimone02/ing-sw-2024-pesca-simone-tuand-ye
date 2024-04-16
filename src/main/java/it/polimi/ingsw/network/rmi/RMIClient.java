@@ -1,7 +1,6 @@
 package it.polimi.ingsw.network.rmi;
 
 import it.polimi.ingsw.network.ClientNetworkHandler;
-import it.polimi.ingsw.network.packets.ClientPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
 import java.rmi.NotBoundException;
@@ -19,7 +18,7 @@ public class RMIClient extends ClientNetworkHandler implements RMIClientInterfac
         this.serverInterface = (RMIServerInterface) registry.lookup(registryName);
     }
 
-    public void sendPacket(ClientPacket packet) {
+    public void sendPacket(Packet packet) {
         if (packet != null) {
             try {
                 super.sendPacket(packet);

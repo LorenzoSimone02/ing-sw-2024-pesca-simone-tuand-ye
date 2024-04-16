@@ -1,6 +1,7 @@
 package it.polimi.ingsw.network.packets;
 
 public class PingRequestPacket extends Packet {
+
     public PingRequestPacket() {
     }
 

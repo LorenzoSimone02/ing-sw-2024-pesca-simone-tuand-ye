@@ -1,7 +1,7 @@
 package it.polimi.ingsw.network.rmi;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
-import it.polimi.ingsw.network.packets.ClientPacket;
+import it.polimi.ingsw.network.packets.Packet;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,7 +19,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         registry.rebind(registryName, this);
     }
 
-    public synchronized void receivePacket(ClientPacket packet, RMIClientInterface clientInterface) {
+    public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
         networkHandler.addConnection(new RMIClientConnection(clientInterface));
         networkHandler.receivePacket(packet);
     }

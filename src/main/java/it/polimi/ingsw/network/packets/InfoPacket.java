@@ -1,6 +1,6 @@
 package it.polimi.ingsw.network.packets;
 
-public class InfoPacket extends ClientPacket {
+public class InfoPacket extends Packet {
 
     private final String data;
 

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.network.socket;
 
 import it.polimi.ingsw.network.ClientNetworkHandler;
-import it.polimi.ingsw.network.packets.ClientPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
 import java.io.IOException;
@@ -49,7 +48,7 @@ public class SocketClient extends ClientNetworkHandler {
         }).start();
     }
 
-    public void sendPacket(ClientPacket packet) {
+    public void sendPacket(Packet packet) {
         new Thread(() -> {
             try {
                 super.sendPacket(packet);

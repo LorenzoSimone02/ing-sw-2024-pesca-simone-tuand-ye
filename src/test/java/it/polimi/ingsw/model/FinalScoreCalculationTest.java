@@ -5,7 +5,7 @@ import it.polimi.ingsw.server.model.exceptions.InvalidObjectiveStrategyException
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.objectives.strategies.*;
 import it.polimi.ingsw.server.model.player.Player;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ public class FinalScoreCalculationTest {
 
     @BeforeEach
     void setup() {
-        Game game = new Game(1);
+        game = new Game(1);
         activePlayer = new Player("Lorenzo", game);
         game.addPlayer(activePlayer);
         game.startGame();
@@ -38,7 +38,7 @@ public class FinalScoreCalculationTest {
 
         try{
             assertEquals(objectiveCard, activePlayer.getObjectiveCard());
-            assertEquals(achievement, objectiveCard.getObjective());
+            assertEquals(achievement, objectiveCard.getObjective().getType().getStrategy());
         } catch (InvalidObjectiveStrategyException e) {
             throw new RuntimeException(e);
         }
