@@ -1,13 +1,10 @@
 package it.polimi.ingsw.model;
 
-import com.google.gson.Gson;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.model.exceptions.WrongTokenException;
 import it.polimi.ingsw.server.model.game.Game;
-import it.polimi.ingsw.server.model.objectives.Objective;
-import it.polimi.ingsw.server.model.objectives.ObjectiveType;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
@@ -24,7 +21,7 @@ public class PlayerTest {
 
     Game game;
     File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
-    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/testCard2.json").toFile();
+    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
 
     @BeforeEach
     void setup() {

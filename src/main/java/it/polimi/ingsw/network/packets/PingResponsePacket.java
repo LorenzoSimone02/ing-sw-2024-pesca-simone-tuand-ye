@@ -1,8 +1,9 @@
 package it.polimi.ingsw.network.packets;
 
-public class PingResponsePacket extends ClientPacket {
+public class PingResponsePacket extends Packet {
 
-    public PingResponsePacket() {
+    public PingResponsePacket(String sender) {
+        this.sender = sender;
     }
 
     @Override

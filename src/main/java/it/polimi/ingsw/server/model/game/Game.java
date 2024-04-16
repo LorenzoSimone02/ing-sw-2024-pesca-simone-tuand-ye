@@ -17,7 +17,7 @@ public class Game {
     private final Table table;
     private final List<Player> players;
     private final ArrayList<ObjectiveCard> objectiveCards;
-    private GameInfo info;
+    private final GameInfo info;
     private GameController controller;
 
     public Game(int id) {
@@ -67,10 +67,6 @@ public class Game {
 
     public GameInfo getInfo() {
         return info;
-    }
-
-    public void setInfo(GameInfo info) {
-        this.info = info;
     }
 
     public void startGame() throws GameStartException {
@@ -181,5 +177,9 @@ public class Game {
             }
         }
         return Optional.empty();
+    }
+
+    public GameController getController() {
+        return controller;
     }
 }

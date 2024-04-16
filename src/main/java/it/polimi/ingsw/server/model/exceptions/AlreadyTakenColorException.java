@@ -1,7 +1,10 @@
 package it.polimi.ingsw.server.model.exceptions;
 
-public class AlreadyTakenColorException extends RuntimeException{
-    public AlreadyTakenColorException() {
-        super("Token color has already been taken.");
+import it.polimi.ingsw.server.model.player.TokenColorEnum;
+
+public class AlreadyTakenColorException extends RuntimeException {
+
+    public AlreadyTakenColorException(TokenColorEnum color) {
+        super("Token color" + color.toString() + " has already been taken.");
     }
 }

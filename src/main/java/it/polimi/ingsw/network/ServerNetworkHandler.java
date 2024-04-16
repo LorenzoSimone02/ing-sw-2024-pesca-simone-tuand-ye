@@ -1,6 +1,5 @@
 package it.polimi.ingsw.network;
 
-import it.polimi.ingsw.network.packets.ClientPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.PingRequestPacket;
 import it.polimi.ingsw.network.rmi.RMIServer;
@@ -56,7 +55,7 @@ public class ServerNetworkHandler {
         connection.receivePacket(packet);
     }
 
-    public void receivePacket(ClientPacket packet) {
+    public void receivePacket(Packet packet) {
         packet.handle();
     }
 

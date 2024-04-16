@@ -39,7 +39,8 @@
   "resourcesNeeded": [
     {
       "type": "ANIMAL"
-    }
+    },
+
   ],
   "objectsNeeded": [
     {
