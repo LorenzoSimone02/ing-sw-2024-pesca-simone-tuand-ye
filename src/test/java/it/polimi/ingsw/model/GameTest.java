@@ -1,11 +1,11 @@
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.exceptions.*;
-import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,13 +19,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameTest {
 
-    Game game;
-    File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/resourceCard1.json").toFile();
+    private GameController controller;
+    private final File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/testCard1.json").toFile();
 
     @BeforeEach
     void setup() {
-        game = new Game(1);
-
+        controller = new GameController(null);
+        controller.createGame(1);
     }
 
     @Test
@@ -34,27 +34,25 @@ public class GameTest {
 
         for (int i = 0; i < 4; i++) {
 
-            Player p = new Player("p" + i, game);
             try {
-                game.addPlayer(p);
+                controller.addPlayer("p" + i);
             } catch (PlayerNotAddedException e) {
                 fail("Player not added");
             }
-            if (game.getInfo().getPlayersNumber() != i + 1) {
+            if (controller.getGame().getInfo().getPlayersNumber() != i + 1) {
                 fail("Tried to add a player but the number of players is not correct");
             }
-            if (!game.getPlayers().get(i).equals(p)) {
+            if (!controller.getGame().getPlayers().get(i).getNickname().equals("p" + i)) {
                 fail("Wrong player added");
             }
-            assertEquals(game.getPlayers().get(i), game.getPlayerByNick("p" + i).orElse(null));
-
+            assertEquals(controller.getGame().getPlayers().get(i), controller.getPlayerByNick("p" + i).orElse(null));
         }
 
-        assertThrows(DuplicatePlayerException.class, () -> game.addPlayer(new Player("p0", game)));
-        assertThrows(DuplicatePlayerException.class, () -> game.addPlayer(new Player("p1", game)));
-        assertThrows(DuplicatePlayerException.class, () -> game.addPlayer(new Player("p2", game)));
-        assertThrows(DuplicatePlayerException.class, () -> game.addPlayer(new Player("p3", game)));
-        assertThrows(FullLobbyException.class, () -> game.addPlayer(new Player("p4", game)));
+        assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p0"));
+        assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p1"));
+        assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p2"));
+        assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p3"));
+        assertThrows(FullLobbyException.class, () -> controller.addPlayer("p4"));
 
     }
 
@@ -63,20 +61,20 @@ public class GameTest {
     public void validPlayerManagement() {
 
         try {
-            game.addPlayer(new Player("p1", game));
-            game.addPlayer(new Player("p2", game));
-            game.addPlayer(new Player("p3", game));
-            game.addPlayer(new Player("p4", game));
+            controller.addPlayer("p1");
+            controller.addPlayer("p2");
+            controller.addPlayer("p3");
+            controller.addPlayer("p4");
         } catch (FullLobbyException | DuplicatePlayerException e) {
             throw new RuntimeException(e);
         }
 
-        assertEquals(4, game.getInfo().getPlayersNumber());
-        game.removePlayer(game.getPlayers().get(1));
-        for (int i = 0; i < game.getInfo().getPlayersNumber(); i++) {
-            assertNotEquals("test2", game.getPlayers().get(i).getNickname());
+        assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
+        controller.removePlayer(controller.getGame().getPlayers().get(1));
+        for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
+            assertNotEquals("test2", controller.getGame().getPlayers().get(i).getNickname());
         }
-        assertEquals(3, game.getInfo().getPlayersNumber());
+        assertEquals(3, controller.getGame().getInfo().getPlayersNumber());
 
     }
 
@@ -87,15 +85,15 @@ public class GameTest {
         ObjectiveCard objective1 = new ObjectiveCard(objectiveJson);
         ObjectiveCard objective2 = new ObjectiveCard(objectiveJson);
 
-        game.addObjectiveCard(objective1);
-        game.addObjectiveCard(objective2);
+        controller.getGame().addObjectiveCard(objective1);
+        controller.getGame().addObjectiveCard(objective2);
 
-        assertTrue(game.getObjectiveCards().contains(objective1));
-        assertTrue(game.getObjectiveCards().contains(objective2));
+        assertTrue(controller.getGame().getObjectiveCards().contains(objective1));
+        assertTrue(controller.getGame().getObjectiveCards().contains(objective2));
 
         try {
             ObjectiveCard extra = new ObjectiveCard(objectiveJson);
-            game.addObjectiveCard(extra);
+            controller.getGame().addObjectiveCard(extra);
         } catch (IllegalObjectiveException e) {
             fail("Illegal objective card added.");
         }
@@ -107,14 +105,14 @@ public class GameTest {
     @DisplayName("Test valid initial player cards in hand")
     public void validInitialPlayerCardsInHand() {
 
-        game.addPlayer(new Player("p1", game));
-        game.addPlayer(new Player("p2", game));
-        game.startGame();
+        controller.addPlayer("p1");
+        controller.addPlayer("p2");
+        controller.startGame();
 
         int numOfGoldCards = 0;
         int numOfResourceCards = 0;
 
-        for (Player player : game.getPlayers()) {
+        for (Player player : controller.getGame().getPlayers()) {
             for (int i = 0; i < player.getCardsInHand().size(); i++) {
                 if (player.getCardsInHand().get(i) instanceof GoldCard) {
                     numOfGoldCards++;
@@ -133,14 +131,14 @@ public class GameTest {
     @DisplayName("Valid initial on ground cards")
     public void validInitialOnGroundCards() {
 
-        game.addPlayer(new Player("p1", game));
-        game.addPlayer(new Player("p2", game));
-        game.startGame();
+        controller.addPlayer("p1");
+        controller.addPlayer("p2");
+        controller.startGame();
 
         int numOfGoldCards = 0;
         int numOfResourceCards = 0;
 
-        for (Card card : game.getTable().getCardsOnGround()) {
+        for (Card card : controller.getGame().getTable().getCardsOnGround()) {
             if (card instanceof GoldCard) {
                 numOfGoldCards++;
             } else if (card instanceof ResourceCard) {
@@ -158,65 +156,65 @@ public class GameTest {
     @DisplayName("Test valid game status")
     public void validGameStatus() {
 
-        assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.WAITING_FOR_PLAYERS);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.WAITING_FOR_PLAYERS);
 
         try {
-            game.addPlayer(new Player("p1", game));
-            game.addPlayer(new Player("p2", game));
-            game.addPlayer(new Player("p3", game));
-            game.addPlayer(new Player("p4", game));
+            controller.addPlayer("p1");
+            controller.addPlayer("p2");
+            controller.addPlayer("p3");
+            controller.addPlayer("p4");
         } catch (FullLobbyException | DuplicatePlayerException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            game.startGame();
-            assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.STARTING);
+            controller.startGame();
+            assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.STARTING);
         } catch (GameStartException e) {
-            assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.ERROR);
+            assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.ERROR);
             fail("Game not correctly started.");
         }
 
         for (int i = 0; i < 4; i++) {
-            assertNotNull(game.getPlayers().get(i).getToken());
+            assertNotNull(controller.getGame().getPlayers().get(i).getToken());
             try {
-                game.nextTurn();
+                controller.nextTurn();
             } catch (EndGameException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
-        assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.CHOOSING_COLOR);
+        controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.CHOOSING_COLOR);
 
         for (int i = 0; i < 4; i++) {
-            assertNotNull(game.getPlayers().get(i).getObjectiveCard());
+            assertNotNull(controller.getGame().getPlayers().get(i).getObjectiveCard());
             try {
-                game.nextTurn();
+                controller.nextTurn();
             } catch (EndGameException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
-        assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
+        controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
 
         for (int i = 0; i < 4; i++) {
             // TODO: implement personal turn move choices
             try {
-                game.nextTurn();
+                controller.nextTurn();
             } catch (EndGameException e) {
                 throw new RuntimeException(e);
             }
         }
 
-        game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
-        assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.PLAYING);
+        controller.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.PLAYING);
 
-        game.endGame();
+        controller.endGame();
 
-        game.getInfo().setGameStatus(GameStatusEnum.ENDING);
-        assertEquals(game.getInfo().getGameStatus(), GameStatusEnum.ENDING);
+        controller.getGame().getInfo().setGameStatus(GameStatusEnum.ENDING);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.ENDING);
 
     }
 }

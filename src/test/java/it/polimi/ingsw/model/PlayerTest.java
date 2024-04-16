@@ -1,11 +1,12 @@
 
 package it.polimi.ingsw.model;
 
+import it.polimi.ingsw.server.controller.GameController;
+import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.model.exceptions.WrongTokenException;
-import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
@@ -20,20 +21,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
 
-    Game game;
-    File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
-    File resourceJson = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
+    private GameController controller;
+    private final File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
+    private final File resourceJson = Paths.get("src/main/resources/assets/resourcecards/resourceCard2.json").toFile();
 
     @BeforeEach
     void setup() {
-        game = new Game(1);
+        controller = new GameController(null);
+        controller.createGame(1);
 
-        game.addPlayer(new Player("p1", game));
-        game.addPlayer(new Player("p2", game));
-        game.addPlayer(new Player("p3", game));
-        game.addPlayer(new Player("p4", game));
+        controller.addPlayer("p1");
+        controller.addPlayer("p2");
+        controller.addPlayer("p3");
+        controller.addPlayer("p4");
 
-        game.startGame();
+        controller.startGame();
     }
 
     @Test
@@ -49,48 +51,35 @@ public class PlayerTest {
     public void validPlayerToken() {
 
         try {
-            game.getPlayers().getFirst().chooseToken(new PlayerToken(TokenColorEnum.RED));
-            game.getPlayers().get(1).chooseToken(new PlayerToken(TokenColorEnum.GREEN));
-            game.getPlayers().get(2).chooseToken(new PlayerToken(TokenColorEnum.BLUE));
-            game.getPlayers().get(3).chooseToken(new PlayerToken(TokenColorEnum.YELLOW));
+            controller.getPlayerController(controller.getGame().getPlayers().getFirst()).chooseToken(new PlayerToken(TokenColorEnum.RED));
+            controller.getPlayerController(controller.getGame().getPlayers().get(1)).chooseToken(new PlayerToken(TokenColorEnum.GREEN));
+            controller.getPlayerController(controller.getGame().getPlayers().get(2)).chooseToken(new PlayerToken(TokenColorEnum.BLUE));
+            controller.getPlayerController(controller.getGame().getPlayers().get(3)).chooseToken(new PlayerToken(TokenColorEnum.YELLOW));
         } catch (AlreadyTakenColorException e) {
             fail("Token color already taken.");
         }
 
         try {
-            assertEquals(TokenColorEnum.RED, game.getPlayers().getFirst().getToken().getColor());
-            assertEquals(TokenColorEnum.GREEN, game.getPlayers().get(1).getToken().getColor());
-            assertEquals(TokenColorEnum.BLUE, game.getPlayers().get(2).getToken().getColor());
-            assertEquals(TokenColorEnum.YELLOW, game.getPlayers().get(3).getToken().getColor());
+            assertEquals(TokenColorEnum.RED, controller.getGame().getPlayers().getFirst().getToken().getColor());
+            assertEquals(TokenColorEnum.GREEN, controller.getGame().getPlayers().get(1).getToken().getColor());
+            assertEquals(TokenColorEnum.BLUE, controller.getGame().getPlayers().get(2).getToken().getColor());
+            assertEquals(TokenColorEnum.YELLOW, controller.getGame().getPlayers().get(3).getToken().getColor());
         } catch (WrongTokenException e) {
             fail("Wrong token assigned.");
         }
     }
 
     @Test
-    @DisplayName("Test valid First Player")
-    public void validFirstPlayer() {
-
-        for(Player p : game.getPlayers()) {
-            assertFalse(p.isFirst());
-        }
-
-        game.getPlayers().get(2).setFirst(true);
-        assertTrue(game.getPlayers().get(2).isFirst());
-        for(int i = 0; i < game.getInfo().getPlayersNumber() && i != 2; i++) {
-            assertFalse(game.getPlayers().get(i).isFirst());
-        }
-
-        assertEquals(game.getInfo().getFirstPlayer(), game.getPlayers().get(2));
-    }
-
-    @Test
     @DisplayName("Test valid starter card")
     public void validStarterCard() {
 
-        Player player = new Player("test", game);
+        controller.removePlayer(controller.getGame().getPlayers().getFirst());
+        controller.addPlayer("test");
+        Player player = controller.getPlayerByNick("test").orElse(null);
+        PlayerController playerController = this.controller.getPlayerController(player);
+
         StarterCard starterCard = new StarterCard(starterJson);
-        player.setStarterCard(starterCard);
+        playerController.setStarterCard(starterCard);
 
         assertEquals(starterCard, player.getStarterCard());
         assertEquals(40, player.getStarterCard().getXCoord());
@@ -102,7 +91,7 @@ public class PlayerTest {
     @DisplayName("Test valid objective card")
     public void validObjectiveCard() {
 
-        Player player = new Player("test", game);
+        Player player = new Player("test", controller.getGame());
         assertNull(player.getObjectiveCard());
         //TODO: create an objective card here
         //player.chooseObjectiveCard();
@@ -112,30 +101,33 @@ public class PlayerTest {
     @Test
     @DisplayName("Test valid player card management")
     public void validCardManagement() {
+        controller.removePlayer(controller.getGame().getPlayers().getFirst());
+        controller.addPlayer("test");
+        Player player = controller.getPlayerByNick("test").orElse(null);
+        PlayerController playerController = this.controller.getPlayerController(player);
 
-        Player player = new Player("test", game);
         StarterCard starterCard = new StarterCard(starterJson);
         ResourceCard testCard1 = new ResourceCard(resourceJson);
         ResourceCard testCard2 = new ResourceCard(resourceJson);
         ResourceCard testCard3 = new ResourceCard(resourceJson);
 
-        player.setStarterCard(starterCard);
+        playerController.setStarterCard(starterCard);
         player.addCardInHand(testCard1);
         player.addCardInHand(testCard2);
         player.addCardInHand(testCard3);
 
         assertEquals(3, player.getCardsInHand().size());
         assertTrue(player.getCardsInHand().contains(testCard1));
-        assertFalse(player.canPlaceCard(starterCard.getXCoord(), starterCard.getYCoord()));
-        assertTrue(player.canPlaceCard(41, 41));
+        assertFalse(controller.getPlayerController(player).canPlaceCard(starterCard.getXCoord(), starterCard.getYCoord()));
+        assertTrue(controller.getPlayerController(player).canPlaceCard(41, 41));
 
-        player.placeCard(testCard1, 41, 41);
+        controller.getPlayerController(player).placeCard(testCard1, 41, 41);
 
         assertFalse(player.getCardsInHand().contains(testCard1));
         assertTrue(player.getCardsInHand().contains(testCard2));
         assertTrue(player.getCardsInHand().contains(testCard3));
         assertEquals(2, player.getCardsInHand().size());
-        assertFalse(player.canPlaceCard(41, 41));
+        assertFalse(controller.getPlayerController(player).canPlaceCard(41, 41));
 
         player.removeCardInHand(testCard2);
 

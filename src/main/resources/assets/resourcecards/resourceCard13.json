@@ -19,7 +19,7 @@
     {
       "visible": true,
       "face": "FRONT",
-      "location": "BOTTOM_LEFT"
+      "location": "BOTTOM_LEFT",
       "resource": {
         "type": "PLANT"
       }
@@ -27,7 +27,7 @@
     {
       "visible": true,
       "face": "FRONT",
-      "location": "BOTTOM_RIGHT"
+      "location": "BOTTOM_RIGHT",
       "resource": {
         "type": "PLANT"
       }

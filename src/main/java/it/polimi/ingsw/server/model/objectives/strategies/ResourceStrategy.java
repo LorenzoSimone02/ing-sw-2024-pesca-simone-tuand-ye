@@ -9,5 +9,7 @@ public class ResourceStrategy implements ObjectiveStrategy {
     private ResourceTypeEnum resourceRequirment;
     int pointsPerPattern;
 
-    public int calculatePoints(Card[][] cards) {return 0;}
+    public int calculatePoints(Card[][] cards) {
+        return 0;
+    }
 }

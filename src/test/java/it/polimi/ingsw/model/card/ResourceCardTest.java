@@ -58,19 +58,13 @@ public class ResourceCardTest {
             //null attributes tests
             if (currCard.getFace() == null) {
                 fail("resCard face is null: card " + resCardArray.indexOf(currCard));
-
             }
             if (currCard.getBackResource() == null) {
                 fail("back resource is null: card " + resCardArray.indexOf(currCard));
-
             }
             if (currCard.getColor() == null) {
                 fail("card color is null: card " + resCardArray.indexOf(currCard));
-
             }
-
         }
-
     }
-
 }

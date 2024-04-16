@@ -74,7 +74,7 @@ public class CornerTest {
         for (int i = 2; i <= numOfResourceCards; i++) {
 
             //Card selection
-            currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard2" + i + ".json").toFile();
+            currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard" + i + ".json").toFile();
             currCard = new ResourceCard(currFile);
 
             //Corners validation

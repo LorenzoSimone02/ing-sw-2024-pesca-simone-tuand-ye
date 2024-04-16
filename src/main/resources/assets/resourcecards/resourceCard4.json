@@ -27,7 +27,7 @@
     {
       "visible": true,
       "face": "FRONT",
-      "location": "BOTTOM_RIGHT"
+      "location": "BOTTOM_RIGHT",
       "resource": {
         "type": "FUNGI"
       }

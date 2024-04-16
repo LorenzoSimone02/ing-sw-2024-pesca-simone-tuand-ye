@@ -7,43 +7,25 @@
   "points": 1,
   "corners": [
     {
-<<<<<<< Updated upstream:src/main/resources/assets/resourcecards/testCard3.json
-      "visible": ,
-=======
       "visible": true,
->>>>>>> Stashed changes:src/main/resources/assets/resourcecards/resourceCard9.json
       "face": "FRONT",
-      "location": "TOP_LEFT"
+      "location": "TOP_LEFT",
       "resource": {
         "type": "FUNGI"
       }
     },
     {
-<<<<<<< Updated upstream:src/main/resources/assets/resourcecards/testCard3.json
-      "resource": {
-        "type":
-      },
-      "visible": ,
-=======
       "visible": false,
->>>>>>> Stashed changes:src/main/resources/assets/resourcecards/resourceCard9.json
       "face": "FRONT",
       "location": "TOP_RIGHT"
     },
     {
-<<<<<<< Updated upstream:src/main/resources/assets/resourcecards/testCard3.json
-      "object": {
-        "type": "INKWELL"
-      },
-      "visible": ,
-=======
       "visible": true,
->>>>>>> Stashed changes:src/main/resources/assets/resourcecards/resourceCard9.json
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
-      "visible": ,
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }

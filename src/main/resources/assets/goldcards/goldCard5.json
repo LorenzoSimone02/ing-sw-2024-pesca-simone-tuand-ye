@@ -17,12 +17,12 @@
       "location": "TOP_RIGHT"
     },
     {
-      "visible": true
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
-      "visible": false
+      "visible": false,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }
