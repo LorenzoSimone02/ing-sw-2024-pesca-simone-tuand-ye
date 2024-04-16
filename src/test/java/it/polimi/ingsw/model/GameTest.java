@@ -153,7 +153,7 @@ public class GameTest {
 
     }
 
-    //TODO: "meglio suddividere ciascuno status in test singloli?"
+    //TODO: "meglio suddividere ciascuno status in test singoli?"
     @Test
     @DisplayName("Test valid game status")
     public void validGameStatus() {
