@@ -1,0 +1,55 @@
+{
+  "xCoord": 0,
+  "yCoord": 0,
+  "id": 60,
+  "color": "GREEN",
+  "face": "FRONT",
+  "points": 5,
+  "corners": [
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "TOP_LEFT"
+    },
+    {
+      "visible": true,
+      "face": "FRONT",
+      "location": "TOP_RIGHT"
+    },
+    {
+      "visible": false,
+      "face": "FRONT",
+      "location": "BOTTOM_LEFT"
+    },
+    {
+      "visible": false,
+      "face": "FRONT",
+      "location": "BOTTOM_RIGHT"
+    }
+  ],
+  "backResource": {
+    "type": "PLANT"
+  },
+  "resourcesNeeded": [
+    {
+      "type": "PLANT"
+    },
+    {
+      "type": "PLANT"
+    },
+    {
+      "type": "PLANT"
+    },
+    {
+      "type": "PLANT"
+    },
+    {
+      "type": "PLANT"
+    }
+  ],
+  "objectsNeeded": [
+    {
+      "type": "INKWELL"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 52,
-  "color": "GREEN",
+  "id": 72,
+  "color": "PURPLE",
   "face": "FRONT",
   "points": 1,
   "corners": [
@@ -12,17 +12,17 @@
       "location": "TOP_LEFT"
     },
     {
+      "visible": false,
+      "face": "FRONT",
+      "location": "TOP_RIGHT"
+    },
+    {
       "visible": true,
       "face": "FRONT",
-      "location": "TOP_RIGHT",
+      "location": "BOTTOM_LEFT",
       "object": {
         "type": "MANUSCRIPT"
       }
-    },
-    {
-      "visible": false,
-      "face": "FRONT",
-      "location": "BOTTOM_LEFT"
     },
     {
       "visible": true,
@@ -31,22 +31,22 @@
     }
   ],
   "backResource": {
-    "type": "PLANT"
+    "type": "INSECT"
   },
   "resourcesNeeded": [
     {
-      "type": "PLANT"
+      "type": "INSECT"
     },
     {
-      "type": "PLANT"
+      "type": "INSECT"
     },
     {
-      "type": "FUNGI"
+      "type": "ANIMAL"
     }
   ],
   "objectsNeeded": [
     {
-      "type": "MANUSCRIPT"
+      "type": "INKWELL"
     }
   ]
 }

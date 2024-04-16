@@ -1,8 +1,8 @@
 {
   "xCoord": 0,
   "yCoord": 0,
-  "id": 52,
-  "color": "GREEN",
+  "id": 71,
+  "color": "PURPLE",
   "face": "FRONT",
   "points": 1,
   "corners": [
@@ -16,7 +16,7 @@
       "face": "FRONT",
       "location": "TOP_RIGHT",
       "object": {
-        "type": "MANUSCRIPT"
+        "type": "QUILL"
       }
     },
     {
@@ -31,22 +31,22 @@
     }
   ],
   "backResource": {
-    "type": "PLANT"
+    "type": "INSECT"
   },
   "resourcesNeeded": [
     {
-      "type": "PLANT"
+      "type": "INSECT"
+    },
+    {
+      "type": "INSECT"
     },
     {
       "type": "PLANT"
-    },
-    {
-      "type": "FUNGI"
     }
   ],
   "objectsNeeded": [
     {
-      "type": "MANUSCRIPT"
+      "type": "INKWELL"
     }
   ]
 }
