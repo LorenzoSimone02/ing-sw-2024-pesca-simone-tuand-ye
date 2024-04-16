@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class ClientNetworkHandler extends UnicastRemoteObject {
 
     private final String nickname;
+
     public ClientNetworkHandler() throws RemoteException {
         super();
         this.nickname = "Unknown";
@@ -18,7 +19,7 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
     }
 
     public void receivePacket(Packet packet) {
-        packet.handle();
+        packet.getClientPacketHandler().handlePacket(packet);
     }
 
     public String getNickname() {

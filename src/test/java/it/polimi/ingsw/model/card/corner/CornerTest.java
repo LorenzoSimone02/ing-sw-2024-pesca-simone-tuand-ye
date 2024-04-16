@@ -56,7 +56,6 @@ public class CornerTest {
         }
         if (!(trCount == 2 && tlCount == 2 && brCount == 2 && blCount == 2))
             fail("CornerLocationEnum counters are not equals to 2");
-
     }
 
 
@@ -66,7 +65,7 @@ public class CornerTest {
     @DisplayName("Validate that all corners and their attributes in resourceCards are not null")
     public void validateNotNullAllCornersResourceCards() {
 
-        //                                  curr = current
+        // curr = current
         ResourceCard currCard;
         List<Corner> currCorners;
         File currFile;

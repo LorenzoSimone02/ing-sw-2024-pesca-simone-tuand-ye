@@ -6,5 +6,5 @@ public enum CardColorEnum {
     BLUE,
     PURPLE,
     RED,
-    GOLD;
+    GOLD
 }

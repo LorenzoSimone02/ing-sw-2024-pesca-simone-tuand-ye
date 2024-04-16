@@ -1,9 +1,10 @@
 package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.Packet;
-import it.polimi.ingsw.network.packets.PingRequestPacket;
+import it.polimi.ingsw.network.packets.PingPacket;
 import it.polimi.ingsw.network.rmi.RMIServer;
 import it.polimi.ingsw.network.socket.SocketServer;
+import it.polimi.ingsw.server.controller.GameController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ public class ServerNetworkHandler {
     private final int rmiPort;
     private final int socketPort;
     private final ArrayList<ClientConnection> connections;
+    private GameController gameController;
 
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
@@ -38,7 +40,7 @@ public class ServerNetworkHandler {
                     try {
                         Thread.sleep(3000);
                         for (ClientConnection connection : connections) {
-                            sendPacket(connection, new PingRequestPacket());
+                            sendPacket(connection, new PingPacket());
                         }
                     } catch (InterruptedException e) {
                         System.err.println("Ping thread interrupted");
@@ -52,11 +54,12 @@ public class ServerNetworkHandler {
     }
 
     public void sendPacket(ClientConnection connection, Packet packet) {
+        packet.setSender("Server");
         connection.receivePacket(packet);
     }
 
     public void receivePacket(Packet packet) {
-        packet.handle();
+        packet.getServerPacketHandler().handlePacket(packet, gameController);
     }
 
     public void addConnection(ClientConnection connection) {

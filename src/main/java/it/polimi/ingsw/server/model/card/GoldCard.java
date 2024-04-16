@@ -35,7 +35,4 @@ public class GoldCard extends ResourceCard {
         return objectsNeeded;
     }
 
-    public int getPoints() {
-        return points;
-    }
 }

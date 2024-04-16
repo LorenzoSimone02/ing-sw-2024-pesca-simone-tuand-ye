@@ -54,7 +54,6 @@ public class ResourceCardTest {
             if (currCard == null) {
                 fail("resCard is null: card " + resCardArray.indexOf(currCard));
             }
-
             //null attributes tests
             if (currCard.getFace() == null) {
                 fail("resCard face is null: card " + resCardArray.indexOf(currCard));

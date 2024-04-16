@@ -11,6 +11,8 @@ module it.polimi.ingsw.progetto {
     exports it.polimi.ingsw.network.packets;
     exports it.polimi.ingsw.server.model.card;
     exports it.polimi.ingsw.server.model.card.corner;
+    exports it.polimi.ingsw.server.controller.packethandling;
+    exports it.polimi.ingsw.client.controller.packethandling;
     exports it.polimi.ingsw.server.model.resources to com.google.gson;
     exports it.polimi.ingsw.server.model.objectives to com.google.gson;
     exports it.polimi.ingsw.server.model.objectives.strategies to com.google.gson;
@@ -19,4 +21,5 @@ module it.polimi.ingsw.progetto {
     opens it.polimi.ingsw.server.model.card to com.google.gson;
     opens it.polimi.ingsw.server.model.card.corner to com.google.gson;
     opens it.polimi.ingsw.server.model.objectives.strategies to com.google.gson;
+    opens it.polimi.ingsw.client.controller.packethandling to javafx.fxml;
 }

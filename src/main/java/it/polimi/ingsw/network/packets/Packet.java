@@ -1,5 +1,8 @@
 package it.polimi.ingsw.network.packets;
 
+import it.polimi.ingsw.client.controller.packethandling.ClientPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
+
 import java.io.Serializable;
 
 /**
@@ -18,6 +21,7 @@ public abstract class Packet implements Serializable {
         this.sender = sender;
     }
 
-    abstract public void handle();
+    public abstract ClientPacketHandler getClientPacketHandler();
 
+    public abstract ServerPacketHandler getServerPacketHandler();
 }

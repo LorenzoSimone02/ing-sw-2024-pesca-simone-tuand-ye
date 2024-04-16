@@ -3,7 +3,7 @@ package it.polimi.ingsw.client;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class ClientController {
+public class ViewController {
 
     @FXML
     private Label welcomeText;
