@@ -2,17 +2,16 @@ package it.polimi.ingsw.model.card;
 
 import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.card.corner.Corner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.io.File;
-import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ResourceCardTest {
 
@@ -38,36 +37,35 @@ public class ResourceCardTest {
 
     @Test
     @DisplayName("Test turnFace method")
-    public void testTurnFaceMethod () {
+    public void testTurnFaceMethod() {
 
-        FaceEnum prevFace = resCardArray.get(0).getFace();
-        resCardArray.get(0).turnCard();
+        FaceEnum prevFace = resCardArray.getFirst().getFace();
+        resCardArray.getFirst().turnCard();
 
-        assertNotEquals(prevFace, resCardArray.get(0).getFace());
-
+        assertNotEquals(prevFace, resCardArray.getFirst().getFace());
     }
 
     @Test
     @DisplayName("Validate that all corners and their attributes in resourceCards are not null")
-    public void validateNotNullAllResourceCards() throws FileNotFoundException {
+    public void validateNotNullAllResourceCards() {
 
-        for (ResourceCard currCard: resCardArray) {
+        for (ResourceCard currCard : resCardArray) {
 
-            if(currCard == null) {
-                fail("resCard is null: card "+resCardArray.indexOf(currCard));
+            if (currCard == null) {
+                fail("resCard is null: card " + resCardArray.indexOf(currCard));
             }
 
             //null attributes tests
             if (currCard.getFace() == null) {
-                fail("resCard face is null: card "+resCardArray.indexOf(currCard));
+                fail("resCard face is null: card " + resCardArray.indexOf(currCard));
 
             }
             if (currCard.getBackResource() == null) {
-                fail("back resource is null: card "+resCardArray.indexOf(currCard));
+                fail("back resource is null: card " + resCardArray.indexOf(currCard));
 
             }
             if (currCard.getColor() == null) {
-                fail("card color is null: card "+resCardArray.indexOf(currCard));
+                fail("card color is null: card " + resCardArray.indexOf(currCard));
 
             }
 
