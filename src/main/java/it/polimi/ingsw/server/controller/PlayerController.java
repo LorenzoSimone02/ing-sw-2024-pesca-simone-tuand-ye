@@ -25,7 +25,11 @@ public record PlayerController(Player player) {
                     player.addResource(corner.getResource());
                 }
             }
-            player.setScore(player.getScore() + card.getPoints());
+            if(card instanceof GoldCard){
+                player.setScore(player.getScore() + ((GoldCard) card).getPointsStrategy().getStrategy().calculatePoints(player, x, y));
+            } else {
+                player.setScore(player.getScore() + card.getPoints());
+            }
         } else {
             throw new IllegalCardPlacementException();
         }

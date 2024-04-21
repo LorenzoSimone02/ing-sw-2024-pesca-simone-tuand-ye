@@ -12,7 +12,6 @@ import java.util.List;
 public class GoldCard extends ResourceCard {
 
     private final List<Resource> resourcesNeeded;
-
     private final GoldStrategyType pointsStrategy;
 
     public GoldCard(File jsonFile) {
@@ -31,6 +30,10 @@ public class GoldCard extends ResourceCard {
 
     public List<Resource> getResourcesNeeded() {
         return resourcesNeeded;
+    }
+
+    public GoldStrategyType getPointsStrategy() {
+        return pointsStrategy;
     }
 
 }

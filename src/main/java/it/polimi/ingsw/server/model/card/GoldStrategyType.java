@@ -20,5 +20,8 @@ public enum GoldStrategyType {
         this.strategy = strategy;
     }
 
+    public GoldStrategy getStrategy() {
+        return strategy;
+    }
 
 }
