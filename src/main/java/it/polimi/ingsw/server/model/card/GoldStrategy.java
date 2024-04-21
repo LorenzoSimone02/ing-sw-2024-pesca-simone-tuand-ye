@@ -1,6 +1,8 @@
 package it.polimi.ingsw.server.model.card;
 
+import it.polimi.ingsw.server.model.player.Player;
+
 public interface GoldStrategy {
 
-    public int calculatePoints(Card[][] cards, int xCoord, int yCoord);
+    public int calculatePoints(Player player, int xCoord, int yCoord);
 }

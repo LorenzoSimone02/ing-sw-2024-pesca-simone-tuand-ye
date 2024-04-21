@@ -4,6 +4,7 @@ import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.Game;
+import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class Player {
     private StarterCard starterCard;
     private ObjectiveCard objectiveCard;
     private final List<Resource> resources;
+    private final List<Object> objects;
     private boolean first;
     private int score;
 
@@ -29,6 +31,7 @@ public class Player {
         this.cards = new Card[81][81];
         this.cardsInHand = new ArrayList<>();
         this.resources = new ArrayList<>();
+        this.objects = new ArrayList<>();
     }
 
     public String getNickname() {
@@ -89,6 +92,14 @@ public class Player {
 
     public void addResource(Resource resource) {
         resources.add(resource);
+    }
+
+    public List<Object> getObjects() {
+        return objects;
+    }
+
+    public void addObject(Object object) {
+        objects.add(object);
     }
 
     public boolean isFirst() {

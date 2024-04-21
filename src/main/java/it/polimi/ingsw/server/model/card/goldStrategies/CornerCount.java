@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.card.goldStrategies;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldStrategy;
+import it.polimi.ingsw.server.model.player.Player;
 
 public class CornerCount implements GoldStrategy {
 
@@ -12,8 +13,9 @@ public class CornerCount implements GoldStrategy {
     }
 
     @Override
-    public int calculatePoints(Card[][] cards, int xCoord, int yCoord) {
+    public int calculatePoints(Player player, int xCoord, int yCoord) {
         int cornerCounter = 0;
+        Card cards[][] = player.getCards();
 
         for (int i = -1; i <= 1; i = i+2) {
 

@@ -2,7 +2,9 @@ package it.polimi.ingsw.server.model.card.goldStrategies;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldStrategy;
+import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.player.Player;
 
 public class ObjectCount implements GoldStrategy {
 
@@ -15,7 +17,14 @@ public class ObjectCount implements GoldStrategy {
     }
 
     @Override
-    public int calculatePoints(Card[][] cards, int xCoord, int yCoord) {
-        return 0;
+    public int calculatePoints(Player player, int xCoord, int yCoord) {
+        int objectCounter = 1;
+        for (Object obj: player.getObjects()) {
+            if (obj.equals(objectNeeded)) {
+                objectCounter++;
+            }
+        }
+
+        return objectCounter * basePoints;
     }
 }
