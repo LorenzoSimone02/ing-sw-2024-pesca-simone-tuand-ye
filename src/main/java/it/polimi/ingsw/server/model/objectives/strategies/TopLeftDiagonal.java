@@ -10,7 +10,22 @@ public class TopLeftDiagonal implements ObjectiveStrategy {
     int pointsPerPattern;
 
     public int calculatePoints(Card[][] cards) {
-        return 0;
+        int points = 0;
+        int coutner = 0;
+        for (int j = cards.length - 1; j >= 0; j--) {
+            for (int i = 0; i < cards.length - j - 1 ; i++) {
+                if(cards[j+i][i].getColor() == CardsColor && coutner < 3) {
+                    coutner ++;
+                } else if (cards[j+i][i].getColor() == CardsColor && coutner == 3) {
+                    points = points + pointsPerPattern;
+                }
+                else {
+                    coutner = 0;
+                }
+            }
+            coutner = 0;
+        }
+        return points;
     }
 
 }
