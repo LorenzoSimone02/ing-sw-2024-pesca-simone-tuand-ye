@@ -95,7 +95,7 @@ public class CornerTest {
 
                 }
                 if ((corner.getObject() == null) && (corner.getResource() == null)) {
-                    fail("corner object is null: card " + i);
+                    fail("corner object/resource is null: card " + i);
 
                 }
             }
