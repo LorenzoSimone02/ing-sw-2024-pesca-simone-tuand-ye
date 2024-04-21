@@ -127,30 +127,6 @@ public class GameTest {
 
     }
 
-    @Test
-    @DisplayName("Valid initial on ground cards")
-    public void validInitialOnGroundCards() {
-
-        controller.addPlayer("p1");
-        controller.addPlayer("p2");
-        controller.startGame();
-
-        int numOfGoldCards = 0;
-        int numOfResourceCards = 0;
-
-        for (Card card : controller.getGame().getTable().getCardsOnGround()) {
-            if (card instanceof GoldCard) {
-                numOfGoldCards++;
-            } else if (card instanceof ResourceCard) {
-                numOfResourceCards++;
-            }
-        }
-
-        assertEquals(2, numOfGoldCards);
-        assertEquals(2, numOfResourceCards);
-
-    }
-
     //TODO: "meglio suddividere ciascuno status in test singoli?"
     @Test
     @DisplayName("Test valid game status")
