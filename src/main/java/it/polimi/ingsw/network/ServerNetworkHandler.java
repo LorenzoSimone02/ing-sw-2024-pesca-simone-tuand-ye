@@ -1,7 +1,6 @@
 package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.Packet;
-import it.polimi.ingsw.network.packets.PingPacket;
 import it.polimi.ingsw.network.rmi.RMIServer;
 import it.polimi.ingsw.network.socket.SocketServer;
 import it.polimi.ingsw.server.controller.GameController;
@@ -15,13 +14,14 @@ public class ServerNetworkHandler {
     private final int rmiPort;
     private final int socketPort;
     private final ArrayList<ClientConnection> connections;
-    private GameController gameController;
+    private final GameController gameController;
 
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
         this.rmiPort = rmiPort;
         this.socketPort = socketPort;
         connections = new ArrayList<>();
+        gameController = new GameController(this);
     }
 
     public void start() {
@@ -34,19 +34,8 @@ public class ServerNetworkHandler {
             new SocketServer(this, socketPort);
             System.out.println("Socket Server started on port " + socketPort);
 
-            //Pinger thread
-            new Thread(() -> {
-                while (true) {
-                    try {
-                        Thread.sleep(3000);
-                        for (ClientConnection connection : connections) {
-                            sendPacket(connection, new PingPacket());
-                        }
-                    } catch (InterruptedException e) {
-                        System.err.println("Ping thread interrupted");
-                    }
-                }
-            }).start();
+            ClientPinger clientPinger = new ClientPinger(this);
+            //clientPinger.run();
 
         } catch (IOException e) {
             System.err.println("Server exception: " + e);
@@ -58,8 +47,12 @@ public class ServerNetworkHandler {
         connection.receivePacket(packet);
     }
 
-    public void receivePacket(Packet packet) {
-        packet.getServerPacketHandler().handlePacket(packet, gameController);
+    public void receivePacket(Packet packet, ClientConnection connection) {
+        if (packet.getServerPacketHandler() != null) {
+            packet.getServerPacketHandler().handlePacket(packet, gameController, connection);
+        } else {
+            System.err.println("Received an unsupported packet");
+        }
     }
 
     public void addConnection(ClientConnection connection) {
@@ -74,5 +67,18 @@ public class ServerNetworkHandler {
 
     public ArrayList<ClientConnection> getConnections() {
         return connections;
+    }
+
+    public ClientConnection getConnectionByNickname(String nickname) {
+        for (ClientConnection connection : connections) {
+            if (connection.getNickname().equals(nickname)) {
+                return connection;
+            }
+        }
+        return null;
+    }
+
+    public GameController getGameController() {
+        return gameController;
     }
 }

@@ -19,7 +19,11 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
     }
 
     public void receivePacket(Packet packet) {
-        packet.getClientPacketHandler().handlePacket(packet);
+        if (packet.getClientPacketHandler() != null) {
+            packet.getClientPacketHandler().handlePacket(packet);
+        } else {
+            System.err.println("Received an unsupported packet");
+        }
     }
 
     public String getNickname() {

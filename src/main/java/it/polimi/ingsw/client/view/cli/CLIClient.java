@@ -1,4 +1,23 @@
 package it.polimi.ingsw.client.view.cli;
 
-public class CLIClient {
+import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.view.UserInterface;
+
+public class CLIClient implements UserInterface {
+
+    private final ClientManager clientManager;
+
+    public CLIClient(ClientManager clientManager) {
+        this.clientManager = clientManager;
+    }
+
+    @Override
+    public void run() {
+        CommandReader commandReader = new CommandReader(clientManager);
+        commandReader.run();
+    }
+
+    public ClientManager getClientManager() {
+        return clientManager;
+    }
 }

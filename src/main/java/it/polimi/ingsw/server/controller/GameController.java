@@ -65,15 +65,29 @@ public class GameController {
         PlayerController controller = new PlayerController(player);
         playerControllers.add(controller);
         game.getPlayers().add(player);
+        if (game.getInfo().getPlayersNumber() == 0) {
+            game.getInfo().setAdmin(player);
+        }
         game.getInfo().setPlayersNumber(game.getPlayers().size());
     }
 
-    public void removePlayer(Player player) {
-        game.getPlayers().remove(player);
-        game.getInfo().setPlayersNumber(game.getPlayers().size());
+    public void onDisconnect(String player) {
+        removePlayer(player);
     }
 
-    public synchronized void createGame(int gameId){
+    public boolean removePlayer(String player) {
+        for (PlayerController controller : playerControllers) {
+            if (controller.getPlayer().getNickname().equals(player)) {
+                playerControllers.remove(controller);
+                game.getInfo().setPlayersNumber(game.getPlayers().size());
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+    public synchronized void createGame(int gameId) {
         game = new Game(gameId);
         game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
     }

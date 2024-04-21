@@ -12,7 +12,6 @@ import java.util.List;
 public class GoldCard extends ResourceCard {
 
     private final List<Resource> resourcesNeeded;
-    private final List<Object> objectsNeeded;
 
     private final GoldStrategyType pointsStrategy;
 
@@ -24,7 +23,6 @@ public class GoldCard extends ResourceCard {
             GoldCard proprieties = gson.fromJson(reader, GoldCard.class);
             this.pointsStrategy = proprieties.pointsStrategy;
             this.resourcesNeeded = proprieties.getResourcesNeeded();
-            this.objectsNeeded = proprieties.getObjectsNeeded();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -33,10 +31,6 @@ public class GoldCard extends ResourceCard {
 
     public List<Resource> getResourcesNeeded() {
         return resourcesNeeded;
-    }
-
-    public List<Object> getObjectsNeeded() {
-        return objectsNeeded;
     }
 
 }

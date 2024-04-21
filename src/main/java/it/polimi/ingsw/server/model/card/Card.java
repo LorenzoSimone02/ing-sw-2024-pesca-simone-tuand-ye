@@ -18,11 +18,7 @@ public abstract class Card {
         return face;
     }
 
-    public void turnCard() {
-        if (this.face == FaceEnum.FRONT) {
-            this.face = FaceEnum.BACK;
-        } else if (this.face == FaceEnum.BACK) {
-            this.face = FaceEnum.FRONT;
-        }
+    public void setFace(FaceEnum face) {
+        this.face = face;
     }
 }

@@ -34,10 +34,11 @@ public class SocketClientConnection extends ClientConnection implements Runnable
             try {
                 Packet packet = (Packet) in.readObject();
                 socketServer.getServerNetworkHandler().addConnection(this);
-                socketServer.getServerNetworkHandler().receivePacket(packet);
+                socketServer.getServerNetworkHandler().receivePacket(packet, this);
             } catch (IOException e) {
                 System.err.println("Lost connection with a client");
                 socketServer.getServerNetworkHandler().removeConnection(this);
+                socketServer.getServerNetworkHandler().getGameController().onDisconnect(this.getNickname());
                 Thread.currentThread().interrupt();
             } catch (ClassNotFoundException e) {
                 System.err.println("Could not read the packet " + e);

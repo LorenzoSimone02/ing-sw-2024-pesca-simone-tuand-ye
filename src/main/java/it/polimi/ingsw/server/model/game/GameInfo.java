@@ -7,6 +7,7 @@ public class GameInfo {
     private int playersNumber;
     private Player firstPlayer;
     private Player activePlayer;
+    private Player admin;
     private Player winner;
     private GameStatusEnum gameStatus;
 
@@ -37,6 +38,14 @@ public class GameInfo {
 
     public void setFirstPlayer(Player firstPlayer) {
         this.firstPlayer = firstPlayer;
+    }
+
+    public Player getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Player admin) {
+        this.admin = admin;
     }
 
     public Player getWinner() {

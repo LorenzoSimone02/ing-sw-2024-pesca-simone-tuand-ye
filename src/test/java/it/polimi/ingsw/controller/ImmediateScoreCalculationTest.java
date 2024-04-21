@@ -23,7 +23,7 @@ public class ImmediateScoreCalculationTest {
     private GameController controller;
     private Player activePlayer;
     private final File goldJson = Paths.get("src/main/resources/assets/goldcards/goldCard1.json").toFile();
-    private final File starterJson = Paths.get("src/main/resources/assets/startercards/testCard1.json").toFile();
+    private final File starterJson = Paths.get("src/main/resources/assets/startercards/starterCard1.json").toFile();
 
     @BeforeEach
     void setup() {

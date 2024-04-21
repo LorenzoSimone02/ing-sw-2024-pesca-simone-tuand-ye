@@ -1,11 +1,11 @@
-package it.polimi.ingsw.server.model.card.goldStrategies;
+package it.polimi.ingsw.server.model.card.goldstrategies;
 
 import it.polimi.ingsw.server.model.player.Player;
-import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldStrategy;
 
 public class PlainPoints implements GoldStrategy {
-    private int basePoints;
+
+    private final int basePoints;
 
     public PlainPoints(int basePoints) {
         this.basePoints = basePoints;

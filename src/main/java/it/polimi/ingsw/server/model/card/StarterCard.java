@@ -3,7 +3,6 @@ package it.polimi.ingsw.server.model.card;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 import it.polimi.ingsw.server.model.card.corner.Corner;
-import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.File;
@@ -21,11 +20,6 @@ public class StarterCard extends Card {
 
     public StarterCard(File jsonFile) {
         this.corners = new ArrayList<>();
-        this.corners.add(new Corner(CornerLocationEnum.TOP_LEFT, null, null, FaceEnum.BACK, true));
-        this.corners.add(new Corner(CornerLocationEnum.TOP_RIGHT, null, null, FaceEnum.BACK, true));
-        this.corners.add(new Corner(CornerLocationEnum.BOTTOM_LEFT, null, null, FaceEnum.BACK, true));
-        this.corners.add(new Corner(CornerLocationEnum.BOTTOM_RIGHT, null, null, FaceEnum.BACK, true));
-
         try {
             Gson gson = new Gson();
             JsonReader reader = new JsonReader(new FileReader(jsonFile));

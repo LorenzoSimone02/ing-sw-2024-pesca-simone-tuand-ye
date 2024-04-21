@@ -1,6 +1,6 @@
 # Codex Naturalis
 
-<img src="https://www.craniocreations.it/storage/media/products/19/41/Codex_scatola+ombra.png" width=192px height=192 px align="right" />
+<img src="https://www.craniocreations.it/storage/media/products/19/41/Codex_scatola+ombra.png" width=192px height=192px align="right" />
 
 Lo sviluppo del gioco da tavolo *Codex Naturalis* è la prova finale del corso di **Ingegneria del Software** tenuto al Politecnico di Milano (2023/2024).
 

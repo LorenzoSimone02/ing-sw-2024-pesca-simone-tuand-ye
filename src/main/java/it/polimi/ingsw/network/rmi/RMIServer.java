@@ -1,5 +1,6 @@
 package it.polimi.ingsw.network.rmi;
 
+import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.Packet;
 
@@ -20,8 +21,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
-        networkHandler.addConnection(new RMIClientConnection(clientInterface));
-        networkHandler.receivePacket(packet);
+        RMIClientConnection connection = new RMIClientConnection(clientInterface);
+        networkHandler.addConnection(connection);
+        networkHandler.receivePacket(packet, connection);
     }
 
 }

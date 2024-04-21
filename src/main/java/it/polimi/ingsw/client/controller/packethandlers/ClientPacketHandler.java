@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client.controller.packethandling;
+package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.network.packets.Packet;
 

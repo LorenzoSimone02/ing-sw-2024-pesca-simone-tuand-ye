@@ -1,8 +1,6 @@
 package it.polimi.ingsw.server.controller;
 
-import it.polimi.ingsw.server.model.card.ObjectiveCard;
-import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.card.StarterCard;
+import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
 import it.polimi.ingsw.server.model.exceptions.IllegalCardPlacementException;
@@ -85,5 +83,13 @@ public record PlayerController(Player player) {
         starterCard.setXCoord(40);
         starterCard.setYCoord(40);
         player.setCard(starterCard, 40, 40);
+    }
+
+    public void turnCard(Card card) {
+        if (card.getFace() == FaceEnum.FRONT) {
+            card.setFace(FaceEnum.BACK);
+        } else if (card.getFace() == FaceEnum.BACK) {
+            card.setFace(FaceEnum.FRONT);
+        }
     }
 }

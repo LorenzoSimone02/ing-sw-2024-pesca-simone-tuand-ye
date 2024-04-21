@@ -46,10 +46,5 @@
     {
       "type": "PLANT"
     }
-  ],
-  "objectsNeeded": [
-    {
-      "type": "INKWELL"
-    }
   ]
 }

@@ -3,16 +3,12 @@ package it.polimi.ingsw.network;
 import it.polimi.ingsw.network.packets.Packet;
 
 import java.io.Serializable;
-import java.util.Random;
 
 /**
  * Class representing the server-side state of a client connected to the server.
  */
-public class ClientConnection implements Serializable {
-    /**
-     * The User uniqueId
-     */
-    private final int uniqueId;
+public abstract class ClientConnection implements Serializable {
+
     /**
      * The User nickanme
      */
@@ -25,16 +21,10 @@ public class ClientConnection implements Serializable {
 
     public ClientConnection() {
         this.isConnected = true;
-        this.uniqueId = new Random().nextInt(999999);
-        this.nickname = "Unknown" + uniqueId;
+        this.nickname = "Unknown";
     }
 
-    public void receivePacket(Packet packet) {
-    }
-
-    public int getUniqueId() {
-        return uniqueId;
-    }
+    public abstract void receivePacket(Packet packet);
 
     public boolean isConnected() {
         return isConnected;

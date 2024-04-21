@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTest {
 
     private GameController controller;
-    private final File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/testCard1.json").toFile();
+    private final File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/starterCard1.json").toFile();
 
     @BeforeEach
     void setup() {

@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 
 public class SocketClient extends ClientNetworkHandler {
 
-    private Socket socket;
     private final String ip;
     private final int port;
     private ObjectOutputStream out;
@@ -26,7 +25,7 @@ public class SocketClient extends ClientNetworkHandler {
 
     public void init() {
         try {
-            socket = new Socket(ip, port);
+            Socket socket = new Socket(ip, port);
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {

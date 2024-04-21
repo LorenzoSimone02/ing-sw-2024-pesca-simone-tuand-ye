@@ -1,5 +1,7 @@
 package it.polimi.ingsw.model.card;
 
+import it.polimi.ingsw.server.controller.GameController;
+import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class ResourceCardTest {
 
     final int numOfResourceCards = 10;
-    ArrayList<ResourceCard> resCardArray = new ArrayList<>(numOfResourceCards);
+    final ArrayList<ResourceCard> resCardArray = new ArrayList<>(numOfResourceCards);
 
     @BeforeEach
     void setUp() {
@@ -39,10 +41,18 @@ public class ResourceCardTest {
     @DisplayName("Test turnFace method")
     public void testTurnFaceMethod() {
 
-        FaceEnum prevFace = resCardArray.getFirst().getFace();
-        resCardArray.getFirst().turnCard();
+        GameController gameController = new GameController(null);
+        gameController.createGame(1);
+        gameController.addPlayer("test");
+        gameController.startGame();
 
-        assertNotEquals(prevFace, resCardArray.getFirst().getFace());
+        if (gameController.getPlayerByNick("test").isPresent()) {
+            Card card = gameController.getPlayerByNick("test").get().getCardsInHand().getFirst();
+            FaceEnum prevFace = resCardArray.getFirst().getFace();
+            gameController.getPlayerController("test").turnCard(card);
+
+            assertNotEquals(prevFace, card.getFace());
+        }
     }
 
     @Test
@@ -52,7 +62,7 @@ public class ResourceCardTest {
         for (ResourceCard currCard : resCardArray) {
 
             if (currCard == null) {
-                fail("resCard is null: card " + resCardArray.indexOf(currCard));
+                fail("resCard is null");
             }
             //null attributes tests
             if (currCard.getFace() == null) {

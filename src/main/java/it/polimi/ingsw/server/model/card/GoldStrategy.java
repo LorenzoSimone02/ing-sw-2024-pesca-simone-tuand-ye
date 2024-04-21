@@ -4,5 +4,5 @@ import it.polimi.ingsw.server.model.player.Player;
 
 public interface GoldStrategy {
 
-    public int calculatePoints(Player player, int xCoord, int yCoord);
+    int calculatePoints(Player player, int xCoord, int yCoord);
 }

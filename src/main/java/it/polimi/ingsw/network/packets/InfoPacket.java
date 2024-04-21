@@ -1,9 +1,9 @@
 package it.polimi.ingsw.network.packets;
 
-import it.polimi.ingsw.client.controller.packethandling.ClientPacketHandler;
-import it.polimi.ingsw.client.controller.packethandling.packethandlers.ClientInfoPacketHandler;
+import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
+import it.polimi.ingsw.client.controller.packethandlers.ClientInfoPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
-import it.polimi.ingsw.server.controller.packethandling.packethandlers.ServerInfoPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerInfoPacketHandler;
 
 public class InfoPacket extends Packet {
 

@@ -1,5 +1,7 @@
 package it.polimi.ingsw.client;
 
+import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.network.ClientNetworkHandler;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.rmi.RMIClient;
@@ -29,25 +31,26 @@ public class ClientMain extends Application {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String selected;
-        ClientNetworkHandler client;
+        String nextLine;
+        ClientNetworkHandler networkHandler = null;
+        ViewModeEnum viewMode = ViewModeEnum.CLI;
 
         try {
             do {
                 System.out.println("Please choose between CLI technology and GUI technology:");
                 System.out.println("[1] CLI - [2] GUI");
-                selected = scanner.nextLine().trim();
+                nextLine = scanner.nextLine().trim();
 
-                if (selected.equals("1") || selected.equals("CLI")) {
+                if (nextLine.equals("1") || nextLine.equals("CLI")) {
                     System.out.println("You have selected CLI technology.");
-                } else if (selected.equals("2") || selected.equals("GUI")) {
+                } else if (nextLine.equals("2") || nextLine.equals("GUI")) {
                     System.out.println("You have selected GUI technology.");
-                    launch();
+                    viewMode = ViewModeEnum.GUI;
                 } else {
-                    System.out.println("\"" + selected + "\" is not a valid option. Please try again.");
+                    System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }
 
-            } while (!(selected.equals("1") || selected.equals("2") || selected.equalsIgnoreCase("CLI") || selected.equalsIgnoreCase("GUI")));
+            } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("CLI") || nextLine.equalsIgnoreCase("GUI")));
         } catch (Exception e) {
             System.err.println("An error occured!");
             System.err.println(e.getMessage());
@@ -56,30 +59,37 @@ public class ClientMain extends Application {
             do {
                 System.out.println("Now please choose between Socket technology and RMI technology:");
                 System.out.println("[1] Socket - [2] RMI");
-                selected = scanner.nextLine().trim();
+                nextLine = scanner.nextLine().trim();
 
-                if (selected.equals("1") || selected.equals("Socket")) {
+                if (nextLine.equals("1") || nextLine.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
-                    client = new SocketClient("localhost", 5000);
-                    client.sendPacket(new InfoPacket("Socket chosen!"));
-                } else if (selected.equals("2") || selected.equals("RMI")) {
+                    networkHandler = new SocketClient("localhost", 5000);
+                    System.out.println("Connected to Server.");
+                    networkHandler.sendPacket(new InfoPacket("Socket chosen!"));
+                } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
                     try {
-                        client = new RMIClient("Server", 1099);
-                        client.sendPacket(new InfoPacket("RMI chosen!"));
+                        networkHandler = new RMIClient("Server", 1099);
+                        System.out.println("Connected to Server.");
+                        networkHandler.sendPacket(new InfoPacket("RMI chosen!"));
                     } catch (IOException e) {
                         System.err.println("An error occured!");
                         System.err.println(e.getMessage());
                     }
                 } else {
-                    System.out.println("\"" + selected + "\" is not a valid option. Please try again.");
+                    System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }
 
-            } while (!(selected.equals("1") || selected.equals("2") || selected.equalsIgnoreCase("Socket") || selected.equalsIgnoreCase("RMI")));
+            } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("Socket") || nextLine.equalsIgnoreCase("RMI")));
         } catch (Exception e) {
             System.err.println("An error occured!");
             System.err.println(e.getMessage());
         }
 
+        ClientManager clientManager = new ClientManager(networkHandler, viewMode);
+        if(viewMode == ViewModeEnum.GUI){
+            launch();
+        }
+        clientManager.runUI();
     }
 }

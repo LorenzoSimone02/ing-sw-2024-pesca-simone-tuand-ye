@@ -1,8 +1,8 @@
 package it.polimi.ingsw.server.model.card;
 
-import it.polimi.ingsw.server.model.card.goldStrategies.CornerCount;
-import it.polimi.ingsw.server.model.card.goldStrategies.ObjectCount;
-import it.polimi.ingsw.server.model.card.goldStrategies.PlainPoints;
+import it.polimi.ingsw.server.model.card.goldstrategies.CornerCount;
+import it.polimi.ingsw.server.model.card.goldstrategies.ObjectCount;
+import it.polimi.ingsw.server.model.card.goldstrategies.PlainPoints;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 
 public enum GoldStrategyType {
