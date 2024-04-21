@@ -76,9 +76,10 @@ public class GameController {
     }
 
     public boolean removePlayer(String player) {
-        for (PlayerController controller : playerControllers) {
-            if (controller.getPlayer().getNickname().equals(player)) {
-                playerControllers.remove(controller);
+        for (Player players : game.getPlayers()) {
+            if (players.getNickname().equals(player)) {
+                playerControllers.remove(getPlayerController(players));
+                game.getPlayers().remove(players);
                 game.getInfo().setPlayersNumber(game.getPlayers().size());
                 return true;
             }

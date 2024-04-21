@@ -73,7 +73,7 @@ public class PlayerTest {
     @DisplayName("Test valid starter card")
     public void validStarterCard() {
 
-        controller.removePlayer(controller.getGame().getPlayers().getFirst());
+        controller.removePlayer(controller.getGame().getPlayers().getFirst().getNickname());
         controller.addPlayer("test");
         Player player = controller.getPlayerByNick("test").orElse(null);
         PlayerController playerController = this.controller.getPlayerController(player);
@@ -101,7 +101,7 @@ public class PlayerTest {
     @Test
     @DisplayName("Test valid player card management")
     public void validCardManagement() {
-        controller.removePlayer(controller.getGame().getPlayers().getFirst());
+        controller.removePlayer(controller.getGame().getPlayers().getFirst().getNickname());
         controller.addPlayer("test");
         Player player = controller.getPlayerByNick("test").orElse(null);
         PlayerController playerController = this.controller.getPlayerController(player);

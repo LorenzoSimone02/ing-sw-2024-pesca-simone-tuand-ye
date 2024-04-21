@@ -70,7 +70,7 @@ public class GameTest {
         }
 
         assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
-        controller.removePlayer(controller.getGame().getPlayers().get(1));
+        controller.removePlayer(controller.getGame().getPlayers().get(1).getNickname());
         for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
             assertNotEquals("test2", controller.getGame().getPlayers().get(i).getNickname());
         }
