@@ -7,6 +7,7 @@ import it.polimi.ingsw.server.model.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
+import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 
 public record PlayerController(Player player) {
 
@@ -23,6 +24,9 @@ public record PlayerController(Player player) {
             for (Corner corner : card.getCorners()) {
                 if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY) {
                     player.addResource(corner.getResource());
+                }
+                if (corner.isVisible() && corner.getObject() != null && corner.getObject().getType() != ObjectTypeEnum.EMPTY) {
+                    player.addObject(corner.getObject());
                 }
             }
             if(card instanceof GoldCard){
