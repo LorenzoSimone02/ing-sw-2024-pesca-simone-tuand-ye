@@ -5,6 +5,7 @@ import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.model.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.model.exceptions.GameStartException;
+import it.polimi.ingsw.server.model.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
@@ -53,11 +54,24 @@ public class GameController {
         return null;
     }
 
-    public void addPlayer(String nickname) throws DuplicatePlayerException, FullLobbyException {
+    public void setMaxPlayers(int playersNumber) {
+        if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
+            throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
+        }
+        if (playersNumber < 2 || playersNumber > 4) {
+            throw new IllegalArgumentException("Players number must be between 2 and 4.");
+        }
+        game.getInfo().setMaxPlayers(playersNumber);
+    }
+
+    public  Player addPlayer(String nickname) throws DuplicatePlayerException, FullLobbyException {
+        if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
+            throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
+        }
         if (getPlayerByNick(nickname).isPresent()) {
             throw new DuplicatePlayerException(nickname);
         }
-        if (game.getPlayers().size() >= 4) {
+        if (game.getPlayers().size() >= game.getInfo().getMaxPlayers()) {
             throw new FullLobbyException();
         }
 
@@ -65,10 +79,9 @@ public class GameController {
         PlayerController controller = new PlayerController(player);
         playerControllers.add(controller);
         game.getPlayers().add(player);
-        if (game.getInfo().getPlayersNumber() == 0) {
-            game.getInfo().setAdmin(player);
-        }
         game.getInfo().setPlayersNumber(game.getPlayers().size());
+
+        return player;
     }
 
     public void onDisconnect(String player) {
@@ -76,6 +89,8 @@ public class GameController {
     }
 
     public boolean removePlayer(String player) {
+        if(game == null) return false;
+
         for (Player players : game.getPlayers()) {
             if (players.getNickname().equals(player)) {
                 playerControllers.remove(getPlayerController(players));

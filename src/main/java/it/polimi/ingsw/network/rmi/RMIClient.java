@@ -30,4 +30,5 @@ public class RMIClient extends ClientNetworkHandler implements RMIClientInterfac
             System.err.println("Packet is null");
         }
     }
+
 }

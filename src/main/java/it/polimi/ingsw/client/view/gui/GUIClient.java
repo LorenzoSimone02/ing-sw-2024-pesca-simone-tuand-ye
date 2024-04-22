@@ -12,7 +12,7 @@ public class GUIClient implements UserInterface {
     }
 
     @Override
-    public void run() {
+    public void runView() {
 
     }
 

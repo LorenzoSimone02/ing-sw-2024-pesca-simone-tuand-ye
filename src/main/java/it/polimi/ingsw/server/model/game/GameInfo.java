@@ -5,6 +5,7 @@ import it.polimi.ingsw.server.model.player.Player;
 public class GameInfo {
 
     private int playersNumber;
+    private int maxPlayers;
     private Player firstPlayer;
     private Player activePlayer;
     private Player admin;
@@ -13,6 +14,7 @@ public class GameInfo {
 
     public GameInfo(int playersNumber) {
         this.playersNumber = playersNumber;
+        this.maxPlayers = 4;
         gameStatus = GameStatusEnum.WAITING_FOR_PLAYERS;
     }
 
@@ -22,6 +24,14 @@ public class GameInfo {
 
     public void setPlayersNumber(int playersNumber) {
         this.playersNumber = playersNumber;
+    }
+
+    public int getMaxPlayers() {
+        return maxPlayers;
+    }
+
+    public void setMaxPlayers(int maxPlayers) {
+        this.maxPlayers = maxPlayers;
     }
 
     public Player getFirstPlayer() {

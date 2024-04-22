@@ -36,7 +36,7 @@ public class SocketClientConnection extends ClientConnection implements Runnable
                 socketServer.getServerNetworkHandler().addConnection(this);
                 socketServer.getServerNetworkHandler().receivePacket(packet, this);
             } catch (IOException e) {
-                System.err.println("Lost connection with a client");
+                System.err.println("Lost connection with the Client " + this.getNickname());
                 socketServer.getServerNetworkHandler().removeConnection(this);
                 socketServer.getServerNetworkHandler().getGameController().onDisconnect(this.getNickname());
                 Thread.currentThread().interrupt();

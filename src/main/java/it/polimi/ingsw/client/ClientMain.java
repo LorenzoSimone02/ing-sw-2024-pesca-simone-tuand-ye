@@ -3,7 +3,6 @@ package it.polimi.ingsw.client;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.network.ClientNetworkHandler;
-import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.rmi.RMIClient;
 import it.polimi.ingsw.network.socket.SocketClient;
 import javafx.application.Application;
@@ -65,13 +64,11 @@ public class ClientMain extends Application {
                     System.out.println("You have selected Socket technology.");
                     networkHandler = new SocketClient("localhost", 5000);
                     System.out.println("Connected to Server.");
-                    networkHandler.sendPacket(new InfoPacket("Socket chosen!"));
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
                     try {
                         networkHandler = new RMIClient("Server", 1099);
                         System.out.println("Connected to Server.");
-                        networkHandler.sendPacket(new InfoPacket("RMI chosen!"));
                     } catch (IOException e) {
                         System.err.println("An error occured!");
                         System.err.println(e.getMessage());

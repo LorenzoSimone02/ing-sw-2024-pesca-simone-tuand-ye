@@ -14,12 +14,13 @@ public class ClientManager {
 
     public ClientManager(ClientNetworkHandler networkHandler, ViewModeEnum viewMode) {
         this.networkHandler = networkHandler;
+        this.networkHandler.setClientManager(this);
         this.viewMode = viewMode;
         userInterface = viewMode == ViewModeEnum.CLI ? new CLIClient(this) : new GUIClient(this);
     }
 
     public void runUI(){
-        userInterface.run();
+        userInterface.runView();
     }
 
     public ClientNetworkHandler getNetworkHandler() {

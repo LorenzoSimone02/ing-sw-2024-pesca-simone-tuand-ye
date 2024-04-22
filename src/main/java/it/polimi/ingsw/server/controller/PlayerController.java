@@ -3,6 +3,7 @@ package it.polimi.ingsw.server.controller;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
+import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.model.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
@@ -29,7 +30,7 @@ public record PlayerController(Player player) {
                     player.addObject(corner.getObject());
                 }
             }
-            if(card instanceof GoldCard){
+            if (card instanceof GoldCard) {
                 player.setScore(player.getScore() + ((GoldCard) card).getPointsStrategy().getStrategy().calculatePoints(player, x, y));
             } else {
                 player.setScore(player.getScore() + card.getPoints());
@@ -76,7 +77,7 @@ public record PlayerController(Player player) {
         for (Player player : player.getGame().getPlayers()) {
             if (player.getToken() != null && player.getToken().color().equals(token.color())) {
                 // inserire commento da mostrare al player di cambiare colore
-                return;
+                throw new AlreadyTakenColorException(token.getColor());
             }
         }
         player.setToken(token);

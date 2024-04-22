@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.view.cli;
 
+import it.polimi.ingsw.client.commands.CommandReader;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.view.UserInterface;
 
@@ -12,7 +13,7 @@ public class CLIClient implements UserInterface {
     }
 
     @Override
-    public void run() {
+    public void runView() {
         CommandReader commandReader = new CommandReader(clientManager);
         commandReader.run();
     }

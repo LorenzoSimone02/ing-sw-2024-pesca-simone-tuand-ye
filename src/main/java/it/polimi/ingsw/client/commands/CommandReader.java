@@ -1,8 +1,5 @@
-package it.polimi.ingsw.client.view.cli;
+package it.polimi.ingsw.client.commands;
 
-import it.polimi.ingsw.client.commands.Command;
-import it.polimi.ingsw.client.commands.HelpCommand;
-import it.polimi.ingsw.client.commands.LoginCommand;
 import it.polimi.ingsw.client.controller.ClientManager;
 
 import java.util.HashMap;
@@ -10,7 +7,7 @@ import java.util.Scanner;
 
 public class CommandReader implements Runnable {
 
-    private ClientManager clientManager;
+    private final ClientManager clientManager;
     private HashMap<String, Command> inputCommandMap;
 
     public CommandReader(ClientManager clientManager) {
@@ -42,5 +39,6 @@ public class CommandReader implements Runnable {
     public void loadCommands(){
         this.inputCommandMap.put("/help", new HelpCommand(this.inputCommandMap));
         this.inputCommandMap.put("/login", new LoginCommand());
+        this.inputCommandMap.put("/playersNumber", new PlayersNumberCommand());
     }
 }

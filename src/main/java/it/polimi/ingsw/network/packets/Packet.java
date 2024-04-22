@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 public abstract class Packet implements Serializable {
 
-    String sender;
+    private String sender;
 
     public String getSender() {
         return sender;

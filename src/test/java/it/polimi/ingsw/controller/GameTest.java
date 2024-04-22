@@ -1,7 +1,6 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
@@ -36,7 +35,7 @@ public class GameTest {
 
             try {
                 controller.addPlayer("p" + i);
-            } catch (PlayerNotAddedException e) {
+            } catch (IllegalOperationForStateException e) {
                 fail("Player not added");
             }
             if (controller.getGame().getInfo().getPlayersNumber() != i + 1) {

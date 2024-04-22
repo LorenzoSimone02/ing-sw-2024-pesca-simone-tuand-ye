@@ -12,18 +12,20 @@ public class LoginCommand extends Command {
         addValidStatus(ClientStatusEnum.LOGIN);
     }
 
-
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExectuable()) {
+        if (isExecutable()) {
             String username = input.split(" ")[0];
             if (username.matches("[a-zA-Z0-9]+") && input.split(" ").length == 1) {
                 System.out.println("Username choosen: " + username);
+                clientManager.getNetworkHandler().setNickname(username);
                 LoginRequestPacket loginRequestPacket = new LoginRequestPacket(username);
                 clientManager.getNetworkHandler().sendPacket(loginRequestPacket);
             } else {
                 System.err.println("That username is not valid, please choose another one using only letters and numbers.");
             }
+        } else {
+            System.err.println("Have already logged in.");
         }
     }
 }

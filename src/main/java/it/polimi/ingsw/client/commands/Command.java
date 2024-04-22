@@ -33,7 +33,7 @@ public abstract class Command {
         validStatuses.add(status);
     }
 
-    public boolean isExectuable() {
+    public boolean isExecutable() {
         return true;
     }
 }
