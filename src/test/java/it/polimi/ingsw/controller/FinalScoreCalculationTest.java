@@ -2,7 +2,7 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
-import it.polimi.ingsw.server.model.exceptions.InvalidObjectiveStrategyException;
+import it.polimi.ingsw.server.controller.exceptions.InvalidObjectiveStrategyException;
 import it.polimi.ingsw.server.model.objectives.strategies.BottomLeftLShape;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.server.model.exceptions;
+package it.polimi.ingsw.server.controller.exceptions;
 
 import it.polimi.ingsw.server.model.card.Deck;
 

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.server.model.exceptions;
+package it.polimi.ingsw.server.controller.exceptions;
 
 public class GameStartException extends RuntimeException {
     public GameStartException() {

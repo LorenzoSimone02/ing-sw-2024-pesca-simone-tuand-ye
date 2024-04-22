@@ -2,10 +2,10 @@ package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.server.model.card.*;
-import it.polimi.ingsw.server.model.exceptions.DuplicatePlayerException;
-import it.polimi.ingsw.server.model.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.model.exceptions.GameStartException;
-import it.polimi.ingsw.server.model.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
+import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
+import it.polimi.ingsw.server.controller.exceptions.GameStartException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
@@ -36,7 +36,7 @@ public class GameController {
         return networkHandler;
     }
 
-    public PlayerController getPlayerController(Player player) {
+    public synchronized PlayerController getPlayerController(Player player) {
         for (PlayerController controller : playerControllers) {
             if (controller.getPlayer().equals(player)) {
                 return controller;
@@ -45,7 +45,7 @@ public class GameController {
         return null;
     }
 
-    public PlayerController getPlayerController(String nickname) {
+    public synchronized PlayerController getPlayerController(String nickname) {
         for (PlayerController controller : playerControllers) {
             if (controller.getPlayer().getNickname().equals(nickname)) {
                 return controller;
@@ -54,7 +54,7 @@ public class GameController {
         return null;
     }
 
-    public void setMaxPlayers(int playersNumber) {
+    public synchronized void setMaxPlayers(int playersNumber) {
         if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
             throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
         }
@@ -64,7 +64,7 @@ public class GameController {
         game.getInfo().setMaxPlayers(playersNumber);
     }
 
-    public  Player addPlayer(String nickname) throws DuplicatePlayerException, FullLobbyException {
+    public synchronized Player addPlayer(String nickname) throws DuplicatePlayerException, FullLobbyException {
         if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
             throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
         }
@@ -84,12 +84,12 @@ public class GameController {
         return player;
     }
 
-    public void onDisconnect(String player) {
+    public synchronized void onDisconnect(String player) {
         removePlayer(player);
     }
 
-    public boolean removePlayer(String player) {
-        if(game == null) return false;
+    public synchronized boolean removePlayer(String player) {
+        if (game == null) return false;
 
         for (Player players : game.getPlayers()) {
             if (players.getNickname().equals(player)) {
@@ -135,22 +135,19 @@ public class GameController {
         }
     }
 
-    public void assignStarterCard() {
-        int size = game.getTable().getStarterCards().size();
+    public synchronized void assignStarterCard() {
         for (Player player : game.getPlayers()) {
-            StarterCard starterCard = game.getTable().getStarterCards().remove(new Random().nextInt(size));
+            StarterCard starterCard = (StarterCard) game.getTable().getStarterDeck().drawCard();
             player.setStarterCard(starterCard);
-            size--;
         }
     }
 
-    public void assignCommonObjectives() {
-        int size = game.getTable().getObjectiveCards().size();
-        game.addObjectiveCard(game.getTable().getObjectiveCards().remove(new Random().nextInt(size)));
-        game.addObjectiveCard(game.getTable().getObjectiveCards().remove(new Random().nextInt(size - 1)));
+    public synchronized void assignCommonObjectives() {
+        game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
+        game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
     }
 
-    public void instantiateCards() {
+    public synchronized void instantiateCards() {
         File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
         Deck resourceDeck = new Deck();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
@@ -159,7 +156,6 @@ public class GameController {
         }
         resourceDeck.shuffleDeck();
         game.getTable().setResouceDeck(resourceDeck);
-
 
         folder = Paths.get("src/main/resources/assets/goldcards").toFile();
         Deck goldDeck = new Deck();
@@ -171,36 +167,42 @@ public class GameController {
         game.getTable().setGoldDeck(goldDeck);
 
         folder = Paths.get("src/main/resources/assets/startercards").toFile();
+        Deck starterDeck = new Deck();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             StarterCard card = new StarterCard(file);
-            game.getTable().addStarterCard(card);
+            starterDeck.addCard(card);
         }
+        starterDeck.shuffleDeck();
+        game.getTable().setStarterDeck(starterDeck);
 
         folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
+        Deck objectiveDeck = new Deck();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ObjectiveCard card = new ObjectiveCard(file);
-            game.getTable().addObjectiveCard(card);
+            objectiveDeck.addCard(card);
         }
+        objectiveDeck.shuffleDeck();
+        game.getTable().setObjectiveDeck(objectiveDeck);
     }
 
-    public void nextTurn() {
+    public synchronized void nextTurn() {
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
     }
 
-    public Player nextPlayer() {
+    public synchronized Player nextPlayer() {
         int index = game.getPlayers().indexOf(game.getInfo().getActivePlayer());
         return game.getPlayers().get((index + 1) % game.getPlayers().size());
     }
 
-    public void chooseFirstPlayer() {
+    public synchronized void chooseFirstPlayer() {
         Player first = game.getPlayers().get(new Random().nextInt(game.getPlayers().size()));
         first.setFirst(true);
         game.getInfo().setFirstPlayer(first);
         game.getInfo().setActivePlayer(first);
     }
 
-    public void endGame() {
+    public synchronized void endGame() {
         for (Player p : game.getPlayers()) {
             int secretObjectivePoints = p.getObjectiveCard().getObjective().getPoints(p.getCards());
             int publicObjectivePoints = 0;
@@ -211,7 +213,7 @@ public class GameController {
         }
     }
 
-    public Optional<Player> getPlayerByNick(String nick) {
+    public synchronized Optional<Player> getPlayerByNick(String nick) {
         for (Player p : game.getPlayers()) {
             if (p.getNickname().equalsIgnoreCase(nick)) {
                 return Optional.of(p);

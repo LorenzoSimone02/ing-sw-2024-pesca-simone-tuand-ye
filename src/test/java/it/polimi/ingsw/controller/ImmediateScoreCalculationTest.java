@@ -4,7 +4,7 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
-import it.polimi.ingsw.server.model.exceptions.IllegalCardPlacementException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;

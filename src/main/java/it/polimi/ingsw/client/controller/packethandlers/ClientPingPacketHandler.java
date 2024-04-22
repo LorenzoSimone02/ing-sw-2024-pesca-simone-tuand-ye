@@ -8,8 +8,6 @@ public class ClientPingPacketHandler extends ClientPacketHandler {
 
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
-        PingPacket infoPacket = (PingPacket) packet;
-        System.out.println("Ping packet request received by " + infoPacket.getSender());
         clientManager.getNetworkHandler().sendPacket(new PingPacket());
     }
 }

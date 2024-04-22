@@ -5,9 +5,9 @@ import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.LoginRequestPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.exceptions.DuplicatePlayerException;
-import it.polimi.ingsw.server.model.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.model.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
+import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.model.player.Player;
 
 public class ServerLoginRequestPacketHandler extends ServerPacketHandler {

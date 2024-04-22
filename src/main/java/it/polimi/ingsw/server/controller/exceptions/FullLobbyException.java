@@ -1,4 +1,4 @@
-package it.polimi.ingsw.server.model.exceptions;
+package it.polimi.ingsw.server.controller.exceptions;
 
 public class FullLobbyException extends RuntimeException {
     public FullLobbyException() {

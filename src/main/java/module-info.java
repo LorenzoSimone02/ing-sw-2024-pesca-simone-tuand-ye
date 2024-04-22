@@ -11,7 +11,7 @@ module it.polimi.ingsw.progetto {
     exports it.polimi.ingsw.network.packets;
     exports it.polimi.ingsw.client.controller.packethandlers;
     exports it.polimi.ingsw.server.model.game;
-    exports it.polimi.ingsw.server.model.exceptions;
+    exports it.polimi.ingsw.server.controller.exceptions;
     exports it.polimi.ingsw.server.model.player;
     exports it.polimi.ingsw.server.model.card;
     exports it.polimi.ingsw.server.model.card.corner;

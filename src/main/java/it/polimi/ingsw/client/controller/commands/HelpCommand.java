@@ -1,8 +1,6 @@
-package it.polimi.ingsw.client.commands;
+package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.ClientStatusEnum;
-import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
 import java.util.HashMap;
 
@@ -11,12 +9,11 @@ public class HelpCommand extends Command {
     private final HashMap<String, Command> commandMap;
 
     public HelpCommand(HashMap<String, Command> commandMap){
-        setCommand("/help");
-        setDescription("  Prints the list of available commands and their description");
+        commandName = "/help";
+        description = "  Prints the list of available commands and their description";
 
         this.commandMap = commandMap;
     }
-
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {

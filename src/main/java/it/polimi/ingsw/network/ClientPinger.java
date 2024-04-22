@@ -2,7 +2,8 @@ package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.PingPacket;
 
-import java.util.Iterator;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ClientPinger implements Runnable {
 
@@ -14,18 +15,11 @@ public class ClientPinger implements Runnable {
 
     @Override
     public void run() {
-        while (!Thread.currentThread().isInterrupted()) {
-            try {
-                Thread.sleep(3000);
-                Iterator<ClientConnection> iterator = serverNetworkHandler.getConnections().listIterator();
-                System.out.println("Pinging " + serverNetworkHandler.getConnections().size() + " clients");
-                while(iterator.hasNext()){
-                    ClientConnection connection = iterator.next();
-                    serverNetworkHandler.sendPacket(connection, new PingPacket());
-                }
-            } catch (InterruptedException e) {
-                System.err.println("Ping thread interrupted");
+        Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
+            System.out.println("Pinging " + serverNetworkHandler.getConnections().size() + " clients");
+            for (ClientConnection conn : serverNetworkHandler.getConnections()) {
+                serverNetworkHandler.sendPacket(conn, new PingPacket());
             }
-        }
+        }, 1, 3, TimeUnit.SECONDS);
     }
 }

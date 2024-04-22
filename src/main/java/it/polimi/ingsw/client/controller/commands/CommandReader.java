@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client.commands;
+package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 
@@ -17,7 +17,6 @@ public class CommandReader implements Runnable {
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
-        this.inputCommandMap = new HashMap<>();
         loadCommands();
 
         while (!Thread.currentThread().isInterrupted()) {
@@ -36,7 +35,9 @@ public class CommandReader implements Runnable {
         }
     }
 
-    public void loadCommands(){
+    private void loadCommands() {
+        this.inputCommandMap = new HashMap<>();
+
         this.inputCommandMap.put("/help", new HelpCommand(this.inputCommandMap));
         this.inputCommandMap.put("/login", new LoginCommand());
         this.inputCommandMap.put("/playersNumber", new PlayersNumberCommand());

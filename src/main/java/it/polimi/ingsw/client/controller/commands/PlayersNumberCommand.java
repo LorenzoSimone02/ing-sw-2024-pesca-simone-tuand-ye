@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client.commands;
+package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.ClientStatusEnum;
@@ -7,8 +7,8 @@ import it.polimi.ingsw.network.packets.PlayersNumberPacket;
 public class PlayersNumberCommand extends Command {
 
     public PlayersNumberCommand() {
-        setCommand("/playersNumber");
-        setDescription("  Sets the maximum players number for a game \n  Usage: /playersNumber <number>");
+        commandName = "/playersNumber";
+        description = "  Sets the maximum players number for a game \n  Usage: /playersNumber <number>";
         addValidStatus(ClientStatusEnum.LOBBY);
     }
 
@@ -30,6 +30,10 @@ public class PlayersNumberCommand extends Command {
         } else {
             System.err.println("You can't set the players number now.");
         }
+    }
+
+    public boolean isExecutable() {
+        return true;
     }
 }
 

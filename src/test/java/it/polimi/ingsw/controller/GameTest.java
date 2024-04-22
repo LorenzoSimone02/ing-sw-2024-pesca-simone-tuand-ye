@@ -1,10 +1,10 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
+import it.polimi.ingsw.server.controller.exceptions.*;
 import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.exceptions.*;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameTest {
 
     private GameController controller;
-    private final File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/starterCard1.json").toFile();
+    private final File objectiveJson = Paths.get("src/main/resources/assets/objectivecards/testCard1.json").toFile();
 
     @BeforeEach
     void setup() {

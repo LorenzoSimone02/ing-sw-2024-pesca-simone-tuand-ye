@@ -28,7 +28,6 @@ public class SocketClient extends ClientNetworkHandler {
             Socket socket = new Socket(ip, port);
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
-            System.out.println("Connected to the server");
         } catch (IOException e) {
             System.err.println("Socket network error: " + e);
         }
@@ -39,7 +38,6 @@ public class SocketClient extends ClientNetworkHandler {
                     Packet packet = (Packet) in.readObject();
                     receivePacket(packet);
                 } catch (IOException e) {
-                    e.printStackTrace();
                     System.err.println("Lost connection with the server");
                     Thread.currentThread().interrupt();
                 } catch (ClassNotFoundException e) {

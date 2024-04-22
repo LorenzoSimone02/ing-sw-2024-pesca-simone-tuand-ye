@@ -2,7 +2,7 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.*;
-import it.polimi.ingsw.server.model.exceptions.EmptyDeckException;
+import it.polimi.ingsw.server.controller.exceptions.EmptyDeckException;
 import it.polimi.ingsw.server.model.game.Table;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,8 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TableTest {
 
     private Table table;
-    GameController controller = new GameController(null);
-
+    final GameController controller = new GameController(null);
 
     @BeforeEach
     void setup() {
@@ -44,21 +43,18 @@ public class TableTest {
 
         int numOfGoldCards = 0;
         int numOfResourceCards = 0;
-        int numOfCommonObjectiveCards = 0;
 
         for (Card card : table.getCardsOnGround()) {
             if (card instanceof GoldCard) {
                 numOfGoldCards++;
             } else if (card instanceof ResourceCard) {
                 numOfResourceCards++;
-            } else if (card instanceof ObjectiveCard){
-                numOfCommonObjectiveCards++;
             }
         }
 
         assertEquals(2, numOfGoldCards);
         assertEquals(2, numOfResourceCards);
-        assertEquals(2, numOfCommonObjectiveCards);
+        assertEquals(2, controller.getGame().getObjectiveCards().size());
 
     }
 

@@ -9,7 +9,5 @@ public class ServerPingPacketHandler extends ServerPacketHandler {
 
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
-        PingPacket infoPacket = (PingPacket) packet;
-        System.out.println("Ping packet response received by " + infoPacket.getSender());
     }
 }

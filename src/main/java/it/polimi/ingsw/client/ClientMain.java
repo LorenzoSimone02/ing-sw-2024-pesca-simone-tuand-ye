@@ -63,12 +63,12 @@ public class ClientMain extends Application {
                 if (nextLine.equals("1") || nextLine.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
                     networkHandler = new SocketClient("localhost", 5000);
-                    System.out.println("Connected to Server.");
+                    System.out.println("Connected to Server. Use /login <username> to join a Game.");
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
                     try {
                         networkHandler = new RMIClient("Server", 1099);
-                        System.out.println("Connected to Server.");
+                        System.out.println("Connected to Server. Use /login <username> to join a Game.");
                     } catch (IOException e) {
                         System.err.println("An error occured!");
                         System.err.println(e.getMessage());

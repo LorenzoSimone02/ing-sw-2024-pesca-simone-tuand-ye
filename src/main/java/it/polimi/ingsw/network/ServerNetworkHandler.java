@@ -35,19 +35,19 @@ public class ServerNetworkHandler {
             System.out.println("Socket Server started on port " + socketPort);
 
             ClientPinger clientPinger = new ClientPinger(this);
-            //clientPinger.run();
+            clientPinger.run();
 
         } catch (IOException e) {
             System.err.println("Server exception: " + e);
         }
     }
 
-    public void sendPacket(ClientConnection connection, Packet packet) {
+    public synchronized void sendPacket(ClientConnection connection, Packet packet) {
         packet.setSender("Server");
         connection.receivePacket(packet);
     }
 
-    public void receivePacket(Packet packet, ClientConnection connection) {
+    public synchronized void receivePacket(Packet packet, ClientConnection connection) {
         if (packet.getServerPacketHandler() != null) {
             packet.getServerPacketHandler().handlePacket(packet, gameController, connection);
         } else {
@@ -55,7 +55,7 @@ public class ServerNetworkHandler {
         }
     }
 
-    public void addConnection(ClientConnection connection) {
+    public synchronized void addConnection(ClientConnection connection) {
         if (!connections.contains(connection)) {
             connections.add(connection);
         }
@@ -69,7 +69,7 @@ public class ServerNetworkHandler {
         return connections;
     }
 
-    public ClientConnection getConnectionByNickname(String nickname) {
+    public synchronized ClientConnection getConnectionByNickname(String nickname) {
         for (ClientConnection connection : connections) {
             if (connection.getNickname().equals(nickname)) {
                 return connection;

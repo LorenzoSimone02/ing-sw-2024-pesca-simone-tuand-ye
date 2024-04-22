@@ -3,8 +3,8 @@ package it.polimi.ingsw.server.controller;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
-import it.polimi.ingsw.server.model.exceptions.AlreadyTakenColorException;
-import it.polimi.ingsw.server.model.exceptions.IllegalCardPlacementException;
+import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
@@ -16,7 +16,7 @@ public record PlayerController(Player player) {
         return player;
     }
 
-    public void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
+    public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
         if (canPlaceCard(x, y)) {
             card.setXCoord(x);
             card.setYCoord(y);
@@ -40,7 +40,7 @@ public record PlayerController(Player player) {
         }
     }
 
-    public boolean canPlaceCard(int x, int y) {
+    public synchronized boolean canPlaceCard(int x, int y) {
         if (player.getCardAt(x, y).isEmpty()) {
             if (player.getCardAt(x - 1, y - 1).isPresent()) {
                 if (x - 1 == 40 && y - 1 == 40)
@@ -73,7 +73,7 @@ public record PlayerController(Player player) {
         return false;
     }
 
-    public void chooseToken(PlayerToken token) {
+    public synchronized void chooseToken(PlayerToken token) {
         for (Player player : player.getGame().getPlayers()) {
             if (player.getToken() != null && player.getToken().color().equals(token.color())) {
                 // inserire commento da mostrare al player di cambiare colore
@@ -83,18 +83,18 @@ public record PlayerController(Player player) {
         player.setToken(token);
     }
 
-    public void chooseObjectiveCard(ObjectiveCard objectiveCard) {
+    public synchronized void chooseObjectiveCard(ObjectiveCard objectiveCard) {
         player.setObjectiveCard(objectiveCard);
     }
 
-    public void setStarterCard(StarterCard starterCard) {
+    public synchronized void setStarterCard(StarterCard starterCard) {
         player.setStarterCard(starterCard);
         starterCard.setXCoord(40);
         starterCard.setYCoord(40);
         player.setCard(starterCard, 40, 40);
     }
 
-    public void turnCard(Card card) {
+    public synchronized void turnCard(Card card) {
         if (card.getFace() == FaceEnum.FRONT) {
             card.setFace(FaceEnum.BACK);
         } else if (card.getFace() == FaceEnum.BACK) {

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.client.commands;
+package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.ClientStatusEnum;
@@ -7,8 +7,8 @@ import it.polimi.ingsw.network.packets.LoginRequestPacket;
 public class LoginCommand extends Command {
 
     public LoginCommand() {
-        setCommand("/login");
-        setDescription("  Login into a game \n  Usage: /login <username>");
+        commandName = "/login";
+        description = "  Login into a game \n  Usage: /login <username>";
         addValidStatus(ClientStatusEnum.LOGIN);
     }
 
@@ -27,5 +27,9 @@ public class LoginCommand extends Command {
         } else {
             System.err.println("Have already logged in.");
         }
+    }
+
+    public boolean isExecutable() {
+        return true;
     }
 }

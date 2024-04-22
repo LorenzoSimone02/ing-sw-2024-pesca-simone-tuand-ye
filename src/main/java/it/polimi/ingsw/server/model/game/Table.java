@@ -9,13 +9,11 @@ public class Table {
 
     private Deck resouceDeck;
     private Deck goldDeck;
-    private final List<ObjectiveCard> objectiveCards;
-    private final List<StarterCard> starterCards;
+    private Deck objectiveDeck;
+    private Deck starterDeck;
     private final List<Card> cardsOnGround;
 
     public Table() {
-        this.objectiveCards = new ArrayList<>();
-        this.starterCards = new ArrayList<>();
         this.cardsOnGround = new ArrayList<>();
     }
 
@@ -35,12 +33,20 @@ public class Table {
         this.goldDeck = goldDeck;
     }
 
-    public List<ObjectiveCard> getObjectiveCards() {
-        return objectiveCards;
+    public Deck getObjectiveDeck() {
+        return objectiveDeck;
     }
 
-    public List<StarterCard> getStarterCards() {
-        return starterCards;
+    public Deck getStarterDeck() {
+        return starterDeck;
+    }
+
+    public void setObjectiveDeck(Deck objectiveDeck) {
+        this.objectiveDeck = objectiveDeck;
+    }
+
+    public void setStarterDeck(Deck starterDeck) {
+        this.starterDeck = starterDeck;
     }
 
     public List<Card> getCardsOnGround() {
@@ -54,13 +60,4 @@ public class Table {
     public void removeCardOnGround(Card card) {
         this.cardsOnGround.remove(card);
     }
-
-    public void addStarterCard(StarterCard card) {
-        this.starterCards.add(card);
-    }
-
-    public void addObjectiveCard(ObjectiveCard objective) {
-        this.objectiveCards.add(objective);
-    }
-
 }

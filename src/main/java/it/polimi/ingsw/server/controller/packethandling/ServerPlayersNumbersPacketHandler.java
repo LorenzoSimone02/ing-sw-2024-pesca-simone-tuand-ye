@@ -5,7 +5,7 @@ import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.PlayersNumberPacket;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 
 public class ServerPlayersNumbersPacketHandler extends ServerPacketHandler {
 
