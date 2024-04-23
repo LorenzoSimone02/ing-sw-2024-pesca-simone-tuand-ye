@@ -20,8 +20,8 @@ public class CommandReader implements Runnable {
         loadCommands();
 
         while (!Thread.currentThread().isInterrupted()) {
-            String inserted = sc.nextLine().trim();
-            evaluateCommand(inserted);
+            String command = sc.nextLine().trim();
+            evaluateCommand(command);
         }
     }
 

@@ -1,6 +1,7 @@
 {
   "xCoord": 0,
   "yCoord": 0,
+  "points": 0,
   "id": 86,
   "color": "GOLD",
   "face": "FRONT",
@@ -58,7 +59,7 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "frontResources": [
+  "backResources": [
     {
       "type": "PLANT"
     },

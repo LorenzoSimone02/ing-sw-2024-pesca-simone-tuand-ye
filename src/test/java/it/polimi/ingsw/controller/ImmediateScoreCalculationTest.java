@@ -6,7 +6,7 @@ import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.card.*;
-import it.polimi.ingsw.server.model.exceptions.IllegalGoldCardPointsException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalGoldCardPointsException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
