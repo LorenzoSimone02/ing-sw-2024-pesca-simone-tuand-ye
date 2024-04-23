@@ -43,5 +43,6 @@
     {
       "type": "PLANT"
     }
-  ]
+  ],
+  "pointsStrategy": "OBJECT_COUNT_INKWELL"
 }

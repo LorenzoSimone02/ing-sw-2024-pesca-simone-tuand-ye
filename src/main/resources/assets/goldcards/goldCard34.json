@@ -43,5 +43,6 @@
     {
       "type": "ANIMAL"
     }
-  ]
+  ],
+  "pointsStrategy": "CORNER_COUNT"
 }

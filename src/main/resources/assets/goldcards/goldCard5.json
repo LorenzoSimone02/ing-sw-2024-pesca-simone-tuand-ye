@@ -43,5 +43,7 @@
     {
       "type": "PLANT"
     }
-  ]
+  ],
+  "pointsStrategy": "CORNER_COUNT"
+
 }

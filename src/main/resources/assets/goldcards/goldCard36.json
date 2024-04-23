@@ -43,5 +43,6 @@
     {
       "type": "FUNGI"
     }
-  ]
+  ],
+  "pointsStrategy": "CORNER_COUNT"
 }
