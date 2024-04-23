@@ -43,5 +43,6 @@
     {
       "type": "FUNGI"
     }
-  ]
+  ],
+  "pointsStrategy": "PLAIN_POINTS_3"
 }

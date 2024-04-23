@@ -43,5 +43,6 @@
     {
       "type": "PLANT"
     }
-  ]
+  ],
+  "pointsStrategy": "PLAIN_POINTS_3"
 }

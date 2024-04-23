@@ -137,5 +137,8 @@ public class PlayerTest {
     }
 
     // TODO: Test whether placing a ResouceCard gives you its resources
-
+    /*@Test
+    @DisplayName("Test whether placing a ResourceCard gives you its resources")
+    public void validResource
+*/
 }

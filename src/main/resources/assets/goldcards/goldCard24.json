@@ -43,5 +43,6 @@
     {
       "type": "INSECT"
     }
-  ]
+  ],
+  "pointsStrategy": "CORNER_COUNT"
 }
