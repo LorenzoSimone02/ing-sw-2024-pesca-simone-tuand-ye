@@ -68,7 +68,7 @@ public class ResourceCardTest {
             if (currCard.getFace() == null) {
                 fail("resCard face is null: card " + resCardArray.indexOf(currCard));
             }
-            if (currCard.getBackResource() == null) {
+            if (currCard.getBackResources() == null) {
                 fail("back resource is null: card " + resCardArray.indexOf(currCard));
             }
             if (currCard.getColor() == null) {
