@@ -2,7 +2,9 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.CardColorEnum;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
+import it.polimi.ingsw.server.model.player.Player;
 
 public class BottomLeftLShape implements ObjectiveStrategy {
 
@@ -10,7 +12,14 @@ public class BottomLeftLShape implements ObjectiveStrategy {
     private CardColorEnum diagonalCardColor;
     int pointsPerPattern;
 
-    public int calculatePoints(Card[][] cards) {
+    public BottomLeftLShape(CardColorEnum columnCardsColor, CardColorEnum diagonalCardColor, int pointsPerPattern) {
+        this.columnCardsColor = columnCardsColor;
+        this.diagonalCardColor = diagonalCardColor;
+        this.pointsPerPattern = pointsPerPattern;
+    }
+
+    public int calculatePoints(Player player) {
+        ResourceCard[][] cards = player.getCards();
         int points = 0;
         int counter = 0;
         for (int j = 1; j < 81; j++) {

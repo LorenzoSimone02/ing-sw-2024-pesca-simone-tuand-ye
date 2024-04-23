@@ -11,12 +11,18 @@ import java.util.List;
 
 public class ResourceStrategy implements ObjectiveStrategy {
 
-    private ResourceTypeEnum resourceRequirment;
+    private ResourceTypeEnum resourceRequirement;
 
     int numberOfResource;
     int pointsPerPattern;
 
+    public ResourceStrategy(ResourceTypeEnum resourceRequirement, int numberOfResource, int pointsPerPattern) {
+        this.resourceRequirement = resourceRequirement;
+        this.numberOfResource = numberOfResource;
+        this.pointsPerPattern = pointsPerPattern;
+    }
+
     public int calculatePoints(Player player) {
-         return Math.floorDiv(Collections.frequency(player.getResources(), resourceRequirment),numberOfResource) * pointsPerPattern;
+         return Math.floorDiv(Collections.frequency(player.getResources(), resourceRequirement),numberOfResource) * pointsPerPattern;
     }
 }

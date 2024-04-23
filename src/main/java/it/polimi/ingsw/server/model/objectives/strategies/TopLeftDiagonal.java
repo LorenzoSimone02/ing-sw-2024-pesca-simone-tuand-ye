@@ -2,14 +2,22 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.CardColorEnum;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
+import it.polimi.ingsw.server.model.player.Player;
 
 public class TopLeftDiagonal implements ObjectiveStrategy {
 
     private CardColorEnum CardsColor;
     int pointsPerPattern;
 
-    public int calculatePoints(Card[][] cards) {
+    public TopLeftDiagonal(CardColorEnum cardsColor, int pointsPerPattern) {
+        CardsColor = cardsColor;
+        this.pointsPerPattern = pointsPerPattern;
+    }
+
+    public int calculatePoints(Player player) {
+        ResourceCard[][] cards = player.getCards();
         int points = 0;
         int counter = 0;
         int len = cards.length;

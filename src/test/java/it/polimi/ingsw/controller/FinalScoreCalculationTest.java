@@ -1,6 +1,7 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
+import it.polimi.ingsw.server.model.card.CardColorEnum;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.controller.exceptions.InvalidObjectiveStrategyException;
 import it.polimi.ingsw.server.model.objectives.strategies.BottomLeftLShape;
@@ -36,7 +37,7 @@ public class FinalScoreCalculationTest {
 
         controller.endGame();
         ObjectiveCard objectiveCard = new ObjectiveCard(objectiveJson);
-        BottomLeftLShape achievement = new BottomLeftLShape();
+        BottomLeftLShape achievement = new BottomLeftLShape(CardColorEnum.GREEN, CardColorEnum.PURPLE, 3);
         int oldScore = activePlayer.getScore();
 
         try{
@@ -46,7 +47,7 @@ public class FinalScoreCalculationTest {
             throw new RuntimeException(e);
         }
 
-        activePlayer.setScore(oldScore + achievement.calculatePoints(activePlayer.getCards()));
+        activePlayer.setScore(oldScore + achievement.calculatePoints(activePlayer));
     }
 
 }
