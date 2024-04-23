@@ -33,7 +33,7 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "backResource": {
+  "backResources":[ {
     "type": "FUNGI"
-  }
+  } ]
 }

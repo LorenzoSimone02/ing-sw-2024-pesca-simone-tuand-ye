@@ -33,7 +33,7 @@
       }
     }
   ],
-  "backResource": {
+  "backResources": [ {
     "type": "PLANT"
-  }
+  } ]
 }
