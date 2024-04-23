@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Player {
-    private final String nickname;
+    private final String username;
     private PlayerToken token;
     private final Game game;
     private final ResourceCard[][] cards;
@@ -26,7 +26,7 @@ public class Player {
     private int score;
 
     public Player(String nickname, Game game) {
-        this.nickname = nickname;
+        this.username = nickname;
         this.game = game;
         this.score = 0;
         this.cards = new ResourceCard[81][81];
@@ -35,8 +35,8 @@ public class Player {
         this.objects = new ArrayList<>();
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
     public PlayerToken getToken() {

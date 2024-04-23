@@ -1,14 +1,15 @@
 package it.polimi.ingsw.network.packets;
 
+import it.polimi.ingsw.client.controller.packethandlers.ClientLoginPacketHandler;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
-import it.polimi.ingsw.server.controller.packethandling.ServerLoginRequestPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerLoginPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
-public class LoginRequestPacket extends Packet {
+public class LoginPacket extends Packet {
 
     private final String username;
 
-    public LoginRequestPacket(String username) {
+    public LoginPacket(String username) {
         this.username = username;
     }
 
@@ -18,11 +19,11 @@ public class LoginRequestPacket extends Packet {
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {
-        return null;
+        return new ClientLoginPacketHandler();
     }
 
     @Override
     public ServerPacketHandler getServerPacketHandler() {
-        return new ServerLoginRequestPacketHandler();
+        return new ServerLoginPacketHandler();
     }
 }

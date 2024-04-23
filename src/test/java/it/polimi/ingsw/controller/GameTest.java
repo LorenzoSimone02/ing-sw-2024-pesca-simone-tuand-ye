@@ -41,7 +41,7 @@ public class GameTest {
             if (controller.getGame().getInfo().getPlayersNumber() != i + 1) {
                 fail("Tried to add a player but the number of players is not correct");
             }
-            if (!controller.getGame().getPlayers().get(i).getNickname().equals("p" + i)) {
+            if (!controller.getGame().getPlayers().get(i).getUsername().equals("p" + i)) {
                 fail("Wrong player added");
             }
             assertEquals(controller.getGame().getPlayers().get(i), controller.getPlayerByNick("p" + i).orElse(null));
@@ -69,9 +69,9 @@ public class GameTest {
         }
 
         assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
-        controller.removePlayer(controller.getGame().getPlayers().get(1).getNickname());
+        controller.removePlayer(controller.getGame().getPlayers().get(1).getUsername());
         for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
-            assertNotEquals("test2", controller.getGame().getPlayers().get(i).getNickname());
+            assertNotEquals("test2", controller.getGame().getPlayers().get(i).getUsername());
         }
         assertEquals(3, controller.getGame().getInfo().getPlayersNumber());
 

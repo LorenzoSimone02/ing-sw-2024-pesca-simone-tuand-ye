@@ -14,11 +14,15 @@ public class ClientPinger implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(() -> {
             System.out.println("Pinging " + serverNetworkHandler.getConnections().size() + " clients");
             for (ClientConnection conn : serverNetworkHandler.getConnections()) {
-                serverNetworkHandler.sendPacket(conn, new PingPacket());
+                try {
+                    serverNetworkHandler.sendPacket(conn, new PingPacket());
+                } catch (Exception e) {
+                    System.err.println("Lost connection with " + conn.getUsername() + " due to " + e.getMessage());
+                }
             }
         }, 1, 3, TimeUnit.SECONDS);
     }

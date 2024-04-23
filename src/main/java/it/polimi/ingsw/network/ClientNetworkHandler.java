@@ -8,16 +8,14 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ClientNetworkHandler extends UnicastRemoteObject {
 
-    private String nickname;
     private ClientManager clientManager;
 
     public ClientNetworkHandler() throws RemoteException {
         super();
-        this.nickname = "Unknown";
     }
 
     public void sendPacket(Packet packet) {
-        packet.setSender(nickname);
+        packet.setSender(clientManager.getGameState().getUsername());
     }
 
     public void receivePacket(Packet packet) {
@@ -26,14 +24,6 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
         } else {
             System.err.println("Received an unsupported packet");
         }
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 
     public ClientManager getClientManager() {

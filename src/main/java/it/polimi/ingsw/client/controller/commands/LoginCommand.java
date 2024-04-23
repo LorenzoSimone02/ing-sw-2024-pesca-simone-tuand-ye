@@ -2,7 +2,7 @@ package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.ClientStatusEnum;
-import it.polimi.ingsw.network.packets.LoginRequestPacket;
+import it.polimi.ingsw.network.packets.LoginPacket;
 
 public class LoginCommand extends Command {
 
@@ -14,12 +14,12 @@ public class LoginCommand extends Command {
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable()) {
+        if (isExecutable(clientManager)) {
             String username = input.split(" ")[0];
             if (username.matches("[a-zA-Z0-9]+") && input.split(" ").length == 1) {
                 System.out.println("Username choosen: " + username);
-                clientManager.getNetworkHandler().setNickname(username);
-                LoginRequestPacket loginRequestPacket = new LoginRequestPacket(username);
+                clientManager.getGameState().setUsername(username);
+                LoginPacket loginRequestPacket = new LoginPacket(username);
                 clientManager.getNetworkHandler().sendPacket(loginRequestPacket);
             } else {
                 System.err.println("That username is not valid, please choose another one using only letters and numbers.");
@@ -29,7 +29,7 @@ public class LoginCommand extends Command {
         }
     }
 
-    public boolean isExecutable() {
-        return true;
+    public boolean isExecutable(ClientManager clientManager) {
+        return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }
 }

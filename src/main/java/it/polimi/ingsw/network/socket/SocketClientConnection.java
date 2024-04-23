@@ -36,9 +36,9 @@ public class SocketClientConnection extends ClientConnection implements Runnable
                 socketServer.getServerNetworkHandler().addConnection(this);
                 socketServer.getServerNetworkHandler().receivePacket(packet, this);
             } catch (IOException e) {
-                System.err.println("Lost connection with the Client " + this.getNickname());
+                System.err.println("Lost connection with the Client " + this.getUsername());
                 socketServer.getServerNetworkHandler().removeConnection(this);
-                socketServer.getServerNetworkHandler().getGameController().onDisconnect(this.getNickname());
+                socketServer.getServerNetworkHandler().getGameController().onDisconnect(this.getUsername());
                 Thread.currentThread().interrupt();
             } catch (ClassNotFoundException e) {
                 System.err.println("Could not read the packet " + e);
@@ -48,13 +48,11 @@ public class SocketClientConnection extends ClientConnection implements Runnable
 
     @Override
     public void receivePacket(Packet packet) {
-        new Thread(() -> {
-            try {
-                out.writeObject(packet);
-                out.flush();
-            } catch (IOException e) {
-                System.err.println("Error sending packet: " + e);
-            }
-        }).start();
+        try {
+            out.writeObject(packet);
+            out.flush();
+        } catch (IOException e) {
+            System.err.println("Error sending packet: " + e);
+        }
     }
 }

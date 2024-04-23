@@ -13,7 +13,7 @@ public class ServerPlayersNumbersPacketHandler extends ServerPacketHandler {
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
         PlayersNumberPacket infoPacket = (PlayersNumberPacket) packet;
         int playersNumber = infoPacket.getPlayersNumber();
-        if (!packet.getSender().equals(controller.getGame().getInfo().getAdmin().getNickname())) {
+        if (!packet.getSender().equals(controller.getGame().getInfo().getAdmin().getUsername())) {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("You don't have the permission to set the players number."));
             return;
         }

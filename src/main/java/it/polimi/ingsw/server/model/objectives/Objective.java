@@ -1,6 +1,6 @@
 package it.polimi.ingsw.server.model.objectives;
 
-import it.polimi.ingsw.server.model.card.Card;
+import it.polimi.ingsw.server.model.player.Player;
 
 public record Objective(ObjectiveType type) {
 
@@ -8,7 +8,7 @@ public record Objective(ObjectiveType type) {
         return type;
     }
 
-    public int getPoints(Card[][] cards) {
-        return type.getStrategy().calculatePoints(cards);
+    public int getPoints(Player player) {
+        return type.getStrategy().calculatePoints(player);
     }
 }

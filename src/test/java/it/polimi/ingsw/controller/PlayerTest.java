@@ -42,8 +42,8 @@ public class PlayerTest {
     @DisplayName("Test valid player nickname")
     public void validNickname() {
         Player player = new Player("test", null);
-        assertNotNull(player.getNickname());
-        assertEquals("test", player.getNickname());
+        assertNotNull(player.getUsername());
+        assertEquals("test", player.getUsername());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class PlayerTest {
     @DisplayName("Test valid starter card")
     public void validStarterCard() {
 
-        controller.removePlayer(controller.getGame().getPlayers().getFirst().getNickname());
+        controller.removePlayer(controller.getGame().getPlayers().getFirst().getUsername());
         controller.addPlayer("test");
         Player player = controller.getPlayerByNick("test").orElse(null);
         PlayerController playerController = this.controller.getPlayerController(player);
@@ -101,7 +101,7 @@ public class PlayerTest {
     @Test
     @DisplayName("Test valid player card management")
     public void validCardManagement() {
-        controller.removePlayer(controller.getGame().getPlayers().getFirst().getNickname());
+        controller.removePlayer(controller.getGame().getPlayers().getFirst().getUsername());
         controller.addPlayer("test");
         Player player = controller.getPlayerByNick("test").orElse(null);
         PlayerController playerController = this.controller.getPlayerController(player);

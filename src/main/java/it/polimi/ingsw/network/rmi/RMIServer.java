@@ -20,7 +20,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         registry.rebind(registryName, this);
     }
 
-    public void receivePacket(Packet packet, RMIClientInterface clientInterface) {
+    public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
         //TODO: Fix already present nickname connection bug
         ClientConnection conn = networkHandler.getConnectionByNickname(packet.getSender());
         if (conn != null) {

@@ -41,5 +41,6 @@ public class CommandReader implements Runnable {
         this.inputCommandMap.put("/help", new HelpCommand(this.inputCommandMap));
         this.inputCommandMap.put("/login", new LoginCommand());
         this.inputCommandMap.put("/playersNumber", new PlayersNumberCommand());
+        this.inputCommandMap.put("/chat", new ChatCommand());
     }
 }

@@ -15,9 +15,9 @@ public class PlayersNumberCommand extends Command {
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable()) {
+        if (isExecutable(clientManager)) {
             String number = input.split(" ")[0];
-            try{
+            try {
                 int playersNumber = Integer.parseInt(number);
                 if (playersNumber < 2 || playersNumber > 4) {
                     System.err.println("Players number must be between 2 and 4.");
@@ -32,8 +32,8 @@ public class PlayersNumberCommand extends Command {
         }
     }
 
-    public boolean isExecutable() {
-        return true;
+    public boolean isExecutable(ClientManager clientManager) {
+        return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }
 }
 

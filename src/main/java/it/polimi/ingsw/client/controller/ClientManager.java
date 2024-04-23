@@ -1,5 +1,6 @@
 package it.polimi.ingsw.client.controller;
 
+import it.polimi.ingsw.client.controller.gamestate.GameState;
 import it.polimi.ingsw.client.view.UserInterface;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.cli.CLIClient;
@@ -11,12 +12,14 @@ public class ClientManager {
     private final ClientNetworkHandler networkHandler;
     private final ViewModeEnum viewMode;
     private final UserInterface userInterface;
+    private final GameState gameState;
 
     public ClientManager(ClientNetworkHandler networkHandler, ViewModeEnum viewMode) {
         this.networkHandler = networkHandler;
         this.networkHandler.setClientManager(this);
         this.viewMode = viewMode;
         userInterface = viewMode == ViewModeEnum.CLI ? new CLIClient(this) : new GUIClient(this);
+        gameState = new GameState();
     }
 
     public void runUI(){
@@ -34,5 +37,10 @@ public class ClientManager {
     public UserInterface getUserInterface() {
         return userInterface;
     }
+
+    public GameState getGameState() {
+        return gameState;
+    }
+
 
 }

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
@@ -47,7 +49,7 @@ public class GameController {
 
     public synchronized PlayerController getPlayerController(String nickname) {
         for (PlayerController controller : playerControllers) {
-            if (controller.getPlayer().getNickname().equals(nickname)) {
+            if (controller.getPlayer().getUsername().equals(nickname)) {
                 return controller;
             }
         }
@@ -81,6 +83,12 @@ public class GameController {
         game.getPlayers().add(player);
         game.getInfo().setPlayersNumber(game.getPlayers().size());
 
+        networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + nickname + " has joined the game." + Printer.ANSI_RESET));
+
+        if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
+            startGame();
+        }
+
         return player;
     }
 
@@ -92,7 +100,7 @@ public class GameController {
         if (game == null) return false;
 
         for (Player players : game.getPlayers()) {
-            if (players.getNickname().equals(player)) {
+            if (players.getUsername().equals(player)) {
                 playerControllers.remove(getPlayerController(players));
                 game.getPlayers().remove(players);
                 game.getInfo().setPlayersNumber(game.getPlayers().size());
@@ -102,7 +110,6 @@ public class GameController {
         return false;
     }
 
-
     public synchronized void createGame(int gameId) {
         game = new Game(gameId);
         game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
@@ -110,7 +117,7 @@ public class GameController {
 
     public synchronized void startGame() throws GameStartException {
         try {
-
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_GREEN + "The required number of players has been reached. The game is starting." + Printer.ANSI_RESET));
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
 
             instantiateCards();
@@ -200,14 +207,15 @@ public class GameController {
         first.setFirst(true);
         game.getInfo().setFirstPlayer(first);
         game.getInfo().setActivePlayer(first);
+        networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "You have been selected as the first Player, it's your turn." + Printer.ANSI_RESET));
     }
 
     public synchronized void endGame() {
         for (Player p : game.getPlayers()) {
-            int secretObjectivePoints = p.getObjectiveCard().getObjective().getPoints(p.getCards());
+            int secretObjectivePoints = p.getObjectiveCard().getObjective().getPoints(p);
             int publicObjectivePoints = 0;
             for (ObjectiveCard card : game.getObjectiveCards()) {
-                publicObjectivePoints += card.getObjective().getPoints(p.getCards());
+                publicObjectivePoints += card.getObjective().getPoints(p);
             }
             p.setScore(secretObjectivePoints + publicObjectivePoints);
         }
@@ -215,7 +223,7 @@ public class GameController {
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {
         for (Player p : game.getPlayers()) {
-            if (p.getNickname().equalsIgnoreCase(nick)) {
+            if (p.getUsername().equalsIgnoreCase(nick)) {
                 return Optional.of(p);
             }
         }

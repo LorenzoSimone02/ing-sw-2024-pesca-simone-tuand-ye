@@ -24,4 +24,8 @@ public abstract class Command {
     public void addValidStatus(ClientStatusEnum status) {
         validStatuses.add(status);
     }
+
+    public ArrayList<ClientStatusEnum> getValidStatuses() {
+        return validStatuses;
+    }
 }

@@ -12,7 +12,7 @@ public abstract class ClientConnection implements Serializable {
     /**
      * The User nickanme
      */
-    private String nickname;
+    private String username;
 
     /**
      * Whether the client is connected
@@ -21,7 +21,7 @@ public abstract class ClientConnection implements Serializable {
 
     public ClientConnection() {
         this.isConnected = true;
-        this.nickname = "Unknown";
+        this.username = "Unknown";
     }
 
     public abstract void receivePacket(Packet packet);
@@ -30,16 +30,16 @@ public abstract class ClientConnection implements Serializable {
         return isConnected;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getUsername() {
+        return username;
     }
 
     public void setConnected(boolean connected) {
         isConnected = connected;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
 }
