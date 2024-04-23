@@ -13,11 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceCard extends Card {
-    private int xCoord;
-    private int yCoord;
-    protected final int points;
-    private final List<Corner> corners;
-    private final Resource backResource;
+    int xCoord;
+    int yCoord;
+    final int points;
+    List<Corner> corners;
+    final List<Resource> backResources;
 
     public ResourceCard(File jsonFile) {
         this.corners = new ArrayList<>();
@@ -34,7 +34,7 @@ public class ResourceCard extends Card {
             this.color = proprieties.getColor();
             this.face = proprieties.getFace();
             this.points = proprieties.getPoints();
-            this.backResource = proprieties.getBackResource();
+            this.backResources = proprieties.getBackResources();
             this.corners.addAll(proprieties.getCorners());
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -69,8 +69,8 @@ public class ResourceCard extends Card {
         return corners.stream().filter(corner -> corner.getLocation().equals(location)).findFirst().orElse(null);
     }
 
-    public Resource getBackResource() {
-        return backResource;
+    public List<Resource> getBackResources() {
+        return backResources;
     }
 
 }

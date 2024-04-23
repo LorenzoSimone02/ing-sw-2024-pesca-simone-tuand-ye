@@ -94,12 +94,20 @@ public class Player {
         resources.add(resource);
     }
 
+    public void removeResource(Resource resource) {
+        resources.remove(resource);
+    }
+
     public List<Object> getObjects() {
         return objects;
     }
 
     public void addObject(Object object) {
         objects.add(object);
+    }
+
+    public void removeObject(Object object) {
+        objects.remove(object);
     }
 
     public boolean isFirst() {

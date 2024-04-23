@@ -1,13 +1,14 @@
 {
   "xCoord": 0,
   "yCoord": 0,
+  "points": 0,
   "id": 81,
   "color": "GOLD",
   "face": "FRONT",
   "corners": [
     {
       "visible": true,
-      "face": "FRONT",
+      "face": "BACK",
       "location": "TOP_LEFT"
     },
     {
@@ -15,7 +16,7 @@
         "type": "PLANT"
       },
       "visible": true,
-      "face": "FRONT",
+      "face": "BACK",
       "location": "TOP_RIGHT"
     },
     {
@@ -23,12 +24,12 @@
         "type": "INSECT"
       },
       "visible": true,
-      "face": "FRONT",
+      "face": "BACK",
       "location": "BOTTOM_LEFT"
     },
     {
       "visible": true,
-      "face": "FRONT",
+      "face": "BACK",
       "location": "BOTTOM_RIGHT"
     },
     {
@@ -36,7 +37,7 @@
         "type": "FUNGI"
       },
       "visible": true,
-      "face": "BACK",
+      "face": "FRONT",
       "location": "TOP_LEFT"
     },
     {
@@ -44,7 +45,7 @@
         "type": "PLANT"
       },
       "visible": true,
-      "face": "BACK",
+      "face": "FRONT",
       "location": "TOP_RIGHT"
     },
     {
@@ -52,7 +53,7 @@
         "type": "INSECT"
       },
       "visible": true,
-      "face": "BACK",
+      "face": "FRONT",
       "location": "BOTTOM_LEFT"
     },
     {
@@ -60,11 +61,11 @@
         "type": "ANIMAL"
       },
       "visible": true,
-      "face": "BACK",
+      "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "frontResources": [
+  "backResources": [
     {
       "type": "INSECT"
     }

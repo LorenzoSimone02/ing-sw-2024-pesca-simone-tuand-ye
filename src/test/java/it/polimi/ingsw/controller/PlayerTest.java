@@ -84,7 +84,7 @@ public class PlayerTest {
         assertEquals(starterCard, player.getStarterCard());
         assertEquals(40, player.getStarterCard().getXCoord());
         assertEquals(40, player.getStarterCard().getYCoord());
-        assertNotNull(player.getStarterCard().getFrontResources());
+        assertNotNull(player.getStarterCard().getBackResources());
     }
 
     @Test

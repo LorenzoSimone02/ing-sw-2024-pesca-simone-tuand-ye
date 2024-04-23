@@ -43,5 +43,6 @@
     {
       "type": "ANIMAL"
     }
-  ]
+  ],
+  "pointsStrategy": "OBJECT_COUNT_QUILL"
 }
