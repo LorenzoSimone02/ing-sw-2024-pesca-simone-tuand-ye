@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.player;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.resources.Object;
@@ -15,7 +16,7 @@ public class Player {
     private final String nickname;
     private PlayerToken token;
     private final Game game;
-    private final Card[][] cards;
+    private final ResourceCard[][] cards;
     private final List<Card> cardsInHand;
     private StarterCard starterCard;
     private ObjectiveCard objectiveCard;
@@ -28,7 +29,7 @@ public class Player {
         this.nickname = nickname;
         this.game = game;
         this.score = 0;
-        this.cards = new Card[81][81];
+        this.cards = new ResourceCard[81][81];
         this.cardsInHand = new ArrayList<>();
         this.resources = new ArrayList<>();
         this.objects = new ArrayList<>();
@@ -50,11 +51,11 @@ public class Player {
         return game;
     }
 
-    public Card[][] getCards() {
+    public ResourceCard[][] getCards() {
         return cards;
     }
 
-    public Optional<Card> getCardAt(int x, int y) {
+    public Optional<ResourceCard> getCardAt(int x, int y) {
         return Optional.ofNullable(cards[x][y]);
     }
 
@@ -126,7 +127,7 @@ public class Player {
         this.score = score;
     }
 
-    public void setCard(Card card, int x, int y) {
+    public void setCard(ResourceCard card, int x, int y) {
         cards[x][y] = card;
     }
 }

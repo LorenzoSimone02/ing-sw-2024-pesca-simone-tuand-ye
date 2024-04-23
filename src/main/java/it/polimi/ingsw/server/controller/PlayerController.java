@@ -30,6 +30,38 @@ public record PlayerController(Player player) {
                     player.addObject(corner.getObject());
                 }
             }
+
+            ResourceCard currCard;
+            CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
+            //TopLeftCard -> TopRightCard -> BottomLeftCard -> BottomRightCard
+            for (int i = 1; i >= -1; i = i - 2) {
+
+                for (int j = -1; j <= 1; j = j + 2) {
+
+                    if (player.getCardAt(x + j, y + i).isPresent()) {
+
+                        currCard = player.getCardAt(x + j, y + i).get();
+
+                        CornerLocationEnum finalRemovingCornerLocation = currRemovingCornerLocation;
+                        ResourceCard finalCurrCard = currCard;
+
+                        player.getCardAt(x + j, y + i).get().getCorners().stream()
+                                .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
+                                .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
+                                .findFirst().ifPresent(corner -> player.removeObject(corner.getObject()));
+
+                        player.getCardAt(x + j, y + i).get().getCorners().stream()
+                                .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
+                                .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
+                                .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
+
+                    }
+                    if (currRemovingCornerLocation.ordinal() < 3) currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
+
+                }
+
+            }
+
             if (card instanceof GoldCard) {
                 player.setScore(player.getScore() + ((GoldCard) card).getPointsStrategy().getStrategy().calculatePoints(player, x, y));
             } else {
