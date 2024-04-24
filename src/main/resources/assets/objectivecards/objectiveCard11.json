@@ -1,8 +1,8 @@
 {
-  "id": 81,
+  "id": 97,
   "color": "GOLD",
   "face": "FRONT",
   "objective": {
-    "type": "BOTTOM_LEFT_L_SHAPE"
+    "type": "RESOURCE_ANIMAL"
   }
 }
