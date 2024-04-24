@@ -2,17 +2,13 @@ package it.polimi.ingsw.network.packets;
 
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
-import it.polimi.ingsw.server.controller.packethandling.ServerPlayersNumbersPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerCreateGamePacketHandler;
 
-public class PlayersNumberPacket extends Packet{
+public class CreateGamePacket extends Packet{
 
     private final int playersNumber;
 
-    public PlayersNumberPacket() {
-        this.playersNumber = 0;
-    }
-
-    public PlayersNumberPacket(int playersNumber) {
+    public CreateGamePacket(int playersNumber) {
         this.playersNumber = playersNumber;
     }
 
@@ -27,6 +23,6 @@ public class PlayersNumberPacket extends Packet{
 
     @Override
     public ServerPacketHandler getServerPacketHandler() {
-        return new ServerPlayersNumbersPacketHandler();
+        return new ServerCreateGamePacketHandler();
     }
 }

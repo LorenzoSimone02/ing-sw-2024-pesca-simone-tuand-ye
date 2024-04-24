@@ -1,8 +1,10 @@
 package it.polimi.ingsw.client;
 
 import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.network.ClientNetworkHandler;
+import it.polimi.ingsw.network.packets.JoinPacket;
 import it.polimi.ingsw.network.rmi.RMIClient;
 import it.polimi.ingsw.network.socket.SocketClient;
 import javafx.application.Application;
@@ -50,11 +52,7 @@ public class ClientMain extends Application {
                 }
 
             } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("CLI") || nextLine.equalsIgnoreCase("GUI")));
-        } catch (Exception e) {
-            System.err.println("An error occured!");
-            System.err.println(e.getMessage());
-        }
-        try {
+
             do {
                 System.out.println("Now please choose between Socket technology and RMI technology:");
                 System.out.println("[1] Socket - [2] RMI");
@@ -63,12 +61,12 @@ public class ClientMain extends Application {
                 if (nextLine.equals("1") || nextLine.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
                     networkHandler = new SocketClient("localhost", 5000);
-                    System.out.println("Connected to Server. Use /login <username> to join a Game.");
+                    System.out.println("Connected to the Lobby.");
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
                     try {
                         networkHandler = new RMIClient("Server", 1099);
-                        System.out.println("Connected to Server. Use /login <username> to join a Game.");
+                        System.out.println("Connected to the Lobby");
                     } catch (IOException e) {
                         System.err.println("An error occured!");
                         System.err.println(e.getMessage());
@@ -84,9 +82,11 @@ public class ClientMain extends Application {
         }
 
         ClientManager clientManager = new ClientManager(networkHandler, viewMode);
-        if(viewMode == ViewModeEnum.GUI){
+        if (viewMode == ViewModeEnum.GUI) {
             launch();
         }
+        clientManager.getGameState().setClientStatus(ClientStatusEnum.LOBBY);
+        clientManager.getNetworkHandler().sendPacket(new JoinPacket());
         clientManager.runUI();
     }
 }

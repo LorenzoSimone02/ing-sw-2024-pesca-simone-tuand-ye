@@ -15,7 +15,13 @@ public class PacketHandlerThread implements Runnable {
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
             synchronized (serverNetworkHandler) {
-                if (serverNetworkHandler.getPacketQueue().isEmpty()) continue;
+                if (serverNetworkHandler.getPacketQueue().isEmpty()) {
+                    try {
+                        serverNetworkHandler.wait();
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
                 Iterator<Packet> packetIterator = serverNetworkHandler.getPacketQueue().keySet().iterator();
                 Packet packet = packetIterator.next();
                 packet.getServerPacketHandler().handlePacket(packet, serverNetworkHandler.getGameController(), serverNetworkHandler.getPacketQueue().get(packet));

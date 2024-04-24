@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
 
 import java.util.ArrayList;
 

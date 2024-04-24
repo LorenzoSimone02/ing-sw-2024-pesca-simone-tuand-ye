@@ -1,14 +1,14 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.LoginPacket;
 
 public class LoginCommand extends Command {
 
     public LoginCommand() {
         commandName = "/login";
-        description = "  Login into a game \n  Usage: /login <username>";
+        description = "  Login into the current game \n  Usage: /login <username>";
         addValidStatus(ClientStatusEnum.LOGIN);
     }
 
@@ -17,8 +17,6 @@ public class LoginCommand extends Command {
         if (isExecutable(clientManager)) {
             String username = input.split(" ")[0];
             if (username.matches("[a-zA-Z0-9]+") && input.split(" ").length == 1) {
-                System.out.println("Username choosen: " + username);
-                clientManager.getGameState().setUsername(username);
                 LoginPacket loginRequestPacket = new LoginPacket(username);
                 clientManager.getNetworkHandler().sendPacket(loginRequestPacket);
             } else {

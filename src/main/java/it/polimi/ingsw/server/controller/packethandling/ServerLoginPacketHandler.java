@@ -20,8 +20,8 @@ public class ServerLoginPacketHandler extends ServerPacketHandler {
             if (controller.getGame() == null)
                 controller.createGame(1);
 
-            Player newPlayer = controller.addPlayer(loginRequestPacket.getUsername());
             connection.setUsername(loginRequestPacket.getUsername());
+            Player newPlayer = controller.addPlayer(loginRequestPacket.getUsername());
 
             System.out.println(Printer.ANSI_YELLOW + "Player " + loginRequestPacket.getUsername() + " has joined the game." + Printer.ANSI_RESET);
             controller.getNetworkHandler().sendPacket(connection, new LoginPacket(newPlayer.getUsername()));
@@ -33,6 +33,7 @@ public class ServerLoginPacketHandler extends ServerPacketHandler {
             }
         } catch (DuplicatePlayerException e) {
             System.err.println("Recieved a Login request with an already existing username.");
+            connection.setUsername("Unknown");
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The username you are trying to use is already taken."));
         } catch (FullLobbyException e) {
             System.err.println("Recieved a Login request with a full lobby.");

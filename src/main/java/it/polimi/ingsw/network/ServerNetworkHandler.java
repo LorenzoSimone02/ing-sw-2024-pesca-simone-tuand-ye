@@ -16,6 +16,7 @@ public class ServerNetworkHandler {
     private final ArrayList<ClientConnection> connections;
     private final Map<Packet, ClientConnection> packetQueue;
     private final GameController gameController;
+    private boolean isLobby;
 
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
@@ -24,6 +25,7 @@ public class ServerNetworkHandler {
         connections = new ArrayList<>();
         packetQueue = Collections.synchronizedMap(new LinkedHashMap<>());
         gameController = new GameController(this);
+        isLobby = false;
     }
 
     public void start() {
@@ -62,6 +64,7 @@ public class ServerNetworkHandler {
     public synchronized void receivePacket(Packet packet, ClientConnection connection) {
         if (packet.getServerPacketHandler() != null) {
             packetQueue.put(packet, connection);
+            notifyAll();
         } else {
             System.err.println("Received an unsupported packet");
         }
@@ -81,9 +84,9 @@ public class ServerNetworkHandler {
         return connections;
     }
 
-    public synchronized ClientConnection getConnectionByNickname(String nickname) {
+    public synchronized ClientConnection getConnectionByNickname(String username) {
         for (ClientConnection connection : connections) {
-            if (connection.getUsername().equals(nickname)) {
+            if (connection.getUsername().equals(username)) {
                 return connection;
             }
         }
@@ -96,5 +99,13 @@ public class ServerNetworkHandler {
 
     public Map<Packet, ClientConnection> getPacketQueue() {
         return packetQueue;
+    }
+
+    public boolean isLobby() {
+        return isLobby;
+    }
+
+    public void setLobby(boolean isLobby) {
+        this.isLobby = isLobby;
     }
 }

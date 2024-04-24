@@ -31,4 +31,5 @@ module it.polimi.ingsw.progetto {
     opens it.polimi.ingsw.client.controller.packethandlers to javafx.fxml;
     opens it.polimi.ingsw.client.view to javafx.fxml;
     opens it.polimi.ingsw.client.controller to javafx.fxml;
+    opens it.polimi.ingsw.client.controller.gamestate to javafx.fxml;
 }

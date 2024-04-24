@@ -9,7 +9,7 @@ import it.polimi.ingsw.network.ClientNetworkHandler;
 
 public class ClientManager {
 
-    private final ClientNetworkHandler networkHandler;
+    private ClientNetworkHandler networkHandler;
     private final ViewModeEnum viewMode;
     private final UserInterface userInterface;
     private final GameState gameState;
@@ -28,6 +28,10 @@ public class ClientManager {
 
     public ClientNetworkHandler getNetworkHandler() {
         return networkHandler;
+    }
+
+    public void setNetworkHandler(ClientNetworkHandler networkHandler) {
+        this.networkHandler = networkHandler;
     }
 
     public ViewModeEnum getViewMode() {

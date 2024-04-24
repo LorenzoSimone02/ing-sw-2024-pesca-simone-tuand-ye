@@ -57,12 +57,6 @@ public class GameController {
     }
 
     public synchronized void setMaxPlayers(int playersNumber) {
-        if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
-            throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
-        }
-        if (playersNumber < 2 || playersNumber > 4) {
-            throw new IllegalArgumentException("Players number must be between 2 and 4.");
-        }
         game.getInfo().setMaxPlayers(playersNumber);
     }
 
@@ -112,12 +106,11 @@ public class GameController {
 
     public synchronized void createGame(int gameId) {
         game = new Game(gameId);
-        game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
     }
 
     public synchronized void startGame() throws GameStartException {
         try {
-            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_GREEN + "The required number of players has been reached. The game is starting." + Printer.ANSI_RESET));
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_GREEN + "\nThe required number of players has been reached. The game is starting.\n" + Printer.ANSI_RESET));
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
 
             instantiateCards();

@@ -1,14 +1,14 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.ClientStatusEnum;
-import it.polimi.ingsw.network.packets.PlayersNumberPacket;
+import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.network.packets.CreateGamePacket;
 
-public class PlayersNumberCommand extends Command {
+public class CreateGameCommand extends Command {
 
-    public PlayersNumberCommand() {
-        commandName = "/playersNumber";
-        description = "  Sets the maximum players number for a game \n  Usage: /playersNumber <number>";
+    public CreateGameCommand() {
+        commandName = "/createGame";
+        description = "  Creates a game with a given number of Players \n  Usage: /createGame <playersNumber>";
         addValidStatus(ClientStatusEnum.LOBBY);
     }
 
@@ -22,13 +22,13 @@ public class PlayersNumberCommand extends Command {
                 if (playersNumber < 2 || playersNumber > 4) {
                     System.err.println("Players number must be between 2 and 4.");
                 } else {
-                    clientManager.getNetworkHandler().sendPacket(new PlayersNumberPacket(playersNumber));
+                    clientManager.getNetworkHandler().sendPacket(new CreateGamePacket(playersNumber));
                 }
             } catch (NumberFormatException e) {
-                System.err.println("Invalid number format.");
+                System.err.println("Invalid number format. Usage: /createGame <playersNumber>");
             }
         } else {
-            System.err.println("You can't set the players number now.");
+            System.err.println("You can't create a Game now.");
         }
     }
 

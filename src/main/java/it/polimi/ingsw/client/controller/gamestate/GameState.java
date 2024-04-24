@@ -1,29 +1,34 @@
 package it.polimi.ingsw.client.controller.gamestate;
 
-import it.polimi.ingsw.client.controller.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.view.UserInterface;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 
 public class GameState {
 
+    private int gameID;
     private String username;
     private UserInterface userInterface;
     private String winner;
     private final LinkedHashMap<String, Integer> playerScores;
     private String activePlayer;
-    private List<String> orderedPlayersNames;
     private final ArrayList<String> chatMessages;
-    private String serverErrorMessage;
     private ClientStatusEnum clientStatus;
 
     public GameState() {
         playerScores = new LinkedHashMap<>();
         chatMessages = new ArrayList<>();
-        clientStatus = ClientStatusEnum.LOGIN;
+        clientStatus = ClientStatusEnum.DISCONNECTED;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
     }
 
     public String getUsername() {
@@ -32,6 +37,14 @@ public class GameState {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public LinkedHashMap<String, Integer> getPlayerScores() {
+        return playerScores;
+    }
+
+    public void addPlayerScore(String username, int score) {
+        playerScores.put(username, score);
     }
 
     public ArrayList<String> getChatMessages() {
