@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server.model.game;
 
-import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.player.Player;
 
@@ -14,7 +13,6 @@ public class Game {
     private final List<Player> players;
     private final ArrayList<ObjectiveCard> objectiveCards;
     private final GameInfo info;
-    private GameController controller;
 
     public Game(int id) {
         this.id = id;
@@ -46,9 +44,5 @@ public class Game {
 
     public GameInfo getInfo() {
         return info;
-    }
-
-    public GameController getController() {
-        return controller;
     }
 }

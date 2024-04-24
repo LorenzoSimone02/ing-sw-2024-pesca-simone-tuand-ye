@@ -23,7 +23,7 @@ public class LoginCommand extends Command {
                 System.err.println("That username is not valid, please choose another one using only letters and numbers.");
             }
         } else {
-            System.err.println("Have already logged in.");
+            System.err.println("You can't login now.");
         }
     }
 

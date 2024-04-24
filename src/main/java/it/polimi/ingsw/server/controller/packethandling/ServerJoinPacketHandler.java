@@ -33,8 +33,8 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
 
         if (foundMatch != null) {
             ServerNetworkHandler networkHandler = ServerMain.getMatch(gameID).get();
-            networkHandler.addConnection(connection);
             controller.getNetworkHandler().removeConnection(connection);
+            networkHandler.addConnection(connection);
             networkHandler.sendPacket(connection, new JoinPacket(gameID));
         } else {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("There are no available Games at the moment. Use /createGame to create one or /join to try again."));

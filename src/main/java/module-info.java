@@ -18,6 +18,7 @@ module it.polimi.ingsw.progetto {
     exports it.polimi.ingsw.server.controller;
     exports it.polimi.ingsw.client.view;
     exports it.polimi.ingsw.client.controller;
+    exports it.polimi.ingsw.server.controller.save;
     exports it.polimi.ingsw.server.controller.packethandling;
     exports it.polimi.ingsw.client.controller.gamestate;
     exports it.polimi.ingsw.server.model.resources to com.google.gson;

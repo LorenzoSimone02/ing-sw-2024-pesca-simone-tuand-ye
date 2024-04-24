@@ -130,7 +130,7 @@ public class GameTest {
     @DisplayName("Test valid game status")
     public void validGameStatus() {
 
-        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.SETTING_PLAYERS_NUMBER);
+        assertEquals(controller.getGame().getInfo().getGameStatus(), GameStatusEnum.WAITING_FOR_PLAYERS);
 
         try {
             controller.addPlayer("p1");

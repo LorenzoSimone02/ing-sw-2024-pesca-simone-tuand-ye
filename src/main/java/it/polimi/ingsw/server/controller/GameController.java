@@ -1,18 +1,23 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.client.controller.Printer;
+import it.polimi.ingsw.client.controller.gamestate.GameState;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.InfoPacket;
-import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.controller.exceptions.GameStartException;
 import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.save.GameSave;
+import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -128,10 +133,33 @@ public class GameController {
                 p.addCardInHand(game.getTable().getResourceDeck().drawCard());
                 p.addCardInHand(game.getTable().getGoldDeck().drawCard());
             }
+
+            saveGameToFile();
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
             System.err.println(e.getMessage());
             throw new GameStartException();
+        }
+    }
+
+    public synchronized void loadGame(GameSave save) {
+        createGame(save.getId());
+        //TODO: load game
+    }
+
+    public void saveGameToFile() {
+        try {
+            GameSave save = new GameSave(game);
+            File savesDir = Paths.get("src/main/resources/saves").toFile();
+            savesDir.mkdir();
+            FileOutputStream fileOut = new FileOutputStream("src/main/resources/saves/game" + game.getId() + ".save");
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(save);
+            out.close();
+            fileOut.close();
+        } catch (IOException e) {
+            System.err.println("Error while saving the game: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

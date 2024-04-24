@@ -5,6 +5,7 @@ public enum ClientStatusEnum {
     DISCONNECTED,
     LOBBY,
     LOGIN,
+    LOGGED,
     PLAYING,
     ENDING,
     ERROR

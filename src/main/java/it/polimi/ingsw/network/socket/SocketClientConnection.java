@@ -33,12 +33,26 @@ public class SocketClientConnection extends ClientConnection implements Runnable
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Packet packet = (Packet) in.readObject();
-                socketServer.getServerNetworkHandler().addConnection(this);
-                socketServer.getServerNetworkHandler().receivePacket(packet, this);
+                ClientConnection conn = socketServer.getServerNetworkHandler().getConnectionByUUID(packet.getSender());
+                if (conn != null) {
+                    if (conn == this) {
+                        socketServer.getServerNetworkHandler().receivePacket(packet, this);
+                    } else {
+                        socketServer.getServerNetworkHandler().removeConnection(conn);
+                        setUUID(packet.getSender());
+                        socketServer.getServerNetworkHandler().addConnection(this);
+                        socketServer.getServerNetworkHandler().receivePacket(packet, this);
+                    }
+                } else {
+                    setUUID(packet.getSender());
+                    socketServer.getServerNetworkHandler().addConnection(this);
+                    socketServer.getServerNetworkHandler().receivePacket(packet, this);
+                }
             } catch (IOException e) {
-                System.err.println("Lost connection with the Client " + this.getUsername());
+                if (getUsername() != null)
+                    System.err.println("Lost connection with the Client " + getUsername() + " due to " + e.getMessage());
                 socketServer.getServerNetworkHandler().removeConnection(this);
-                socketServer.getServerNetworkHandler().getGameController().onDisconnect(this.getUsername());
+                socketServer.getServerNetworkHandler().getGameController().onDisconnect(getUsername());
                 Thread.currentThread().interrupt();
             } catch (ClassNotFoundException e) {
                 System.err.println("Could not read the packet " + e);

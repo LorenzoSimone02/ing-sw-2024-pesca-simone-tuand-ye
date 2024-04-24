@@ -16,21 +16,16 @@ public class ServerLoginPacketHandler extends ServerPacketHandler {
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
         LoginPacket loginRequestPacket = (LoginPacket) packet;
+        if (controller.getNetworkHandler().isLobby()) {
+            controller.getNetworkHandler().sendPacket(connection, new InfoPacket("You can't login in the Lobby."));
+            return;
+        }
         try {
-            if (controller.getGame() == null)
-                controller.createGame(1);
-
             connection.setUsername(loginRequestPacket.getUsername());
             Player newPlayer = controller.addPlayer(loginRequestPacket.getUsername());
 
-            System.out.println(Printer.ANSI_YELLOW + "Player " + loginRequestPacket.getUsername() + " has joined the game." + Printer.ANSI_RESET);
+            System.out.println(Printer.ANSI_YELLOW + "Player " + loginRequestPacket.getUsername() + " has joined the game " + controller.getGame().getId() + Printer.ANSI_RESET);
             controller.getNetworkHandler().sendPacket(connection, new LoginPacket(newPlayer.getUsername()));
-
-            if (controller.getGame().getInfo().getPlayersNumber() == 1) {
-                controller.getGame().getInfo().setAdmin(newPlayer);
-                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("You are the first Player so you have been granted admin privilges" +
-                        "\nSelect the number of players with the command /playersNumber <number>"));
-            }
         } catch (DuplicatePlayerException e) {
             System.err.println("Recieved a Login request with an already existing username.");
             connection.setUsername("Unknown");

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Player {
+
     private final String username;
     private PlayerToken token;
     private final Game game;

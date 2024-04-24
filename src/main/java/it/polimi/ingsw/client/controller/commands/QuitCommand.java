@@ -8,8 +8,10 @@ public class QuitCommand extends Command {
     public QuitCommand() {
         commandName = "/quit";
         description = "  Quits from the current Server \n  Usage: /quit";
-        addValidStatus(ClientStatusEnum.LOGIN);
+
         addValidStatus(ClientStatusEnum.LOBBY);
+        addValidStatus(ClientStatusEnum.LOGIN);
+        addValidStatus(ClientStatusEnum.LOGGED);
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 

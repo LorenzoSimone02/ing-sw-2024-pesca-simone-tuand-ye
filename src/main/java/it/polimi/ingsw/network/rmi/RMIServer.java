@@ -21,12 +21,12 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     }
 
     public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
-        //TODO: Fix already present nickname connection bug
-        ClientConnection conn = networkHandler.getConnectionByNickname(packet.getSender());
+        RMIClientConnection conn = (RMIClientConnection) networkHandler.getConnectionByUUID(packet.getSender());
         if (conn != null) {
             networkHandler.receivePacket(packet, conn);
         } else {
             RMIClientConnection connection = new RMIClientConnection(clientInterface);
+            connection.setUUID(packet.getSender());
             networkHandler.addConnection(connection);
             networkHandler.receivePacket(packet, connection);
         }

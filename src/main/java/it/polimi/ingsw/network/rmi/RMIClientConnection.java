@@ -17,8 +17,7 @@ public class RMIClientConnection extends ClientConnection {
     public void receivePacket(Packet packet) {
         try {
             clientInterface.receivePacket(packet);
-        } catch (RemoteException e) {
-            System.err.println("Error sending packet to client " + e);
+        } catch (RemoteException ignored) {
         }
     }
 }

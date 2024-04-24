@@ -9,7 +9,7 @@ public class ChatCommand extends Command {
     public ChatCommand() {
         commandName = "/chat";
         description = "  Shows the Chat messages or send a new one \n  Usage: /chat <message> or /chat to see the Chat messages";
-        addValidStatus(ClientStatusEnum.LOGIN);
+        addValidStatus(ClientStatusEnum.LOGGED);
         addValidStatus(ClientStatusEnum.PLAYING);
         addValidStatus(ClientStatusEnum.ENDING);
     }

@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 /**
  * Abstract Packet class
@@ -11,13 +12,13 @@ import java.io.Serializable;
  */
 public abstract class Packet implements Serializable {
 
-    private String sender;
+    private UUID sender;
 
-    public String getSender() {
+    public UUID getSender() {
         return sender;
     }
 
-    public void setSender(String sender) {
+    public void setSender(UUID sender) {
         this.sender = sender;
     }
 

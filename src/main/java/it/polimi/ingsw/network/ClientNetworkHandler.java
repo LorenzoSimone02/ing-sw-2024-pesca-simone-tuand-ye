@@ -15,7 +15,7 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
     }
 
     public void sendPacket(Packet packet) {
-        packet.setSender(clientManager.getGameState().getUsername());
+        packet.setSender(clientManager.getGameState().getUuid());
     }
 
     public void receivePacket(Packet packet) {

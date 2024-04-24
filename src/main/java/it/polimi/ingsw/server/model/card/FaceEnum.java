@@ -1,5 +1,7 @@
 package it.polimi.ingsw.server.model.card;
 
-public enum FaceEnum {
+import java.io.Serializable;
+
+public enum FaceEnum implements Serializable {
     FRONT, BACK
 }

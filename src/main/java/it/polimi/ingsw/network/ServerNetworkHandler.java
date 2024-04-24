@@ -41,8 +41,8 @@ public class ServerNetworkHandler {
             Thread packetHandlerThread = new Thread(new PacketHandlerThread(this));
             packetHandlerThread.start();
 
-            ClientPinger clientPinger = new ClientPinger(this);
-            //clientPinger.run();
+            Thread clientPingerThread = new Thread(new ClientPingerThread(this));
+            clientPingerThread.start();
 
         } catch (IOException e) {
             System.err.println("Server exception: " + e);
@@ -50,12 +50,12 @@ public class ServerNetworkHandler {
     }
 
     public synchronized void sendPacket(ClientConnection connection, Packet packet) {
-        packet.setSender("Server");
+        packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         connection.receivePacket(packet);
     }
 
     public synchronized void sendPacketToAll(Packet packet) {
-        packet.setSender("Server");
+        packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         for (ClientConnection connection : connections) {
             connection.receivePacket(packet);
         }
@@ -76,7 +76,7 @@ public class ServerNetworkHandler {
         }
     }
 
-    public void removeConnection(ClientConnection connection) {
+    public synchronized void removeConnection(ClientConnection connection) {
         connections.remove(connection);
     }
 
@@ -85,8 +85,19 @@ public class ServerNetworkHandler {
     }
 
     public synchronized ClientConnection getConnectionByNickname(String username) {
+        if (username == null) return null;
         for (ClientConnection connection : connections) {
             if (connection.getUsername().equals(username)) {
+                return connection;
+            }
+        }
+        return null;
+    }
+
+    public synchronized ClientConnection getConnectionByUUID(UUID uuid) {
+        if (uuid == null) return null;
+        for (ClientConnection connection : connections) {
+            if (connection.getUUID().equals(uuid)) {
                 return connection;
             }
         }

@@ -2,13 +2,14 @@ package it.polimi.ingsw.server.model.game;
 
 import it.polimi.ingsw.server.model.player.Player;
 
-public class GameInfo {
+import java.io.Serializable;
+
+public class GameInfo implements Serializable {
 
     private int playersNumber;
     private int maxPlayers;
     private Player firstPlayer;
     private Player activePlayer;
-    private Player admin;
     private Player winner;
     private GameStatusEnum gameStatus;
 
@@ -48,14 +49,6 @@ public class GameInfo {
 
     public void setFirstPlayer(Player firstPlayer) {
         this.firstPlayer = firstPlayer;
-    }
-
-    public Player getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Player admin) {
-        this.admin = admin;
     }
 
     public Player getWinner() {
