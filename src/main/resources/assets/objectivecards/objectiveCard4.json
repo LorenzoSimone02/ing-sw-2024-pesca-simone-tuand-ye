@@ -2,7 +2,5 @@
   "id": 90,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "TOP_LEFT_DIAGONAL_PURPLE"
-  }
+  "objectiveType": "TOP_LEFT_DIAGONAL_PURPLE"
 }

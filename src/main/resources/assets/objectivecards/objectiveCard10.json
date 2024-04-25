@@ -2,7 +2,5 @@
   "id": 96,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "RESOURCE_PLANT"
-  }
+  "objectiveType": "RESOURCE_PLANT"
 }

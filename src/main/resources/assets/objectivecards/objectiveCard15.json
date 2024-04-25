@@ -2,7 +2,5 @@
   "id": 101,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "OBJECT_INKWELL"
-  }
+  "objectiveType": "OBJECT_INKWELL"
 }

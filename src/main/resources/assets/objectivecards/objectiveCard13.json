@@ -2,7 +2,5 @@
   "id": 99,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "OBJECT_QUILL_INKWELL_MANUSCRIPT"
-  }
+  "objectiveType": "OBJECT_QUILL_INKWELL_MANUSCRIPT"
 }

@@ -2,7 +2,5 @@
   "id": 95,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "RESOURCE_FUNGI"
-  }
+  "objectiveType": "RESOURCE_FUNGI"
 }

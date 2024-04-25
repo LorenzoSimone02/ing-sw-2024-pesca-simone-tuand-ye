@@ -2,7 +2,5 @@
   "id": 98,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "RESOURCE_INSECT"
-  }
+  "objectiveType": "RESOURCE_INSECT"
 }

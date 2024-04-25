@@ -2,7 +2,5 @@
   "id": 100,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "OBJECT_MANUSCRIPT"
-  }
+  "objectiveType": "OBJECT_MANUSCRIPT"
 }

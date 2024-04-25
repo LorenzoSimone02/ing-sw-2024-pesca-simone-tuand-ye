@@ -2,7 +2,5 @@
   "id": 97,
   "color": "GOLD",
   "face": "FRONT",
-  "objective": {
-    "type": "RESOURCE_ANIMAL"
-  }
+  "objectiveType": "RESOURCE_ANIMAL"
 }
