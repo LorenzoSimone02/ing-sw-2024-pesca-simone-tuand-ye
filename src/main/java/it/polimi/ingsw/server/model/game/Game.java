@@ -8,23 +8,18 @@ import java.util.List;
 
 public class Game {
 
-    private final int id;
     private final Table table;
     private final List<Player> players;
     private final ArrayList<ObjectiveCard> objectiveCards;
     private final GameInfo info;
 
     public Game(int id) {
-        this.id = id;
         this.table = new Table();
         this.players = new ArrayList<>();
         this.objectiveCards = new ArrayList<>();
-        this.info = new GameInfo(0);
+        this.info = new GameInfo(id, 0);
     }
 
-    public int getId() {
-        return id;
-    }
 
     public Table getTable() {
         return table;

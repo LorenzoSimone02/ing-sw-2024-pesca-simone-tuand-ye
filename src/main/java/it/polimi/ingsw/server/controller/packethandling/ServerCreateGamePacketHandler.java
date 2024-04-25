@@ -12,12 +12,12 @@ public class ServerCreateGamePacketHandler extends ServerPacketHandler {
 
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
-        CreateGamePacket infoPacket = (CreateGamePacket) packet;
+        CreateGamePacket createGamePacket = (CreateGamePacket) packet;
         if (!controller.getNetworkHandler().isLobby()) {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("You can't create a Game while you are in another Game."));
             return;
         }
-        int playersNumber = infoPacket.getPlayersNumber();
+        int playersNumber = createGamePacket.getPlayersNumber();
         if (playersNumber < 2 || playersNumber > 4) {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("Players number must be between 2 and 4."));
             throw new IllegalArgumentException("Players number must be between 2 and 4.");
@@ -31,6 +31,7 @@ public class ServerCreateGamePacketHandler extends ServerPacketHandler {
             newNetworkHandler.getGameController().setMaxPlayers(playersNumber);
             ServerMain.addMatch(newNetworkHandler);
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("Game successfully created!"));
+            controller.getNetworkHandler().sendPacket(connection, new CreateGamePacket(createGamePacket.getPlayersNumber()));
         } catch (Exception e) {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("Error while creating the Game."));
         }

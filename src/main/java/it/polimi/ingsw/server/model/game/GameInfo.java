@@ -2,10 +2,9 @@ package it.polimi.ingsw.server.model.game;
 
 import it.polimi.ingsw.server.model.player.Player;
 
-import java.io.Serializable;
+public class GameInfo {
 
-public class GameInfo implements Serializable {
-
+    private final int id;
     private int playersNumber;
     private int maxPlayers;
     private Player firstPlayer;
@@ -13,10 +12,15 @@ public class GameInfo implements Serializable {
     private Player winner;
     private GameStatusEnum gameStatus;
 
-    public GameInfo(int playersNumber) {
+    public GameInfo(int id, int playersNumber) {
+        this.id = id;
         this.playersNumber = playersNumber;
         this.maxPlayers = 4;
         gameStatus = GameStatusEnum.WAITING_FOR_PLAYERS;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getPlayersNumber() {

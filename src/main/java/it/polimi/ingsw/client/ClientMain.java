@@ -34,16 +34,16 @@ public class ClientMain extends Application {
         Scanner scanner = new Scanner(System.in);
         String nextLine;
         ClientNetworkHandler networkHandler = null;
-        ViewModeEnum viewMode = ViewModeEnum.CLI;
+        ViewModeEnum viewMode = ViewModeEnum.TUI;
 
         try {
             do {
                 System.out.println("Please choose between CLI technology and GUI technology:");
-                System.out.println("[1] CLI - [2] GUI");
+                System.out.println("[1] TUI - [2] GUI");
                 nextLine = scanner.nextLine().trim();
 
-                if (nextLine.equals("1") || nextLine.equals("CLI")) {
-                    System.out.println("You have selected CLI technology.");
+                if (nextLine.equals("1") || nextLine.equals("TUI")) {
+                    System.out.println("You have selected TUI technology.");
                 } else if (nextLine.equals("2") || nextLine.equals("GUI")) {
                     System.out.println("You have selected GUI technology.");
                     viewMode = ViewModeEnum.GUI;
@@ -51,7 +51,7 @@ public class ClientMain extends Application {
                     System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }
 
-            } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("CLI") || nextLine.equalsIgnoreCase("GUI")));
+            } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("TUI") || nextLine.equalsIgnoreCase("GUI")));
 
             do {
                 System.out.println("Now please choose between Socket technology and RMI technology:");

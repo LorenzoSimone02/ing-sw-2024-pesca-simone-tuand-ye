@@ -87,7 +87,7 @@ public class ServerNetworkHandler {
     public synchronized ClientConnection getConnectionByNickname(String username) {
         if (username == null) return null;
         for (ClientConnection connection : connections) {
-            if (connection.getUsername().equals(username)) {
+            if (connection.getUsername().equalsIgnoreCase(username)) {
                 return connection;
             }
         }

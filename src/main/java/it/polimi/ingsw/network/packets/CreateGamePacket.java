@@ -1,5 +1,6 @@
 package it.polimi.ingsw.network.packets;
 
+import it.polimi.ingsw.client.controller.packethandlers.ClientCreateGamePacketHandler;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerCreateGamePacketHandler;
@@ -18,7 +19,7 @@ public class CreateGamePacket extends Packet{
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {
-        return null;
+        return new ClientCreateGamePacketHandler();
     }
 
     @Override

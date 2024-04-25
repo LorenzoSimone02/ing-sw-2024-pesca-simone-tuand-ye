@@ -11,9 +11,10 @@ public class GameState {
     private int gameID;
     private final UUID uuid;
     private String username;
-    private String winner;
     private final LinkedHashMap<String, Integer> playerScores;
+    private String firstPlayer;
     private String activePlayer;
+    private String winner;
     private final ArrayList<String> chatMessages;
     private ClientStatusEnum clientStatus;
     private long lastPing;
@@ -60,6 +61,14 @@ public class GameState {
 
     public void setActivePlayer(String activePlayer) {
         this.activePlayer = activePlayer;
+    }
+
+    public String getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public void setFirstPlayer(String firstPlayer) {
+        this.firstPlayer = firstPlayer;
     }
 
     public ArrayList<String> getChatMessages() {

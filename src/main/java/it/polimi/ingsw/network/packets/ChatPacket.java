@@ -8,15 +8,21 @@ import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 public class ChatPacket extends Packet {
 
     private final String username;
+    private final String recipient;
     private final String message;
 
-    public ChatPacket(String username, String message) {
+    public ChatPacket(String username, String recipient, String message) {
         this.username = username;
+        this.recipient = recipient;
         this.message = message;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public String getRecipient() {
+        return recipient;
     }
 
     public String getMessage() {

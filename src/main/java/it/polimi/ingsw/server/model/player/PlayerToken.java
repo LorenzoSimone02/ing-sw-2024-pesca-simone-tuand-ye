@@ -1,8 +1,6 @@
 package it.polimi.ingsw.server.model.player;
 
-import java.io.Serializable;
-
-public record PlayerToken(TokenColorEnum color) implements Serializable {
+public record PlayerToken(TokenColorEnum color) {
 
     public TokenColorEnum getColor() {
         return color;

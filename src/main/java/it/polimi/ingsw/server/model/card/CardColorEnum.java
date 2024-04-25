@@ -1,8 +1,6 @@
 package it.polimi.ingsw.server.model.card;
 
-import java.io.Serializable;
-
-public enum CardColorEnum implements Serializable {
+public enum CardColorEnum {
 
     GREEN,
     BLUE,

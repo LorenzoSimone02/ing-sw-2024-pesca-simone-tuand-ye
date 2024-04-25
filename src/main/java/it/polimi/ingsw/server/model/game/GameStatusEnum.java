@@ -1,8 +1,6 @@
 package it.polimi.ingsw.server.model.game;
 
-import java.io.Serializable;
-
-public enum GameStatusEnum implements Serializable {
+public enum GameStatusEnum {
     WAITING_FOR_PLAYERS,
     STARTING,
     ASSIGNING_STARTER_CARDS,

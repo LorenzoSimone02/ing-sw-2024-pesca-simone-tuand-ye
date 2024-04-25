@@ -42,7 +42,7 @@ public class FinalScoreCalculationTest {
 
         try{
             assertEquals(objectiveCard, activePlayer.getObjectiveCard());
-            assertEquals(achievement, objectiveCard.getObjective().getType().getStrategy());
+            assertEquals(achievement, objectiveCard.getObjectiveType().getStrategy());
         } catch (InvalidObjectiveStrategyException e) {
             throw new RuntimeException(e);
         }

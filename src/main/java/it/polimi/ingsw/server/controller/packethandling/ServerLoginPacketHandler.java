@@ -24,8 +24,10 @@ public class ServerLoginPacketHandler extends ServerPacketHandler {
             connection.setUsername(loginRequestPacket.getUsername());
             Player newPlayer = controller.addPlayer(loginRequestPacket.getUsername());
 
-            System.out.println(Printer.ANSI_YELLOW + "Player " + loginRequestPacket.getUsername() + " has joined the game " + controller.getGame().getId() + Printer.ANSI_RESET);
+            System.out.println(Printer.ANSI_YELLOW + "Player " + loginRequestPacket.getUsername() + " has joined the game " + controller.getGame().getInfo().getId() + Printer.ANSI_RESET);
             controller.getNetworkHandler().sendPacket(connection, new LoginPacket(newPlayer.getUsername()));
+
+            controller.checkStartCondition();
         } catch (DuplicatePlayerException e) {
             System.err.println("Recieved a Login request with an already existing username.");
             connection.setUsername("Unknown");

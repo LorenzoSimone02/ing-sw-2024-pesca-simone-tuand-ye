@@ -3,7 +3,7 @@ package it.polimi.ingsw.client.controller;
 import it.polimi.ingsw.client.controller.gamestate.GameState;
 import it.polimi.ingsw.client.view.UserInterface;
 import it.polimi.ingsw.client.view.ViewModeEnum;
-import it.polimi.ingsw.client.view.cli.CLIClient;
+import it.polimi.ingsw.client.view.tui.TUIClient;
 import it.polimi.ingsw.client.view.gui.GUIClient;
 import it.polimi.ingsw.network.ClientNetworkHandler;
 
@@ -18,7 +18,7 @@ public class ClientManager {
         this.networkHandler = networkHandler;
         this.networkHandler.setClientManager(this);
         this.viewMode = viewMode;
-        userInterface = viewMode == ViewModeEnum.CLI ? new CLIClient(this) : new GUIClient(this);
+        userInterface = viewMode == ViewModeEnum.TUI ? new TUIClient(this) : new GUIClient(this);
         gameState = new GameState();
     }
 

@@ -10,13 +10,14 @@ public class ScoresCommand extends Command {
         commandName = "/scores";
         description = "  Shows the scores of every Player in the Game \n  Usage: /scores";
         addValidStatus(ClientStatusEnum.PLAYING);
+        addValidStatus(ClientStatusEnum.ENDING);
     }
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
             if (input.trim().isEmpty()) {
-                System.out.println("Players Scores:");
+                System.out.println("★ Players Scores:");
                 for (String player : clientManager.getGameState().getPlayerScores().keySet()) {
                     System.out.println(Printer.ANSI_PURPLE + player + ": " + Printer.ANSI_RESET + clientManager.getGameState().getPlayerScores().get(player) + " points");
                 }
@@ -24,7 +25,7 @@ public class ScoresCommand extends Command {
                 System.err.println("Usage: /scores");
             }
         } else {
-            System.err.println("The game is not in progress.");
+            System.err.println("The game is not in progress. " + clientManager.getGameState().getClientStatus());
         }
     }
 

@@ -15,7 +15,7 @@ public class GameSave implements Serializable {
 
     public GameSave(Game game) {
         this.game = game;
-        this.id = game.getId();
+        this.id = game.getInfo().getId();
         this.playerScores = new HashMap<>();
         for (Player player : game.getPlayers()) {
             playerScores.put(player.getUsername(), player.getScore());

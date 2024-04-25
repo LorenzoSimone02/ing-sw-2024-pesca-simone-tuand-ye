@@ -3,6 +3,7 @@ package it.polimi.ingsw.server.controller;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.gamestate.GameState;
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
@@ -84,10 +85,6 @@ public class GameController {
 
         networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + nickname + " has joined the game." + Printer.ANSI_RESET));
 
-        if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
-            startGame();
-        }
-
         return player;
     }
 
@@ -113,6 +110,12 @@ public class GameController {
         game = new Game(gameId);
     }
 
+    public synchronized void checkStartCondition(){
+        if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
+            startGame();
+        }
+    }
+
     public synchronized void startGame() throws GameStartException {
         try {
             networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_GREEN + "\nThe required number of players has been reached. The game is starting.\n" + Printer.ANSI_RESET));
@@ -134,6 +137,9 @@ public class GameController {
                 p.addCardInHand(game.getTable().getGoldDeck().drawCard());
             }
 
+            GameStartedPacket gameStartedPacket = new GameStartedPacket(game);
+            networkHandler.sendPacketToAll(gameStartedPacket);
+
             saveGameToFile();
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
@@ -142,17 +148,17 @@ public class GameController {
         }
     }
 
-    public synchronized void loadGame(GameSave save) {
+    public synchronized void loadGameFromFile(GameSave save) {
         createGame(save.getId());
         //TODO: load game
     }
 
-    public void saveGameToFile() {
+    public synchronized void saveGameToFile() {
         try {
             GameSave save = new GameSave(game);
             File savesDir = Paths.get("src/main/resources/saves").toFile();
             savesDir.mkdir();
-            FileOutputStream fileOut = new FileOutputStream("src/main/resources/saves/game" + game.getId() + ".save");
+            FileOutputStream fileOut = new FileOutputStream("src/main/resources/saves/game" + game.getInfo().getId() + ".save");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(save);
             out.close();
@@ -233,10 +239,10 @@ public class GameController {
 
     public synchronized void endGame() {
         for (Player p : game.getPlayers()) {
-            int secretObjectivePoints = p.getObjectiveCard().getObjective().getPoints(p);
+            int secretObjectivePoints = p.getObjectiveCard().calculatePoints(p);
             int publicObjectivePoints = 0;
             for (ObjectiveCard card : game.getObjectiveCards()) {
-                publicObjectivePoints += card.getObjective().getPoints(p);
+                publicObjectivePoints += card.calculatePoints(p);
             }
             p.setScore(secretObjectivePoints + publicObjectivePoints);
         }
