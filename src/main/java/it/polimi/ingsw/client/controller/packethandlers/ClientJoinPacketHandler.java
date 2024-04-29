@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.ClientNetworkHandler;
 import it.polimi.ingsw.network.packets.JoinPacket;
 import it.polimi.ingsw.network.packets.Packet;
@@ -22,10 +22,9 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
             ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("Game" + gameID, 1099 + gameID) : new SocketClient("localhost", 5000 + gameID);
             newHandler.setClientManager(clientManager);
             clientManager.setNetworkHandler(newHandler);
-            clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGIN);
+            clientManager.getGameState().setClientStatus(ClientStatusEnum.CONNECTED);
             clientManager.getGameState().setGameID(joinPacket.getGameID());
 
-            System.out.println("You have joined a Game! Now use /login <username> to login.");
         } catch (NotBoundException | RemoteException e) {
             throw new RuntimeException(e);
         }

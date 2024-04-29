@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.JoinPacket;
 
 public class JoinCommand extends Command {
@@ -9,7 +9,7 @@ public class JoinCommand extends Command {
     public JoinCommand() {
         commandName = "/join";
         description = "  Joins into an existing Game \n  Usage: /join";
-        addValidStatus(ClientStatusEnum.LOBBY);
+        addValidStatus(ClientStatusEnum.LOGGED);
     }
 
     @Override
@@ -21,7 +21,7 @@ public class JoinCommand extends Command {
                 System.err.println("Usage: /join");
             }
         } else {
-            System.err.println("You are already in a Game.");
+            System.err.println("You can't join a Game now.");
         }
     }
 

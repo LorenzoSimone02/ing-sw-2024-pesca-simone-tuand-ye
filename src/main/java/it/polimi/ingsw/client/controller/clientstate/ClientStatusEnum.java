@@ -1,11 +1,11 @@
-package it.polimi.ingsw.client.controller.gamestate;
+package it.polimi.ingsw.client.controller.clientstate;
 
 public enum ClientStatusEnum {
 
     DISCONNECTED,
     LOBBY,
-    LOGIN,
     LOGGED,
+    CONNECTED,
     PLAYING,
     ENDING,
     ERROR

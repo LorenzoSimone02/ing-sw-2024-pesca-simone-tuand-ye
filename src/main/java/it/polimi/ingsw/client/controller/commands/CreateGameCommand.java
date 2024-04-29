@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.CreateGamePacket;
 
 public class CreateGameCommand extends Command {
@@ -9,7 +9,7 @@ public class CreateGameCommand extends Command {
     public CreateGameCommand() {
         commandName = "/createGame";
         description = "  Creates a game with a given number of Players \n  Usage: /createGame <playersNumber>";
-        addValidStatus(ClientStatusEnum.LOBBY);
+        addValidStatus(ClientStatusEnum.LOGGED);
     }
 
 

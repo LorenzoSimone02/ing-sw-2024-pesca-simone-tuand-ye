@@ -1,7 +1,8 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
@@ -16,8 +17,8 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().setGameID(gameStartedPacket.getGameID());
         clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
-        for(String player : gameStartedPacket.getPlayers()) {
-            clientManager.getGameState().addPlayerScore(player, 0);
+        for (String player : gameStartedPacket.getPlayers()) {
+            clientManager.getGameState().addPlayerState(new PlayerState(player));
         }
     }
 }

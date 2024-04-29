@@ -1,14 +1,15 @@
 package it.polimi.ingsw.server.controller;
 
+import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
-import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
-import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
+import it.polimi.ingsw.server.model.player.TokenColorEnum;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 public record PlayerController(Player player) {
 
@@ -56,7 +57,8 @@ public record PlayerController(Player player) {
                                 .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
 
                     }
-                    if (currRemovingCornerLocation.ordinal() < 3) currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
+                    if (currRemovingCornerLocation.ordinal() < 3)
+                        currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
 
                 }
 
@@ -105,14 +107,13 @@ public record PlayerController(Player player) {
         return false;
     }
 
-    public synchronized void chooseToken(PlayerToken token) {
+    public synchronized void chooseToken(TokenColorEnum tokenColor) {
         for (Player player : player.getGame().getPlayers()) {
-            if (player.getToken() != null && player.getToken().color().equals(token.color())) {
-                // inserire commento da mostrare al player di cambiare colore
-                throw new AlreadyTakenColorException(token.getColor());
+            if (player.getToken() != null && player.getToken().color().equals(tokenColor)) {
+                throw new AlreadyTakenColorException(tokenColor);
             }
         }
-        player.setToken(token);
+        player.setToken(new PlayerToken(tokenColor));
     }
 
     public synchronized void chooseObjectiveCard(ObjectiveCard objectiveCard) {

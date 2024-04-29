@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server.model.card.goldstrategies;
 
 import it.polimi.ingsw.server.model.card.Card;
-import it.polimi.ingsw.server.model.card.GoldStrategy;
 import it.polimi.ingsw.server.model.player.Player;
 
 public class CornerCount implements GoldStrategy {

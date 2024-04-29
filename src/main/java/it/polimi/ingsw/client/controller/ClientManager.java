@@ -1,6 +1,6 @@
 package it.polimi.ingsw.client.controller;
 
-import it.polimi.ingsw.client.controller.gamestate.GameState;
+import it.polimi.ingsw.client.controller.clientstate.GameState;
 import it.polimi.ingsw.client.view.UserInterface;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.tui.TUIClient;

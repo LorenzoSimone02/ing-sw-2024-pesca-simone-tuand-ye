@@ -63,6 +63,7 @@ public class ServerNetworkHandler {
 
     public synchronized void receivePacket(Packet packet, ClientConnection connection) {
         if (packet.getServerPacketHandler() != null) {
+            connection.setLastPing(System.currentTimeMillis());
             packetQueue.put(packet, connection);
             notifyAll();
         } else {

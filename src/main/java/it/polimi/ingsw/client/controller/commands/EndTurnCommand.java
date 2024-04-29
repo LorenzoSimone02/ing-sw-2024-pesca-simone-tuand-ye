@@ -2,28 +2,26 @@ package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
+import it.polimi.ingsw.network.packets.EndTurnPacket;
 
-public class QuitCommand extends Command {
+public class EndTurnCommand extends Command {
 
-    public QuitCommand() {
-        commandName = "/quit";
-        description = "  Quits from the current Server \n  Usage: /quit";
-
-        addValidStatus(ClientStatusEnum.LOBBY);
-        addValidStatus(ClientStatusEnum.LOGGED);
+    public EndTurnCommand() {
+        commandName = "/endTurn";
+        description = "  Terminates your turn \n  Usage: /endTurn";
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager)) {
+        if (isExecutable(clientManager) && clientManager.getGameState().getActivePlayer().equalsIgnoreCase(clientManager.getGameState().getUsername())) {
             if (input.trim().isEmpty()) {
-                System.exit(0);
+                clientManager.getNetworkHandler().sendPacket(new EndTurnPacket());
             } else {
-                System.err.println("Usage: /quit");
+                System.err.println("Usage: /endTurn");
             }
         } else {
-            System.err.println("You aren't in a Server.");
+            System.err.println("You can't end your turn now.");
         }
     }
 
@@ -31,4 +29,3 @@ public class QuitCommand extends Command {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }
 }
-

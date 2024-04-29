@@ -23,7 +23,6 @@ public class Player {
     private ObjectiveCard objectiveCard;
     private final List<Resource> resources;
     private final List<Object> objects;
-    private boolean first;
     private int score;
 
     public Player(String nickname, Game game) {
@@ -110,14 +109,6 @@ public class Player {
 
     public void removeObject(Object object) {
         objects.remove(object);
-    }
-
-    public boolean isFirst() {
-        return first;
-    }
-
-    public void setFirst(boolean first) {
-        this.first = first;
     }
 
     public int getScore() {

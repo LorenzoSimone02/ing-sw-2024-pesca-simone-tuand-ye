@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.card;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import it.polimi.ingsw.server.model.card.goldstrategies.GoldStrategyType;
 import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.File;

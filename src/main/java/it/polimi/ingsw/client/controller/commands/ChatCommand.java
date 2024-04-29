@@ -1,7 +1,7 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.ChatPacket;
 
 public class ChatCommand extends Command {
@@ -9,7 +9,7 @@ public class ChatCommand extends Command {
     public ChatCommand() {
         commandName = "/chat";
         description = "  Shows the Chat messages or send a new one \n  Usage: /chat <message> /chat -to=player <message> or /chat to see the Chat messages";
-        addValidStatus(ClientStatusEnum.LOGGED);
+        addValidStatus(ClientStatusEnum.CONNECTED);
         addValidStatus(ClientStatusEnum.PLAYING);
         addValidStatus(ClientStatusEnum.ENDING);
     }

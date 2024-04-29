@@ -1,15 +1,15 @@
 package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.gamestate.ClientStatusEnum;
+import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.LoginPacket;
 
 public class LoginCommand extends Command {
 
     public LoginCommand() {
         commandName = "/login";
-        description = "  Login into the current game \n  Usage: /login <username>";
-        addValidStatus(ClientStatusEnum.LOGIN);
+        description = "  Sets your Username \n  Usage: /login <username>";
+        addValidStatus(ClientStatusEnum.LOBBY);
     }
 
     @Override

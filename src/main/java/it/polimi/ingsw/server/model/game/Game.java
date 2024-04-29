@@ -10,12 +10,14 @@ public class Game {
 
     private final Table table;
     private final List<Player> players;
+    private final List<Player> offlinePlayers;
     private final ArrayList<ObjectiveCard> objectiveCards;
     private final GameInfo info;
 
     public Game(int id) {
         this.table = new Table();
         this.players = new ArrayList<>();
+        this.offlinePlayers = new ArrayList<>();
         this.objectiveCards = new ArrayList<>();
         this.info = new GameInfo(id, 0);
     }
@@ -27,6 +29,10 @@ public class Game {
 
     public List<Player> getPlayers() {
         return players;
+    }
+
+    public List<Player> getOfflinePlayers() {
+        return offlinePlayers;
     }
 
     public ArrayList<ObjectiveCard> getObjectiveCards() {

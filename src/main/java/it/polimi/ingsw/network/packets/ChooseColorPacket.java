@@ -1,20 +1,27 @@
 package it.polimi.ingsw.network.packets;
 
-import it.polimi.ingsw.client.controller.packethandlers.ClientEndTurnPacketHandler;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
-import it.polimi.ingsw.server.controller.packethandling.ServerEndTurnPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
-public class EndTurnPacket extends Packet {
+public class ChooseColorPacket extends Packet {
 
+    private final String color;
+
+    public ChooseColorPacket(String color) {
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {
-        return new ClientEndTurnPacketHandler();
+        return null;
     }
 
     @Override
     public ServerPacketHandler getServerPacketHandler() {
-        return new ServerEndTurnPacketHandler();
+        return null;
     }
 }

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.client.controller.Printer;
-import it.polimi.ingsw.client.controller.gamestate.GameState;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
@@ -20,10 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 
 public class GameController {
 
@@ -66,40 +62,71 @@ public class GameController {
         game.getInfo().setMaxPlayers(playersNumber);
     }
 
-    public synchronized Player addPlayer(String nickname) throws DuplicatePlayerException, FullLobbyException {
+    public synchronized Player addPlayer(String username) throws DuplicatePlayerException, FullLobbyException {
+        if (hasDisconnected(username)) {
+            return reconnectPlayer(username);
+        }
         if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
             throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
         }
-        if (getPlayerByNick(nickname).isPresent()) {
-            throw new DuplicatePlayerException(nickname);
+        if (getPlayerByNick(username).isPresent()) {
+            throw new DuplicatePlayerException(username);
         }
         if (game.getPlayers().size() >= game.getInfo().getMaxPlayers()) {
             throw new FullLobbyException();
         }
 
-        Player player = new Player(nickname, game);
+        Player player = new Player(username, game);
         PlayerController controller = new PlayerController(player);
         playerControllers.add(controller);
         game.getPlayers().add(player);
         game.getInfo().setPlayersNumber(game.getPlayers().size());
 
-        networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + nickname + " has joined the game." + Printer.ANSI_RESET));
+        networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + username + " has joined the Game." + Printer.ANSI_RESET));
 
         return player;
     }
 
-    public synchronized void onDisconnect(String player) {
-        removePlayer(player);
+    public Player reconnectPlayer(String player) {
+        Iterator<Player> iterator = game.getOfflinePlayers().iterator();
+        while (iterator.hasNext()) {
+            Player p = iterator.next();
+            if (p.getUsername().equalsIgnoreCase(player)) {
+                game.getPlayers().add(p);
+                iterator.remove();
+                networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + p.getUsername() + " has reconnected to the Game." + Printer.ANSI_RESET));
+                return p;
+            }
+        }
+        return null;
     }
 
-    public synchronized boolean removePlayer(String player) {
-        if (game == null) return false;
+    public synchronized void onDisconnect(String username) {
+        Optional<Player> player = getPlayerByNick(username);
+        if (player.isPresent()) {
+            if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING)) {
+                game.getOfflinePlayers().add(player.get());
+            }
+            removePlayer(username);
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + username + " has disconnected from the Game." + Printer.ANSI_RESET));
+        }
+    }
 
+    public synchronized void removePlayer(String player) {
+        if (game == null) return;
         for (Player players : game.getPlayers()) {
             if (players.getUsername().equals(player)) {
                 playerControllers.remove(getPlayerController(players));
                 game.getPlayers().remove(players);
                 game.getInfo().setPlayersNumber(game.getPlayers().size());
+            }
+        }
+    }
+
+    public boolean hasDisconnected(String player) {
+        if (game == null) return false;
+        for (Player players : game.getOfflinePlayers()) {
+            if (players.getUsername().equalsIgnoreCase(player)) {
                 return true;
             }
         }
@@ -110,7 +137,7 @@ public class GameController {
         game = new Game(gameId);
     }
 
-    public synchronized void checkStartCondition(){
+    public synchronized void checkStartCondition() {
         if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
             startGame();
         }
@@ -141,6 +168,7 @@ public class GameController {
             networkHandler.sendPacketToAll(gameStartedPacket);
 
             saveGameToFile();
+            game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
             System.err.println(e.getMessage());
@@ -220,8 +248,10 @@ public class GameController {
     }
 
     public synchronized void nextTurn() {
+        checkEndCondition();
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
+        networkHandler.sendPacket(networkHandler.getConnectionByNickname(next.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "It's your turn." + Printer.ANSI_RESET));
     }
 
     public synchronized Player nextPlayer() {
@@ -231,10 +261,13 @@ public class GameController {
 
     public synchronized void chooseFirstPlayer() {
         Player first = game.getPlayers().get(new Random().nextInt(game.getPlayers().size()));
-        first.setFirst(true);
         game.getInfo().setFirstPlayer(first);
         game.getInfo().setActivePlayer(first);
         networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "You have been selected as the first Player, it's your turn." + Printer.ANSI_RESET));
+    }
+
+    public synchronized void checkEndCondition() {
+
     }
 
     public synchronized void endGame() {
@@ -249,6 +282,7 @@ public class GameController {
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {
+        if (game == null) return Optional.empty();
         for (Player p : game.getPlayers()) {
             if (p.getUsername().equalsIgnoreCase(nick)) {
                 return Optional.of(p);

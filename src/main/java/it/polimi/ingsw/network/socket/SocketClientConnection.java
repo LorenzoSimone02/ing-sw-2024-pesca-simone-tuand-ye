@@ -39,6 +39,7 @@ public class SocketClientConnection extends ClientConnection implements Runnable
                         socketServer.getServerNetworkHandler().receivePacket(packet, this);
                     } else {
                         socketServer.getServerNetworkHandler().removeConnection(conn);
+                        setUsername(conn.getUsername());
                         setUUID(packet.getSender());
                         socketServer.getServerNetworkHandler().addConnection(this);
                         socketServer.getServerNetworkHandler().receivePacket(packet, this);
@@ -49,10 +50,11 @@ public class SocketClientConnection extends ClientConnection implements Runnable
                     socketServer.getServerNetworkHandler().receivePacket(packet, this);
                 }
             } catch (IOException e) {
-                if (getUsername() != null)
+                if (getUsername() != null) {
                     System.err.println("Lost connection with the Client " + getUsername() + " due to " + e.getMessage());
+                    socketServer.getServerNetworkHandler().getGameController().onDisconnect(getUsername());
+                }
                 socketServer.getServerNetworkHandler().removeConnection(this);
-                socketServer.getServerNetworkHandler().getGameController().onDisconnect(getUsername());
                 Thread.currentThread().interrupt();
             } catch (ClassNotFoundException e) {
                 System.err.println("Could not read the packet " + e);

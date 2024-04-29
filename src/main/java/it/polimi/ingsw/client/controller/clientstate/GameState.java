@@ -1,9 +1,8 @@
-package it.polimi.ingsw.client.controller.gamestate;
+package it.polimi.ingsw.client.controller.clientstate;
 
 import it.polimi.ingsw.client.controller.Printer;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.UUID;
 
 public class GameState {
@@ -11,32 +10,29 @@ public class GameState {
     private int gameID;
     private final UUID uuid;
     private String username;
-    private final LinkedHashMap<String, Integer> playerScores;
-    private String firstPlayer;
-    private String activePlayer;
-    private String winner;
+    private int score;
+    private String color;
     private final ArrayList<String> chatMessages;
     private ClientStatusEnum clientStatus;
     private long lastPing;
 
+    private final ArrayList<PlayerState> playerStates;
+    private String firstPlayer;
+    private String activePlayer;
+    private String winner;
+
+
     public GameState() {
         uuid = UUID.randomUUID();
-        playerScores = new LinkedHashMap<>();
+        score = 0;
+        playerStates = new ArrayList<>();
         chatMessages = new ArrayList<>();
         clientStatus = ClientStatusEnum.DISCONNECTED;
-        this.lastPing = System.currentTimeMillis();
-    }
-
-    public int getGameID() {
-        return gameID;
+        lastPing = System.currentTimeMillis();
     }
 
     public UUID getUuid() {
         return uuid;
-    }
-
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
     }
 
     public String getUsername() {
@@ -47,12 +43,36 @@ public class GameState {
         this.username = username;
     }
 
-    public LinkedHashMap<String, Integer> getPlayerScores() {
-        return playerScores;
+    public int getScore() {
+        return score;
     }
 
-    public void addPlayerScore(String username, int score) {
-        playerScores.put(username, score);
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public int getGameID() {
+        return gameID;
+    }
+
+    public void setGameID(int gameID) {
+        this.gameID = gameID;
+    }
+
+    public ArrayList<PlayerState> getPlayerStates() {
+        return playerStates;
+    }
+
+    public void addPlayerState(PlayerState playerState) {
+        playerStates.add(playerState);
     }
 
     public String getActivePlayer() {

@@ -24,8 +24,11 @@ public class ClientPingerThread implements Runnable {
                 serverNetworkHandler.sendPacket(conn, new PingPacket());
                 long latency = System.currentTimeMillis() - conn.getLastPing();
                 if(latency > 7000) {
-                    System.err.println("Lost connection with " + conn.getUsername() + " due to timeout");
                     iter.remove();
+                    if(conn.getUsername() != null) {
+                        System.err.println("Lost connection with " + conn.getUsername() + " due to timeout");
+                        serverNetworkHandler.getGameController().onDisconnect(conn.getUsername());
+                    }
                 }
             }
         }, 0, 3, TimeUnit.SECONDS);

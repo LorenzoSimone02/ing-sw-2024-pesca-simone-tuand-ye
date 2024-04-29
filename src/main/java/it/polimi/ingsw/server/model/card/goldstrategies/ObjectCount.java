@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server.model.card.goldstrategies;
 
-import it.polimi.ingsw.server.model.card.GoldStrategy;
 import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.player.Player;

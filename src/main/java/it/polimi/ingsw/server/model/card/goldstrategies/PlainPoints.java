@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server.model.card.goldstrategies;
 
 import it.polimi.ingsw.server.model.player.Player;
-import it.polimi.ingsw.server.model.card.GoldStrategy;
 
 public class PlainPoints implements GoldStrategy {
 
