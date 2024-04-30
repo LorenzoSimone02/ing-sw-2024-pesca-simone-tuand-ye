@@ -19,7 +19,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
         int gameID = joinPacket.getGameID();
 
         try {
-            ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("Game" + gameID, 1099 + gameID) : new SocketClient("localhost", 5000 + gameID);
+            ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("Game" + gameID, clientManager.getServerIP(), 1099 + gameID) : new SocketClient(clientManager.getServerIP(), 5000 + gameID);
             newHandler.setClientManager(clientManager);
             clientManager.setNetworkHandler(newHandler);
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CONNECTED);

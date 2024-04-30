@@ -13,10 +13,12 @@ public class ClientManager {
     private final ViewModeEnum viewMode;
     private final UserInterface userInterface;
     private final GameState gameState;
+    private String serverIP;
 
-    public ClientManager(ClientNetworkHandler networkHandler, ViewModeEnum viewMode) {
+    public ClientManager(ClientNetworkHandler networkHandler, ViewModeEnum viewMode, String serverIP) {
         this.networkHandler = networkHandler;
         this.networkHandler.setClientManager(this);
+        this.serverIP = serverIP;
         this.viewMode = viewMode;
         userInterface = viewMode == ViewModeEnum.TUI ? new TUIClient(this) : new GUIClient(this);
         gameState = new GameState();
@@ -46,5 +48,7 @@ public class ClientManager {
         return gameState;
     }
 
-
+    public String getServerIP() {
+        return serverIP;
+    }
 }

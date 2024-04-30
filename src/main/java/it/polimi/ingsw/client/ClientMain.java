@@ -30,6 +30,7 @@ public class ClientMain extends Application {
     }
 
     public static void main(String[] args) {
+        String serverIP = args[0];
         Scanner scanner = new Scanner(System.in);
         String nextLine;
         ClientNetworkHandler networkHandler = null;
@@ -58,20 +59,20 @@ public class ClientMain extends Application {
                 nextLine = scanner.nextLine().trim();
                 if (nextLine.equals("1") || nextLine.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
-                    networkHandler = new SocketClient("localhost", 5000);
+                    networkHandler = new SocketClient(serverIP, 5000);
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
-                    networkHandler = new RMIClient("Server", 1099);
+                    networkHandler = new RMIClient("Server", serverIP, 1099);
                 } else {
                     System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }
             } catch (Exception e) {
-                System.err.println("An error occured while conntecting to the Lobby: " + e.getMessage());
+                System.err.println("An error occured while connecting to the Lobby: " + e.getMessage());
                 System.exit(1);
             }
         } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("Socket") || nextLine.equalsIgnoreCase("RMI")));
 
-        ClientManager clientManager = new ClientManager(networkHandler, viewMode);
+        ClientManager clientManager = new ClientManager(networkHandler, viewMode, serverIP);
         if (viewMode == ViewModeEnum.GUI) {
             launch();
         }

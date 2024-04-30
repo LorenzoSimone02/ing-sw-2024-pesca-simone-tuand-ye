@@ -12,9 +12,9 @@ public class RMIClient extends ClientNetworkHandler implements RMIClientInterfac
 
     private final RMIServerInterface serverInterface;
 
-    public RMIClient(String registryName, int port) throws NotBoundException, RemoteException {
+    public RMIClient(String registryName, String serverIP, int port) throws NotBoundException, RemoteException {
         super();
-        Registry registry = LocateRegistry.getRegistry("127.0.0.1", port);
+        Registry registry = LocateRegistry.getRegistry(serverIP, port);
         this.serverInterface = (RMIServerInterface) registry.lookup(registryName);
     }
 

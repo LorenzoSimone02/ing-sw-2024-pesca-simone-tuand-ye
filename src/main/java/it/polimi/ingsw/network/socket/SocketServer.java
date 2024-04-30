@@ -21,6 +21,7 @@ public class SocketServer extends Thread {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 Socket socket = serverSocket.accept();
+                System.out.println("New connection from " + socket.getRemoteSocketAddress());
                 SocketClientConnection newConnection = new SocketClientConnection(socket, this);
                 new Thread(newConnection).start();
             } catch (IOException e) {
