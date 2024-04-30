@@ -24,7 +24,7 @@ public class Deck {
         return cards.pop();
     }
 
-    public List<Card> getCards() {
+    public Stack<Card> getCards() {
         return cards;
     }
 
