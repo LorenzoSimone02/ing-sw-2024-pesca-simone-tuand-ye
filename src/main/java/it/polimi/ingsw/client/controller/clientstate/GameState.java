@@ -1,8 +1,12 @@
 package it.polimi.ingsw.client.controller.clientstate;
 
 import it.polimi.ingsw.client.controller.Printer;
+import it.polimi.ingsw.server.model.card.*;
 
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class GameState {
@@ -15,6 +19,7 @@ public class GameState {
     private final ArrayList<String> chatMessages;
     private ClientStatusEnum clientStatus;
     private long lastPing;
+    private ArrayList<Card> cards;
 
     private final ArrayList<PlayerState> playerStates;
     private String firstPlayer;
@@ -29,6 +34,7 @@ public class GameState {
         chatMessages = new ArrayList<>();
         clientStatus = ClientStatusEnum.DISCONNECTED;
         lastPing = System.currentTimeMillis();
+        loadCards();
     }
 
     public UUID getUuid() {
@@ -113,5 +119,46 @@ public class GameState {
 
     public void setLastPing(long lastPing) {
         this.lastPing = lastPing;
+    }
+
+    public void loadCards(){
+        cards = new ArrayList<>();
+
+        File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            ResourceCard card = new ResourceCard(file);
+            cards.add(card);
+        }
+
+        folder = Paths.get("src/main/resources/assets/goldcards").toFile();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            GoldCard card = new GoldCard(file);
+            cards.add(card);
+        }
+
+        folder = Paths.get("src/main/resources/assets/startercards").toFile();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            StarterCard card = new StarterCard(file);
+            cards.add(card);
+        }
+
+        folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
+        for (File file : Objects.requireNonNull(folder.listFiles())) {
+            ObjectiveCard card = new ObjectiveCard(file);
+            cards.add(card);
+        }
+    }
+
+    public Card getCardById(int id) {
+        for (Card card : cards) {
+            if (card.getId() == id) {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 }

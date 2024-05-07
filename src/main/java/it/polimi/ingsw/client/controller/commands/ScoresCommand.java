@@ -18,7 +18,8 @@ public class ScoresCommand extends Command {
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
             if (input.trim().isEmpty()) {
-                System.out.println("★ Players Scores:");
+                System.out.println("Players Scores:");
+                System.out.println(Printer.ANSI_PURPLE + clientManager.getGameState().getUsername() + ": " + Printer.ANSI_RESET + clientManager.getGameState().getScore() + " points");
                 for (PlayerState player : clientManager.getGameState().getPlayerStates()) {
                     System.out.println(Printer.ANSI_PURPLE + player.getUsername() + ": " + Printer.ANSI_RESET + player.getScore() + " points");
                 }

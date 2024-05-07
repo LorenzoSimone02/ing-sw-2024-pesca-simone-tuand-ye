@@ -18,7 +18,8 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
         for (String player : gameStartedPacket.getPlayers()) {
-            clientManager.getGameState().addPlayerState(new PlayerState(player));
+            if (!player.equals(clientManager.getGameState().getUsername()))
+                clientManager.getGameState().addPlayerState(new PlayerState(player));
         }
     }
 }

@@ -7,6 +7,15 @@ import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
 public class EndTurnPacket extends Packet {
 
+    private final String activePlayer;
+
+    public EndTurnPacket(String activePlayer) {
+        this.activePlayer = activePlayer;
+    }
+
+    public String getActivePlayer() {
+        return activePlayer;
+    }
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {

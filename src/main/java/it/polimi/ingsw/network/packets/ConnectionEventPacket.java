@@ -3,22 +3,28 @@ package it.polimi.ingsw.network.packets;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
-public class ChooseColorPacket extends Packet {
+public class ConnectionEventPacket extends Packet {
 
     private final String username;
-    private final String color;
+    private final boolean isDisconnection;
+    private final boolean isReconnection;
 
-    public ChooseColorPacket(String username, String color) {
+    public ConnectionEventPacket(String username, boolean isDisconnection, boolean isReconnection) {
         this.username = username;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
+        this.isDisconnection = isDisconnection;
+        this.isReconnection = isReconnection;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public boolean isDisconnection() {
+        return isDisconnection;
+    }
+
+    public boolean isReconnection() {
+        return isReconnection;
     }
 
     @Override

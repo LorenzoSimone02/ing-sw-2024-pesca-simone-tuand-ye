@@ -16,7 +16,7 @@ public class EndTurnCommand extends Command {
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager) && clientManager.getGameState().getActivePlayer().equalsIgnoreCase(clientManager.getGameState().getUsername())) {
             if (input.trim().isEmpty()) {
-                clientManager.getNetworkHandler().sendPacket(new EndTurnPacket());
+                clientManager.getNetworkHandler().sendPacket(new EndTurnPacket(clientManager.getGameState().getUsername()));
             } else {
                 System.err.println("Usage: /endTurn");
             }

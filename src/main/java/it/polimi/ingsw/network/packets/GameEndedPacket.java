@@ -3,9 +3,16 @@ package it.polimi.ingsw.network.packets;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
-public class PickCardFromDeckPacket extends Packet {
+public class GameEndedPacket extends Packet {
 
-    public PickCardFromDeckPacket() {
+    private final String winner;
+
+    public GameEndedPacket(String winner) {
+        this.winner = winner;
+    }
+
+    public String getWinner() {
+        return winner;
     }
 
     @Override

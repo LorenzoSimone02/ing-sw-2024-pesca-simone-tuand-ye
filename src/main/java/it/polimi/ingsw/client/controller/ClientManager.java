@@ -13,7 +13,7 @@ public class ClientManager {
     private final ViewModeEnum viewMode;
     private final UserInterface userInterface;
     private final GameState gameState;
-    private String serverIP;
+    private final String serverIP;
 
     public ClientManager(ClientNetworkHandler networkHandler, ViewModeEnum viewMode, String serverIP) {
         this.networkHandler = networkHandler;

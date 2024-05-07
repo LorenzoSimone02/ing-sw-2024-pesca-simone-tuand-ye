@@ -2,6 +2,8 @@ package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.network.packets.ConnectionEventPacket;
+import it.polimi.ingsw.network.packets.EndTurnPacket;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
@@ -82,8 +84,6 @@ public class GameController {
         game.getPlayers().add(player);
         game.getInfo().setPlayersNumber(game.getPlayers().size());
 
-        networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + username + " has joined the Game." + Printer.ANSI_RESET));
-
         return player;
     }
 
@@ -94,7 +94,6 @@ public class GameController {
             if (p.getUsername().equalsIgnoreCase(player)) {
                 game.getPlayers().add(p);
                 iterator.remove();
-                networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + p.getUsername() + " has reconnected to the Game." + Printer.ANSI_RESET));
                 return p;
             }
         }
@@ -108,7 +107,7 @@ public class GameController {
                 game.getOfflinePlayers().add(player.get());
             }
             removePlayer(username);
-            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_YELLOW + "Player " + username + " has disconnected from the Game." + Printer.ANSI_RESET));
+            networkHandler.sendPacketToAll(new ConnectionEventPacket(username, true, false));
         }
     }
 
@@ -251,7 +250,7 @@ public class GameController {
         checkEndCondition();
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
-        networkHandler.sendPacket(networkHandler.getConnectionByNickname(next.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "It's your turn." + Printer.ANSI_RESET));
+        networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
     }
 
     public synchronized Player nextPlayer() {

@@ -20,7 +20,7 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
         }
         try {
             controller.getPlayerController(clientConnection.getUsername()).chooseToken(TokenColorEnum.valueOf(chooseColorPacket.getColor()));
-            controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket("You have choosen the " + chooseColorPacket.getColor() + " Token Color."));
+            controller.getNetworkHandler().sendPacketToAll(new ChooseColorPacket(clientConnection.getUsername(), chooseColorPacket.getColor()));
         } catch (AlreadyTakenColorException e) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.ANSI_RED + "The " + chooseColorPacket.getColor() + " Token Color has already been chosen." + Printer.ANSI_RESET));
         }

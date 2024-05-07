@@ -3,6 +3,7 @@ package it.polimi.ingsw.server.controller.packethandling;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.network.packets.ConnectionEventPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.JoinPacket;
 import it.polimi.ingsw.network.packets.Packet;
@@ -44,6 +45,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             oldMatch.getGameController().reconnectPlayer(connection.getUsername());
             System.out.println(Printer.ANSI_YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.ANSI_RESET);
             networkHandler.sendPacket(connection, new JoinPacket(gameID));
+            networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, true));
             return;
         }
 
@@ -69,6 +71,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
                 foundNewMatch.getGameController().addPlayer(connection.getUsername());
                 System.out.println(Printer.ANSI_YELLOW + "Player " + connection.getUsername() + " has joined the game " + foundNewMatch.getGameController().getGame().getInfo().getId() + Printer.ANSI_RESET);
                 networkHandler.sendPacket(connection, new JoinPacket(gameID));
+                networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, false));
 
                 foundNewMatch.getGameController().checkStartCondition();
             } catch (DuplicatePlayerException e) {

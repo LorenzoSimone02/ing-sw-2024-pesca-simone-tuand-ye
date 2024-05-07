@@ -2,22 +2,21 @@ package it.polimi.ingsw.network.packets;
 
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
-import it.polimi.ingsw.server.model.card.ResourceCard;
 
 public class PlaceCardPacket extends Packet {
 
-    private final ResourceCard card;
+    private final int cardId;
     private final int xCoord;
     private final int yCoord;
 
-    public PlaceCardPacket(ResourceCard card, int xCoord, int yCoord) {
-        this.card = card;
+    public PlaceCardPacket(int cardId, int xCoord, int yCoord) {
+        this.cardId = cardId;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
     }
 
-    public ResourceCard getCard() {
-        return card;
+    public int getCardId() {
+        return cardId;
     }
 
     public int getXCoord() {

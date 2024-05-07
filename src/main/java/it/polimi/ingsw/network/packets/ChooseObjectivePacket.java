@@ -3,24 +3,7 @@ package it.polimi.ingsw.network.packets;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
-public class ChooseColorPacket extends Packet {
-
-    private final String username;
-    private final String color;
-
-    public ChooseColorPacket(String username, String color) {
-        this.username = username;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
+public class ChooseObjectivePacket extends Packet{
     @Override
     public ClientPacketHandler getClientPacketHandler() {
         return null;
