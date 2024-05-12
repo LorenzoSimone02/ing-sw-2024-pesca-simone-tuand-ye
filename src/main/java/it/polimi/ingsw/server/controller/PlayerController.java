@@ -35,7 +35,7 @@ public record PlayerController(Player player) {
             ResourceCard currCard;
             CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
             //TopLeftCard -> TopRightCard -> BottomLeftCard -> BottomRightCard
-            for (int i = 1; i >= -1; i = i - 2) {
+            for (int i = -1; i <= 1; i = i + 2) {
 
                 for (int j = -1; j <= 1; j = j + 2) {
 

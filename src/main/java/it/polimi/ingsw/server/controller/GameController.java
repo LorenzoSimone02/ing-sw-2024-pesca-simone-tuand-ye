@@ -266,10 +266,27 @@ public class GameController {
     }
 
     public synchronized void checkEndCondition() {
-
+        if (game.getPlayers().stream().anyMatch(player -> player.getScore() >= 20) || (game.getTable().getCardsOnGround().isEmpty() && game.getTable().getResourceDeck().getCards().isEmpty() && game.getTable().getGoldDeck().getCards().isEmpty())) {
+            endGame();
+        }
     }
 
     public synchronized void endGame() {
+
+        //Additional turns
+        int firstPlayerIndex = game.getPlayers().indexOf(game.getInfo().getFirstPlayer());
+        Player lastPlayer = game.getPlayers().get(firstPlayerIndex != 0 ? firstPlayerIndex - 1 : game.getInfo().getPlayersNumber() - 1);
+        Player next = nextPlayer();
+
+        //TODO: Wait till the players played their additional turn
+        while(!(game.getInfo().getActivePlayer().equals(lastPlayer) ) ) {
+
+            game.getInfo().setActivePlayer(next);
+            networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
+            next = nextPlayer();
+        }
+
+
         for (Player p : game.getPlayers()) {
             int secretObjectivePoints = p.getObjectiveCard().calculatePoints(p);
             int publicObjectivePoints = 0;
@@ -278,6 +295,11 @@ public class GameController {
             }
             p.setScore(secretObjectivePoints + publicObjectivePoints);
         }
+
+        //TODO: Handle the case in which there is a tie
+        Player winner = game.getPlayers().stream().max((p1, p2) -> Integer.max(p1.getScore(), p2.getScore())).get();
+        game.getInfo().setWinner(winner);
+        networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winner.getUsername() + "!"));
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {
