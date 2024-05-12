@@ -6,6 +6,8 @@ public enum ClientStatusEnum {
     LOBBY,
     LOGGED,
     CONNECTED,
+    CHOOSING_COLOR,
+    CHOOSING_OBJECTIVE,
     PLAYING,
     ENDING,
     ERROR

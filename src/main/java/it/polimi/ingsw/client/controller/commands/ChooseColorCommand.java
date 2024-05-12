@@ -9,7 +9,7 @@ public class ChooseColorCommand extends Command {
     public ChooseColorCommand() {
         commandName = "/chooseColor";
         description = "  Chooses a Token Color \n  Usage: /chooseColor <color>";
-        addValidStatus(ClientStatusEnum.PLAYING);
+        addValidStatus(ClientStatusEnum.CHOOSING_COLOR);
     }
 
     @Override
@@ -19,6 +19,8 @@ public class ChooseColorCommand extends Command {
                 String color = input.split(" ")[0];
                 if (color.equalsIgnoreCase("red") || color.equalsIgnoreCase("yellow") || color.equalsIgnoreCase("green") || color.equalsIgnoreCase("blue")) {
                     clientManager.getNetworkHandler().sendPacket(new ChooseColorPacket(clientManager.getGameState().getUsername(), color.toUpperCase()));
+                } else {
+                    System.err.println("Invalid color. Choose between red, yellow, green, blue.");
                 }
             } else {
                 System.err.println("Usage: /chooseColor <color>");

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
@@ -12,8 +13,6 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
     public void handlePacket(Packet packet, ClientManager clientManager) {
         GameStartedPacket gameStartedPacket = (GameStartedPacket) packet;
 
-        clientManager.getGameState().setClientStatus(ClientStatusEnum.PLAYING);
-
         clientManager.getGameState().setGameID(gameStartedPacket.getGameID());
         clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
@@ -21,5 +20,8 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
             if (!player.equals(clientManager.getGameState().getUsername()))
                 clientManager.getGameState().addPlayerState(new PlayerState(player));
         }
+        clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_COLOR);
+        System.out.println(Printer.ANSI_CYAN + "The game has started.\n" +
+                "Before playing, choose your Token color with the command /chooseColor <color>" + Printer.ANSI_RESET);
     }
 }

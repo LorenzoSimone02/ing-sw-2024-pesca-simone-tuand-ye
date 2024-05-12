@@ -77,28 +77,28 @@ public record PlayerController(Player player) {
             if (player.getCardAt(x - 1, y - 1).isPresent()) {
                 if (x - 1 == 40 && y - 1 == 40)
                     return true;
-                ResourceCard neighbour = (ResourceCard) player.getCardAt(x - 1, y - 1).get();
+                ResourceCard neighbour = player.getCardAt(x - 1, y - 1).get();
                 if (neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible())
                     return true;
             }
             if (player.getCardAt(x + 1, y + 1).isPresent()) {
                 if (x + 1 == 40 && y + 1 == 40)
                     return true;
-                ResourceCard neighbour = (ResourceCard) player.getCardAt(x + 1, y + 1).get();
+                ResourceCard neighbour = player.getCardAt(x + 1, y + 1).get();
                 if (neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible())
                     return true;
             }
             if (player.getCardAt(x - 1, y + 1).isPresent()) {
                 if (x - 1 == 40 && y + 1 == 40)
                     return true;
-                ResourceCard neighbour = (ResourceCard) player.getCardAt(x - 1, y + 1).get();
+                ResourceCard neighbour = player.getCardAt(x - 1, y + 1).get();
                 if (neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible())
                     return true;
             }
             if (player.getCardAt(x + 1, y - 1).isPresent()) {
                 if (x - 1 == 40 && y + 1 == 40)
                     return true;
-                ResourceCard neighbour = (ResourceCard) player.getCardAt(x + 1, y - 1).get();
+                ResourceCard neighbour = player.getCardAt(x + 1, y - 1).get();
                 return neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible();
             }
         }

@@ -1,6 +1,8 @@
 package it.polimi.ingsw.network.packets;
 
+import it.polimi.ingsw.client.controller.packethandlers.ClientChooseColorPacketHandler;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerChooseColorPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
 public class ChooseColorPacket extends Packet {
@@ -23,11 +25,11 @@ public class ChooseColorPacket extends Packet {
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {
-        return null;
+        return new ClientChooseColorPacketHandler();
     }
 
     @Override
     public ServerPacketHandler getServerPacketHandler() {
-        return null;
+        return new ServerChooseColorPacketHandler();
     }
 }

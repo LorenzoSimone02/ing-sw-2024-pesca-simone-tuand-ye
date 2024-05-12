@@ -42,6 +42,10 @@ public class GameController {
         return networkHandler;
     }
 
+    public synchronized List<PlayerController> getPlayerControllers() {
+        return playerControllers;
+    }
+
     public synchronized PlayerController getPlayerController(Player player) {
         for (PlayerController controller : playerControllers) {
             if (controller.getPlayer().equals(player)) {
@@ -64,9 +68,10 @@ public class GameController {
         game.getInfo().setMaxPlayers(playersNumber);
     }
 
-    public synchronized Player addPlayer(String username) throws DuplicatePlayerException, FullLobbyException {
+    public synchronized void addPlayer(String username) throws DuplicatePlayerException, FullLobbyException {
         if (hasDisconnected(username)) {
-            return reconnectPlayer(username);
+            reconnectPlayer(username);
+            return;
         }
         if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
             throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
@@ -84,20 +89,18 @@ public class GameController {
         game.getPlayers().add(player);
         game.getInfo().setPlayersNumber(game.getPlayers().size());
 
-        return player;
     }
 
-    public Player reconnectPlayer(String player) {
+    public void reconnectPlayer(String player) {
         Iterator<Player> iterator = game.getOfflinePlayers().iterator();
         while (iterator.hasNext()) {
             Player p = iterator.next();
             if (p.getUsername().equalsIgnoreCase(player)) {
                 game.getPlayers().add(p);
                 iterator.remove();
-                return p;
+                return;
             }
         }
-        return null;
     }
 
     public synchronized void onDisconnect(String username) {
@@ -262,7 +265,7 @@ public class GameController {
         Player first = game.getPlayers().get(new Random().nextInt(game.getPlayers().size()));
         game.getInfo().setFirstPlayer(first);
         game.getInfo().setActivePlayer(first);
-        networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "You have been selected as the first Player, it's your turn." + Printer.ANSI_RESET));
+        networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "You have been selected as the first Player" + Printer.ANSI_RESET));
     }
 
     public synchronized void checkEndCondition() {
@@ -279,8 +282,7 @@ public class GameController {
         Player next = nextPlayer();
 
         //TODO: Wait till the players played their additional turn
-        while(!(game.getInfo().getActivePlayer().equals(lastPlayer) ) ) {
-
+        while (!game.getInfo().getActivePlayer().equals(lastPlayer)) {
             game.getInfo().setActivePlayer(next);
             networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
             next = nextPlayer();
@@ -293,7 +295,7 @@ public class GameController {
             for (ObjectiveCard card : game.getObjectiveCards()) {
                 publicObjectivePoints += card.calculatePoints(p);
             }
-            p.setScore(secretObjectivePoints + publicObjectivePoints);
+            p.setScore(p.getScore() + secretObjectivePoints + publicObjectivePoints);
         }
 
         //TODO: Handle the case in which there is a tie
