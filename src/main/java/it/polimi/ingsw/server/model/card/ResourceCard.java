@@ -2,9 +2,12 @@ package it.polimi.ingsw.server.model.card;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
+import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
+import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -73,4 +76,77 @@ public class ResourceCard extends Card {
         return backResources;
     }
 
+    public String toString() {
+        if (this.face == FaceEnum.FRONT) {
+            String points = this.points > 0 ? String.valueOf(this.points) : " ";
+            String t_l_res = "", t_r_res = "", b_l_res = "", b_r_res = "";
+            for (Corner c : this.corners) {
+                switch (c.getLocation()) {
+                    case TOP_LEFT:
+                        t_l_res = switch (c.getResource().getType()) {
+                            case INSECT -> Printer.ANSI_PURPLE + "I" + Printer.ANSI_RESET;
+                            case PLANT -> Printer.ANSI_GREEN + "P" + Printer.ANSI_RESET;
+                            case FUNGI -> Printer.ANSI_RED + "F" + Printer.ANSI_RESET;
+                            case ANIMAL -> Printer.ANSI_CYAN + "A" + Printer.ANSI_RESET;
+                            default -> " ";
+                        };
+                        if (c.getObject().getType() != ObjectTypeEnum.EMPTY)
+                            t_l_res = Printer.ANSI_YELLOW + c.getObject().getType().toString().charAt(0) + Printer.ANSI_RESET;
+                        break;
+                    case TOP_RIGHT:
+                        t_r_res = switch (c.getResource().getType()) {
+                            case INSECT -> Printer.ANSI_PURPLE + "I" + Printer.ANSI_RESET;
+                            case PLANT -> Printer.ANSI_GREEN + "P" + Printer.ANSI_RESET;
+                            case FUNGI -> Printer.ANSI_RED + "F" + Printer.ANSI_RESET;
+                            case ANIMAL -> Printer.ANSI_CYAN + "A" + Printer.ANSI_RESET;
+                            default -> " ";
+                        };
+                        if (c.getObject().getType() != ObjectTypeEnum.EMPTY)
+                            t_l_res = Printer.ANSI_YELLOW + c.getObject().getType().toString().charAt(0) + Printer.ANSI_RESET;
+                        break;
+                    case BOTTOM_LEFT:
+                        b_l_res = switch (c.getResource().getType()) {
+                            case INSECT -> Printer.ANSI_PURPLE + "I" + Printer.ANSI_RESET;
+                            case PLANT -> Printer.ANSI_GREEN + "P" + Printer.ANSI_RESET;
+                            case FUNGI -> Printer.ANSI_RED + "F" + Printer.ANSI_RESET;
+                            case ANIMAL -> Printer.ANSI_CYAN + "A" + Printer.ANSI_RESET;
+                            default -> "_";
+                        };
+                        if (c.getObject().getType() != ObjectTypeEnum.EMPTY)
+                            t_l_res = Printer.ANSI_YELLOW + c.getObject().getType().toString().charAt(0) + Printer.ANSI_RESET;
+                        break;
+                    case BOTTOM_RIGHT:
+                        b_r_res = switch (c.getResource().getType()) {
+                            case INSECT -> Printer.ANSI_PURPLE + "I" + Printer.ANSI_RESET;
+                            case PLANT -> Printer.ANSI_GREEN + "P" + Printer.ANSI_RESET;
+                            case FUNGI -> Printer.ANSI_RED + "F" + Printer.ANSI_RESET;
+                            case ANIMAL -> Printer.ANSI_CYAN + "A" + Printer.ANSI_RESET;
+                            default -> "_";
+                        };
+                        if (c.getObject().getType() != ObjectTypeEnum.EMPTY)
+                            t_l_res = Printer.ANSI_YELLOW + c.getObject().getType().toString().charAt(0) + Printer.ANSI_RESET;
+                        break;
+                }
+
+            }
+            return " ______________\n" +
+                    "|" + t_l_res + "|    " + points + "    |" + t_r_res + "|\n" +
+                    "|             |\n" +
+                    "|             |\n" +
+                    "|" + b_l_res + "|_________|" + b_r_res + "|";
+        } else {
+            String res = switch (this.backResources.getFirst().getType()) {
+                case INSECT -> Printer.ANSI_PURPLE + "I" + Printer.ANSI_RESET;
+                case PLANT -> Printer.ANSI_GREEN + "P" + Printer.ANSI_RESET;
+                case FUNGI -> Printer.ANSI_RED + "F" + Printer.ANSI_RESET;
+                case ANIMAL -> Printer.ANSI_CYAN + "A" + Printer.ANSI_RESET;
+                default -> "";
+            };
+            return " ______________\n" +
+                    "|_|         |_|\n" +
+                    "|      " + res + "      |\n" +
+                    "|_           _|\n" +
+                    "|_|_________|_|";
+        }
+    }
 }

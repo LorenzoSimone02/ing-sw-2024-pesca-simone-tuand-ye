@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server.model.card;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Stack;
 
 public class Deck {

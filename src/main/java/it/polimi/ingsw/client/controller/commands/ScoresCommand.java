@@ -27,7 +27,7 @@ public class ScoresCommand extends Command {
                 System.err.println("Usage: /scores");
             }
         } else {
-            System.err.println("The game is not in progress. " + clientManager.getGameState().getClientStatus());
+            System.err.println("The game is not in progress.");
         }
     }
 

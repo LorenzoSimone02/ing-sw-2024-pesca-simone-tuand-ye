@@ -2,10 +2,7 @@ package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
-import it.polimi.ingsw.network.packets.ConnectionEventPacket;
-import it.polimi.ingsw.network.packets.EndTurnPacket;
-import it.polimi.ingsw.network.packets.GameStartedPacket;
-import it.polimi.ingsw.network.packets.InfoPacket;
+import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.controller.exceptions.GameStartException;
@@ -209,6 +206,14 @@ public class GameController {
     public synchronized void assignCommonObjectives() {
         game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
         game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
+    }
+
+    public synchronized void proposeObjectiveCards() {
+        for (Player p : game.getPlayers()) {
+            ObjectiveCard card1 = (ObjectiveCard) game.getTable().getObjectiveDeck().drawCard();
+            ObjectiveCard card2 = (ObjectiveCard) game.getTable().getObjectiveDeck().drawCard();
+            networkHandler.sendPacket(networkHandler.getConnectionByNickname(p.getUsername()), new ChooseObjectivePacket(card1.getId(), card2.getId()));
+        }
     }
 
     public synchronized void instantiateCards() {

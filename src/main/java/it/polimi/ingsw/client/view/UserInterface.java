@@ -4,5 +4,6 @@ public interface UserInterface {
 
     void runView();
 
+    void showMessage(String message);
 }
 

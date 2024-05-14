@@ -3,12 +3,11 @@ package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
-import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.controller.exceptions.WrongTokenException;
+import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.player.Player;
-import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -51,10 +50,10 @@ public class PlayerTest {
     public void validPlayerToken() {
 
         try {
-            controller.getPlayerController(controller.getGame().getPlayers().getFirst()).chooseToken(new PlayerToken(TokenColorEnum.RED));
-            controller.getPlayerController(controller.getGame().getPlayers().get(1)).chooseToken(new PlayerToken(TokenColorEnum.GREEN));
-            controller.getPlayerController(controller.getGame().getPlayers().get(2)).chooseToken(new PlayerToken(TokenColorEnum.BLUE));
-            controller.getPlayerController(controller.getGame().getPlayers().get(3)).chooseToken(new PlayerToken(TokenColorEnum.YELLOW));
+            controller.getPlayerController(controller.getGame().getPlayers().getFirst()).chooseToken(TokenColorEnum.RED);
+            controller.getPlayerController(controller.getGame().getPlayers().get(1)).chooseToken(TokenColorEnum.GREEN);
+            controller.getPlayerController(controller.getGame().getPlayers().get(2)).chooseToken(TokenColorEnum.BLUE);
+            controller.getPlayerController(controller.getGame().getPlayers().get(3)).chooseToken(TokenColorEnum.YELLOW);
         } catch (AlreadyTakenColorException e) {
             fail("Token color already taken.");
         }

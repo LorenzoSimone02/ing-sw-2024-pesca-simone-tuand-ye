@@ -20,7 +20,7 @@
       "location": "TOP_RIGHT"
     },
     {
-      "resource": {
+      "object": {
         "type": "INKWELL"
       },
       "visible": true,

@@ -3,7 +3,6 @@ package it.polimi.ingsw.model.card;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.FaceEnum;
-import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,13 +11,14 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ResourceCardTest {
 
-    final int numOfResourceCards = 10;
+    final int numOfResourceCards = 40;
     final ArrayList<ResourceCard> resCardArray = new ArrayList<>(numOfResourceCards);
 
     @BeforeEach
@@ -35,6 +35,15 @@ public class ResourceCardTest {
 
             resCardArray.add(currCard);
 
+        }
+    }
+
+    @Test
+    @DisplayName("toString Card test")
+    public void testCardToString(){
+        for (ResourceCard card : resCardArray) {
+            System.out.println(card.getId());
+            System.out.println(card);
         }
     }
 

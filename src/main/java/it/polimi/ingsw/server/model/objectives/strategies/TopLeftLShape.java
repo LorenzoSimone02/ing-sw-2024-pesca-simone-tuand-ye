@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server.model.objectives.strategies;
 
-import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.CardColorEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;

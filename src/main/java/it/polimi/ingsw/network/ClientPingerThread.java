@@ -1,7 +1,6 @@
 package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.PingPacket;
-import it.polimi.ingsw.server.model.player.Player;
 
 import java.util.Iterator;
 import java.util.concurrent.Executors;

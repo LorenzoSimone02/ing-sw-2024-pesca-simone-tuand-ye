@@ -1,7 +1,6 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.PingPacket;
 

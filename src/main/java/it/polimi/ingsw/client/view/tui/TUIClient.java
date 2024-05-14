@@ -4,13 +4,7 @@ import it.polimi.ingsw.client.controller.commands.CommandReader;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.view.UserInterface;
 
-public class TUIClient implements UserInterface {
-
-    private final ClientManager clientManager;
-
-    public TUIClient(ClientManager clientManager) {
-        this.clientManager = clientManager;
-    }
+public record TUIClient(ClientManager clientManager) implements UserInterface {
 
     @Override
     public void runView() {
@@ -18,7 +12,8 @@ public class TUIClient implements UserInterface {
         commandReader.run();
     }
 
-    public ClientManager getClientManager() {
-        return clientManager;
+    @Override
+    public void showMessage(String message) {
+        System.out.println(message);
     }
 }

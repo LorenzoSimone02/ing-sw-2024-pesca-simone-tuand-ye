@@ -8,6 +8,7 @@ import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
+import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 
 public class ServerChooseColorPacketHandler extends ServerPacketHandler {
@@ -27,7 +28,8 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
                     return;
                 }
             }
-            //TODO: Far scegliere la carta obiettivo
+            controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
+            controller.proposeObjectiveCards();
         } catch (AlreadyTakenColorException e) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.ANSI_RED + "The " + chooseColorPacket.getColor() + " Token Color has already been chosen." + Printer.ANSI_RESET));
         }
