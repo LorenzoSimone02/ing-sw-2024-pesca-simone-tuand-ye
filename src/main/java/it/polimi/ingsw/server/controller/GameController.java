@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -224,7 +225,7 @@ public class GameController {
             resourceDeck.addCard(card);
         }
         resourceDeck.shuffleDeck();
-        game.getTable().setResouceDeck(resourceDeck);
+        game.getTable().setResourceDeck(resourceDeck);
 
         folder = Paths.get("src/main/resources/assets/goldcards").toFile();
         Deck goldDeck = new Deck();
@@ -255,7 +256,11 @@ public class GameController {
     }
 
     public synchronized void nextTurn() {
-        checkEndCondition();
+
+        if (!game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
+            checkEndCondition();
+        }
+
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
         networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
@@ -274,39 +279,75 @@ public class GameController {
     }
 
     public synchronized void checkEndCondition() {
+
         if (game.getPlayers().stream().anyMatch(player -> player.getScore() >= 20) || (game.getTable().getCardsOnGround().isEmpty() && game.getTable().getResourceDeck().getCards().isEmpty() && game.getTable().getGoldDeck().getCards().isEmpty())) {
-            endGame();
+
+            if (!game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
+                game.getInfo().setGameStatus(GameStatusEnum.LAST_TURN);
+                networkHandler.sendPacketToAll(new InfoPacket("Game is ending, play your last turn!"));
+            }
+
+            int firstPlayerIndex = game.getPlayers().indexOf(game.getInfo().getFirstPlayer());
+            Player lastPlayer = game.getPlayers().get(firstPlayerIndex != 0 ? firstPlayerIndex - 1 : game.getInfo().getPlayersNumber() - 1);
+
+            if (game.getInfo().getActivePlayer().equals(lastPlayer)) {
+                game.getInfo().setGameStatus(GameStatusEnum.ENDING);
+                networkHandler.sendPacketToAll(new InfoPacket("Last turns ended, calculating the winner(s)..."));
+                endGame();
+            }
         }
     }
 
     public synchronized void endGame() {
 
-        //Additional turns
-        int firstPlayerIndex = game.getPlayers().indexOf(game.getInfo().getFirstPlayer());
-        Player lastPlayer = game.getPlayers().get(firstPlayerIndex != 0 ? firstPlayerIndex - 1 : game.getInfo().getPlayersNumber() - 1);
-        Player next = nextPlayer();
-
-        //TODO: Wait till the players played their additional turn
-        while (!game.getInfo().getActivePlayer().equals(lastPlayer)) {
-            game.getInfo().setActivePlayer(next);
-            networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
-            next = nextPlayer();
-        }
-
+        HashMap<Player, Integer> ObjectiveCardsScored = new HashMap<>();
 
         for (Player p : game.getPlayers()) {
+            int currentObjectiveCardsScored = 0;
+
             int secretObjectivePoints = p.getObjectiveCard().calculatePoints(p);
+            currentObjectiveCardsScored += p.getObjectiveCard().calculatePoints(p) == 0 ? 0 : 1;
+
             int publicObjectivePoints = 0;
             for (ObjectiveCard card : game.getObjectiveCards()) {
                 publicObjectivePoints += card.calculatePoints(p);
+                currentObjectiveCardsScored += card.calculatePoints(p) == 0 ? 0 : 1;
             }
+
             p.setScore(p.getScore() + secretObjectivePoints + publicObjectivePoints);
+            ObjectiveCardsScored.put(p, currentObjectiveCardsScored);
         }
 
-        //TODO: Handle the case in which there is a tie
-        Player winner = game.getPlayers().stream().max((p1, p2) -> Integer.max(p1.getScore(), p2.getScore())).get();
-        game.getInfo().setWinner(winner);
-        networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winner.getUsername() + "!"));
+        //Calculate the player or the players with the maximum score
+        Optional<Integer> winningPoints = game.getPlayers().stream().map(Player::getScore).max((Integer::compare));
+        ArrayList<Player> winners = new ArrayList<>(4);
+
+        for (Player p: game.getPlayers()) {
+            if (winningPoints.isPresent() && winningPoints.get().equals(p.getScore())) winners.add(p);
+        }
+
+        //If winners are more than one, query the ObjectiveCardsScored map
+        if (winners.size() == 1) {
+            game.getInfo().addWinner(winners.get(0));
+            networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.get(0).getUsername() + "!"));
+
+        } else {
+            Optional<Integer> maxObjectivesScored = ObjectiveCardsScored.values().stream().max(Integer::compare);
+
+            winners.removeIf(p -> maxObjectivesScored.isPresent() && !ObjectiveCardsScored.get(p).equals(maxObjectivesScored.get()));
+
+            if (winners.size() == 1) {
+                game.getInfo().addWinner(winners.get(0));
+                networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.get(0).getUsername() + "!"));
+
+            } else {
+                String winnersString = winners.stream().map(Player::getUsername).collect(Collectors.joining(", "));
+                winners.forEach(player -> game.getInfo().addWinner(player));
+                networkHandler.sendPacketToAll(new InfoPacket("The winners are: " + winnersString + "!"));
+
+            }
+        }
+        //TODO: EndGamePacket(?)
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {

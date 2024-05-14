@@ -67,7 +67,7 @@ public class ClientMain extends Application {
                     System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }
             } catch (Exception e) {
-                System.err.println("An error occured while connecting to the Lobby: " + e.getMessage());
+                System.err.println("An error occurred while connecting to the Lobby: " + e.getMessage());
                 System.exit(1);
             }
         } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("Socket") || nextLine.equalsIgnoreCase("RMI")));

@@ -2,6 +2,8 @@ package it.polimi.ingsw.server.model.game;
 
 import it.polimi.ingsw.server.model.player.Player;
 
+import java.util.List;
+
 public class GameInfo {
 
     private final int id;
@@ -9,7 +11,7 @@ public class GameInfo {
     private int maxPlayers;
     private Player firstPlayer;
     private Player activePlayer;
-    private Player winner;
+    private List<Player> winners;
     private GameStatusEnum gameStatus;
 
     public GameInfo(int id, int playersNumber) {
@@ -55,12 +57,12 @@ public class GameInfo {
         this.firstPlayer = firstPlayer;
     }
 
-    public Player getWinner() {
-        return winner;
+    public List<Player> getWinners() {
+        return winners;
     }
 
-    public void setWinner(Player winner) {
-        this.winner = winner;
+    public void addWinner(Player winner) {
+        winners.add(winner);
     }
 
     public GameStatusEnum getGameStatus() {

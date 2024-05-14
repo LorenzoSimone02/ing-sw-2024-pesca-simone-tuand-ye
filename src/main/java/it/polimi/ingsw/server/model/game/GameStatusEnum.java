@@ -7,5 +7,6 @@ public enum GameStatusEnum {
     CHOOSING_PERSONAL_OBJECTIVE,
     PLAYING,
     ENDING,
-    ERROR
+    ERROR,
+    LAST_TURN
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Table {
 
-    private Deck resouceDeck;
+    private Deck resourceDeck;
     private Deck goldDeck;
     private Deck objectiveDeck;
     private Deck starterDeck;
@@ -18,15 +18,15 @@ public class Table {
     }
 
     public Deck getResourceDeck() {
-        return resouceDeck;
+        return resourceDeck;
     }
 
     public Deck getGoldDeck() {
         return goldDeck;
     }
 
-    public void setResouceDeck(Deck resouceDeck) {
-        this.resouceDeck = resouceDeck;
+    public void setResourceDeck(Deck resourceDeck) {
+        this.resourceDeck = resourceDeck;
     }
 
     public void setGoldDeck(Deck goldDeck) {
