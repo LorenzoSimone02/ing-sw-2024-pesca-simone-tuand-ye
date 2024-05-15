@@ -7,7 +7,7 @@
   "points": 0,
   "corners": [
     {
-      "resource": {
+      "object": {
         "type": "QUILL"
       },
       "visible": true,

@@ -12,7 +12,7 @@
       "location": "TOP_LEFT"
     },
     {
-      "resource": {
+      "object": {
         "type": "QUILL"
     },
       "visible": true,

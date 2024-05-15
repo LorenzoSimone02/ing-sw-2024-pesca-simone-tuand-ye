@@ -28,7 +28,7 @@
       "location": "BOTTOM_LEFT"
     },
     {
-      "resource": {
+      "object": {
         "type": "MANUSCRIPT"
       },
       "visible": true,
