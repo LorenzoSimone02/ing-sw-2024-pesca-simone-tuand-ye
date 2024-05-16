@@ -23,8 +23,8 @@ public class ChatCommand extends Command {
                     System.out.println(msg);
                 }
             } else {
-                if (input.split(" ")[0].startsWith("-to=")) {
-                    String[] split = input.split(" ");
+                String[] split = input.split(" ");
+                if (split[0].startsWith("-to=")) {
                     if (split.length < 2) {
                         System.err.println("Invalid command. Usage: /chat -to=player <message>");
                         return;

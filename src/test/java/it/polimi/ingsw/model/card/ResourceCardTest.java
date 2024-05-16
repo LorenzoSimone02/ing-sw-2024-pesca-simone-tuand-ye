@@ -1,9 +1,8 @@
 package it.polimi.ingsw.model.card;
 
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.Card;
-import it.polimi.ingsw.server.model.card.FaceEnum;
-import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,39 +10,81 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class ResourceCardTest {
 
-    final int numOfResourceCards = 40;
-    final ArrayList<ResourceCard> resCardArray = new ArrayList<>(numOfResourceCards);
+    final ArrayList<ResourceCard> resCardArray = new ArrayList<>(40);
+    final ArrayList<GoldCard> goldCardArray = new ArrayList<>(40);
+    final ArrayList<StarterCard> startCardArray = new ArrayList<>(6);
+    final ArrayList<ObjectiveCard> objCardArray = new ArrayList<>(12);
 
     @BeforeEach
     void setUp() {
 
-        ResourceCard currCard;
         File currFile;
 
-        for (int i = 2; i <= numOfResourceCards; i++) {
-
-            //Card selection
+        for (int i = 1; i <= 40; i++){
             currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard" + i + ".json").toFile();
-            currCard = new ResourceCard(currFile);
-
-            resCardArray.add(currCard);
-
+            ResourceCard card = new ResourceCard(currFile);
+            resCardArray.add(card);
+        }
+        for (int i = 1; i <= 40; i++){
+            currFile = Paths.get("src/main/resources/assets/goldcards/goldCard" + i + ".json").toFile();
+            GoldCard card = new GoldCard(currFile);
+            goldCardArray.add(card);
+        }
+        for (int i = 1; i <= 6; i++){
+            currFile = Paths.get("src/main/resources/assets/startercards/starterCard" + i + ".json").toFile();
+            StarterCard card = new StarterCard(currFile);
+            startCardArray.add(card);
+        }
+        for (int i = 1; i <= 12; i++){
+            currFile = Paths.get("src/main/resources/assets/objectivecards/objectiveCard" + i + ".json").toFile();
+            ObjectiveCard card = new ObjectiveCard(currFile);
+            objCardArray.add(card);
         }
     }
 
     @Test
-    @DisplayName("toString Card test")
-    public void testCardToString(){
+    @DisplayName("Print Resource Card Test")
+    public void printResourceCardTest() {
         for (ResourceCard card : resCardArray) {
             System.out.println(card.getId());
-            System.out.println(card);
+            //card.setFace(FaceEnum.BACK);
+            Printer.printCard(card);
+        }
+    }
+
+    @Test
+    @DisplayName("Print Gold Card Test")
+    public void printGoldCardTest() {
+        for (GoldCard card : goldCardArray) {
+            System.out.println(card.getId());
+            //card.setFace(FaceEnum.BACK);
+            Printer.printCard(card);
+        }
+    }
+
+    @Test
+    @DisplayName("Print Starter Card Test")
+    public void printStarterCardTest() {
+        for (StarterCard card : startCardArray) {
+            System.out.println(card.getId());
+            card.setFace(FaceEnum.BACK);
+            Printer.printCard(card);
+        }
+    }
+
+    @Test
+    @DisplayName("Print Resource Card Test")
+    public void printObjectiveCardTest() {
+        for (ObjectiveCard card : objCardArray) {
+            System.out.println(card.getId());
+            card.setFace(FaceEnum.BACK);
+            Printer.printCard(card);
         }
     }
 
@@ -70,7 +111,6 @@ public class ResourceCardTest {
     public void validateNotNullAllResourceCards() {
 
         for (ResourceCard currCard : resCardArray) {
-
             if (currCard == null) {
                 fail("resCard is null");
             }

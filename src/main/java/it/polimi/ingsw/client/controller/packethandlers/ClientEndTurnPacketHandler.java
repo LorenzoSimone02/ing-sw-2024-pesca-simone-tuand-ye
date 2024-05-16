@@ -11,6 +11,6 @@ public class ClientEndTurnPacketHandler extends ClientPacketHandler {
     public void handlePacket(Packet packet, ClientManager clientManager) {
         EndTurnPacket endTurnPacket = (EndTurnPacket) packet;
         clientManager.getGameState().setActivePlayer(endTurnPacket.getActivePlayer());
-        System.out.println(Printer.ANSI_CYAN + "It's now " + endTurnPacket.getActivePlayer() + "'s turn!" + Printer.ANSI_RESET);
+        System.out.println(Printer.CYAN + "It's now " + endTurnPacket.getActivePlayer() + "'s turn!" + Printer.RESET);
     }
 }

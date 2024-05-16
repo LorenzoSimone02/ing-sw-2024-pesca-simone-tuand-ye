@@ -43,7 +43,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             networkHandler.addConnection(connection);
 
             oldMatch.getGameController().reconnectPlayer(connection.getUsername());
-            System.out.println(Printer.ANSI_YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.ANSI_RESET);
+            System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
             networkHandler.sendPacket(connection, new JoinPacket(gameID));
             networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, true));
             return;
@@ -69,7 +69,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
                 networkHandler.addConnection(connection);
 
                 foundNewMatch.getGameController().addPlayer(connection.getUsername());
-                System.out.println(Printer.ANSI_YELLOW + "Player " + connection.getUsername() + " has joined the game " + foundNewMatch.getGameController().getGame().getInfo().getId() + Printer.ANSI_RESET);
+                System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has joined the game " + foundNewMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
                 networkHandler.sendPacket(connection, new JoinPacket(gameID));
                 networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, false));
 

@@ -12,11 +12,11 @@ public class ClientConnectionEventPacketHandler extends ClientPacketHandler {
         ConnectionEventPacket connectionEventPacket = (ConnectionEventPacket) packet;
         String username = connectionEventPacket.getUsername();
         if (connectionEventPacket.isDisconnection()) {
-            System.out.println(Printer.ANSI_YELLOW + "Player " + username + " has disconnected from the Game." + Printer.ANSI_RESET);
+            System.out.println(Printer.YELLOW + "Player " + username + " has disconnected from the Game." + Printer.RESET);
         } else if (connectionEventPacket.isReconnection()) {
-            System.out.println(Printer.ANSI_YELLOW + "Player " + username + " has reconnected to the Game." + Printer.ANSI_RESET);
+            System.out.println(Printer.YELLOW + "Player " + username + " has reconnected to the Game." + Printer.RESET);
         } else {
-            System.out.println(Printer.ANSI_YELLOW + "Player " + username + " has joined the Game." + Printer.ANSI_RESET);
+            System.out.println(Printer.YELLOW + "Player " + username + " has joined the Game." + Printer.RESET);
         }
     }
 }

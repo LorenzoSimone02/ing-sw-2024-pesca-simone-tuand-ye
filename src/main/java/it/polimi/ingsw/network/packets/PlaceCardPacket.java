@@ -1,7 +1,9 @@
 package it.polimi.ingsw.network.packets;
 
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
+import it.polimi.ingsw.client.controller.packethandlers.ClientPlaceCardPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
+import it.polimi.ingsw.server.controller.packethandling.ServerPlaceCardPacketHandler;
 
 public class PlaceCardPacket extends Packet {
 
@@ -29,11 +31,11 @@ public class PlaceCardPacket extends Packet {
 
     @Override
     public ClientPacketHandler getClientPacketHandler() {
-        return null;
+        return new ClientPlaceCardPacketHandler();
     }
 
     @Override
     public ServerPacketHandler getServerPacketHandler() {
-        return null;
+        return new ServerPlaceCardPacketHandler();
     }
 }

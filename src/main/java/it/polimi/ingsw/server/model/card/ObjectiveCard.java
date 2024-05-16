@@ -12,6 +12,7 @@ import java.io.FileReader;
 public class ObjectiveCard extends Card {
 
     private final ObjectiveType objectiveType;
+    private final String objectiveDescription;
 
     public ObjectiveCard(File jsonFile) {
         try {
@@ -22,6 +23,7 @@ public class ObjectiveCard extends Card {
             this.color = proprieties.getColor();
             this.face = proprieties.getFace();
             this.objectiveType = proprieties.getObjectiveType();
+            this.objectiveDescription = proprieties.getObjectiveDescription();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -29,6 +31,10 @@ public class ObjectiveCard extends Card {
 
     public ObjectiveType getObjectiveType() {
         return objectiveType;
+    }
+
+    public String getObjectiveDescription() {
+        return objectiveDescription;
     }
 
     public int calculatePoints(Player player) {

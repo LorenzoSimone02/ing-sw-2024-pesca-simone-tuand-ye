@@ -145,7 +145,7 @@ public class GameController {
 
     public synchronized void startGame() throws GameStartException {
         try {
-            networkHandler.sendPacketToAll(new InfoPacket(Printer.ANSI_GREEN + "\nThe required number of players has been reached. The game is starting.\n" + Printer.ANSI_RESET));
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "\nThe required number of players has been reached. The game is starting.\n" + Printer.RESET));
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
 
             instantiateCards();
@@ -275,7 +275,7 @@ public class GameController {
         Player first = game.getPlayers().get(new Random().nextInt(game.getPlayers().size()));
         game.getInfo().setFirstPlayer(first);
         game.getInfo().setActivePlayer(first);
-        networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.ANSI_CYAN + "You have been selected as the first Player" + Printer.ANSI_RESET));
+        networkHandler.sendPacket(networkHandler.getConnectionByNickname(first.getUsername()), new InfoPacket(Printer.CYAN + "You have been selected as the first Player" + Printer.RESET));
     }
 
     public synchronized void checkEndCondition() {

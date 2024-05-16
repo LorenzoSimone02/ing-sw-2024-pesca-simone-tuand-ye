@@ -2,5 +2,6 @@
   "id": 87,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "TOP_RIGHT_DIAGONAL_RED"
+  "objectiveType": "TOP_RIGHT_DIAGONAL_RED",
+  "objectiveDescription": "Descrizione dell'obiettivo"
 }

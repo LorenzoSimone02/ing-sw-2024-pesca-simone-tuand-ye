@@ -20,7 +20,7 @@ public class GameState {
     private ClientStatusEnum clientStatus;
     private long lastPing;
     private ArrayList<Card> gameCards;
-    private ArrayList<Integer> cardsInHand;
+    private ArrayList<ResourceCard> cardsInHand;
     private StarterCard starterCard;
     private ObjectiveCard objectiveCard;
     //TODO: private ArrayList<Integer> cardsOnTable;
@@ -106,7 +106,7 @@ public class GameState {
     }
 
     public void addChatMessage(String username, String message) {
-        chatMessages.add(Printer.ANSI_CYAN + username + ": " + Printer.ANSI_RESET + message);
+        chatMessages.add(Printer.CYAN + username + ": " + Printer.RESET + message);
     }
 
     public ClientStatusEnum getClientStatus() {
@@ -189,4 +189,9 @@ public class GameState {
     public ArrayList<Card> getGameCards() {
         return gameCards;
     }
+
+    public ArrayList<ResourceCard> getCardsInHand() {
+        return cardsInHand;
+    }
 }
+

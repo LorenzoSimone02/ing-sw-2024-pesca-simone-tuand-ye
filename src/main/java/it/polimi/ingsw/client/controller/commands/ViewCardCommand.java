@@ -3,11 +3,11 @@ package it.polimi.ingsw.client.controller.commands;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 
-public class DrawCardCommand extends Command {
+public class ViewCardCommand extends Command {
 
-    public DrawCardCommand() {
-        commandName = "/drawCard";
-        description = "  Draw a Card on the ground or from a Deck\n  Usage: /drawCard TODO";
+    public ViewCardCommand() {
+        commandName = "/viewCard";
+        description = "  View the details of a specific Card\n  Usage: /viewCard TODO";
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 
@@ -18,10 +18,10 @@ public class DrawCardCommand extends Command {
             if (split.length == 1) {
 
             } else {
-                System.err.println("Usage: /drawCard TODO");
+                System.err.println("Usage: /viewCard TODO");
             }
         } else {
-            System.err.println("You can't draw a Card now.");
+            System.err.println("You can't view a Card now.");
         }
     }
 

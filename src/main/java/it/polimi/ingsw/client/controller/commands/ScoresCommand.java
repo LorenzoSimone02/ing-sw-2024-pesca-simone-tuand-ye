@@ -19,9 +19,9 @@ public class ScoresCommand extends Command {
         if (isExecutable(clientManager)) {
             if (input.trim().isEmpty()) {
                 System.out.println("Players Scores:");
-                System.out.println(Printer.ANSI_PURPLE + clientManager.getGameState().getUsername() + ": " + Printer.ANSI_RESET + clientManager.getGameState().getScore() + " points");
+                System.out.println(Printer.PURPLE + clientManager.getGameState().getUsername() + ": " + Printer.RESET + clientManager.getGameState().getScore() + " points");
                 for (PlayerState player : clientManager.getGameState().getPlayerStates()) {
-                    System.out.println(Printer.ANSI_PURPLE + player.getUsername() + ": " + Printer.ANSI_RESET + player.getScore() + " points");
+                    System.out.println(Printer.PURPLE + player.getUsername() + ": " + Printer.RESET + player.getScore() + " points");
                 }
             } else {
                 System.err.println("Usage: /scores");

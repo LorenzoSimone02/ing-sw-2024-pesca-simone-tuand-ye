@@ -12,7 +12,7 @@ public class ClientChooseColorPacketHandler extends ClientPacketHandler {
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         ChooseColorPacket chooseColorPacket = (ChooseColorPacket) packet;
-        System.out.println(Printer.ANSI_GREEN + chooseColorPacket.getUsername() + " has chosen the color " + chooseColorPacket.getColor() + Printer.ANSI_RESET);
+        System.out.println(Printer.GREEN + chooseColorPacket.getUsername() + " has chosen the color " + chooseColorPacket.getColor() + Printer.RESET);
         if (chooseColorPacket.getUsername().equals(clientManager.getGameState().getUsername())) {
             clientManager.getGameState().setColor(chooseColorPacket.getColor());
             clientManager.getGameState().setClientStatus(ClientStatusEnum.PLAYING);
