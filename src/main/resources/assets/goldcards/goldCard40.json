@@ -27,9 +27,11 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "backResources": {
-    "type": "INSECT"
-  },
+  "backResources": [
+    {
+      "type": "INSECT"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "INSECT"

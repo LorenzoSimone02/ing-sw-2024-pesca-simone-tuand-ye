@@ -27,9 +27,11 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "backResources": {
-    "type": "PLANT"
-  },
+  "backResources": [
+    {
+      "type": "PLANT"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "PLANT"

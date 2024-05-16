@@ -30,9 +30,11 @@
       }
     }
   ],
-  "backResources": {
-    "type": "ANIMAL"
-  },
+  "backResources": [
+    {
+      "type": "ANIMAL"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "ANIMAL"

@@ -30,9 +30,11 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "backResources": {
-    "type": "ANIMAL"
-  },
+  "backResources": [
+    {
+      "type": "ANIMAL"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "ANIMAL"

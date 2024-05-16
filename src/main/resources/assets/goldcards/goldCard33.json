@@ -30,9 +30,11 @@
       }
     }
   ],
-  "backResources": {
-    "type": "INSECT"
-  },
+  "backResources": [
+    {
+      "type": "INSECT"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "INSECT"

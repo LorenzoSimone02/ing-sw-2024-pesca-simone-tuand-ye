@@ -27,9 +27,11 @@
       "location": "BOTTOM_RIGHT"
     }
   ],
-  "backResources": {
-    "type": "FUNGI"
-  },
+  "backResources": [
+    {
+      "type": "FUNGI"
+    }
+  ],
   "resourcesNeeded": [
     {
       "type": "FUNGI"
