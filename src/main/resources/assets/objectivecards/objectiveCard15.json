@@ -2,5 +2,6 @@
   "id": 101,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "OBJECT_INKWELL"
+  "objectiveType": "OBJECT_INKWELL",
+  "objectiveDescription": "2 punti per insieme di oggetti con: INKWELL, INKWELL"
 }

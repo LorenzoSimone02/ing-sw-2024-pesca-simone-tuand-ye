@@ -2,5 +2,6 @@
   "id": 102,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "OBJECT_QUILL"
+  "objectiveType": "OBJECT_QUILL",
+  "objectiveDescription": "2 punti per insieme di oggetti con: QUILL, QUILL"
 }

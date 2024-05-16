@@ -2,5 +2,6 @@
   "id": 99,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "OBJECT_QUILL_INKWELL_MANUSCRIPT"
+  "objectiveType": "OBJECT_QUILL_INKWELL_MANUSCRIPT",
+  "objectiveDescription": "3 punti per insieme di oggetti con: QUILL, INKWELL, MANUSCRIPT"
 }

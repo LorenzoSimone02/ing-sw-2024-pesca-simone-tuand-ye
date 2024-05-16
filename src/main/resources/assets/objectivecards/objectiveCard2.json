@@ -2,5 +2,6 @@
   "id": 88,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "TOP_LEFT_DIAGONAL_GREEN"
+  "objectiveType": "TOP_LEFT_DIAGONAL_GREEN",
+  "objectiveDescription": "2 punti per ogni tre carte verdi su diagonale in discesa"
 }

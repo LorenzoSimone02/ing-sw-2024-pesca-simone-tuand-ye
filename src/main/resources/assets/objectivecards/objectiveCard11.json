@@ -2,5 +2,6 @@
   "id": 97,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "RESOURCE_ANIMAL"
+  "objectiveType": "RESOURCE_ANIMAL",
+  "objectiveDescription": "2 punti per ogni tre risorse ANIMAL"
 }

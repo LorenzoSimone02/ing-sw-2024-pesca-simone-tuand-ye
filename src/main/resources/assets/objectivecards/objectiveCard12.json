@@ -2,5 +2,6 @@
   "id": 98,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "RESOURCE_INSECT"
+  "objectiveType": "RESOURCE_INSECT",
+  "objectiveDescription": "2 punti per ogni tre risorse INSECT"
 }

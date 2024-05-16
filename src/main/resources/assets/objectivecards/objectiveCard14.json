@@ -2,5 +2,6 @@
   "id": 100,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "OBJECT_MANUSCRIPT"
+  "objectiveType": "OBJECT_MANUSCRIPT",
+  "objectiveDescription": "2 punti per insieme di oggetti con: MANUSCRIPT, MANUSCRIPT"
 }

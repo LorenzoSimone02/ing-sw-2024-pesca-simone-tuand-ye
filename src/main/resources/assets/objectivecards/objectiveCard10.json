@@ -2,5 +2,6 @@
   "id": 96,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "RESOURCE_PLANT"
+  "objectiveType": "RESOURCE_PLANT",
+  "objectiveDescription": "2 punti per ogni tre risorse PLANT"
 }

@@ -2,5 +2,6 @@
   "id": 91,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "BOTTOM_RIGHT_L_SHAPE"
+  "objectiveType": "BOTTOM_RIGHT_L_SHAPE",
+  "objectiveDescription": "3 punti per schema a L in basso a destra: rosso-rosso-verde"
 }

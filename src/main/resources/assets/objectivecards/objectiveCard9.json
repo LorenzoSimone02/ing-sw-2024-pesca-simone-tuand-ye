@@ -2,5 +2,6 @@
   "id": 95,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "RESOURCE_FUNGI"
+  "objectiveType": "RESOURCE_FUNGI",
+  "objectiveDescription": "2 punti per ogni tre risorse FUNGI"
 }

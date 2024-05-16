@@ -2,5 +2,6 @@
   "id": 90,
   "color": "GOLD",
   "face": "FRONT",
-  "objectiveType": "TOP_LEFT_DIAGONAL_PURPLE"
+  "objectiveType": "TOP_LEFT_DIAGONAL_PURPLE",
+  "objectiveDescription": "2 punti per ogni tre carte viola su diagonale in discesa"
 }
