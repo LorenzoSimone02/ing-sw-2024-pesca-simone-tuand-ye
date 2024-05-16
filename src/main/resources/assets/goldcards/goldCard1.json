@@ -30,7 +30,7 @@
       }
     }
   ],
-  "backResource": {
+  "backResources": {
     "type": "FUNGI"
   },
   "resourcesNeeded": [
