@@ -30,4 +30,8 @@ public class ObjectStrategy implements ObjectiveStrategy {
         points = counter * pointsPerPattern;
         return points;
     }
+
+    public int getPointsPerPattern() {
+        return pointsPerPattern;
+    }
 }

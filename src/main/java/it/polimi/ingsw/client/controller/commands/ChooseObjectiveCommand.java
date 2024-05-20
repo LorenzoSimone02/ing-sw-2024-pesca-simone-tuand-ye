@@ -17,8 +17,10 @@ public class ChooseObjectiveCommand extends Command {
         if (isExecutable(clientManager)) {
             if (input.split(" ").length == 1) {
                 String option = input.split(" ")[0];
-                if (option.equals("1") || option.equals("2")) {
-                    clientManager.getNetworkHandler().sendPacket(new ChooseObjectivePacket(Integer.parseInt(option)));
+                if (option.equals("1")) {
+                    clientManager.getNetworkHandler().sendPacket(new ChooseObjectivePacket(clientManager.getGameState().getProposedCards().getFirst().getId()));
+                } else if (option.equals("2")) {
+                    clientManager.getNetworkHandler().sendPacket(new ChooseObjectivePacket(clientManager.getGameState().getProposedCards().get(1).getId()));
                 } else {
                     System.err.println("Invalid objective. Type 1 for the first ObjectiveCard or 2 for the second.");
                 }

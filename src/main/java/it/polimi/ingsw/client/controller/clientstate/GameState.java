@@ -19,11 +19,13 @@ public class GameState {
     private final ArrayList<String> chatMessages;
     private ClientStatusEnum clientStatus;
     private long lastPing;
-    private ArrayList<Card> gameCards;
-    private ArrayList<ResourceCard> cardsInHand;
+    private final ArrayList<Card> allCards;
+    private final ArrayList<Card> placedCards;
+    private final ArrayList<ResourceCard> cardsInHand;
+    private final ArrayList<ResourceCard> cardsOnGround;
     private StarterCard starterCard;
+    private final ArrayList<ObjectiveCard> proposedCards;
     private ObjectiveCard objectiveCard;
-    //TODO: private ArrayList<Integer> cardsOnTable;
     //TODO: Resources
 
     private final ArrayList<PlayerState> playerStates;
@@ -34,8 +36,13 @@ public class GameState {
     public GameState() {
         this.uuid = UUID.randomUUID();
         score = 0;
-        playerStates = new ArrayList<>();
+        allCards = new ArrayList<>(80);
+        placedCards = new ArrayList<>();
+        playerStates = new ArrayList<>(3);
+        cardsOnGround = new ArrayList<>(6);
         chatMessages = new ArrayList<>();
+        cardsInHand = new ArrayList<>(3);
+        proposedCards = new ArrayList<>(2);
         clientStatus = ClientStatusEnum.DISCONNECTED;
         lastPing = System.currentTimeMillis();
         loadCards();
@@ -117,6 +124,14 @@ public class GameState {
         this.clientStatus = clientStatus;
     }
 
+    public ArrayList<ObjectiveCard> getProposedCards() {
+        return proposedCards;
+    }
+
+    public void addProposedCard(ObjectiveCard card) {
+        proposedCards.add(card);
+    }
+
     public long getLastPing() {
         return lastPing;
     }
@@ -150,35 +165,34 @@ public class GameState {
     }
 
     public void loadCards(){
-        gameCards = new ArrayList<>();
 
         File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ResourceCard card = new ResourceCard(file);
-            gameCards.add(card);
+            allCards.add(card);
         }
 
         folder = Paths.get("src/main/resources/assets/goldcards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             GoldCard card = new GoldCard(file);
-            gameCards.add(card);
+            allCards.add(card);
         }
 
         folder = Paths.get("src/main/resources/assets/startercards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             StarterCard card = new StarterCard(file);
-            gameCards.add(card);
+            allCards.add(card);
         }
 
         folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ObjectiveCard card = new ObjectiveCard(file);
-            gameCards.add(card);
+            allCards.add(card);
         }
     }
 
     public Card getCardById(int id) {
-        for (Card card : gameCards) {
+        for (Card card : allCards) {
             if (card.getId() == id) {
                 return card;
             }
@@ -186,12 +200,28 @@ public class GameState {
         return null;
     }
 
-    public ArrayList<Card> getGameCards() {
-        return gameCards;
+    public ArrayList<Card> getPlacedCards() {
+        return placedCards;
     }
 
     public ArrayList<ResourceCard> getCardsInHand() {
         return cardsInHand;
+    }
+
+    public void addCardInHand(ResourceCard card) {
+        cardsInHand.add(card);
+    }
+
+    public void removeCardInHand(ResourceCard card) {
+        cardsInHand.remove(card);
+    }
+
+    public ArrayList<ResourceCard> getCardsOnGround() {
+        return cardsOnGround;
+    }
+
+    public void addCardOnGround(ResourceCard card) {
+        cardsOnGround.add(card);
     }
 }
 

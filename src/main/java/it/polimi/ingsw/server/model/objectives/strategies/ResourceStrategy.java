@@ -8,8 +8,7 @@ import java.util.Collections;
 
 public class ResourceStrategy implements ObjectiveStrategy {
 
-    private ResourceTypeEnum resourceRequirement;
-
+    private final ResourceTypeEnum resourceRequirement;
     int numberOfResource;
     int pointsPerPattern;
 
@@ -21,5 +20,9 @@ public class ResourceStrategy implements ObjectiveStrategy {
 
     public int calculatePoints(Player player) {
          return Math.floorDiv(Collections.frequency(player.getResources(), resourceRequirement),numberOfResource) * pointsPerPattern;
+    }
+
+    public int getPointsPerPattern() {
+        return pointsPerPattern;
     }
 }

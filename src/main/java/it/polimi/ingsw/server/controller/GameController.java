@@ -24,12 +24,14 @@ import java.util.stream.Collectors;
 public class GameController {
 
     private Game game;
+    private final ArrayList<Card> allCards;
     private final ArrayList<PlayerController> playerControllers;
     private final ServerNetworkHandler networkHandler;
 
     public GameController(ServerNetworkHandler networkHandler) {
         this.networkHandler = networkHandler;
         this.playerControllers = new ArrayList<>();
+        this.allCards = new ArrayList<>(80);
     }
 
     public Game getGame() {
@@ -223,6 +225,7 @@ public class GameController {
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ResourceCard card = new ResourceCard(file);
             resourceDeck.addCard(card);
+            allCards.add(card);
         }
         resourceDeck.shuffleDeck();
         game.getTable().setResourceDeck(resourceDeck);
@@ -232,6 +235,7 @@ public class GameController {
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             GoldCard card = new GoldCard(file);
             goldDeck.addCard(card);
+            allCards.add(card);
         }
         goldDeck.shuffleDeck();
         game.getTable().setGoldDeck(goldDeck);
@@ -241,6 +245,7 @@ public class GameController {
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             StarterCard card = new StarterCard(file);
             starterDeck.addCard(card);
+            allCards.add(card);
         }
         starterDeck.shuffleDeck();
         game.getTable().setStarterDeck(starterDeck);
@@ -250,6 +255,7 @@ public class GameController {
         for (File file : Objects.requireNonNull(folder.listFiles())) {
             ObjectiveCard card = new ObjectiveCard(file);
             objectiveDeck.addCard(card);
+            allCards.add(card);
         }
         objectiveDeck.shuffleDeck();
         game.getTable().setObjectiveDeck(objectiveDeck);
@@ -358,5 +364,14 @@ public class GameController {
             }
         }
         return Optional.empty();
+    }
+
+    public synchronized Card getCardById(int ID){
+        for (Card card : allCards) {
+            if (card.getId() == ID) {
+                return card;
+            }
+        }
+        return null;
     }
 }

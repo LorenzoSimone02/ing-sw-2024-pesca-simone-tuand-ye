@@ -37,4 +37,8 @@ public class BottomRightLShape implements ObjectiveStrategy {
         }
         return points;
     }
+
+    public int getPointsPerPattern() {
+        return pointsPerPattern;
+    }
 }

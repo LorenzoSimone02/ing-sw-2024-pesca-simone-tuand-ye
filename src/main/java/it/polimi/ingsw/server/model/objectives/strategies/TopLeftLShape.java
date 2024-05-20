@@ -7,8 +7,8 @@ import it.polimi.ingsw.server.model.player.Player;
 
 public class TopLeftLShape implements ObjectiveStrategy {
 
-    private CardColorEnum columnCardsColor;
-    private CardColorEnum diagonalCardColor;
+    private final CardColorEnum columnCardsColor;
+    private final CardColorEnum diagonalCardColor;
     int pointsPerPattern;
 
     public TopLeftLShape(CardColorEnum columnCardsColor, CardColorEnum diagonalCardColor, int pointsPerPattern) {
@@ -36,6 +36,10 @@ public class TopLeftLShape implements ObjectiveStrategy {
             }
         }
         return points;
+    }
+
+    public int getPointsPerPattern() {
+        return pointsPerPattern;
     }
 }
 
