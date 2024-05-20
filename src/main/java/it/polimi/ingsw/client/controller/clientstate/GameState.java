@@ -20,7 +20,7 @@ public class GameState {
     private ClientStatusEnum clientStatus;
     private long lastPing;
     private final ArrayList<Card> allCards;
-    private final ArrayList<Card> placedCards;
+    private final ResourceCard[][] cardsPlaced;
     private final ArrayList<ResourceCard> cardsInHand;
     private final ArrayList<Card> cardsOnGround;
     private StarterCard starterCard;
@@ -37,7 +37,7 @@ public class GameState {
         this.uuid = UUID.randomUUID();
         score = 0;
         allCards = new ArrayList<>(80);
-        placedCards = new ArrayList<>();
+        cardsPlaced = new ResourceCard[81][81];
         playerStates = new ArrayList<>(3);
         cardsOnGround = new ArrayList<>(6);
         chatMessages = new ArrayList<>();
@@ -154,6 +154,7 @@ public class GameState {
 
     public void setStarterCard(StarterCard starterCard) {
         this.starterCard = starterCard;
+        setCardPlaced(starterCard, 40, 40);
     }
 
     public ObjectiveCard getObjectiveCard() {
@@ -200,8 +201,12 @@ public class GameState {
         return null;
     }
 
-    public ArrayList<Card> getPlacedCards() {
-        return placedCards;
+    public ResourceCard[][] getCardsPlaced() {
+        return cardsPlaced;
+    }
+
+    public void setCardPlaced(ResourceCard card, int x, int y) {
+        cardsPlaced[x][y] = card;
     }
 
     public ArrayList<ResourceCard> getCardsInHand() {

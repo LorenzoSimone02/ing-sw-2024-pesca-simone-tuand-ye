@@ -7,14 +7,26 @@ import it.polimi.ingsw.server.controller.packethandling.ServerPlaceCardPacketHan
 
 public class PlaceCardPacket extends Packet {
 
+    private String player;
     private final int cardId;
     private final int xCoord;
     private final int yCoord;
+
+    public PlaceCardPacket(String player, int cardId, int xCoord, int yCoord) {
+        this.player = player;
+        this.cardId = cardId;
+        this.xCoord = xCoord;
+        this.yCoord = yCoord;
+    }
 
     public PlaceCardPacket(int cardId, int xCoord, int yCoord) {
         this.cardId = cardId;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+    }
+
+    public String getPlayer() {
+        return player;
     }
 
     public int getCardId() {

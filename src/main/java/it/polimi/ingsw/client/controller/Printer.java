@@ -403,4 +403,36 @@ public class Printer {
                     "|" + b_l_res + "_________" + b_r_res + "|");
         }
     }
+
+    public static void printCardsPlaced(ResourceCard[][] cards) {
+        int minX = cards.length, maxX = 0, minY = cards.length, maxY = 0;
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = 0; j < cards.length; j++) {
+                if (cards[i][j] != null) {
+                    if (i < minX) minX = i;
+                    if (i > maxX) maxX = i;
+                    if (j < minY) minY = j;
+                    if (j > maxY) maxY = j;
+                }
+            }
+        }
+        System.out.print("   ");
+        for (int i = minY; i <= maxY; i++) {
+           System.out.print(i + (i < 9 ? "  " : " "));
+        }
+        System.out.println();
+
+        for (int i = minX; i <= maxX; i++) {
+            System.out.print(i + "  ");
+            for (int j = minY; j <= maxY; j++) {
+                Card card = cards[i][j];
+                if (card != null) {
+                    System.out.print("X  ");
+                } else {
+                    System.out.print("   ");
+                }
+            }
+            System.out.println();
+        }
+    }
 }

@@ -2,18 +2,16 @@ package it.polimi.ingsw.client.controller.clientstate;
 
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
-import java.util.ArrayList;
-
 public class PlayerState {
 
     private final String username;
     private String color;
-    private final ArrayList<ResourceCard> cardsPlaced;
+    private final ResourceCard[][] cardsPlaced;
     int score;
 
     public PlayerState(String username) {
         this.username = username;
-        this.cardsPlaced = new ArrayList<>(10);
+        this.cardsPlaced = new ResourceCard[81][81];
         this.score = 0;
     }
 
@@ -37,15 +35,11 @@ public class PlayerState {
         this.color = color;
     }
 
-    public ArrayList<ResourceCard> getCardsPlaced() {
+    public ResourceCard[][] getCardsPlaced() {
         return cardsPlaced;
     }
 
-    public void addCardPlaced(ResourceCard card) {
-        cardsPlaced.add(card);
-    }
-
-    public void removeCardPlaced(ResourceCard card) {
-        cardsPlaced.remove(card);
+    public void setCardPlaced(ResourceCard card, int x, int y) {
+        cardsPlaced[x][y] = card;
     }
 }

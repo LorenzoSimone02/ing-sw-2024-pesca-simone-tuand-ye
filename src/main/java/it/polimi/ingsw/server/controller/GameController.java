@@ -202,7 +202,7 @@ public class GameController {
     public synchronized void assignStarterCard() {
         for (Player player : game.getPlayers()) {
             StarterCard starterCard = (StarterCard) game.getTable().getStarterDeck().drawCard();
-            player.setStarterCard(starterCard);
+            getPlayerController(player).setStarterCard(starterCard);
         }
     }
 

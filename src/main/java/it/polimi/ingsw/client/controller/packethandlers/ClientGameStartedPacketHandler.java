@@ -24,10 +24,7 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
         }
 
         for (String player : gameStartedPacket.getPlayers()) {
-            if (!player.equals(clientManager.getGameState().getUsername())) {
-                PlayerState playerState = new PlayerState(player);
-                clientManager.getGameState().addPlayerState(playerState);
-            } else {
+            if (player.equals(clientManager.getGameState().getUsername())) {
                 for (Integer cardID : gameStartedPacket.getStarterCards().keySet()) {
                     if (gameStartedPacket.getStarterCards().get(cardID).equals(player)) {
                         clientManager.getGameState().setStarterCard((StarterCard) clientManager.getGameState().getCardById(cardID));
@@ -38,9 +35,10 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
                         clientManager.getGameState().addCardInHand((ResourceCard) clientManager.getGameState().getCardById(cardID));
                     }
                 }
+            } else {
+                clientManager.getGameState().addPlayerState(new PlayerState(player));
             }
         }
-
         clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_COLOR);
         System.out.println(Printer.CYAN + "The game has started.\n" +
                 "Before playing, choose your Token color with the command /chooseColor <color>" + Printer.RESET);

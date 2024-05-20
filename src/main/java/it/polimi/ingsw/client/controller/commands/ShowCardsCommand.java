@@ -26,6 +26,7 @@ public class ShowCardsCommand extends Command {
                 }
             } else if (arg.equalsIgnoreCase("placed")) {
                 System.out.println(Printer.GREEN + "Placed cards:" + Printer.RESET);
+                Printer.printCardsPlaced(clientManager.getGameState().getCardsPlaced());
             } else if (arg.equalsIgnoreCase("ground")) {
                 System.out.println(Printer.GREEN + "Cards on ground:" + Printer.RESET);
                 for (Card card : clientManager.getGameState().getCardsOnGround()) {
@@ -38,9 +39,7 @@ public class ShowCardsCommand extends Command {
                 for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
                     if (arg.equalsIgnoreCase(playerState.getUsername())) {
                         System.out.println(Printer.GREEN + "Placed Cards of " + playerState.getUsername() + ":" + Printer.RESET);
-                        for (Card card : playerState.getCardsPlaced()) {
-                            Printer.printCard(card);
-                        }
+                        Printer.printCardsPlaced(playerState.getCardsPlaced());
                         return;
                     }
                 }

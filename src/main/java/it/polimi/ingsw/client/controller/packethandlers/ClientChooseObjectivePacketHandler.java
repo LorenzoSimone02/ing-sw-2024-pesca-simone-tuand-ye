@@ -23,7 +23,7 @@ public class ClientChooseObjectivePacketHandler extends ClientPacketHandler {
             ObjectiveCard card2 = (ObjectiveCard) clientManager.getGameState().getCardById(chooseObjectivePacket.getCardID2());
             clientManager.getGameState().addProposedCard(card1);
             clientManager.getGameState().addProposedCard(card2);
-            System.out.println("Choose one of the following cards with /chooseObjective <1/2>:");
+            System.out.println(Printer.CYAN + "Choose one of the following cards with /chooseObjective <1/2>:" + Printer.RESET);
             Printer.printCard(card1);
             Printer.printCard(card2);
         }

@@ -49,6 +49,17 @@ public class ResourceCardTest {
     }
 
     @Test
+    @DisplayName("Print Cards Test")
+    public void printCardsTest() {
+        ResourceCard[][] cards = new ResourceCard[3][3];
+        StarterCard starterCard = startCardArray.getFirst();
+        cards[0][0] = starterCard;
+        cards[0][2] = starterCard;
+        cards[1][1] = starterCard;
+        Printer.printCardsPlaced(cards);
+    }
+
+    @Test
     @DisplayName("Print Resource Card Test")
     public void printResourceCardTest() {
         for (ResourceCard card : resCardArray) {

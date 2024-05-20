@@ -15,7 +15,7 @@ public class PlaceCardCommand extends Command {
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager)) {
+        if (isExecutable(clientManager) && clientManager.getGameState().getCardsInHand().size() == 3) {
             String[] split = input.split(" ");
             if (split.length == 3) {
                 int id = Integer.parseInt(split[0]);

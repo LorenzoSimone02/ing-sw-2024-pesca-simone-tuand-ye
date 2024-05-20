@@ -22,7 +22,6 @@ public record PlayerController(Player player) {
             card.setXCoord(x);
             card.setYCoord(y);
             player.setCard(card, x, y);
-            player.removeCardInHand(card);
             for (Corner corner : card.getCorners()) {
                 if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY) {
                     player.addResource(corner.getResource());

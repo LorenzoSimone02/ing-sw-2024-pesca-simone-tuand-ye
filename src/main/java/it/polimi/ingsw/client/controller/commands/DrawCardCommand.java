@@ -2,6 +2,8 @@ package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
+import it.polimi.ingsw.network.packets.DrawCardPacket;
+import it.polimi.ingsw.server.model.card.Card;
 
 public class DrawCardCommand extends Command {
 
@@ -13,21 +15,24 @@ public class DrawCardCommand extends Command {
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager)) {
+        if (isExecutable(clientManager) && clientManager.getGameState().getCardsInHand().size() < 3) {
             String[] split = input.split(" ");
             if (split.length == 1) {
                 String arg = split[0];
-                if (arg.equalsIgnoreCase("1")) {
-
-                } else if (arg.equalsIgnoreCase("2")) {
-
-                } else if (arg.equalsIgnoreCase("3")) {
-
-                } else if (arg.equalsIgnoreCase("4")) {
-
+                int selected;
+                try{
+                    selected = Integer.parseInt(arg);
+                } catch (NumberFormatException e) {
+                    System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
+                    return;
+                }
+                if (selected > 0 && selected < 5) {
+                    Card card = clientManager.getGameState().getCardsOnGround().get(selected - 1);
+                    clientManager.getNetworkHandler().sendPacket(new DrawCardPacket(card.getId()));
                 } else if (arg.equalsIgnoreCase("gold")) {
-
+                    clientManager.getNetworkHandler().sendPacket(new DrawCardPacket(true));
                 } else if (arg.equalsIgnoreCase("resources")) {
+                    clientManager.getNetworkHandler().sendPacket(new DrawCardPacket(false));
                 } else {
                     System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
                 }

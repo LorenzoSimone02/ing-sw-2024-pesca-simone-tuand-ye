@@ -28,6 +28,7 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
                     return;
                 }
             }
+            controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Token Color." + Printer.RESET));
             controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
             controller.proposeObjectiveCards();
         } catch (AlreadyTakenColorException e) {

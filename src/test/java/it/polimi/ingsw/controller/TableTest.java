@@ -1,15 +1,16 @@
 package it.polimi.ingsw.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.*;
-import it.polimi.ingsw.server.controller.exceptions.EmptyDeckException;
+import it.polimi.ingsw.server.model.card.Card;
+import it.polimi.ingsw.server.model.card.GoldCard;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.game.Table;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TableTest {
 
@@ -67,11 +68,7 @@ public class TableTest {
         controller.startGame();
 
         for (Player player : controller.getGame().getPlayers()) {
-            try {
-                player.addCardInHand(table.getResourceDeck().drawCard());
-            } catch (EmptyDeckException e) {
-                throw new RuntimeException();
-            }
+            player.addCardInHand(table.getResourceDeck().drawCard());
         }
     }
 
@@ -84,11 +81,7 @@ public class TableTest {
         controller.startGame();
 
         for (Player player : controller.getGame().getPlayers()) {
-            try {
-                player.addCardInHand(table.getGoldDeck().drawCard());
-            } catch (EmptyDeckException e) {
-                throw new RuntimeException();
-            }
+            player.addCardInHand(table.getGoldDeck().drawCard());
         }
     }
 }
