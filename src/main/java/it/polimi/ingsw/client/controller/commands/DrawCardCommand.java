@@ -7,7 +7,7 @@ public class DrawCardCommand extends Command {
 
     public DrawCardCommand() {
         commandName = "/drawCard";
-        description = "  Draw a Card on the ground or from a Deck\n  Usage: /drawCard TODO";
+        description = "  Draw a Card on the ground or from a Deck\n  Usage: /drawCard <1/2/3/4/resources/gold>";
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 
@@ -16,9 +16,23 @@ public class DrawCardCommand extends Command {
         if (isExecutable(clientManager)) {
             String[] split = input.split(" ");
             if (split.length == 1) {
+                String arg = split[0];
+                if (arg.equalsIgnoreCase("1")) {
 
+                } else if (arg.equalsIgnoreCase("2")) {
+
+                } else if (arg.equalsIgnoreCase("3")) {
+
+                } else if (arg.equalsIgnoreCase("4")) {
+
+                } else if (arg.equalsIgnoreCase("gold")) {
+
+                } else if (arg.equalsIgnoreCase("resources")) {
+                } else {
+                    System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
+                }
             } else {
-                System.err.println("Usage: /drawCard TODO");
+                System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
             }
         } else {
             System.err.println("You can't draw a Card now.");

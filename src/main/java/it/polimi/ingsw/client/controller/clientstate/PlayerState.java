@@ -8,12 +8,12 @@ public class PlayerState {
 
     private final String username;
     private String color;
-    private final ArrayList<ResourceCard> cardsInHand;
+    private final ArrayList<ResourceCard> cardsPlaced;
     int score;
 
     public PlayerState(String username) {
         this.username = username;
-        this.cardsInHand = new ArrayList<>(3);
+        this.cardsPlaced = new ArrayList<>(10);
         this.score = 0;
     }
 
@@ -37,15 +37,15 @@ public class PlayerState {
         this.color = color;
     }
 
-    public ArrayList<ResourceCard> getCardsInHand() {
-        return cardsInHand;
+    public ArrayList<ResourceCard> getCardsPlaced() {
+        return cardsPlaced;
     }
 
-    public void addCardInHand(ResourceCard card) {
-        cardsInHand.add(card);
+    public void addCardPlaced(ResourceCard card) {
+        cardsPlaced.add(card);
     }
 
-    public void removeCardInHand(ResourceCard card) {
-        cardsInHand.remove(card);
+    public void removeCardPlaced(ResourceCard card) {
+        cardsPlaced.remove(card);
     }
 }

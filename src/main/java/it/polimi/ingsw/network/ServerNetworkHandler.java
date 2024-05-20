@@ -18,6 +18,7 @@ public class ServerNetworkHandler {
     private final GameController gameController;
     private boolean isLobby;
 
+    //TODO: Fix problem of reused gameIDs after game ends
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
         this.rmiPort = rmiPort;

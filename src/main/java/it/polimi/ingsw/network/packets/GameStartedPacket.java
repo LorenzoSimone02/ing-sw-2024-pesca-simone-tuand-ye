@@ -15,6 +15,7 @@ public class GameStartedPacket extends Packet {
     private final int gameID;
     private final ArrayList<String> players;
     private final HashMap<Integer, String> cardsInHands;
+    private final HashMap<Integer, String> starterCards;
     private final ArrayList<Integer> cardsOnGround;
     private final String firstPlayer;
 
@@ -23,12 +24,14 @@ public class GameStartedPacket extends Packet {
         this.players = new ArrayList<>();
         this.cardsInHands = new HashMap<>();
         this.cardsOnGround = new ArrayList<>();
+        this.starterCards = new HashMap<>();
 
         for (Player player : game.getPlayers()) {
             players.add(player.getUsername());
             for (Card card : player.getCardsInHand()) {
                 cardsInHands.put(card.getId(), player.getUsername());
             }
+            starterCards.put(player.getStarterCard().getId(), player.getUsername());
         }
         for (Card card : game.getTable().getCardsOnGround()) {
             cardsOnGround.add(card.getId());
@@ -57,6 +60,10 @@ public class GameStartedPacket extends Packet {
 
     public ArrayList<Integer> getCardsOnGround() {
         return cardsOnGround;
+    }
+
+    public HashMap<Integer, String> getStarterCards() {
+        return starterCards;
     }
 
     @Override

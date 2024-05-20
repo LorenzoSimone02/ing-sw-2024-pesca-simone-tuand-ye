@@ -32,12 +32,13 @@ public class ShowCardsCommand extends Command {
                     Printer.printCard(card);
                 }
             } else if (arg.equalsIgnoreCase("objective")) {
+                System.out.println(Printer.GREEN + "Your personal Objective Card:" + Printer.RESET);
                 Printer.printCard(clientManager.getGameState().getObjectiveCard());
             } else {
                 for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
                     if (arg.equalsIgnoreCase(playerState.getUsername())) {
-                        System.out.println(Printer.GREEN + "Cards of " + playerState.getUsername() + ":" + Printer.RESET);
-                        for (Card card : playerState.getCardsInHand()) {
+                        System.out.println(Printer.GREEN + "Placed Cards of " + playerState.getUsername() + ":" + Printer.RESET);
+                        for (Card card : playerState.getCardsPlaced()) {
                             Printer.printCard(card);
                         }
                         return;

@@ -7,6 +7,7 @@ import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 
 public class ClientGameStartedPacketHandler extends ClientPacketHandler {
 
@@ -19,19 +20,19 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
 
         for (Integer cardID : gameStartedPacket.getCardsOnGround()) {
-            clientManager.getGameState().addCardOnGround((ResourceCard) clientManager.getGameState().getCardById(cardID));
+            clientManager.getGameState().addCardOnGround(clientManager.getGameState().getCardById(cardID));
         }
 
         for (String player : gameStartedPacket.getPlayers()) {
             if (!player.equals(clientManager.getGameState().getUsername())) {
                 PlayerState playerState = new PlayerState(player);
-                for (Integer cardID : gameStartedPacket.getCardsInHands().keySet()) {
-                    if (gameStartedPacket.getCardsInHands().get(cardID).equals(player)) {
-                        playerState.addCardInHand((ResourceCard) clientManager.getGameState().getCardById(cardID));
-                    }
-                }
                 clientManager.getGameState().addPlayerState(playerState);
             } else {
+                for (Integer cardID : gameStartedPacket.getStarterCards().keySet()) {
+                    if (gameStartedPacket.getStarterCards().get(cardID).equals(player)) {
+                        clientManager.getGameState().setStarterCard((StarterCard) clientManager.getGameState().getCardById(cardID));
+                    }
+                }
                 for (Integer cardID : gameStartedPacket.getCardsInHands().keySet()) {
                     if (gameStartedPacket.getCardsInHands().get(cardID).equals(player)) {
                         clientManager.getGameState().addCardInHand((ResourceCard) clientManager.getGameState().getCardById(cardID));

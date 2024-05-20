@@ -22,11 +22,11 @@ public class GameState {
     private final ArrayList<Card> allCards;
     private final ArrayList<Card> placedCards;
     private final ArrayList<ResourceCard> cardsInHand;
-    private final ArrayList<ResourceCard> cardsOnGround;
+    private final ArrayList<Card> cardsOnGround;
     private StarterCard starterCard;
     private final ArrayList<ObjectiveCard> proposedCards;
     private ObjectiveCard objectiveCard;
-    //TODO: Resources
+    //TODO: Resources and REDO PlacedCards
 
     private final ArrayList<PlayerState> playerStates;
     private String firstPlayer;
@@ -216,11 +216,11 @@ public class GameState {
         cardsInHand.remove(card);
     }
 
-    public ArrayList<ResourceCard> getCardsOnGround() {
+    public ArrayList<Card> getCardsOnGround() {
         return cardsOnGround;
     }
 
-    public void addCardOnGround(ResourceCard card) {
+    public void addCardOnGround(Card card) {
         cardsOnGround.add(card);
     }
 }
