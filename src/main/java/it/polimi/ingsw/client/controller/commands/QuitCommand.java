@@ -12,6 +12,8 @@ public class QuitCommand extends Command {
         addValidStatus(ClientStatusEnum.LOBBY);
         addValidStatus(ClientStatusEnum.LOGGED);
         addValidStatus(ClientStatusEnum.PLAYING);
+        addValidStatus(ClientStatusEnum.LAST_TURN);
+        addValidStatus(ClientStatusEnum.ENDED);
     }
 
     @Override

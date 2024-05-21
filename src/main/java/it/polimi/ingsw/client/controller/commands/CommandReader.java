@@ -45,7 +45,7 @@ public class CommandReader implements Runnable {
         this.inputCommandMap.put("/scores", new ScoresCommand());
         this.inputCommandMap.put("/join", new JoinCommand());
         this.inputCommandMap.put("/quit", new QuitCommand());
-        this.inputCommandMap.put("/endTurn", new EndTurnCommand());
+        this.inputCommandMap.put("/turnCard", new TurnCardCommand());
         this.inputCommandMap.put("/chooseColor", new ChooseColorCommand());
         this.inputCommandMap.put("/chooseObjective", new ChooseObjectiveCommand());
         this.inputCommandMap.put("/drawCard", new DrawCardCommand());

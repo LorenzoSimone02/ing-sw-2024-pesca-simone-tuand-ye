@@ -11,7 +11,8 @@ public class ScoresCommand extends Command {
         commandName = "/scores";
         description = "  Shows the scores of every Player in the Game \n  Usage: /scores";
         addValidStatus(ClientStatusEnum.PLAYING);
-        addValidStatus(ClientStatusEnum.ENDING);
+        addValidStatus(ClientStatusEnum.LAST_TURN);
+        addValidStatus(ClientStatusEnum.ENDED);
     }
 
     @Override

@@ -4,20 +4,24 @@ import it.polimi.ingsw.client.controller.packethandlers.ClientGameEndedPacketHan
 import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GameEndedPacket extends Packet {
 
-    private final String winner;
+    private final List<String> winners;
     private final HashMap<String, Integer> scores;
 
-    public GameEndedPacket(String winner, HashMap<String, Integer> scores) {
-        this.winner = winner;
-        this.scores = scores;
+    public GameEndedPacket(List<String> winners, HashMap<String, Integer> scores) {
+        this.winners = new ArrayList<>();
+        this.winners.addAll(winners);
+        this.scores = new HashMap<>();
+        this.scores.putAll(scores);
     }
 
-    public String getWinner() {
-        return winner;
+    public List<String> getWinners() {
+        return winners;
     }
 
     public HashMap<String, Integer> getScores() {

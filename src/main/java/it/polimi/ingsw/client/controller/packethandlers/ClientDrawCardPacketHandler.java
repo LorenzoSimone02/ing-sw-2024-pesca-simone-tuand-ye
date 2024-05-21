@@ -1,7 +1,9 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.packets.DrawCardPacket;
+import it.polimi.ingsw.network.packets.EndTurnPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ResourceCard;
@@ -15,7 +17,10 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().addCardInHand(card);
         if (drawCardPacket.getNewCardID() > 0) {
             Card newCard = clientManager.getGameState().getCardById(drawCardPacket.getNewCardID());
+            clientManager.getGameState().removeCardOnGround(card);
             clientManager.getGameState().addCardOnGround(newCard);
         }
+        System.out.println(Printer.GREEN + "Card drawn successfully, your turn has ended." + Printer.RESET);
+        new Thread(() -> clientManager.getNetworkHandler().sendPacket(new EndTurnPacket(clientManager.getGameState().getUsername()))).start();
     }
 }

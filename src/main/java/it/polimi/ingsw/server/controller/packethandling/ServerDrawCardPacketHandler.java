@@ -15,7 +15,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         DrawCardPacket drawCardPacket = (DrawCardPacket) packet;
-        if (controller.getPlayerController(clientConnection.getUsername()).getPlayer().getCardsInHand().size() >= 3) {
+        if (!controller.getGame().getInfo().getActivePlayer().getUsername().equals(clientConnection.getUsername()) || controller.getPlayerController(clientConnection.getUsername()).getPlayer().getCardsInHand().size() != 2) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't draw a Card now." + Printer.RESET));
             return;
         }
@@ -36,6 +36,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
             } else {
                 controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "Invalid Card." + Printer.RESET));
             }
+            return;
         }
         Card card;
         if (drawCardPacket.isGold()) {

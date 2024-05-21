@@ -10,7 +10,8 @@ public class ChatCommand extends Command {
         commandName = "/chat";
         description = "  Shows the Chat messages or send a new one \n  Usage: /chat <message> /chat -to=player <message> or /chat to see the Chat messages";
         addValidStatus(ClientStatusEnum.PLAYING);
-        addValidStatus(ClientStatusEnum.ENDING);
+        addValidStatus(ClientStatusEnum.LAST_TURN);
+        addValidStatus(ClientStatusEnum.ENDED);
     }
 
     @Override

@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -170,7 +169,7 @@ public class GameController {
             networkHandler.sendPacketToAll(gameStartedPacket);
 
             saveGameToFile();
-            game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
+            game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
             System.err.println(e.getMessage());
@@ -306,7 +305,8 @@ public class GameController {
 
     public synchronized void endGame() {
 
-        HashMap<Player, Integer> ObjectiveCardsScored = new HashMap<>();
+        HashMap<Player, Integer> objectiveCardsScored = new HashMap<>();
+        HashMap<String, Integer> playerScores = new HashMap<>();
 
         for (Player p : game.getPlayers()) {
             int currentObjectiveCardsScored = 0;
@@ -321,7 +321,8 @@ public class GameController {
             }
 
             p.setScore(p.getScore() + secretObjectivePoints + publicObjectivePoints);
-            ObjectiveCardsScored.put(p, currentObjectiveCardsScored);
+            playerScores.put(p.getUsername(), p.getScore());
+            objectiveCardsScored.put(p, currentObjectiveCardsScored);
         }
 
         //Calculate the player or the players with the maximum score
@@ -334,26 +335,21 @@ public class GameController {
 
         //If winners are more than one, query the ObjectiveCardsScored map
         if (winners.size() == 1) {
-            game.getInfo().addWinner(winners.get(0));
-            networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.get(0).getUsername() + "!"));
-
+            game.getInfo().addWinner(winners.getFirst());
+            networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.getFirst().getUsername() + "!"));
+            networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
         } else {
-            Optional<Integer> maxObjectivesScored = ObjectiveCardsScored.values().stream().max(Integer::compare);
+            Optional<Integer> maxObjectivesScored = objectiveCardsScored.values().stream().max(Integer::compare);
 
-            winners.removeIf(p -> maxObjectivesScored.isPresent() && !ObjectiveCardsScored.get(p).equals(maxObjectivesScored.get()));
-
+            winners.removeIf(p -> maxObjectivesScored.isPresent() && !objectiveCardsScored.get(p).equals(maxObjectivesScored.get()));
             if (winners.size() == 1) {
-                game.getInfo().addWinner(winners.get(0));
-                networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.get(0).getUsername() + "!"));
-
+                game.getInfo().addWinner(winners.getFirst());
+                networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             } else {
-                String winnersString = winners.stream().map(Player::getUsername).collect(Collectors.joining(", "));
                 winners.forEach(player -> game.getInfo().addWinner(player));
-                networkHandler.sendPacketToAll(new InfoPacket("The winners are: " + winnersString + "!"));
-
+                networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             }
         }
-        //TODO: EndGamePacket(?)
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {

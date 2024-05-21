@@ -16,6 +16,10 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         ChooseColorPacket chooseColorPacket = (ChooseColorPacket) packet;
+        if(controller.getGame().getInfo().getGameStatus() != GameStatusEnum.CHOOSING_COLOR){
+            controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't choose your Token Color now." + Printer.RESET));
+            return;
+        }
         if (chooseColorPacket.getColor() == null) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "Invalid Color." + Printer.RESET));
             return;

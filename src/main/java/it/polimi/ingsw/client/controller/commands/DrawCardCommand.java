@@ -15,7 +15,7 @@ public class DrawCardCommand extends Command {
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager) && clientManager.getGameState().getCardsInHand().size() < 3) {
+        if (isExecutable(clientManager)) {
             String[] split = input.split(" ");
             if (split.length == 1) {
                 String arg = split[0];
@@ -45,6 +45,6 @@ public class DrawCardCommand extends Command {
     }
 
     public boolean isExecutable(ClientManager clientManager) {
-        return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
+        return getValidStatuses().contains(clientManager.getGameState().getClientStatus()) && clientManager.getGameState().getCardsInHand().size() < 3;
     }
 }

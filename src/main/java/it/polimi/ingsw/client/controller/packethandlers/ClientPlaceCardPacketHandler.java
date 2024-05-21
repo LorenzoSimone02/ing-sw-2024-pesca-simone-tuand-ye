@@ -16,12 +16,16 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
             ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(placeCardPacket.getCardId());
             clientManager.getGameState().setCardPlaced(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
             clientManager.getGameState().removeCardInHand(card);
-            System.out.println(Printer.GREEN + "Card placed successfully" + Printer.RESET);
+            clientManager.getGameState().setScore(placeCardPacket.getNewScore());
+            clientManager.getGameState().setResources(placeCardPacket.getResources());
+            System.out.println(Printer.GREEN + "Card placed successfully\nNow draw a card with /drawCard" + Printer.RESET);
         } else {
             for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
                 if (playerState.getUsername().equals(placeCardPacket.getPlayer())) {
                     ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(placeCardPacket.getCardId());
+                    playerState.setScore(placeCardPacket.getNewScore());
                     playerState.setCardPlaced(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
+
                     break;
                 }
             }

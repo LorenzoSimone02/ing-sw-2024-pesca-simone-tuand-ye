@@ -2,10 +2,13 @@ package it.polimi.ingsw.client.controller.clientstate;
 
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.model.card.*;
+import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -26,12 +29,12 @@ public class GameState {
     private StarterCard starterCard;
     private final ArrayList<ObjectiveCard> proposedCards;
     private ObjectiveCard objectiveCard;
-    //TODO: Resources and REDO PlacedCards
+    private final HashMap<String, Integer> resources;
 
     private final ArrayList<PlayerState> playerStates;
     private String firstPlayer;
     private String activePlayer;
-    private String winner;
+    private ArrayList<String> winners;
 
     public GameState() {
         this.uuid = UUID.randomUUID();
@@ -43,6 +46,7 @@ public class GameState {
         chatMessages = new ArrayList<>();
         cardsInHand = new ArrayList<>(3);
         proposedCards = new ArrayList<>(2);
+        resources = new HashMap<>(7);
         clientStatus = ClientStatusEnum.DISCONNECTED;
         lastPing = System.currentTimeMillis();
         loadCards();
@@ -140,12 +144,12 @@ public class GameState {
         this.lastPing = lastPing;
     }
 
-    public String getWinner() {
-        return winner;
+    public ArrayList<String> getWinners() {
+        return winners;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void addWinner(String winner) {
+        winners.add(winner);
     }
 
     public StarterCard getStarterCard() {
@@ -165,7 +169,27 @@ public class GameState {
         this.objectiveCard = objectiveCard;
     }
 
-    public void loadCards(){
+    public HashMap<String, Integer> getResources() {
+        return resources;
+    }
+
+    public void setResources(HashMap<String, Integer> resources) {
+        this.resources.clear();
+        this.resources.put(ResourceTypeEnum.FUNGI.name(), 0);
+        this.resources.put(ResourceTypeEnum.ANIMAL.name(), 0);
+        this.resources.put(ResourceTypeEnum.INSECT.name(), 0);
+        this.resources.put(ResourceTypeEnum.PLANT.name(), 0);
+        this.resources.put(ObjectTypeEnum.QUILL.name(), 0);
+        this.resources.put(ObjectTypeEnum.INKWELL.name(), 0);
+        this.resources.put(ObjectTypeEnum.MANUSCRIPT.name(), 0);
+        this.resources.putAll(resources);
+    }
+
+    public void addResource(String type) {
+        resources.put(type, resources.getOrDefault(type, 0) + 1);
+    }
+
+    public void loadCards() {
 
         File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
         for (File file : Objects.requireNonNull(folder.listFiles())) {
@@ -201,6 +225,15 @@ public class GameState {
         return null;
     }
 
+    public PlayerState getPlayerStateByNick(String nickname){
+        for(PlayerState state : playerStates){
+            if(state.getUsername().equals(nickname)){
+                return state;
+            }
+        }
+        return null;
+    }
+
     public ResourceCard[][] getCardsPlaced() {
         return cardsPlaced;
     }
@@ -227,6 +260,10 @@ public class GameState {
 
     public void addCardOnGround(Card card) {
         cardsOnGround.add(card);
+    }
+
+    public void removeCardOnGround(Card card){
+        cardsOnGround.remove(card);
     }
 }
 

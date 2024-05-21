@@ -122,12 +122,17 @@ public record PlayerController(Player player) {
         starterCard.setXCoord(40);
         starterCard.setYCoord(40);
         player.setCard(starterCard, 40, 40);
+        for(Corner corner : starterCard.getCorners()){
+            if(corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace().equals(starterCard.getFace())){
+                player.addResource(corner.getResource());
+            }
+        }
     }
 
     public synchronized void turnCard(Card card) {
         if (card.getFace() == FaceEnum.FRONT) {
             card.setFace(FaceEnum.BACK);
-        } else if (card.getFace() == FaceEnum.BACK) {
+        } else {
             card.setFace(FaceEnum.FRONT);
         }
     }

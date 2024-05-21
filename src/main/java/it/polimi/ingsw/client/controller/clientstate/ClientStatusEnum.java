@@ -9,6 +9,7 @@ public enum ClientStatusEnum {
     CHOOSING_COLOR,
     CHOOSING_OBJECTIVE,
     PLAYING,
-    ENDING,
+    LAST_TURN,
+    ENDED,
     ERROR
 }

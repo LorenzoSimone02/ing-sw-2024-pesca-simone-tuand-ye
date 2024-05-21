@@ -11,11 +11,12 @@ public class PlaceCardCommand extends Command {
         commandName = "/placeCard";
         description = "  Place a Card \n  Usage: /placeCard <id> <x> <y>";
         addValidStatus(ClientStatusEnum.PLAYING);
+        addValidStatus(ClientStatusEnum.LAST_TURN);
     }
 
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager) && clientManager.getGameState().getCardsInHand().size() == 3) {
+        if (isExecutable(clientManager)) {
             String[] split = input.split(" ");
             if (split.length == 3) {
                 int id = Integer.parseInt(split[0]);
@@ -36,6 +37,6 @@ public class PlaceCardCommand extends Command {
     }
 
     public boolean isExecutable(ClientManager clientManager) {
-        return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
+        return getValidStatuses().contains(clientManager.getGameState().getClientStatus()) && clientManager.getGameState().getCardsInHand().size() == 3;
     }
 }
