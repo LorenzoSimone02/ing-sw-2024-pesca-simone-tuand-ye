@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.client.view.gui.LobbyController">
+    <children>
+        <Label fx:id="lobbyUsernameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="37.0" prefHeight="173.0" prefWidth="600.0" textAlignment="CENTER">
+            <font>
+                <Font size="14.0" />
+            </font></Label>
+    </children>
+</AnchorPane>
