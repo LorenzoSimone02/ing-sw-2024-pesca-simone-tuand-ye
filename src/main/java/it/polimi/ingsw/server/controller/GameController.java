@@ -3,10 +3,7 @@ package it.polimi.ingsw.server.controller;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
-import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
-import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.controller.exceptions.GameStartException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.exceptions.*;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.game.Game;
@@ -115,12 +112,21 @@ public class GameController {
 
     public synchronized void removePlayer(String player) {
         if (game == null) return;
-        for (Player players : game.getPlayers()) {
-            if (players.getUsername().equals(player)) {
-                playerControllers.remove(getPlayerController(players));
-                game.getPlayers().remove(players);
-                game.getInfo().setPlayersNumber(game.getPlayers().size());
+
+        Player playerToRemove = null;
+        for (Player currPlayer : game.getPlayers()) {
+            if (currPlayer.getUsername().equals(player)) {
+                playerToRemove = currPlayer;
             }
+        }
+        if (playerToRemove != null) {
+            playerControllers.remove(getPlayerController(playerToRemove));
+            game.getPlayers().remove(playerToRemove);
+            game.getInfo().setPlayersNumber(game.getPlayers().size());
+
+        } else {
+
+            throw new PlayerNotFoundException(player);
         }
     }
 

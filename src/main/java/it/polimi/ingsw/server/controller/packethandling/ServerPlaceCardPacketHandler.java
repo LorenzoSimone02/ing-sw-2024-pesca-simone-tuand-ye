@@ -10,7 +10,9 @@ import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.resources.Object;
+import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
+import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.util.HashMap;
 
@@ -30,8 +32,15 @@ public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
                 playerController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
                 playerController.getPlayer().removeCardInHand(card);
                 HashMap<String, Integer> resources = new HashMap<>();
+                for (ResourceTypeEnum res: ResourceTypeEnum.values()) {
+                    resources.put(res.name(), 0);
+                }
                 for (Resource resource : playerController.getPlayer().getResources()) {
                     resources.put(resource.getType().name(), resources.get(resource.getType().name()) + 1);
+                }
+
+                for (ObjectTypeEnum obj: ObjectTypeEnum.values()) {
+                    resources.put(obj.name(), 0);
                 }
                 for (Object object : playerController.getPlayer().getObjects()) {
                     resources.put(object.getType().name(), resources.get(object.getType().name()) + 1);

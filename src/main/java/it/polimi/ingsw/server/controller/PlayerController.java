@@ -56,8 +56,7 @@ public record PlayerController(Player player) {
                                 .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
 
                     }
-                    if (currRemovingCornerLocation.ordinal() < 3)
-                        currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
+                    if (currRemovingCornerLocation.ordinal() < 3) currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
                 }
             }
 

@@ -56,7 +56,7 @@ public class GameTest {
     }
 
     @Test
-    @DisplayName("Test valid players management")
+    @DisplayName("Test valid players management (add and remove)")
     public void validPlayerManagement() {
 
         try {
@@ -69,9 +69,9 @@ public class GameTest {
         }
 
         assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
-        controller.removePlayer(controller.getGame().getPlayers().get(1).getUsername());
+        controller.removePlayer("p2");
         for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
-            assertNotEquals("test2", controller.getGame().getPlayers().get(i).getUsername());
+            assertNotEquals("p2", controller.getGame().getPlayers().get(i).getUsername());
         }
         assertEquals(3, controller.getGame().getInfo().getPlayersNumber());
 

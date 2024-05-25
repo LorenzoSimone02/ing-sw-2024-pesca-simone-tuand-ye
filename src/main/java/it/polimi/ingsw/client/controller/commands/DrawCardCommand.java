@@ -4,6 +4,9 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.DrawCardPacket;
 import it.polimi.ingsw.server.model.card.Card;
+import it.polimi.ingsw.server.model.card.ObjectiveCard;
+
+import java.util.ArrayList;
 
 public class DrawCardCommand extends Command {
 
@@ -19,15 +22,25 @@ public class DrawCardCommand extends Command {
             String[] split = input.split(" ");
             if (split.length == 1) {
                 String arg = split[0];
-                int selected;
-                try{
-                    selected = Integer.parseInt(arg);
-                } catch (NumberFormatException e) {
-                    System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
-                    return;
+                int selected = -1;
+                if (!arg.equalsIgnoreCase("gold") && !arg.equalsIgnoreCase("resources")) {
+                    try{
+                        selected = Integer.parseInt(arg);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Usage: /drawCard <1/2/3/4/resources/gold>");
+                        return;
+                    }
                 }
-                if (selected > 0 && selected < 5) {
-                    Card card = clientManager.getGameState().getCardsOnGround().get(selected - 1);
+
+                if (selected > 0 && selected < 5 && selected <= (clientManager.getGameState().getCardsOnGround().size() - 2) ) {
+
+                    ArrayList<Card> drawableGroundCards = new ArrayList<>(4);
+
+                    for (Card currCard: clientManager.getGameState().getCardsOnGround()) {
+                        if (!(currCard instanceof ObjectiveCard)) drawableGroundCards.add(currCard);
+                    }
+
+                    Card card = drawableGroundCards.get(selected - 1);
                     clientManager.getNetworkHandler().sendPacket(new DrawCardPacket(card.getId()));
                 } else if (arg.equalsIgnoreCase("gold")) {
                     clientManager.getNetworkHandler().sendPacket(new DrawCardPacket(true));
