@@ -21,12 +21,6 @@ public class ClientConnectionEventPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().addPlayerState(new PlayerState(username));
         }
 
-        if (clientManager.getViewMode() == ViewModeEnum.GUI && clientManager.getGameState().getClientStatus() == ClientStatusEnum.CONNECTED) {
-            GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-            System.out.println(guiClient.getControllersMap().size());
-            Platform.runLater(() -> guiClient.getControllersMap().get(ClientStatusEnum.CONNECTED).update());
-        }
-
         if (connectionEventPacket.isDisconnection()) {
             System.out.println(Printer.YELLOW + "Player " + username + " has disconnected from the Game." + Printer.RESET);
         } else if (connectionEventPacket.isReconnection()) {

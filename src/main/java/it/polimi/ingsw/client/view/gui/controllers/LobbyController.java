@@ -1,7 +1,5 @@
 package it.polimi.ingsw.client.view.gui.controllers;
 
-import it.polimi.ingsw.client.controller.ClientManager;
-import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -26,18 +24,10 @@ public class LobbyController implements SceneController, Initializable {
         fadeTransition.setFromValue(0.3);
         fadeTransition.setToValue(1);
         fadeTransition.play();
-        update();
+        playersLabel.setText("\nWaiting for other Players to join...");
     }
 
     @Override
     public void update() {
-        ClientManager clientManager = ClientManager.getInstance();
-        StringBuilder text = new StringBuilder("Connected Players: \n");
-        text.append(clientManager.getGameState().getUsername()).append("\n");
-        for(PlayerState player : clientManager.getGameState().getPlayerStates()) {
-            text.append(player.getUsername()).append("\n");
-        }
-        text.append("\nWaiting for other Players to join...");
-        playersLabel.setText(text.toString());
     }
 }

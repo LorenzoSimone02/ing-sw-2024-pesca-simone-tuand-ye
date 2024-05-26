@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -18,6 +21,10 @@ public class LoginController implements SceneController, Initializable {
     TextField loginUsernameTextField;
     @FXML
     private BorderPane loginPane;
+    @FXML
+    private HBox footerHBox;
+    @FXML
+    private Region spacer;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -25,6 +32,7 @@ public class LoginController implements SceneController, Initializable {
         fadeTransition.setFromValue(0.1);
         fadeTransition.setToValue(1);
         fadeTransition.play();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
     }
 
     public void login() {

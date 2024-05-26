@@ -25,14 +25,14 @@ public class ClientMain {
 
             if (nextLine.equals("1") || nextLine.equals("TUI")) {
                 System.out.println("You have selected TUI technology.");
-            } else if (nextLine.equals("2") || nextLine.equals("fxml")) {
-                System.out.println("You have selected fxml technology.");
+            } else if (nextLine.equals("2") || nextLine.equals("GUI")) {
+                System.out.println("You have selected GUI technology.");
                 viewMode = ViewModeEnum.GUI;
             } else {
                 System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
             }
 
-        } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("TUI") || nextLine.equalsIgnoreCase("fxml")));
+        } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("TUI") || nextLine.equalsIgnoreCase("GUI")));
 
         do {
             try {

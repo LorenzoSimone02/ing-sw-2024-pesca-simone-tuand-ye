@@ -47,8 +47,10 @@ public class GUIClient extends Application implements UserInterface {
         GUIClient.stage = stage;
         updateScene(ClientStatusEnum.LOBBY);
         stage.setTitle("Codex Naturalis");
-        stage.setMinHeight(400);
-        stage.setMinWidth(600);
+        stage.setMinHeight(600);
+        stage.setHeight(600);
+        stage.setMinWidth(900);
+        stage.setWidth(900);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png"))));
         stage.requestFocus();
         stage.show();
