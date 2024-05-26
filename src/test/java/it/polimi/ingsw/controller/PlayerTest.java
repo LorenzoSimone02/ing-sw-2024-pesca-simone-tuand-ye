@@ -5,6 +5,7 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.controller.exceptions.WrongTokenException;
+import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.player.Player;
@@ -78,7 +79,7 @@ public class PlayerTest {
         PlayerController playerController = this.controller.getPlayerController(player);
 
         StarterCard starterCard = new StarterCard(starterJson);
-        playerController.setStarterCard(starterCard);
+        playerController.setStarterCard(starterCard, FaceEnum.FRONT);
 
         assertEquals(starterCard, player.getStarterCard());
         assertEquals(40, player.getStarterCard().getXCoord());
@@ -110,7 +111,7 @@ public class PlayerTest {
         ResourceCard testCard2 = new ResourceCard(resourceJson);
         ResourceCard testCard3 = new ResourceCard(resourceJson);
 
-        playerController.setStarterCard(starterCard);
+        playerController.setStarterCard(starterCard, FaceEnum.BACK);
         player.addCardInHand(testCard1);
         player.addCardInHand(testCard2);
         player.addCardInHand(testCard3);

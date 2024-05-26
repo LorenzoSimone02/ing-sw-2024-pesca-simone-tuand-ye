@@ -17,12 +17,17 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>23-ea+3</version>
+            <version>23-ea+18</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>23-ea+3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>22-ea+16</version>
         </dependency>
         <dependency>
             <groupId>org.controlsfx</groupId>
@@ -32,7 +37,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.11.0-M1</version>
+            <version>5.11.0-M2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -44,12 +49,12 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10.1</version>
+            <version>2.10</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.11.0-M1</version>
+            <version>5.11.0-M2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -207,7 +207,7 @@ public class GameController {
     public synchronized void proposeStarterCardFace() {
         for (Player player : game.getPlayers()) {
             StarterCard starterCard = (StarterCard) game.getTable().getStarterDeck().drawCard();
-            networkHandler.sendPacket(networkHandler.getConnectionByNickname(player.getUsername()), new ChooseStarterFacePacket(starterCard.getId(), player.getUsername()) );
+            networkHandler.sendPacket(networkHandler.getConnectionByNickname(player.getUsername()), new ChooseStarterFacePacket(starterCard.getId(), player.getUsername()));
         }
     }
 
@@ -335,7 +335,7 @@ public class GameController {
         Optional<Integer> winningPoints = game.getPlayers().stream().map(Player::getScore).max((Integer::compare));
         ArrayList<Player> winners = new ArrayList<>(4);
 
-        for (Player p: game.getPlayers()) {
+        for (Player p : game.getPlayers()) {
             if (winningPoints.isPresent() && winningPoints.get().equals(p.getScore())) winners.add(p);
         }
 
@@ -368,7 +368,7 @@ public class GameController {
         return Optional.empty();
     }
 
-    public synchronized Card getCardById(int ID){
+    public synchronized Card getCardById(int ID) {
         for (Card card : allCards) {
             if (card.getId() == ID) {
                 return card;

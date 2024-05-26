@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane fx:id="lobbyPane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.client.view.gui.controllers.LobbyController" stylesheets="@../css/preGame.css">
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <ImageView fitWidth="250" preserveRatio="true" pickOnBounds="true">
+                <Image url="@../images/title.png"/>
+            </ImageView>
+            <Label text="You are connected to a Game"/>
+            <Label fx:id="playersLabel"/>
+            <ImageView fitWidth="100" fitHeight="100" pickOnBounds="true">
+                <Image url="@../images/waiting.gif"/>
+            </ImageView>
+        </VBox>
+    </center>
+</BorderPane>

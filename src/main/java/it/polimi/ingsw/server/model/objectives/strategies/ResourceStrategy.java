@@ -9,8 +9,8 @@ import java.util.Collections;
 public class ResourceStrategy implements ObjectiveStrategy {
 
     private final ResourceTypeEnum resourceRequirement;
-    int numberOfResource;
-    int pointsPerPattern;
+    private final int numberOfResource;
+    private final int pointsPerPattern;
 
     public ResourceStrategy(ResourceTypeEnum resourceRequirement, int numberOfResource, int pointsPerPattern) {
         this.resourceRequirement = resourceRequirement;

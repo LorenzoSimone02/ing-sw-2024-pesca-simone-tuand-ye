@@ -8,7 +8,7 @@ import it.polimi.ingsw.server.model.player.Player;
 public class TopLeftDiagonal implements ObjectiveStrategy {
 
     private final CardColorEnum CardsColor;
-    int pointsPerPattern;
+    private final int pointsPerPattern;
 
     public TopLeftDiagonal(CardColorEnum cardsColor, int pointsPerPattern) {
         CardsColor = cardsColor;

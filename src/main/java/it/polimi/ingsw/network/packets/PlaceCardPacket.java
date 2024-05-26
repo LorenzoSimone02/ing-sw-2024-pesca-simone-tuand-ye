@@ -4,7 +4,6 @@ import it.polimi.ingsw.client.controller.packethandlers.ClientPacketHandler;
 import it.polimi.ingsw.client.controller.packethandlers.ClientPlaceCardPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 import it.polimi.ingsw.server.controller.packethandling.ServerPlaceCardPacketHandler;
-import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.util.HashMap;
 

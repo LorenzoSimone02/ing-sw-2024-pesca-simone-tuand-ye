@@ -8,9 +8,9 @@ import it.polimi.ingsw.server.model.card.FaceEnum;
 
 public class ChooseStarterFacePacket extends Packet{
 
-    private FaceEnum chosenStarterFace;
-    private int starterID;
-    private String username;
+    private final FaceEnum chosenStarterFace;
+    private final int starterID;
+    private final String username;
 
     public ChooseStarterFacePacket(FaceEnum chosenStarterFace, int starterID, String username) {
         this.chosenStarterFace = chosenStarterFace;

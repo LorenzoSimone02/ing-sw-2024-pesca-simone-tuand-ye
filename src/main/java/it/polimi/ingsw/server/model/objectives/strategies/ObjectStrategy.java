@@ -10,7 +10,7 @@ import java.util.List;
 public class ObjectStrategy implements ObjectiveStrategy {
 
     private final List<ObjectTypeEnum> objectRequirement;
-    int pointsPerPattern;
+    private final int pointsPerPattern;
 
     public ObjectStrategy(List<ObjectTypeEnum> objectRequirement, int pointsPerPattern) {
         this.objectRequirement = objectRequirement;

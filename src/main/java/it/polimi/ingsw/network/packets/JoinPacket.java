@@ -7,7 +7,7 @@ import it.polimi.ingsw.server.controller.packethandling.ServerPacketHandler;
 
 public class JoinPacket extends Packet {
 
-    int gameID;
+    private final int gameID;
 
     public JoinPacket() {
         this.gameID = 0;

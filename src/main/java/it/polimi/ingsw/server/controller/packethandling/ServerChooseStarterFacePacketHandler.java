@@ -1,7 +1,6 @@
 package it.polimi.ingsw.server.controller.packethandling;
 
 import it.polimi.ingsw.client.controller.Printer;
-import it.polimi.ingsw.client.controller.commands.ChooseStarterFaceCommand;
 import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.packets.ChooseStarterFacePacket;
 import it.polimi.ingsw.network.packets.InfoPacket;

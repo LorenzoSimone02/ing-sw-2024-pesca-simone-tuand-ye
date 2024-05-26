@@ -28,6 +28,7 @@ public class GameState {
     private final ArrayList<Card> cardsOnGround;
     private StarterCard starterCard;
     private final ArrayList<ObjectiveCard> proposedCards;
+    private StarterCard givenStarter;
     private ObjectiveCard objectiveCard;
     private final HashMap<String, Integer> resources;
 
@@ -35,7 +36,6 @@ public class GameState {
     private String firstPlayer;
     private String activePlayer;
     private ArrayList<String> winners;
-    private StarterCard givenStarter;
 
     public GameState() {
         this.uuid = UUID.randomUUID();
@@ -137,14 +137,6 @@ public class GameState {
         proposedCards.add(card);
     }
 
-    public void setGivenStarter(StarterCard card) {
-        this.givenStarter = card;
-    }
-
-    public StarterCard getGivenStarter() {
-        return givenStarter;
-    }
-
     public long getLastPing() {
         return lastPing;
     }
@@ -168,6 +160,15 @@ public class GameState {
     public void setStarterCard(StarterCard starterCard) {
         this.starterCard = starterCard;
         setCardPlaced(starterCard, 40, 40);
+    }
+
+
+    public void setGivenStarter(StarterCard card) {
+        this.givenStarter = card;
+    }
+
+    public StarterCard getGivenStarter() {
+        return givenStarter;
     }
 
     public ObjectiveCard getObjectiveCard() {
@@ -248,10 +249,6 @@ public class GameState {
     }
 
     public void setCardPlaced(ResourceCard card, int x, int y) {
-        cardsPlaced[x][y] = card;
-    }
-
-    public void setCardPlaced(StarterCard card, int x, int y) {
         cardsPlaced[x][y] = card;
     }
 

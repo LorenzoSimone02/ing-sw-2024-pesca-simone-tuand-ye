@@ -7,8 +7,6 @@ import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.card.StarterCard;
-import it.polimi.ingsw.server.model.card.corner.Corner;
 
 public class ClientGameStartedPacketHandler extends ClientPacketHandler {
 
@@ -19,6 +17,7 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().setGameID(gameStartedPacket.getGameID());
         clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
+        clientManager.getGameState().getPlayerStates().clear();
 
         for (Integer cardID : gameStartedPacket.getCardsOnGround()) {
             clientManager.getGameState().addCardOnGround(clientManager.getGameState().getCardById(cardID));

@@ -6,28 +6,10 @@ import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.network.ClientNetworkHandler;
 import it.polimi.ingsw.network.rmi.RMIClient;
 import it.polimi.ingsw.network.socket.SocketClient;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.util.Objects;
 import java.util.Scanner;
 
-public class ClientMain extends Application {
-
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 640, 480);
-        stage.setTitle("Codex Naturalis");
-        stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png"))));
-        stage.setScene(scene);
-        stage.requestFocus();
-        stage.show();
-    }
+public class ClientMain {
 
     public static void main(String[] args) {
         String serverIP = args[0];
@@ -43,14 +25,14 @@ public class ClientMain extends Application {
 
             if (nextLine.equals("1") || nextLine.equals("TUI")) {
                 System.out.println("You have selected TUI technology.");
-            } else if (nextLine.equals("2") || nextLine.equals("GUI")) {
-                System.out.println("You have selected GUI technology.");
+            } else if (nextLine.equals("2") || nextLine.equals("fxml")) {
+                System.out.println("You have selected fxml technology.");
                 viewMode = ViewModeEnum.GUI;
             } else {
                 System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
             }
 
-        } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("TUI") || nextLine.equalsIgnoreCase("GUI")));
+        } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("TUI") || nextLine.equalsIgnoreCase("fxml")));
 
         do {
             try {
@@ -73,9 +55,6 @@ public class ClientMain extends Application {
         } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("Socket") || nextLine.equalsIgnoreCase("RMI")));
 
         ClientManager clientManager = new ClientManager(networkHandler, viewMode, serverIP);
-        if (viewMode == ViewModeEnum.GUI) {
-            launch();
-        }
         clientManager.getGameState().setClientStatus(ClientStatusEnum.LOBBY);
         System.out.println("Successfully connected to the Lobby.\nUse /login to choose an Username.");
         clientManager.runUI();

@@ -9,6 +9,7 @@ import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 public record PlayerController(Player player) {
@@ -23,10 +24,10 @@ public record PlayerController(Player player) {
             card.setYCoord(y);
             player.setCard(card, x, y);
             for (Corner corner : card.getCorners()) {
-                if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY) {
+                if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
                     player.addResource(corner.getResource());
                 }
-                if (corner.isVisible() && corner.getObject() != null && corner.getObject().getType() != ObjectTypeEnum.EMPTY) {
+                if (corner.isVisible() && corner.getObject() != null && corner.getObject().getType() != ObjectTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
                     player.addObject(corner.getObject());
                 }
             }
@@ -34,10 +35,8 @@ public record PlayerController(Player player) {
             ResourceCard currCard;
             CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
             //TopLeftCard -> TopRightCard -> BottomLeftCard -> BottomRightCard
-            for (int i = -1; i <= 1; i = i + 2) {
-
-                for (int j = -1; j <= 1; j = j + 2) {
-
+            for (int i = -1; i <= 1; i += 2) {
+                for (int j = -1; j <= 1; j += 2) {
                     if (player.getCardAt(x + j, y + i).isPresent()) {
 
                         currCard = player.getCardAt(x + j, y + i).get();
@@ -56,7 +55,8 @@ public record PlayerController(Player player) {
                                 .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
 
                     }
-                    if (currRemovingCornerLocation.ordinal() < 3) currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
+                    if (currRemovingCornerLocation.ordinal() < 3)
+                        currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
                 }
             }
 
@@ -122,9 +122,14 @@ public record PlayerController(Player player) {
         starterCard.setXCoord(40);
         starterCard.setYCoord(40);
         player.setCard(starterCard, 40, 40);
-        for(Corner corner : starterCard.getCorners()){
-            if(corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace().equals(starterCard.getFace())){
+        for (Corner corner : starterCard.getCorners()) {
+            if (corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace().equals(starterCard.getFace())) {
                 player.addResource(corner.getResource());
+            }
+        }
+        if (starterCard.getFace().equals(FaceEnum.BACK)) {
+            for (Resource res : starterCard.getBackResources()) {
+                player.addResource(res);
             }
         }
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<BorderPane fx:id="createGamePane" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.client.view.gui.controllers.CreateGameController" stylesheets="@../css/preGame.css">
+    <center>
+        <VBox alignment="CENTER" spacing="20.0">
+            <ImageView fitWidth="250" preserveRatio="true" pickOnBounds="true">
+                <Image url="@../images/title.png"/>
+            </ImageView>
+            <Label fx:id="welcoleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="31.0" prefHeight="128.0"
+                   prefWidth="600.0" textAlignment="CENTER">
+            </Label>
+            <RadioButton fx:id="rButton2" layoutX="74.0" layoutY="275.0" mnemonicParsing="false" onAction="#setNumberOfPlayers" selected="true" text="2">
+                <toggleGroup>
+                    <ToggleGroup fx:id="playersNumber" />
+                </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="rButton3" layoutX="286.0" layoutY="276.0" mnemonicParsing="false" onAction="#setNumberOfPlayers" text="3" toggleGroup="$playersNumber"/>
+            <RadioButton fx:id="rButton4" layoutX="490.0" layoutY="276.0" mnemonicParsing="false" onAction="#setNumberOfPlayers" text="4" toggleGroup="$playersNumber"/>
+
+            <Button mnemonicParsing="false" onAction="#createGame" text="Create Game"/>
+        </VBox>
+    </center>
+</BorderPane>
+
+

@@ -9,7 +9,7 @@ public class BottomLeftLShape implements ObjectiveStrategy {
 
     private final CardColorEnum columnCardsColor;
     private final CardColorEnum diagonalCardColor;
-    int pointsPerPattern;
+    private final int pointsPerPattern;
 
     public BottomLeftLShape(CardColorEnum columnCardsColor, CardColorEnum diagonalCardColor, int pointsPerPattern) {
         this.columnCardsColor = columnCardsColor;
