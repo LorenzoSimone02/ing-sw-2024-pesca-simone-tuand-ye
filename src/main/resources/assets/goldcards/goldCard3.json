@@ -46,5 +46,6 @@
       "type": "INSECT"
     }
   ],
-  "pointsStrategy": "OBJECT_COUNT_MANUSCRIP"
+  "pointsStrategy": "OBJECT_COUNT_MANUSCRIP",
+  "objectiveDescription": "You obtain 1 point for each MANUSCRIPT object."
 }

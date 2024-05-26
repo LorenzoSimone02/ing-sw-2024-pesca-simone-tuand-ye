@@ -46,6 +46,6 @@
       "type": "PLANT"
     }
   ],
-  "pointsStrategy": "CORNER_COUNT"
-
+  "pointsStrategy": "CORNER_COUNT",
+  "objectiveDescription": "You obtain 2 points for each corner you cover with this card."
 }

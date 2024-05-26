@@ -46,5 +46,6 @@
       "type": "FUNGI"
     }
   ],
-  "pointsStrategy": "OBJECT_COUNT_INKWELL"
+  "pointsStrategy": "OBJECT_COUNT_INKWELL",
+  "objectiveDescription": "You obtain 1 point for each INKWELL object."
 }

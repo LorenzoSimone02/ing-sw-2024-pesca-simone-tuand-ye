@@ -46,5 +46,6 @@
       "type": "ANIMAL"
     }
   ],
-  "pointsStrategy": "PLAIN_POINTS_3"
+  "pointsStrategy": "PLAIN_POINTS_3",
+  "objectiveDescription": "You obtain 3 points by placing this card."
 }

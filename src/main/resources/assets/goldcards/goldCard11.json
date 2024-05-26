@@ -46,5 +46,6 @@
       "type": "INSECT"
     }
   ],
-  "pointsStrategy": "OBJECT_COUNT_QUILL"
+  "pointsStrategy": "OBJECT_COUNT_QUILL",
+  "objectiveDescription": "YYou obtain 1 point for every QUILL object."
 }

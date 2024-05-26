@@ -46,5 +46,6 @@
       "type": "FUNGI"
     }
   ],
-  "pointsStrategy": "OBJECT_COUNT_MANUSCRIPT"
+  "pointsStrategy": "OBJECT_COUNT_MANUSCRIPT",
+  "objectiveDescription": "You obtain 1 point for each MANUSCRIPT object."
 }

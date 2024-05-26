@@ -49,5 +49,6 @@
       "type": "FUNGI"
     }
   ],
-  "pointsStrategy": "PLAIN_POINTS_5"
+  "pointsStrategy": "PLAIN_POINTS_5",
+  "objectiveDescription": "You obtain 5 points by placing this card."
 }
