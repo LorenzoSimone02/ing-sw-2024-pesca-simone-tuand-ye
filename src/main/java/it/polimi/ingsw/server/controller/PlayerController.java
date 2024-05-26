@@ -116,7 +116,8 @@ public record PlayerController(Player player) {
         player.setObjectiveCard(objectiveCard);
     }
 
-    public synchronized void setStarterCard(StarterCard starterCard) {
+    public synchronized void setStarterCard(StarterCard starterCard, FaceEnum chosenFace) {
+        starterCard.setFace(chosenFace);
         player.setStarterCard(starterCard);
         starterCard.setXCoord(40);
         starterCard.setYCoord(40);

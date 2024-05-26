@@ -33,8 +33,8 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
                 }
             }
             controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Token Color." + Printer.RESET));
-            controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
-            controller.proposeObjectiveCards();
+            controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_STARTER_FACE);
+            controller.proposeStarterCardFace();
         } catch (AlreadyTakenColorException e) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "The " + chooseColorPacket.getColor() + " Token Color has already been chosen." + Printer.RESET));
         }

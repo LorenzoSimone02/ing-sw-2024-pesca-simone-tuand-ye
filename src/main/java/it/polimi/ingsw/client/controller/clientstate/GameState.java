@@ -35,6 +35,7 @@ public class GameState {
     private String firstPlayer;
     private String activePlayer;
     private ArrayList<String> winners;
+    private StarterCard givenStarter;
 
     public GameState() {
         this.uuid = UUID.randomUUID();
@@ -134,6 +135,14 @@ public class GameState {
 
     public void addProposedCard(ObjectiveCard card) {
         proposedCards.add(card);
+    }
+
+    public void setGivenStarter(StarterCard card) {
+        this.givenStarter = card;
+    }
+
+    public StarterCard getGivenStarter() {
+        return givenStarter;
     }
 
     public long getLastPing() {
@@ -239,6 +248,10 @@ public class GameState {
     }
 
     public void setCardPlaced(ResourceCard card, int x, int y) {
+        cardsPlaced[x][y] = card;
+    }
+
+    public void setCardPlaced(StarterCard card, int x, int y) {
         cardsPlaced[x][y] = card;
     }
 

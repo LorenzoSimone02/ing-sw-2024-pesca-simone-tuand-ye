@@ -156,7 +156,7 @@ public class GameController {
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
 
             instantiateCards();
-            assignStarterCard();
+            //assignStarterCard();
             assignCommonObjectives();
             chooseFirstPlayer();
 
@@ -204,10 +204,10 @@ public class GameController {
         }
     }
 
-    public synchronized void assignStarterCard() {
+    public synchronized void proposeStarterCardFace() {
         for (Player player : game.getPlayers()) {
             StarterCard starterCard = (StarterCard) game.getTable().getStarterDeck().drawCard();
-            getPlayerController(player).setStarterCard(starterCard);
+            networkHandler.sendPacket(networkHandler.getConnectionByNickname(player.getUsername()), new ChooseStarterFacePacket(starterCard.getId(), player.getUsername()) );
         }
     }
 

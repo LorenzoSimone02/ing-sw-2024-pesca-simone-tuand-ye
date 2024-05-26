@@ -11,5 +11,6 @@ public enum ClientStatusEnum {
     PLAYING,
     LAST_TURN,
     ENDED,
+    CHOOSING_STARTER_FACE,
     ERROR
 }

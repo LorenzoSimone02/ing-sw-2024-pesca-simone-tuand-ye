@@ -75,14 +75,14 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
 
                 foundNewMatch.getGameController().checkStartCondition();
             } catch (DuplicatePlayerException e) {
-                System.err.println("Recieved a Join request with an already existing username.");
+                System.err.println("Received a Join request with an already existing username.");
                 connection.setUsername("Unknown");
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The username you are trying to use is already taken."));
             } catch (FullLobbyException e) {
-                System.err.println("Recieved a Join request with a full lobby.");
+                System.err.println("Received a Join request with a full lobby.");
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The lobby you are trying to join is full."));
             } catch (IllegalOperationForStateException e) {
-                System.err.println("Recieved a Join request while the game is already started.");
+                System.err.println("Received a Join request while the game is already started.");
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect is already started"));
             }
         } else {
