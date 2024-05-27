@@ -44,7 +44,7 @@ public class ImmediateScoreCalculationTest {
         GoldCard goldCard1 = new GoldCard(goldObjectJson1);
         GoldCard goldCard2 = new GoldCard(goldCornerJson2);
         StarterCard starterCard = new StarterCard(starterJson);
-        controller.getPlayerController(activePlayer).setStarterCard(starterCard);
+        controller.getPlayerController(activePlayer).setStarterCard(starterCard, FaceEnum.FRONT);
 
         activePlayer.addObject(new Object(ObjectTypeEnum.QUILL));
         activePlayer.addObject(new Object(ObjectTypeEnum.QUILL));

@@ -9,7 +9,7 @@ public class ChooseStarterFaceCommand extends Command{
 
     public ChooseStarterFaceCommand() {
         commandName = "/chooseStarterFace";
-        description = "  Choose the face you want to play\n  Usage: /chooseStarterFace <1 or 2>";
+        description = "  Choose the face of the StarterCard\n  Usage: /chooseStarterFace <1 or 2>";
         addValidStatus(ClientStatusEnum.CHOOSING_STARTER_FACE);
     }
 
@@ -30,7 +30,7 @@ public class ChooseStarterFaceCommand extends Command{
                 System.err.println("Usage: /chooseStarterFace <1 or 2>");
             }
         } else {
-            System.err.println("You can't choose your starter card's face now.");
+            System.err.println("You can't choose your StarterCard's face now.");
         }
     }
 
