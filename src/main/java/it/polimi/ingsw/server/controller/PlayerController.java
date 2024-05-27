@@ -23,6 +23,13 @@ public record PlayerController(Player player) {
             card.setXCoord(x);
             card.setYCoord(y);
             player.setCard(card, x, y);
+
+            if (card.getFace().equals(FaceEnum.BACK)) {
+                for (Resource res: card.getBackResources()) {
+                    player.addResource(res);
+                }
+            }
+
             for (Corner corner : card.getCorners()) {
                 if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
                     player.addResource(corner.getResource());

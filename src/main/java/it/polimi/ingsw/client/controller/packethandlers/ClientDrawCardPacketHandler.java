@@ -14,13 +14,18 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
     public void handlePacket(Packet packet, ClientManager clientManager) {
         DrawCardPacket drawCardPacket = (DrawCardPacket) packet;
         ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(drawCardPacket.getCardID());
-        clientManager.getGameState().addCardInHand(card);
+
         if (drawCardPacket.getNewCardID() > 0) {
             Card newCard = clientManager.getGameState().getCardById(drawCardPacket.getNewCardID());
             clientManager.getGameState().removeCardOnGround(card);
             clientManager.getGameState().addCardOnGround(newCard);
         }
-        System.out.println(Printer.GREEN + "Card drawn successfully, your turn has ended." + Printer.RESET);
-        new Thread(() -> clientManager.getNetworkHandler().sendPacket(new EndTurnPacket(clientManager.getGameState().getUsername()))).start();
+
+        if (clientManager.getGameState().getActivePlayer().equals(clientManager.getGameState().getUsername())) {
+            clientManager.getGameState().addCardInHand(card);
+            System.out.println(Printer.GREEN + "Card drawn successfully, your turn has ended." + Printer.RESET);
+            new Thread(() -> clientManager.getNetworkHandler().sendPacket(new EndTurnPacket(clientManager.getGameState().getUsername()))).start();
+        }
+
     }
 }

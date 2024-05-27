@@ -31,7 +31,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
                     newCard = controller.getGame().getTable().getResourceDeck().drawCard();
                     controller.getGame().getTable().getCardsOnGround().add(newCard);
                 }
-                controller.getNetworkHandler().sendPacket(clientConnection, new DrawCardPacket(card.getId(), newCard.getId()));
+                controller.getNetworkHandler().sendPacketToAll(new DrawCardPacket(card.getId(), newCard.getId()));
                 controller.getPlayerController(clientConnection.getUsername()).getPlayer().addCardInHand(card);
             } else {
                 controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "Invalid Card." + Printer.RESET));
