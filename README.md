@@ -2,11 +2,8 @@
 
 <img src="https://www.craniocreations.it/storage/media/products/19/41/Codex_scatola+ombra.png" width=192px height=192px align="right" />
 
-Lo sviluppo del gioco da tavolo *Codex Naturalis* è la prova finale del corso di **Ingegneria del Software** tenuto al Politecnico di Milano (2023/2024).
-
-**Docente**: Cugola Gianpaolo Saverio
-
-**Voto**: -/30
+La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico di Milano (2023/2024) consiste nello sviluppo di una versione virtuale, scritta in Java, del gioco da tavolo *Codex Naturalis*, creato dalla Cranio Creations.
+É possibile trovare il gioco completo [qui](https://www.craniocreations.it/prodotto/codex-naturalis).
 
 ## Membri del gruppo
 * [Mario Pesca](https://github.com/ziomekk-dev)
@@ -14,10 +11,23 @@ Lo sviluppo del gioco da tavolo *Codex Naturalis* è la prova finale del corso d
 * [Salvatore Tuand](https://github.com/Sa1vatoreTuand)
 * [Xuwen Ye](https://github.com/xuwenye01)
 
-## Descrizione del progetto
-Il progetto consiste nello sviluppo di una versione virtuale, scritta in Java, del gioco da tavolo *Codex Naturalis*, creato dalla Cranio Creations.
+**Docente**: Cugola Gianpaolo Saverio
 
-É possibile trovare il gioco completo [qui](https://www.craniocreations.it/prodotto/codex-naturalis).
+**Voto**: -/30
+
+## Funzionalità Implementate
+| Funzionalità | Stato |
+|:-----------------------|:------------------------------------:|
+| Regole semplificate |✅|
+| Regole complete |✅|
+| Socket |✅|
+| RMI |✅|
+| GUI |✅|
+| TUI |✅|
+| Chat|✅|
+| Persistenza connessioni |✅|
+| Partite multiple |✅|
+| Persistenza partite |⛔|
 
 <br /> 
 
