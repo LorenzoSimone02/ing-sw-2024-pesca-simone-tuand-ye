@@ -1,6 +1,7 @@
 package it.polimi.ingsw.client.controller.packethandlers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
+import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.TurnCardPacket;
 import it.polimi.ingsw.server.model.card.Card;
@@ -16,5 +17,6 @@ public class ClientTurnCardPacketHandler extends ClientPacketHandler {
         } else {
             card.setFace(FaceEnum.FRONT);
         }
+        System.out.println(Printer.GREEN + "Card turned successfully." + Printer.RESET);
     }
 }

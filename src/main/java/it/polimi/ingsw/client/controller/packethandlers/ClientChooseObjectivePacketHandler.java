@@ -14,7 +14,7 @@ public class ClientChooseObjectivePacketHandler extends ClientPacketHandler {
         ChooseObjectivePacket chooseObjectivePacket = (ChooseObjectivePacket) packet;
         if (chooseObjectivePacket.getChoosenCardID() > 0) {
             ObjectiveCard card = (ObjectiveCard) clientManager.getGameState().getCardById(chooseObjectivePacket.getChoosenCardID());
-            System.out.println(Printer.GREEN + "You have choosen your personal Objective Card." + Printer.RESET);
+            System.out.println(Printer.GREEN + "You have chosen your personal Objective Card." + Printer.RESET);
             clientManager.getGameState().setObjectiveCard(card);
             clientManager.getGameState().setClientStatus(ClientStatusEnum.PLAYING);
         } else {
