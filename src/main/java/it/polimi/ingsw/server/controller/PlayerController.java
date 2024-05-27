@@ -19,7 +19,7 @@ public record PlayerController(Player player) {
     }
 
     public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
-        if (canPlaceCard(x, y)) {
+        if (canPlaceCard(x, y, card)) {
             card.setXCoord(x);
             card.setYCoord(y);
             player.setCard(card, x, y);
@@ -70,35 +70,38 @@ public record PlayerController(Player player) {
         }
     }
 
-    public synchronized boolean canPlaceCard(int x, int y) {
+    public synchronized boolean canPlaceCard(int x, int y, ResourceCard card) {
+
+        if ((card instanceof GoldCard) && card.getFace().equals(FaceEnum.FRONT)) {
+            if (!((GoldCard) card).meetRequirements(player.getResources())) {
+                return false;
+            }
+        }
+
         if (player.getCardAt(x, y).isEmpty()) {
+            boolean isPlaceable = false;
+
             if (player.getCardAt(x - 1, y - 1).isPresent()) {
-                if (x - 1 == 40 && y - 1 == 40)
-                    return true;
+                isPlaceable = true;
                 ResourceCard neighbour = player.getCardAt(x - 1, y - 1).get();
-                if (neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible())
-                    return true;
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible()) return false;
             }
             if (player.getCardAt(x + 1, y + 1).isPresent()) {
-                if (x + 1 == 40 && y + 1 == 40)
-                    return true;
+                isPlaceable = true;
                 ResourceCard neighbour = player.getCardAt(x + 1, y + 1).get();
-                if (neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible())
-                    return true;
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible()) return false;
             }
             if (player.getCardAt(x - 1, y + 1).isPresent()) {
-                if (x - 1 == 40 && y + 1 == 40)
-                    return true;
+                isPlaceable = true;
                 ResourceCard neighbour = player.getCardAt(x - 1, y + 1).get();
-                if (neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible())
-                    return true;
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible()) return false;
             }
             if (player.getCardAt(x + 1, y - 1).isPresent()) {
-                if (x - 1 == 40 && y + 1 == 40)
-                    return true;
+                isPlaceable = true;
                 ResourceCard neighbour = player.getCardAt(x + 1, y - 1).get();
-                return neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible();
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible()) return false;
             }
+            return isPlaceable;
         }
         return false;
     }

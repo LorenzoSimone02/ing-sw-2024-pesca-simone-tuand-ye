@@ -66,7 +66,7 @@ public class ResourceCard extends Card {
     }
 
     public Corner getCorner(CornerLocationEnum location) {
-        return corners.stream().filter(corner -> corner.getLocation().equals(location)).findFirst().orElse(null);
+        return corners.stream().filter(corner -> corner.getLocation().equals(location) && corner.getFace().equals(this.getFace())).findFirst().orElse(null);
     }
 
     public List<Resource> getBackResources() {
