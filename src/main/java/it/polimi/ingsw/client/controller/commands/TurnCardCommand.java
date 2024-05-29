@@ -39,7 +39,7 @@ public class TurnCardCommand extends Command {
                 System.err.println("Usage: /turnCard <1/2/3>");
             }
         } else {
-            System.err.println("You turn a Card now.");
+            System.err.println("You can't turn a Card now.");
         }
     }
 

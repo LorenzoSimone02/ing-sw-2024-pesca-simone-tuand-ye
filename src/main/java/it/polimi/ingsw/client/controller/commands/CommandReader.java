@@ -54,5 +54,6 @@ public class CommandReader implements Runnable {
         this.inputCommandMap.put("/viewCard", new ViewCardCommand());
         this.inputCommandMap.put("/resources", new ResourcesCommand());
         this.inputCommandMap.put("/chooseStarterFace", new ChooseStarterFaceCommand());
+        this.inputCommandMap.put("/peekDeck", new PeekDeckCommand());
     }
 }

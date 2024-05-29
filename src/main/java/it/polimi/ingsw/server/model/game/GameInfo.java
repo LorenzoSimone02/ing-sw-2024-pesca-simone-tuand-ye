@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.game;
 
 import it.polimi.ingsw.server.model.player.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameInfo {
@@ -19,6 +20,7 @@ public class GameInfo {
         this.playersNumber = playersNumber;
         this.maxPlayers = 4;
         gameStatus = GameStatusEnum.WAITING_FOR_PLAYERS;
+        winners = new ArrayList<>(4);
     }
 
     public int getId() {
