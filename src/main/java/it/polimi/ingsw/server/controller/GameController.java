@@ -292,19 +292,18 @@ public class GameController {
     public synchronized void checkEndCondition() {
 
         if (game.getPlayers().stream().anyMatch(player -> player.getScore() >= 20) || (game.getTable().getCardsOnGround().isEmpty() && game.getTable().getResourceDeck().getCards().isEmpty() && game.getTable().getGoldDeck().getCards().isEmpty())) {
-
-            if (!game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
-                game.getInfo().setGameStatus(GameStatusEnum.LAST_TURN);
-                networkHandler.sendPacketToAll(new InfoPacket("Game is ending, play your last turn!"));
-            }
-
             int firstPlayerIndex = game.getPlayers().indexOf(game.getInfo().getFirstPlayer());
             Player lastPlayer = game.getPlayers().get(firstPlayerIndex != 0 ? firstPlayerIndex - 1 : game.getInfo().getPlayersNumber() - 1);
 
             if (game.getInfo().getActivePlayer().equals(lastPlayer)) {
-                game.getInfo().setGameStatus(GameStatusEnum.ENDING);
-                networkHandler.sendPacketToAll(new InfoPacket("Last turns ended, calculating the winner(s)..."));
-                endGame();
+                if (game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
+                    game.getInfo().setGameStatus(GameStatusEnum.ENDING);
+                    networkHandler.sendPacketToAll(new InfoPacket("Last turns ended, calculating the winner(s)..."));
+                    endGame();
+                } else {
+                    game.getInfo().setGameStatus(GameStatusEnum.LAST_TURN);
+                    networkHandler.sendPacketToAll(new InfoPacket("Game is ending, play your last turn!"));
+                }
             }
         }
     }
