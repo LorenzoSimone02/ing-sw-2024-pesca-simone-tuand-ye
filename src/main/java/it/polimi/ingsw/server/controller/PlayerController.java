@@ -20,12 +20,10 @@ public record PlayerController(Player player) {
 
     public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
         if (canPlaceCard(x, y, card)) {
-            card.setXCoord(x);
-            card.setYCoord(y);
             player.setCard(card, x, y);
 
             if (card.getFace().equals(FaceEnum.BACK)) {
-                for (Resource res: card.getBackResources()) {
+                for (Resource res : card.getBackResources()) {
                     player.addResource(res);
                 }
             }
@@ -67,9 +65,9 @@ public record PlayerController(Player player) {
                 }
             }
 
-            if (card instanceof GoldCard) {
-                player.setScore(player.getScore() + ((GoldCard) card).getPointsStrategy().getStrategy().calculatePoints(player, x, y));
-            } else {
+            if (card instanceof GoldCard goldCard && card.getFace().equals(FaceEnum.FRONT)) {
+                player.setScore(player.getScore() + goldCard.getPointsStrategy().getStrategy().calculatePoints(player, x, y));
+            } else if (card.getFace().equals(FaceEnum.FRONT)) {
                 player.setScore(player.getScore() + card.getPoints());
             }
         } else {
@@ -129,8 +127,6 @@ public record PlayerController(Player player) {
     public synchronized void setStarterCard(StarterCard starterCard, FaceEnum chosenFace) {
         starterCard.setFace(chosenFace);
         player.setStarterCard(starterCard);
-        starterCard.setXCoord(40);
-        starterCard.setYCoord(40);
         player.setCard(starterCard, 40, 40);
         for (Corner corner : starterCard.getCorners()) {
             if (corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace().equals(starterCard.getFace())) {

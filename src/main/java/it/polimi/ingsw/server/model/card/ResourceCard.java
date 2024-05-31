@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResourceCard extends Card {
-    int xCoord;
-    int yCoord;
     final int points;
     final List<Corner> corners;
     final List<Resource> backResources;
@@ -34,22 +32,6 @@ public class ResourceCard extends Card {
         this.points = proprieties.getPoints();
         this.backResources = proprieties.getBackResources();
         this.corners.addAll(proprieties.getCorners());
-    }
-
-    public int getXCoord() {
-        return xCoord;
-    }
-
-    public void setXCoord(int xCoord) {
-        this.xCoord = xCoord;
-    }
-
-    public int getYCoord() {
-        return yCoord;
-    }
-
-    public void setYCoord(int yCoord) {
-        this.yCoord = yCoord;
     }
 
     public int getPoints() {

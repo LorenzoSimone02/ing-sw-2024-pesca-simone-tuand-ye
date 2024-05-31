@@ -352,7 +352,7 @@ public class GameController {
             int currentObjectiveCardsScored = 0;
 
             int secretObjectivePoints = p.getObjectiveCard().calculatePoints(p);
-            currentObjectiveCardsScored += p.getObjectiveCard().calculatePoints(p) == 0 ? 0 : 1;
+            currentObjectiveCardsScored += secretObjectivePoints == 0 ? 0 : 1;
 
             int publicObjectivePoints = 0;
             for (ObjectiveCard card : game.getTable().getObjectiveCards()) {
@@ -370,7 +370,8 @@ public class GameController {
         ArrayList<Player> winners = new ArrayList<>(4);
 
         for (Player p : game.getPlayers()) {
-            if (winningPoints.isPresent() && winningPoints.get().equals(p.getScore())) winners.add(p);
+            if (winningPoints.isPresent() && winningPoints.get().equals(p.getScore()))
+                winners.add(p);
         }
 
         //If winners are more than one, query the ObjectiveCardsScored map
