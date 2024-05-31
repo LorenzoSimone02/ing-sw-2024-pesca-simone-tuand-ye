@@ -22,7 +22,7 @@ public class ServerCreateGamePacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("Players number must be between 2 and 4."));
             throw new IllegalArgumentException("Players number must be between 2 and 4.");
         }
-        int gameID = ServerMain.getMatches().size() + 1;
+        int gameID = ServerMain.getNextGameId();
         try {
             System.out.println("Created a new Game with ID " + gameID + " and " + playersNumber + " players.");
             ServerNetworkHandler newNetworkHandler = new ServerNetworkHandler("Game" + gameID, ServerMain.getRmiPort() + gameID, ServerMain.getSocketPort() + gameID);

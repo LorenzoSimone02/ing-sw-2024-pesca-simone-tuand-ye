@@ -10,4 +10,6 @@ public enum GameStatusEnum {
     LAST_TURN,
     ENDING,
     ERROR
+
+
 }

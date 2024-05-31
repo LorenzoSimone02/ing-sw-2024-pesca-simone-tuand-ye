@@ -30,4 +30,12 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
             networkHandler.receivePacket(packet, connection);
         }
     }
+
+    public synchronized void stopServer(){
+        try {
+            UnicastRemoteObject.unexportObject(this, true);
+        } catch (RemoteException e) {
+            System.err.println("Could not stop the RMI server " + e);
+        }
+    }
 }

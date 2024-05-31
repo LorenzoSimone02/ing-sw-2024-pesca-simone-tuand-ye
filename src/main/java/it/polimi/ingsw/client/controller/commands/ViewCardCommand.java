@@ -22,9 +22,13 @@ public class ViewCardCommand extends Command {
                 try {
                     int x = Integer.parseInt(split[0]);
                     int y = Integer.parseInt(split[1]);
+                    if (clientManager.getGameState().getCardsPlaced()[x][y] == null) {
+                        System.err.println("No card at position " + x + " " + y);
+                        return;
+                    }
                     System.out.println(Printer.GREEN + "Card at position " + x + " " + y + ":" + Printer.RESET);
                     if (x == 40 && y == 40) {
-                        Printer.printCard((StarterCard) clientManager.getGameState().getCardsPlaced()[x][y]);
+                        Printer.printCard(clientManager.getGameState().getStarterCard());
                         return;
                     }
                     Printer.printCard(clientManager.getGameState().getCardsPlaced()[x][y]);

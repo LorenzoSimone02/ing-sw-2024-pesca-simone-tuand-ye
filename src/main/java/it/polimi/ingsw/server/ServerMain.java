@@ -2,6 +2,7 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,19 +10,19 @@ import java.util.Optional;
 public class ServerMain {
 
     private static List<ServerNetworkHandler> matches;
+    private static int nextGameId = 0;
     private static final int RMI_PORT = 1099;
     private static final int SOCKET_PORT = 5000;
 
     public static void main(String[] args) {
         matches = new ArrayList<>();
-
         //System.setProperty("java.rmi.server.hostname", ipAddress);
 
         ServerNetworkHandler lobby = new ServerNetworkHandler("Server", RMI_PORT, SOCKET_PORT);
         lobby.setLobby(true);
         lobby.start();
 
-        System.out.println("Lobby ready");
+        System.out.println("Lobby Server ready");
     }
 
     public static List<ServerNetworkHandler> getMatches() {
@@ -37,7 +38,11 @@ public class ServerMain {
     }
 
     public static Optional<ServerNetworkHandler> getMatch(int id) {
-        return matches.isEmpty() ? Optional.empty() : Optional.of(matches.get(id - 1));
+        return matches.stream().filter(match -> match.getGameController().getGame().getInfo().getId() == id).findFirst();
+    }
+
+    public static int getNextGameId() {
+        return ++nextGameId;
     }
 
     public static int getRmiPort() {

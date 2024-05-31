@@ -3,6 +3,7 @@ package it.polimi.ingsw.server.controller;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
+import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.exceptions.*;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.model.card.*;
@@ -11,7 +12,6 @@ import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class GameController {
@@ -167,7 +167,6 @@ public class GameController {
             GameStartedPacket gameStartedPacket = new GameStartedPacket(game);
             networkHandler.sendPacketToAll(gameStartedPacket);
 
-            saveGameToFile();
             game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
@@ -176,17 +175,37 @@ public class GameController {
         }
     }
 
-    public synchronized void loadGameFromFile(GameSave save) {
+    public synchronized boolean checkExistingSaves() {
+        File saveFolder = new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/");
+        return saveFolder.listFiles() != null && Objects.requireNonNull(saveFolder.listFiles()).length > 0;
+    }
+
+    public synchronized void loadGameFromFile() {
+        File saveDir = new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/");
+        File saveFile = Objects.requireNonNull(saveDir.listFiles())[0];
+        GameSave save = null;
+        try (FileInputStream fileIn = new FileInputStream(saveFile);
+             ObjectInputStream in = new ObjectInputStream(fileIn)) {
+            save = (GameSave) in.readObject();
+        } catch (Exception e) {
+            System.err.println("Error while loading the game: " + e.getMessage());
+        }
+        if (save == null) return;
+
         createGame(save.getId());
+        game.getInfo().setMaxPlayers(save.getMaxPlayers());
+        game.getInfo().setGameStatus(GameStatusEnum.valueOf(save.getGameStatus()));
         //TODO: load game
     }
 
     public synchronized void saveGameToFile() {
         try {
             GameSave save = new GameSave(game);
-            File savesDir = Paths.get("src/main/resources/saves").toFile();
-            savesDir.mkdir();
-            FileOutputStream fileOut = new FileOutputStream("src/main/resources/saves/game" + game.getInfo().getId() + ".save");
+            File saveDir = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves");
+            saveDir.mkdirs();
+            File saveFile = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves\\game" + game.getInfo().getId() + ".save");
+            saveFile.createNewFile();
+            FileOutputStream fileOut = new FileOutputStream(saveFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(save);
             out.close();
@@ -217,9 +236,10 @@ public class GameController {
     }
 
     public synchronized void instantiateCards() throws IOException {
+        BufferedReader reader;
         Deck resourceDeck = new Deck();
         for (int i = 1; i <= 40; i++) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
+            reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -235,7 +255,7 @@ public class GameController {
 
         Deck goldDeck = new Deck();
         for (int i = 1; i <= 40; i++) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
+            reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -251,7 +271,7 @@ public class GameController {
 
         Deck starterDeck = new Deck();
         for (int i = 1; i <= 6; i++) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
+            reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -267,7 +287,7 @@ public class GameController {
 
         Deck objectiveDeck = new Deck();
         for (int i = 1; i <= 16; i++) {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
+            reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
             StringBuilder stringBuilder = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -284,9 +304,8 @@ public class GameController {
 
     public synchronized void nextTurn() {
         saveGameToFile();
-        if (!game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
-            checkEndCondition();
-        }
+
+        checkEndCondition();
 
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
@@ -314,11 +333,11 @@ public class GameController {
             if (game.getInfo().getActivePlayer().equals(lastPlayer)) {
                 if (game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
                     game.getInfo().setGameStatus(GameStatusEnum.ENDING);
-                    networkHandler.sendPacketToAll(new InfoPacket("Last turns ended, calculating the winner(s)..."));
+                    networkHandler.sendPacketToAll(new InfoPacket(Printer.CYAN + "Last turns ended, calculating the winner(s)..." + Printer.RESET));
                     endGame();
                 } else {
                     game.getInfo().setGameStatus(GameStatusEnum.LAST_TURN);
-                    networkHandler.sendPacketToAll(new InfoPacket("Game is ending, play your last turn!"));
+                    networkHandler.sendPacketToAll(new InfoPacket(Printer.CYAN + "Game is ending, play your last turn!" + Printer.RESET));
                 }
             }
         }
@@ -357,7 +376,6 @@ public class GameController {
         //If winners are more than one, query the ObjectiveCardsScored map
         if (winners.size() == 1) {
             game.getInfo().addWinner(winners.getFirst());
-            networkHandler.sendPacketToAll(new InfoPacket("The winner is " + winners.getFirst().getUsername() + "!"));
             networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
         } else {
             Optional<Integer> maxObjectivesScored = objectiveCardsScored.values().stream().max(Integer::compare);
@@ -371,6 +389,8 @@ public class GameController {
                 networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             }
         }
+        getNetworkHandler().stop();
+        ServerMain.removeMatch(getNetworkHandler());
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {

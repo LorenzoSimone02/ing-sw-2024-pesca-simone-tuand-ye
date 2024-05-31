@@ -7,7 +7,6 @@ import it.polimi.ingsw.server.model.player.Player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Stack;
 
 public class GameSave implements Serializable {
@@ -18,14 +17,14 @@ public class GameSave implements Serializable {
     private final String activePlayer;
     private final String gameStatus;
 
-    private final HashMap<String, Integer> playerScores;
+    private final ArrayList<PlayerSave> playerSaves;
 
-    private final Stack<Integer> resourceDeck;
-    private final Stack<Integer> goldDeck;
-    private final Stack<Integer> objectiveDeck;
-    private final Stack<Integer> starterDeck;
-    private final ArrayList<Integer> objectiveCards;
-    private final ArrayList<Integer> cardsOnGround;
+    private final Stack<CardSave> resourceDeck;
+    private final Stack<CardSave> goldDeck;
+    private final Stack<CardSave> objectiveDeck;
+    private final Stack<CardSave> starterDeck;
+    private final ArrayList<CardSave> objectiveCards;
+    private final ArrayList<CardSave> cardsOnGround;
 
     public GameSave(Game game) {
         this.id = game.getInfo().getId();
@@ -36,32 +35,32 @@ public class GameSave implements Serializable {
 
         this.resourceDeck = new Stack<>();
         for (Card card : game.getTable().getResourceDeck().getCards()) {
-            this.resourceDeck.push(card.getId());
+            this.resourceDeck.push(new CardSave(card));
         }
         this.goldDeck = new Stack<>();
         for (Card card : game.getTable().getGoldDeck().getCards()) {
-            this.goldDeck.push(card.getId());
+            this.goldDeck.push(new CardSave(card));
         }
         this.objectiveDeck = new Stack<>();
         for (Card card : game.getTable().getObjectiveDeck().getCards()) {
-            this.objectiveDeck.push(card.getId());
+            this.objectiveDeck.push(new CardSave(card));
         }
         this.starterDeck = new Stack<>();
         for (Card card : game.getTable().getStarterDeck().getCards()) {
-            this.starterDeck.push(card.getId());
+            this.starterDeck.push(new CardSave(card));
         }
         this.objectiveCards = new ArrayList<>(2);
         for (ObjectiveCard objectiveCard : game.getTable().getObjectiveCards()) {
-            this.objectiveCards.add(objectiveCard.getId());
+            this.objectiveCards.add(new CardSave(objectiveCard));
         }
         this.cardsOnGround = new ArrayList<>(4);
         for (Card card : game.getTable().getCardsOnGround()) {
-            this.cardsOnGround.add(card.getId());
+            this.cardsOnGround.add(new CardSave(card));
         }
 
-        this.playerScores = new HashMap<>();
+        this.playerSaves = new ArrayList<>(game.getPlayers().size());
         for (Player player : game.getPlayers()) {
-            playerScores.put(player.getUsername(), player.getScore());
+            playerSaves.add(new PlayerSave(player));
         }
     }
 
@@ -85,32 +84,31 @@ public class GameSave implements Serializable {
         return gameStatus;
     }
 
-    public Stack<Integer> getResourceDeck() {
+    public Stack<CardSave> getResourceDeck() {
         return resourceDeck;
     }
 
-    public Stack<Integer> getGoldDeck() {
+    public Stack<CardSave> getGoldDeck() {
         return goldDeck;
     }
 
-    public Stack<Integer> getObjectiveDeck() {
+    public Stack<CardSave> getObjectiveDeck() {
         return objectiveDeck;
     }
 
-    public Stack<Integer> getStarterDeck() {
+    public Stack<CardSave> getStarterDeck() {
         return starterDeck;
     }
 
-    public ArrayList<Integer> getObjectiveCards() {
+    public ArrayList<CardSave> getObjectiveCards() {
         return objectiveCards;
     }
 
-    public ArrayList<Integer> getCardsOnGround() {
+    public ArrayList<CardSave> getCardsOnGround() {
         return cardsOnGround;
     }
 
-    public HashMap<String, Integer> getPlayerScores() {
-        return playerScores;
+    public ArrayList<PlayerSave> getPlayerSaves() {
+        return playerSaves;
     }
-
 }

@@ -40,8 +40,16 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
         }
         Card card;
         if (drawCardPacket.isGold()) {
+            if(controller.getGame().getTable().getGoldDeck().getCards().isEmpty()) {
+                controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
+                return;
+            }
             card = controller.getGame().getTable().getGoldDeck().drawCard();
         } else {
+            if(controller.getGame().getTable().getResourceDeck().getCards().isEmpty()) {
+                controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
+                return;
+            }
             card = controller.getGame().getTable().getResourceDeck().drawCard();
         }
         controller.getNetworkHandler().sendPacket(clientConnection, new DrawCardPacket(card.getId()));

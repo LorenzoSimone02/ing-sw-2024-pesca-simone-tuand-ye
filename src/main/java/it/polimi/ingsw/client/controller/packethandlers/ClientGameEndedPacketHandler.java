@@ -19,7 +19,7 @@ public class ClientGameEndedPacketHandler extends ClientPacketHandler {
         }
         clientManager.getUserInterface().showMessage(Printer.GREEN + "The game has ended! The winner is: ");
         for (String winner : gameEndedPacket.getWinners()) {
-            clientManager.getUserInterface().showMessage(winner + Printer.RESET);
+            clientManager.getUserInterface().showMessage(winner);
             clientManager.getGameState().addWinner(winner);
         }
         clientManager.getUserInterface().showMessage("Players Scores:");

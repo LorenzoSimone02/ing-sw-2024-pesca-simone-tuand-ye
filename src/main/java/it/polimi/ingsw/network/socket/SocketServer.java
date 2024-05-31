@@ -7,6 +7,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class SocketServer extends Thread {
+
     private final ServerSocket serverSocket;
     private final ServerNetworkHandler serverNetworkHandler;
 
@@ -33,4 +34,11 @@ public class SocketServer extends Thread {
         return serverNetworkHandler;
     }
 
+    public void stopServer(){
+        try {
+            serverSocket.close();
+        } catch (IOException e) {
+            System.err.println("Could not close the server socket " + e);
+        }
+    }
 }

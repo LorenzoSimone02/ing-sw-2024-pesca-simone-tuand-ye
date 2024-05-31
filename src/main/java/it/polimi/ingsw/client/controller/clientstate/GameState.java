@@ -51,6 +51,7 @@ public class GameState {
         proposedCards = new ArrayList<>(2);
         resources = new HashMap<>(7);
         clientStatus = ClientStatusEnum.DISCONNECTED;
+        winners = new ArrayList<>();
         lastPing = System.currentTimeMillis();
 
         loadCards();
@@ -272,6 +273,10 @@ public class GameState {
             }
         }
         return null;
+    }
+
+    public void removePlayerStateByNick(String nickname) {
+        playerStates.removeIf(state -> state.getUsername().equals(nickname));
     }
 
     public ResourceCard[][] getCardsPlaced() {

@@ -24,7 +24,6 @@ public class ClientChooseStarterFacePacketHandler extends ClientPacketHandler {
             card.setFace(chooseStarterFacePacket.getChosenStarterFace());
             System.out.println(Printer.GREEN + "You have chosen your Starter Card face." + Printer.RESET);
             clientManager.getGameState().setStarterCard(card);
-            clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_OBJECTIVE);
             for (Corner corner : card.getCorners()) {
                 if (corner.getFace().equals(chooseStarterFacePacket.getChosenStarterFace()))
                     clientManager.getGameState().addResource(corner.getResource().getType().name());

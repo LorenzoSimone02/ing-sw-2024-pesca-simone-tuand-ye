@@ -11,32 +11,33 @@ import java.util.*;
 public class ServerNetworkHandler {
 
     private final String registryName;
+    private RMIServer rmiServer;
     private final int rmiPort;
+    private SocketServer socketServer;
     private final int socketPort;
     private final ArrayList<ClientConnection> connections;
     private final Map<Packet, ClientConnection> packetQueue;
     private final GameController gameController;
     private boolean isLobby;
 
-    //TODO: Fix problem of reused gameIDs after game ends
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
         this.rmiPort = rmiPort;
         this.socketPort = socketPort;
         connections = new ArrayList<>();
         packetQueue = Collections.synchronizedMap(new LinkedHashMap<>());
-        gameController = new GameController(this);
         isLobby = false;
+        gameController = new GameController(this);
     }
 
     public void start() {
         try {
             System.out.println("Starting RMI Server...");
-            new RMIServer(this, registryName, rmiPort);
+            rmiServer = new RMIServer(this, registryName, rmiPort);
             System.out.println("RMI Server started on port " + rmiPort + " with name " + registryName);
 
             System.out.println("Starting Socket Server...");
-            new SocketServer(this, socketPort);
+            socketServer = new SocketServer(this, socketPort);
             System.out.println("Socket Server started on port " + socketPort);
 
             Thread packetHandlerThread = new Thread(new PacketHandlerThread(this));
@@ -48,6 +49,11 @@ public class ServerNetworkHandler {
         } catch (IOException e) {
             System.err.println("Server exception: " + e);
         }
+    }
+
+    public synchronized void stop(){
+        socketServer.stopServer();
+        rmiServer.stopServer();
     }
 
     public synchronized void sendPacket(ClientConnection connection, Packet packet) {
