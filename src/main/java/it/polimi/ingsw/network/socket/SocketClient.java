@@ -29,7 +29,7 @@ public class SocketClient extends ClientNetworkHandler {
             in = new ObjectInputStream(socket.getInputStream());
             out = new ObjectOutputStream(socket.getOutputStream());
         } catch (IOException e) {
-            System.err.println("Socket network error: " + e);
+            System.err.println("An error occurred while connecting to the Lobby: " + e.getMessage());
         }
 
         new Thread(() -> {

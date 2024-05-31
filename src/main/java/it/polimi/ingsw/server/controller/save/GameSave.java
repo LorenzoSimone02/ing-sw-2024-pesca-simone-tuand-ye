@@ -12,8 +12,6 @@ import java.util.Stack;
 
 public class GameSave implements Serializable {
 
-    private transient final Game game;
-
     private final int id;
     private final int maxPlayers;
     private final String firstPlayer;
@@ -30,7 +28,6 @@ public class GameSave implements Serializable {
     private final ArrayList<Integer> cardsOnGround;
 
     public GameSave(Game game) {
-        this.game = game;
         this.id = game.getInfo().getId();
         this.maxPlayers = game.getInfo().getMaxPlayers();
         this.firstPlayer = game.getInfo().getFirstPlayer().getUsername();
@@ -66,10 +63,6 @@ public class GameSave implements Serializable {
         for (Player player : game.getPlayers()) {
             playerScores.put(player.getUsername(), player.getScore());
         }
-    }
-
-    public Game getGame() {
-        return game;
     }
 
     public int getId() {

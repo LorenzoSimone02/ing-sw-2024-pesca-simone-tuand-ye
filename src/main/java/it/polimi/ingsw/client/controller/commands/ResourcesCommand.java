@@ -21,13 +21,13 @@ public class ResourcesCommand extends Command {
         if (isExecutable(clientManager)) {
             if (input.trim().isEmpty()) {
                 System.out.println(Printer.GREEN + "Your Resources:");
-                System.out.println(Printer.RED + clientManager.getGameState().getResources().get(ResourceTypeEnum.FUNGI.name()) + " Fungi");
-                System.out.println(Printer.BLUE + clientManager.getGameState().getResources().get(ResourceTypeEnum.ANIMAL.name()) + " Animal");
-                System.out.println(Printer.PURPLE + clientManager.getGameState().getResources().get(ResourceTypeEnum.INSECT.name()) + " Insect");
-                System.out.println(Printer.GREEN + clientManager.getGameState().getResources().get(ResourceTypeEnum.PLANT.name()) + " Plant");
-                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().get(ObjectTypeEnum.INKWELL.name()) + " Inkwell");
-                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().get(ObjectTypeEnum.MANUSCRIPT.name()) + " Manuscript");
-                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().get(ObjectTypeEnum.QUILL.name()) + " Quill" + Printer.RESET);
+                System.out.println(Printer.RED + clientManager.getGameState().getResources().getOrDefault(ResourceTypeEnum.FUNGI.name(), 0) + " Fungi");
+                System.out.println(Printer.BLUE + clientManager.getGameState().getResources().getOrDefault(ResourceTypeEnum.ANIMAL.name(), 0) + " Animal");
+                System.out.println(Printer.PURPLE + clientManager.getGameState().getResources().getOrDefault(ResourceTypeEnum.INSECT.name(), 0) + " Insect");
+                System.out.println(Printer.GREEN + clientManager.getGameState().getResources().getOrDefault(ResourceTypeEnum.PLANT.name(), 0) + " Plant");
+                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().getOrDefault(ObjectTypeEnum.INKWELL.name(), 0) + " Inkwell");
+                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().getOrDefault(ObjectTypeEnum.MANUSCRIPT.name(), 0) + " Manuscript");
+                System.out.println(Printer.YELLOW + clientManager.getGameState().getResources().getOrDefault(ObjectTypeEnum.QUILL.name(), 0) + " Quill" + Printer.RESET);
 
             } else {
                 System.err.println("Usage: /resources <player>");

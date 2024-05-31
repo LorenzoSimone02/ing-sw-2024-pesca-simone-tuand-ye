@@ -16,29 +16,24 @@ public class ResourceCard extends Card {
     int xCoord;
     int yCoord;
     final int points;
-    List<Corner> corners;
+    final List<Corner> corners;
     final List<Resource> backResources;
 
-    public ResourceCard(File jsonFile) {
+    public ResourceCard(String jsonData) {
         this.corners = new ArrayList<>();
         this.corners.add(new Corner(CornerLocationEnum.TOP_LEFT, null, null, FaceEnum.BACK, true));
         this.corners.add(new Corner(CornerLocationEnum.TOP_RIGHT, null, null, FaceEnum.BACK, true));
         this.corners.add(new Corner(CornerLocationEnum.BOTTOM_LEFT, null, null, FaceEnum.BACK, true));
         this.corners.add(new Corner(CornerLocationEnum.BOTTOM_RIGHT, null, null, FaceEnum.BACK, true));
 
-        try {
-            Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new FileReader(jsonFile));
-            ResourceCard proprieties = gson.fromJson(reader, ResourceCard.class);
-            this.id = proprieties.getId();
-            this.color = proprieties.getColor();
-            this.face = proprieties.getFace();
-            this.points = proprieties.getPoints();
-            this.backResources = proprieties.getBackResources();
-            this.corners.addAll(proprieties.getCorners());
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        Gson gson = new Gson();
+        ResourceCard proprieties = gson.fromJson(jsonData, ResourceCard.class);
+        this.id = proprieties.getId();
+        this.color = proprieties.getColor();
+        this.face = proprieties.getFace();
+        this.points = proprieties.getPoints();
+        this.backResources = proprieties.getBackResources();
+        this.corners.addAll(proprieties.getCorners());
     }
 
     public int getXCoord() {

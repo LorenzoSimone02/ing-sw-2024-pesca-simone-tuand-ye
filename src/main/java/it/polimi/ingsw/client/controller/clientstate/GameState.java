@@ -5,8 +5,10 @@ import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -50,6 +52,7 @@ public class GameState {
         resources = new HashMap<>(7);
         clientStatus = ClientStatusEnum.DISCONNECTED;
         lastPing = System.currentTimeMillis();
+
         loadCards();
     }
 
@@ -200,29 +203,56 @@ public class GameState {
     }
 
     public void loadCards() {
+        try {
+            for (int i = 1; i <= 40; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                ResourceCard card = new ResourceCard(jsonData);
+                allCards.add(card);
+            }
 
-        File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            ResourceCard card = new ResourceCard(file);
-            allCards.add(card);
-        }
+            for(int i = 1; i <= 40; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                GoldCard card = new GoldCard(jsonData);
+                allCards.add(card);
+            }
 
-        folder = Paths.get("src/main/resources/assets/goldcards").toFile();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            GoldCard card = new GoldCard(file);
-            allCards.add(card);
-        }
+            for(int i = 1; i <= 6; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                StarterCard card = new StarterCard(jsonData);
+                allCards.add(card);
+            }
 
-        folder = Paths.get("src/main/resources/assets/startercards").toFile();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            StarterCard card = new StarterCard(file);
-            allCards.add(card);
-        }
-
-        folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            ObjectiveCard card = new ObjectiveCard(file);
-            allCards.add(card);
+            for(int i = 1; i <= 16; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                ObjectiveCard card = new ObjectiveCard(jsonData);
+                allCards.add(card);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -235,9 +265,9 @@ public class GameState {
         return null;
     }
 
-    public PlayerState getPlayerStateByNick(String nickname){
-        for(PlayerState state : playerStates){
-            if(state.getUsername().equals(nickname)){
+    public PlayerState getPlayerStateByNick(String nickname) {
+        for (PlayerState state : playerStates) {
+            if (state.getUsername().equals(nickname)) {
                 return state;
             }
         }
@@ -272,7 +302,7 @@ public class GameState {
         cardsOnGround.add(card);
     }
 
-    public void removeCardOnGround(Card card){
+    public void removeCardOnGround(Card card) {
         cardsOnGround.remove(card);
     }
 }

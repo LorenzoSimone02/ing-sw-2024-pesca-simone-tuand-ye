@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -57,15 +58,20 @@ public class GUIClient extends Application implements UserInterface {
 
         stage.setOnCloseRequest(e -> System.exit(0));
 
-        Media music = new Media(Objects.requireNonNull(getClass().getResource("/music/preGameMusic.mp3")).toString());
-        mediaPlayer = new MediaPlayer(music);
-        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(0);
-        mediaPlayer.play();
-        Timeline fadeIn = new Timeline(
-                new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0.15))
-        );
-        fadeIn.play();
+
+        try {
+            Media music = new Media(Objects.requireNonNull(getClass().getResource("/music/preGameMusic.mp3")).toURI().toString());
+            mediaPlayer = new MediaPlayer(music);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.setVolume(0);
+            mediaPlayer.play();
+            Timeline fadeIn = new Timeline(
+                    new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0.15))
+            );
+            fadeIn.play();
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void loadScenes() {

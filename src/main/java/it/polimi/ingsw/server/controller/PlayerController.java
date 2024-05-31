@@ -79,8 +79,8 @@ public record PlayerController(Player player) {
 
     public synchronized boolean canPlaceCard(int x, int y, ResourceCard card) {
 
-        if ((card instanceof GoldCard) && card.getFace().equals(FaceEnum.FRONT)) {
-            if (!((GoldCard) card).meetRequirements(player.getResources())) {
+        if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
+            if (!goldCard.meetRequirements(player.getResources())) {
                 return false;
             }
         }

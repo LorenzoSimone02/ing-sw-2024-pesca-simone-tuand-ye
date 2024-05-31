@@ -17,18 +17,13 @@ public class GoldCard extends ResourceCard {
     private final GoldStrategyType pointsStrategy;
     private final String objectiveDescription;
 
-    public GoldCard(File jsonFile) {
-        super(jsonFile);
-        try {
-            Gson gson = new Gson();
-            JsonReader reader = new JsonReader(new FileReader(jsonFile));
-            GoldCard proprieties = gson.fromJson(reader, GoldCard.class);
-            this.pointsStrategy = proprieties.pointsStrategy;
-            this.resourcesNeeded = proprieties.getResourcesNeeded();
-            this.objectiveDescription = proprieties.getObjectiveDescription();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+    public GoldCard(String jsonData) {
+        super(jsonData);
+        Gson gson = new Gson();
+        GoldCard proprieties = gson.fromJson(jsonData, GoldCard.class);
+        this.pointsStrategy = proprieties.pointsStrategy;
+        this.resourcesNeeded = proprieties.getResourcesNeeded();
+        this.objectiveDescription = proprieties.getObjectiveDescription();
     }
 
     public boolean meetRequirements(List<Resource> playerResources) {

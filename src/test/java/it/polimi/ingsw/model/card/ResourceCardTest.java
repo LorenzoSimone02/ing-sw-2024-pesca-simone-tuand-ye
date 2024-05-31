@@ -7,9 +7,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.nio.file.Paths;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -24,27 +27,56 @@ public class ResourceCardTest {
     @BeforeEach
     void setUp() {
 
-        File currFile;
+        try {
+            for (int i = 1; i <= 40; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                ResourceCard card = new ResourceCard(jsonData);
+                resCardArray.add(card);
+            }
 
-        for (int i = 1; i <= 40; i++){
-            currFile = Paths.get("src/main/resources/assets/resourcecards/resourceCard" + i + ".json").toFile();
-            ResourceCard card = new ResourceCard(currFile);
-            resCardArray.add(card);
-        }
-        for (int i = 1; i <= 40; i++){
-            currFile = Paths.get("src/main/resources/assets/goldcards/goldCard" + i + ".json").toFile();
-            GoldCard card = new GoldCard(currFile);
-            goldCardArray.add(card);
-        }
-        for (int i = 1; i <= 6; i++){
-            currFile = Paths.get("src/main/resources/assets/startercards/starterCard" + i + ".json").toFile();
-            StarterCard card = new StarterCard(currFile);
-            startCardArray.add(card);
-        }
-        for (int i = 1; i <= 12; i++){
-            currFile = Paths.get("src/main/resources/assets/objectivecards/objectiveCard" + i + ".json").toFile();
-            ObjectiveCard card = new ObjectiveCard(currFile);
-            objCardArray.add(card);
+            for (int i = 1; i <= 40; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                GoldCard card = new GoldCard(jsonData);
+                goldCardArray.add(card);
+            }
+
+            for (int i = 1; i <= 6; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                StarterCard card = new StarterCard(jsonData);
+                startCardArray.add(card);
+            }
+
+            for (int i = 1; i <= 16; i++) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
+                StringBuilder stringBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                String jsonData = stringBuilder.toString();
+                ObjectiveCard card = new ObjectiveCard(jsonData);
+                objCardArray.add(card);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

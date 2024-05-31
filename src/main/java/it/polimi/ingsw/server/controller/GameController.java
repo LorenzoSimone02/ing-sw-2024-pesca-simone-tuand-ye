@@ -10,10 +10,7 @@ import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Paths;
 import java.util.*;
 
@@ -219,41 +216,65 @@ public class GameController {
         }
     }
 
-    public synchronized void instantiateCards() {
-        File folder = Paths.get("src/main/resources/assets/resourcecards").toFile();
+    public synchronized void instantiateCards() throws IOException {
         Deck resourceDeck = new Deck();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            ResourceCard card = new ResourceCard(file);
+        for (int i = 1; i <= 40; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            ResourceCard card = new ResourceCard(jsonData);
             resourceDeck.addCard(card);
             allCards.add(card);
         }
         resourceDeck.shuffleDeck();
         game.getTable().setResourceDeck(resourceDeck);
 
-        folder = Paths.get("src/main/resources/assets/goldcards").toFile();
         Deck goldDeck = new Deck();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            GoldCard card = new GoldCard(file);
+        for (int i = 1; i <= 40; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            GoldCard card = new GoldCard(jsonData);
             goldDeck.addCard(card);
             allCards.add(card);
         }
         goldDeck.shuffleDeck();
         game.getTable().setGoldDeck(goldDeck);
 
-        folder = Paths.get("src/main/resources/assets/startercards").toFile();
         Deck starterDeck = new Deck();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            StarterCard card = new StarterCard(file);
+        for (int i = 1; i <= 6; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            StarterCard card = new StarterCard(jsonData);
             starterDeck.addCard(card);
             allCards.add(card);
         }
         starterDeck.shuffleDeck();
         game.getTable().setStarterDeck(starterDeck);
 
-        folder = Paths.get("src/main/resources/assets/objectivecards").toFile();
         Deck objectiveDeck = new Deck();
-        for (File file : Objects.requireNonNull(folder.listFiles())) {
-            ObjectiveCard card = new ObjectiveCard(file);
+        for (int i = 1; i <= 16; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            ObjectiveCard card = new ObjectiveCard(jsonData);
             objectiveDeck.addCard(card);
             allCards.add(card);
         }
