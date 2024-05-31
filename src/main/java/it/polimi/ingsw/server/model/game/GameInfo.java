@@ -7,18 +7,18 @@ import java.util.List;
 
 public class GameInfo {
 
+    private final Game game;
     private final int id;
-    private int playersNumber;
     private int maxPlayers;
     private Player firstPlayer;
     private Player activePlayer;
-    private List<Player> winners;
+    private final List<Player> winners;
     private GameStatusEnum gameStatus;
 
-    public GameInfo(int id, int playersNumber) {
+    public GameInfo(Game game, int id) {
+        this.game = game;
         this.id = id;
-        this.playersNumber = playersNumber;
-        this.maxPlayers = 4;
+        maxPlayers = 4;
         gameStatus = GameStatusEnum.WAITING_FOR_PLAYERS;
         winners = new ArrayList<>(4);
     }
@@ -28,11 +28,7 @@ public class GameInfo {
     }
 
     public int getPlayersNumber() {
-        return playersNumber;
-    }
-
-    public void setPlayersNumber(int playersNumber) {
-        this.playersNumber = playersNumber;
+        return game.getPlayers().size();
     }
 
     public int getMaxPlayers() {

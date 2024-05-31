@@ -11,10 +11,12 @@ public class Table {
     private Deck goldDeck;
     private Deck objectiveDeck;
     private Deck starterDeck;
+    private final List<ObjectiveCard> objectiveCards;
     private final List<Card> cardsOnGround;
 
     public Table() {
-        this.cardsOnGround = new ArrayList<>();
+        this.cardsOnGround = new ArrayList<>(4);
+        this.objectiveCards = new ArrayList<>(2);
     }
 
     public Deck getResourceDeck() {
@@ -60,4 +62,13 @@ public class Table {
     public void removeCardOnGround(Card card) {
         this.cardsOnGround.remove(card);
     }
+
+    public List<ObjectiveCard> getObjectiveCards() {
+        return objectiveCards;
+    }
+
+    public void addObjectiveCard(ObjectiveCard objectiveCard) {
+        this.objectiveCards.add(objectiveCard);
+    }
+
 }

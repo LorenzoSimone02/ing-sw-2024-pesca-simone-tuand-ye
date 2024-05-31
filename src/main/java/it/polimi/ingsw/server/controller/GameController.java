@@ -83,7 +83,6 @@ public class GameController {
         PlayerController controller = new PlayerController(player);
         playerControllers.add(controller);
         game.getPlayers().add(player);
-        game.getInfo().setPlayersNumber(game.getPlayers().size());
 
     }
 
@@ -122,10 +121,8 @@ public class GameController {
         if (playerToRemove != null) {
             playerControllers.remove(getPlayerController(playerToRemove));
             game.getPlayers().remove(playerToRemove);
-            game.getInfo().setPlayersNumber(game.getPlayers().size());
 
         } else {
-
             throw new PlayerNotFoundException(player);
         }
     }
@@ -156,7 +153,6 @@ public class GameController {
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
 
             instantiateCards();
-            //assignStarterCard();
             assignCommonObjectives();
             chooseFirstPlayer();
 
@@ -200,7 +196,6 @@ public class GameController {
             fileOut.close();
         } catch (IOException e) {
             System.err.println("Error while saving the game: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -212,8 +207,8 @@ public class GameController {
     }
 
     public synchronized void assignCommonObjectives() {
-        game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
-        game.addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
+        game.getTable().addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
+        game.getTable().addObjectiveCard((ObjectiveCard) game.getTable().getObjectiveDeck().drawCard());
     }
 
     public synchronized void proposeObjectiveCards() {
@@ -267,7 +262,7 @@ public class GameController {
     }
 
     public synchronized void nextTurn() {
-
+        saveGameToFile();
         if (!game.getInfo().getGameStatus().equals(GameStatusEnum.LAST_TURN)) {
             checkEndCondition();
         }
@@ -320,7 +315,7 @@ public class GameController {
             currentObjectiveCardsScored += p.getObjectiveCard().calculatePoints(p) == 0 ? 0 : 1;
 
             int publicObjectivePoints = 0;
-            for (ObjectiveCard card : game.getObjectiveCards()) {
+            for (ObjectiveCard card : game.getTable().getObjectiveCards()) {
                 publicObjectivePoints += card.calculatePoints(p);
                 currentObjectiveCardsScored += card.calculatePoints(p) == 0 ? 0 : 1;
             }

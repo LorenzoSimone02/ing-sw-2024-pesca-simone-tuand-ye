@@ -1,6 +1,5 @@
 package it.polimi.ingsw.server.model.game;
 
-import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.player.Player;
 
 import java.util.ArrayList;
@@ -11,17 +10,14 @@ public class Game {
     private final Table table;
     private final List<Player> players;
     private final List<Player> offlinePlayers;
-    private final ArrayList<ObjectiveCard> objectiveCards;
     private final GameInfo info;
 
     public Game(int id) {
         this.table = new Table();
         this.players = new ArrayList<>();
         this.offlinePlayers = new ArrayList<>();
-        this.objectiveCards = new ArrayList<>();
-        this.info = new GameInfo(id, 0);
+        this.info = new GameInfo(this, id);
     }
-
 
     public Table getTable() {
         return table;
@@ -33,14 +29,6 @@ public class Game {
 
     public List<Player> getOfflinePlayers() {
         return offlinePlayers;
-    }
-
-    public ArrayList<ObjectiveCard> getObjectiveCards() {
-        return objectiveCards;
-    }
-
-    public void addObjectiveCard(ObjectiveCard objectiveCard) {
-        this.objectiveCards.add(objectiveCard);
     }
 
     public GameInfo getInfo() {

@@ -84,15 +84,15 @@ public class GameTest {
         ObjectiveCard objective1 = new ObjectiveCard(objectiveJson);
         ObjectiveCard objective2 = new ObjectiveCard(objectiveJson);
 
-        controller.getGame().addObjectiveCard(objective1);
-        controller.getGame().addObjectiveCard(objective2);
+        controller.getGame().getTable().addObjectiveCard(objective1);
+        controller.getGame().getTable().addObjectiveCard(objective2);
 
-        assertTrue(controller.getGame().getObjectiveCards().contains(objective1));
-        assertTrue(controller.getGame().getObjectiveCards().contains(objective2));
+        assertTrue(controller.getGame().getTable().getObjectiveCards().contains(objective1));
+        assertTrue(controller.getGame().getTable().getObjectiveCards().contains(objective2));
 
         try {
             ObjectiveCard extra = new ObjectiveCard(objectiveJson);
-            controller.getGame().addObjectiveCard(extra);
+            controller.getGame().getTable().addObjectiveCard(extra);
         } catch (IllegalObjectiveException e) {
             fail("Illegal objective card added.");
         }

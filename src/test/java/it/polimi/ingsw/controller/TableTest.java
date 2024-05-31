@@ -55,7 +55,7 @@ public class TableTest {
 
         assertEquals(2, numOfGoldCards);
         assertEquals(2, numOfResourceCards);
-        assertEquals(2, controller.getGame().getObjectiveCards().size());
+        assertEquals(2, controller.getGame().getTable().getObjectiveCards().size());
 
     }
 

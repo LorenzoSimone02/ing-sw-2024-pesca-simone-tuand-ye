@@ -23,7 +23,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
             Card card = controller.getCardById(drawCardPacket.getCardID());
             Card newCard = null;
             if (controller.getGame().getTable().getCardsOnGround().contains(card)) {
-                controller.getGame().getTable().getCardsOnGround().remove(card);
+                controller.getGame().getTable().removeCardOnGround(card);
                 if (card instanceof GoldCard) {
                     newCard = controller.getGame().getTable().getGoldDeck().drawCard();
                     controller.getGame().getTable().getCardsOnGround().add(newCard);

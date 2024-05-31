@@ -33,7 +33,7 @@ public class GameStartedPacket extends Packet {
         for (Card card : game.getTable().getCardsOnGround()) {
             cardsOnGround.add(card.getId());
         }
-        for(Card card : game.getObjectiveCards()){
+        for(Card card : game.getTable().getObjectiveCards()){
             cardsOnGround.add(card.getId());
         }
         this.firstPlayer = game.getInfo().getFirstPlayer().getUsername();
