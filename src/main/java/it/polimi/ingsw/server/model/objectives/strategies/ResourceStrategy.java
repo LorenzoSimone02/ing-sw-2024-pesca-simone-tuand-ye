@@ -7,7 +7,7 @@ import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 import java.util.Collections;
 
 /**
- * This class implements the ObjectiveStrategy and represents the strategy for the objective "RESOURCE".
+ * This class implements the ObjectiveStrategy and represents the strategy for the objective "RESOURCE_XXX".
  * It calculates the points of the player based on the number of the specified resource types the player has in their card matrix
  */
 public class ResourceStrategy implements ObjectiveStrategy {
