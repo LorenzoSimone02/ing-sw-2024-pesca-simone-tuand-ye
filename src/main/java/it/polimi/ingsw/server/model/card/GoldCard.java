@@ -11,12 +11,31 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.*;
 
+/**
+ * The class GoldCard represents a gold card in the game
+ */
 public class GoldCard extends ResourceCard {
 
+    /**
+     * The list of resources needed to place the card
+     */
     private final List<Resource> resourcesNeeded;
+
+    /**
+     * The gold strategy of the card
+     */
     private final GoldStrategyType pointsStrategy;
+
+    /**
+     * The description of the objective of the card
+     */
     private final String objectiveDescription;
 
+    /**
+     * Constructor of the class
+     * @param jsonData a JSON string containing the data of the gold card
+     * @see com.google.gson.Gson
+     */
     public GoldCard(String jsonData) {
         super(jsonData);
         Gson gson = new Gson();
@@ -26,6 +45,10 @@ public class GoldCard extends ResourceCard {
         this.objectiveDescription = proprieties.getObjectiveDescription();
     }
 
+    /**
+     * The method returns a boolean that indicates if the player meets the requirements to place the card
+     * @param playerResources the list of resources of the player
+     */
     public boolean meetRequirements(List<Resource> playerResources) {
 
         HashMap<ResourceTypeEnum, Integer> currResources = new HashMap<>(Map.ofEntries(
@@ -51,14 +74,26 @@ public class GoldCard extends ResourceCard {
     }
 
 
+    /**
+     * The method returns the list of resources needed to place the card
+     * @return the list of resources needed to place the card
+     */
     public List<Resource> getResourcesNeeded() {
         return resourcesNeeded;
     }
 
+    /**
+     * The method returns the gold strategy of the card
+     * @return the gold strategy of the card
+     */
     public GoldStrategyType getPointsStrategy() {
         return pointsStrategy;
     }
 
+    /**
+     * The method returns the description of the objective of the card
+     * @return the description of the objective of the card
+     */
     public String getObjectiveDescription() {
         return objectiveDescription;
     }
