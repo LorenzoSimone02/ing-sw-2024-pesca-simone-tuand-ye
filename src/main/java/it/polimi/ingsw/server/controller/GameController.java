@@ -5,11 +5,15 @@ import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.exceptions.*;
+import it.polimi.ingsw.server.controller.save.CardSave;
 import it.polimi.ingsw.server.controller.save.GameSave;
+import it.polimi.ingsw.server.controller.save.PlayerSave;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
+import it.polimi.ingsw.server.model.player.PlayerToken;
+import it.polimi.ingsw.server.model.player.TokenColorEnum;
 
 import java.io.*;
 import java.util.*;
@@ -195,7 +199,59 @@ public class GameController {
         createGame(save.getId());
         game.getInfo().setMaxPlayers(save.getMaxPlayers());
         game.getInfo().setGameStatus(GameStatusEnum.valueOf(save.getGameStatus()));
-        //TODO: load game
+
+        Deck objectiveDeck = new Deck();
+        for(CardSave cardSave : save.getObjectiveDeck()) {
+            objectiveDeck.addCard(getCardById(cardSave.getId()));
+        }
+        game.getTable().setObjectiveDeck(objectiveDeck);
+        Deck resourceDeck = new Deck();
+        for(CardSave cardSave : save.getResourceDeck()) {
+            resourceDeck.addCard(getCardById(cardSave.getId()));
+        }
+        game.getTable().setResourceDeck(resourceDeck);
+        Deck goldDeck = new Deck();
+        for(CardSave cardSave : save.getGoldDeck()) {
+            goldDeck.addCard(getCardById(cardSave.getId()));
+        }
+        game.getTable().setGoldDeck(goldDeck);
+        Deck starterDeck = new Deck();
+        for(CardSave cardSave : save.getStarterDeck()) {
+            starterDeck.addCard(getCardById(cardSave.getId()));
+        }
+        game.getTable().setStarterDeck(starterDeck);
+        for (CardSave cardSave : save.getCardsOnGround()) {
+            game.getTable().addCardOnGround(getCardById(cardSave.getId()));
+        }
+        for (CardSave cardSave : save.getObjectiveCards()) {
+            game.getTable().addObjectiveCard((ObjectiveCard) getCardById(cardSave.getId()));
+        }
+
+        for (PlayerSave playerSave : save.getPlayerSaves()) {
+            Player player = new Player(playerSave.getUsername(), game);
+            player.setScore(playerSave.getScore());
+            player.setToken(new PlayerToken(TokenColorEnum.valueOf(playerSave.getToken())));
+            player.setObjectiveCard((ObjectiveCard) getCardById(playerSave.getObjectiveCard().getId()));
+            player.setStarterCard((StarterCard) getCardById(playerSave.getStarterCard().getId()));
+            for (CardSave cardSave : playerSave.getCardsInHand()) {
+                Card card = getCardById(cardSave.getId());
+                card.setFace(FaceEnum.valueOf(cardSave.getFace()));
+                player.addCardInHand(card);
+
+            }
+            for (int i = 0; i < 81; i++) {
+                for (int j = 0; j < 81; j++) {
+                    CardSave cardSave = playerSave.getCards()[i][j];
+                    if (cardSave != null) {
+                        Card card = getCardById(playerSave.getCards()[i][j].getId());
+                        card.setFace(FaceEnum.valueOf(cardSave.getFace()));
+                        player.setCard((ResourceCard) card, i, j);
+                    }
+                }
+            }
+            game.getPlayers().add(player);
+        }
+        //TODO: Player resources
     }
 
     public synchronized void saveGameToFile() {

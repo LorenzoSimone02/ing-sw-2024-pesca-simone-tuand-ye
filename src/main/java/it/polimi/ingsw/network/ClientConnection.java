@@ -15,14 +15,9 @@ public abstract class ClientConnection implements Serializable {
      */
     private UUID uuid;
     /**
-     * The User nickanme
+     * The User nickname
      */
     private String username;
-
-    /**
-     * Whether the client is connected
-     */
-    private boolean isConnected;
 
     /**
      * The last time the Client pinged the Server
@@ -30,7 +25,6 @@ public abstract class ClientConnection implements Serializable {
     private long lastPing;
 
     public ClientConnection() {
-        this.isConnected = true;
         this.lastPing = System.currentTimeMillis();
     }
 
@@ -54,15 +48,6 @@ public abstract class ClientConnection implements Serializable {
 
     public String getUsername() {
         return username;
-    }
-
-    public boolean isConnected() {
-        return isConnected;
-    }
-
-
-    public void setConnected(boolean connected) {
-        isConnected = connected;
     }
 
     public void setUsername(String username) {

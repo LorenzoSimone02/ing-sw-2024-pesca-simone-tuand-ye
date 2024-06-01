@@ -1,5 +1,5 @@
 
-package it.polimi.ingsw.controller;
+package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.server.controller.GameController;

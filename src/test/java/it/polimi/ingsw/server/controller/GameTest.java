@@ -1,4 +1,4 @@
-package it.polimi.ingsw.controller;
+package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.exceptions.*;

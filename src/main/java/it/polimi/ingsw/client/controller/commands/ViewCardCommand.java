@@ -29,9 +29,9 @@ public class ViewCardCommand extends Command {
                     System.out.println(Printer.GREEN + "Card at position " + x + " " + y + ":" + Printer.RESET);
                     if (x == 40 && y == 40) {
                         Printer.printCard(clientManager.getGameState().getStarterCard());
-                        return;
+                    } else {
+                        Printer.printCard(clientManager.getGameState().getCardsPlaced()[x][y]);
                     }
-                    Printer.printCard(clientManager.getGameState().getCardsPlaced()[x][y]);
                 } catch (NumberFormatException e) {
                     System.err.println("Usage: /viewCard <x> <y> <player>");
                 }
@@ -44,9 +44,9 @@ public class ViewCardCommand extends Command {
                             System.out.println(Printer.GREEN + "Card at position " + x + " " + y + " of " + playerState.getUsername() + ":" + Printer.RESET);
                             if (x == 40 && y == 40) {
                                 Printer.printCard((StarterCard) playerState.getCardsPlaced()[x][y]);
-                                return;
+                            } else {
+                                Printer.printCard(playerState.getCardsPlaced()[x][y]);
                             }
-                            Printer.printCard(playerState.getCardsPlaced()[x][y]);
                         } catch (NumberFormatException e) {
                             System.err.println("Usage: /viewCard <x> <y> <player>");
                         }

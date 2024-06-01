@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ClientMain {
 
     public static void main(String[] args) {
-        String serverIP = args[0];
+        String serverIP = args[0] == null ? "localhost" : args[0];
         Scanner scanner = new Scanner(System.in);
         String nextLine;
         ClientNetworkHandler networkHandler = null;

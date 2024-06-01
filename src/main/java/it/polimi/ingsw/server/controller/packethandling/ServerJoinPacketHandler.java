@@ -24,7 +24,6 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
         }
 
         int gameID;
-
         ServerNetworkHandler oldMatch = null;
         for (gameID = 1; gameID <= ServerMain.getMatches().size(); gameID++) {
             if (ServerMain.getMatch(gameID).isPresent()) {

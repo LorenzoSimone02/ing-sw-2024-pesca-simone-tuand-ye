@@ -1,4 +1,4 @@
-package it.polimi.ingsw.controller;
+package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.FaceEnum;
@@ -18,8 +18,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.nio.file.Paths;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class ImmediateScoreCalculationTest {
 

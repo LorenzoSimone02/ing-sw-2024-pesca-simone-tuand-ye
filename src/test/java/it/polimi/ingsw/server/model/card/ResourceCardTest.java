@@ -1,14 +1,12 @@
-package it.polimi.ingsw.model.card;
+package it.polimi.ingsw.server.model.card;
 
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
