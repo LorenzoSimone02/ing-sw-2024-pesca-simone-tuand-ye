@@ -29,15 +29,15 @@ public class Deck {
 
     /**
      * The method adds a card to the deck
-     * @param card the card to add
+     * @param card the card to add to the deck
      */
     public void addCard(Card card) {
         cards.push(card);
     }
 
     /**
-     * The method draws a card from the deck
-     * @return the card drawn from the deck
+     * The method draws a card from the deck to a player's hand
+     * @return the first card of the deck
      */
     public Card drawCard() {
         return cards.pop();

@@ -4,7 +4,7 @@ import it.polimi.ingsw.server.model.player.Player;
 
 /**
  * This interface represents a strategy that assigns points to a player
- * based on the type of GoldStrategy of the card that the player has placed on the board
+ *      based on the type of GoldStrategy of the card that the player has placed on the board
  */
 public interface GoldStrategy {
 

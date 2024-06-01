@@ -7,6 +7,9 @@ import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.util.List;
 
+/**
+ * This enum represents the type of objective that the player can have
+ */
 public enum ObjectiveType {
 
     BOTTOM_LEFT_L_SHAPE(new BottomLeftLShape(CardColorEnum.GREEN, CardColorEnum.PURPLE, 3)),
@@ -26,12 +29,23 @@ public enum ObjectiveType {
     OBJECT_INKWELL(new ObjectStrategy(List.of(ObjectTypeEnum.INKWELL, ObjectTypeEnum.INKWELL), 2)),
     OBJECT_QUILL(new ObjectStrategy(List.of(ObjectTypeEnum.QUILL, ObjectTypeEnum.QUILL), 2));
 
+    /**
+     * The strategy of the objective type
+     */
     private final ObjectiveStrategy strategy;
 
+    /**
+     * Constructor of the enum
+     * @param strategy the strategy of the objective type
+     */
     ObjectiveType(ObjectiveStrategy strategy) {
         this.strategy = strategy;
     }
 
+    /**
+     * This method returns the strategy of the objective type
+     * @return the strategy of the objective type
+     */
     public ObjectiveStrategy getStrategy() {
         return strategy;
     }

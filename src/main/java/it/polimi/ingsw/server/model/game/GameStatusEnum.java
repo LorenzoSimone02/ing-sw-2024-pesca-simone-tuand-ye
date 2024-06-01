@@ -1,5 +1,8 @@
 package it.polimi.ingsw.server.model.game;
 
+/**
+ * This enum represents the different statuses of a game
+ */
 public enum GameStatusEnum {
     WAITING_FOR_PLAYERS,
     STARTING,
