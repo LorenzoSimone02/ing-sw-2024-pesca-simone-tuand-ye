@@ -5,14 +5,28 @@ import it.polimi.ingsw.network.packets.Packet;
 
 import java.rmi.RemoteException;
 
+/**
+ * RMIClientConnection is the class that represents the client-side RMI connection
+ */
 public class RMIClientConnection extends ClientConnection {
 
+    /**
+     * The client-side RMI interface
+     */
     private final RMIClientInterface clientInterface;
 
+    /**
+     * Constructor of the class
+     * @param clientInterface the client-side RMI interface
+     */
     public RMIClientConnection(RMIClientInterface clientInterface) {
         this.clientInterface = clientInterface;
     }
 
+    /**
+     * The method tries to receive a packet from the server, if it is not possible it prints an error message
+     * @param packet the packet received
+     */
     @Override
     public void receivePacket(Packet packet) {
         try {

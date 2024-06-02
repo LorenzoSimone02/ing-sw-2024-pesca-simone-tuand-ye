@@ -8,10 +8,23 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * RMIServer is the class that represents the server-side RMI network handler
+ */
 public class RMIServer extends UnicastRemoteObject implements RMIServerInterface {
 
+    /**
+     * The server-side network handler
+     */
     private final ServerNetworkHandler networkHandler;
 
+    /**
+     * Constructor of the class
+     * @param networkHandler the server-side network handler
+     * @param registryName the name of the registry
+     * @param port the port of the server
+     * @throws RemoteException if there is an error with the remote connection
+     */
     public RMIServer(ServerNetworkHandler networkHandler, String registryName, int port) throws RemoteException {
         super();
         this.networkHandler = networkHandler;
@@ -19,6 +32,11 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         registry.rebind(registryName, this);
     }
 
+    /**
+     * The method receives a packet from a client if the client is already connected, otherwise it creates a new connection
+     * @param packet the packet received
+     * @param clientInterface the client-side RMI interface
+     */
     public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
         RMIClientConnection conn = (RMIClientConnection) networkHandler.getConnectionByUUID(packet.getSender());
         if (conn != null) {
@@ -31,6 +49,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
         }
     }
 
+    /**
+     * The method tries to stop the RMI server, if it is not possible it prints an error message
+     */
     public synchronized void stopServer(){
         try {
             UnicastRemoteObject.unexportObject(this, true);

@@ -8,18 +8,62 @@ import it.polimi.ingsw.server.controller.GameController;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * ServerNetworkHandler is the class that manages the server-side network
+ */
 public class ServerNetworkHandler {
 
+    /**
+     * The name of the registry
+     */
     private final String registryName;
+
+    /**
+     * The server-side RMI handler
+     */
     private RMIServer rmiServer;
+
+    /**
+     * The port of the RMI server
+     */
     private final int rmiPort;
+
+    /**
+     * The server-side socket handler
+     */
     private SocketServer socketServer;
+
+    /**
+     * The port of the socket server
+     */
     private final int socketPort;
+
+    /**
+     * The list of the client connections
+     */
     private final ArrayList<ClientConnection> connections;
+
+    /**
+     * The map that associates the packets with the client connections
+     */
     private final Map<Packet, ClientConnection> packetQueue;
+
+    /**
+     * The server-side game controller
+     */
     private final GameController gameController;
+
+    /**
+     * The boolean that indicates if the server is a lobby
+     */
     private boolean isLobby;
 
+    /**
+     * Constructor of the class
+     * @param registryName the name of the registry
+     * @param rmiPort the port of the RMI server
+     * @param socketPort the port of the socket server
+     */
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
         this.rmiPort = rmiPort;
@@ -30,6 +74,9 @@ public class ServerNetworkHandler {
         gameController = new GameController(this);
     }
 
+    /**
+     * The method starts the server
+     */
     public void start() {
         try {
             System.out.println("Starting RMI Server...");
@@ -51,16 +98,28 @@ public class ServerNetworkHandler {
         }
     }
 
+    /**
+     * The method stops the server
+     */
     public synchronized void stop(){
         socketServer.stopServer();
         rmiServer.stopServer();
     }
 
+    /**
+     * The method sends a packet to a client connection
+     * @param connection the client connection
+     * @param packet the packet to send
+     */
     public synchronized void sendPacket(ClientConnection connection, Packet packet) {
         packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         connection.receivePacket(packet);
     }
 
+    /**
+     * The method sends a packet to all the client connections
+     * @param packet the packet to send
+     */
     public synchronized void sendPacketToAll(Packet packet) {
         packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         for (ClientConnection connection : connections) {
@@ -68,6 +127,11 @@ public class ServerNetworkHandler {
         }
     }
 
+    /**
+     * The method handles incoming packets if they are supported by the server
+     * @param packet the packet received
+     * @param connection the client connection that sent the packet
+     */
     public synchronized void receivePacket(Packet packet, ClientConnection connection) {
         if (packet.getServerPacketHandler() != null) {
             connection.setLastPing(System.currentTimeMillis());
@@ -78,20 +142,37 @@ public class ServerNetworkHandler {
         }
     }
 
+    /**
+     * The method adds a client connection to the list
+     * @param connection the client connection to add
+     */
     public synchronized void addConnection(ClientConnection connection) {
         if (!connections.contains(connection)) {
             connections.add(connection);
         }
     }
 
+    /**
+     * The method removes a client connection from the list
+     * @param connection the client connection to remove
+     */
     public synchronized void removeConnection(ClientConnection connection) {
         connections.remove(connection);
     }
 
+    /**
+     * The method returns the list of the client connections
+     * @return the list of the client connections
+     */
     public ArrayList<ClientConnection> getConnections() {
         return connections;
     }
 
+    /**
+     * The method returns a client connection by its nickname
+     * @param username the nickname of the client connection
+     * @return the client connection
+     */
     public synchronized ClientConnection getConnectionByNickname(String username) {
         if (username == null) return null;
         for (ClientConnection connection : connections) {
@@ -102,6 +183,11 @@ public class ServerNetworkHandler {
         return null;
     }
 
+    /**
+     * The method returns a client connection by its UUID
+     * @param uuid the UUID of the client connection
+     * @return the client connection
+     */
     public synchronized ClientConnection getConnectionByUUID(UUID uuid) {
         if (uuid == null) return null;
         for (ClientConnection connection : connections) {
@@ -112,18 +198,34 @@ public class ServerNetworkHandler {
         return null;
     }
 
+    /**
+     * The method returns the server-side game controller
+     * @return the server-side game controller
+     */
     public GameController getGameController() {
         return gameController;
     }
 
+    /**
+     * The method returns the map that associates the client connections with their packets
+     * @return the map that associates the client connections with their packets
+     */
     public Map<Packet, ClientConnection> getPacketQueue() {
         return packetQueue;
     }
 
+    /**
+     * The method returns the boolean that indicates if the server is a lobby
+     * @return the boolean that indicates if the server is a lobby
+     */
     public boolean isLobby() {
         return isLobby;
     }
 
+    /**
+     * The method sets the boolean that indicates if the server is a lobby
+     * @param isLobby the boolean that indicates if the server is a lobby
+     */
     public void setLobby(boolean isLobby) {
         this.isLobby = isLobby;
     }

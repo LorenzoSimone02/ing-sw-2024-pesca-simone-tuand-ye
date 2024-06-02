@@ -20,7 +20,7 @@ public class ServerChooseObjectivePacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't choose your Objective Card now." + Printer.RESET));
             return;
         }
-        int chosenCardID = chooseObjectivePacket.getChoosenCardID();
+        int chosenCardID = chooseObjectivePacket.getChosenCardID();
         if (chosenCardID > 0) {
             ObjectiveCard card = (ObjectiveCard) controller.getCardById(chosenCardID);
             controller.getPlayerController(clientConnection.getUsername()).chooseObjectiveCard(card);

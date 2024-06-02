@@ -7,14 +7,29 @@ import it.polimi.ingsw.network.packets.Packet;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
+/**
+ * ClientNetworkHandler is the class that handles the network communication on the client side
+ */
 public class ClientNetworkHandler extends UnicastRemoteObject {
 
+    /**
+     * The client manager
+     */
     private ClientManager clientManager;
 
+    /**
+     * Constructor of the class
+     * @throws RemoteException if there is an error with the remote connection
+     */
     public ClientNetworkHandler() throws RemoteException {
         super();
     }
 
+    /**
+     * The method tries to send a packet to the server, if it is not possible
+     *      or if the packet is null it prints two different error message
+     * @param packet the packet to send
+     */
     public void sendPacket(Packet packet) {
         long time = System.currentTimeMillis() - clientManager.getGameState().getLastPing();
         if (time > 7000) {
@@ -24,6 +39,11 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
         packet.setSender(clientManager.getGameState().getUuid());
     }
 
+    /**
+     * The method tries to receive a packet from the server, if it is not possible
+     *      or if the packet is null it prints two different error messages
+     * @param packet the packet received
+     */
     public void receivePacket(Packet packet) {
         if (packet.getClientPacketHandler() != null) {
             clientManager.getGameState().setLastPing(System.currentTimeMillis());
@@ -33,10 +53,18 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
         }
     }
 
+    /**
+     * The method returns the client manager
+     * @return the client manager
+     */
     public ClientManager getClientManager() {
         return clientManager;
     }
 
+    /**
+     * The method sets the client manager
+     * @param clientManager the client manager
+     */
     public void setClientManager(ClientManager clientManager) {
         this.clientManager = clientManager;
     }
