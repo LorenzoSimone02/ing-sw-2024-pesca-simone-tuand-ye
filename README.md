@@ -29,6 +29,19 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 | Partite multiple |✅|
 | Persistenza partite |⛔|
 
-<br /> 
+#### Legenda
+[✅]() Implementato &nbsp;&nbsp;&nbsp;&nbsp;[⛔]() Non implementato
+
+## Tests
+
+| Package | Classi testate | Copertura |
+|:-----------------------|:------------------|:------------------------------------:|
+| Controller | // | //
+| Model | // | //
+
+## Utilizzo dei jar
+Da definire
+
+<hr>
 
 Codex Naturalis | © 2024 - Cranio Creations
