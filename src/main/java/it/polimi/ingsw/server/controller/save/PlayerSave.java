@@ -2,9 +2,12 @@ package it.polimi.ingsw.server.controller.save;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.player.Player;
+import it.polimi.ingsw.server.model.resources.Object;
+import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class PlayerSave implements Serializable {
 
@@ -15,7 +18,7 @@ public class PlayerSave implements Serializable {
     private final ArrayList<CardSave> cardsInHand;
     private final CardSave starterCard;
     private final CardSave objectiveCard;
-    //TODO: Player resources
+    private final HashMap<String, Integer> resourcesAndObjects;
 
     public PlayerSave(Player player) {
         this.username = player.getUsername();
@@ -35,6 +38,13 @@ public class PlayerSave implements Serializable {
         }
         this.starterCard = new CardSave(player.getStarterCard());
         this.objectiveCard = new CardSave(player.getObjectiveCard());
+        this.resourcesAndObjects = new HashMap<>();
+        for(Resource res : player.getResources()){
+            this.resourcesAndObjects.put(res.getType().toString(), resourcesAndObjects.getOrDefault(res.getType().toString(), 0) + 1);
+        }
+        for(Object obj : player.getObjects()){
+            this.resourcesAndObjects.put(obj.getType().toString(), resourcesAndObjects.getOrDefault(obj.getType().toString(), 0) + 1);
+        }
     }
 
     public String getUsername() {
@@ -63,5 +73,9 @@ public class PlayerSave implements Serializable {
 
     public CardSave getObjectiveCard() {
         return objectiveCard;
+    }
+
+    public HashMap<String, Integer> getResourcesAndObjects() {
+        return resourcesAndObjects;
     }
 }

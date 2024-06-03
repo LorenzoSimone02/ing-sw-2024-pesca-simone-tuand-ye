@@ -12,7 +12,8 @@ import java.util.Scanner;
 public class ClientMain {
 
     public static void main(String[] args) {
-        String serverIP = args[0] == null ? "localhost" : args[0];
+        String serverIP = args.length == 1 ? args[0] : "localhost";
+
         Scanner scanner = new Scanner(System.in);
         String nextLine;
         ClientNetworkHandler networkHandler = null;
@@ -44,7 +45,7 @@ public class ClientMain {
                     networkHandler = new SocketClient(serverIP, 5000);
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
-                    networkHandler = new RMIClient("Server", serverIP, 1099);
+                    networkHandler = new RMIClient("CodexNaturalisServer", serverIP, 1099);
                 } else {
                     System.out.println("\"" + nextLine + "\" is not a valid option. Please try again.");
                 }

@@ -1,17 +1,6 @@
 package it.polimi.ingsw.server.controller;
 
-import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.FaceEnum;
-import it.polimi.ingsw.server.model.card.GoldCard;
-import it.polimi.ingsw.server.model.card.StarterCard;
-import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalGoldCardPointsException;
-import it.polimi.ingsw.server.model.card.goldstrategies.GoldStrategyType;
 import it.polimi.ingsw.server.model.player.Player;
-import it.polimi.ingsw.server.model.resources.Object;
-import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
-import it.polimi.ingsw.server.model.resources.Resource;
-import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

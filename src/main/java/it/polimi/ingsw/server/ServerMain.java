@@ -2,7 +2,6 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -15,10 +14,12 @@ public class ServerMain {
     private static final int SOCKET_PORT = 5000;
 
     public static void main(String[] args) {
-        matches = new ArrayList<>();
-        //System.setProperty("java.rmi.server.hostname", ipAddress);
+        if (args.length == 1)
+            System.setProperty("java.rmi.server.hostname", args[0]);
 
-        ServerNetworkHandler lobby = new ServerNetworkHandler("Server", RMI_PORT, SOCKET_PORT);
+        matches = new ArrayList<>();
+
+        ServerNetworkHandler lobby = new ServerNetworkHandler("CodexNaturalisServer", RMI_PORT, SOCKET_PORT);
         lobby.setLobby(true);
         lobby.start();
 

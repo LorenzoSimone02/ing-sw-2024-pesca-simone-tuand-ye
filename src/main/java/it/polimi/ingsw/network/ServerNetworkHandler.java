@@ -6,6 +6,7 @@ import it.polimi.ingsw.network.socket.SocketServer;
 import it.polimi.ingsw.server.controller.GameController;
 
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.util.*;
 
 /**
@@ -79,13 +80,15 @@ public class ServerNetworkHandler {
      */
     public void start() {
         try {
+            String ipAddress = Inet4Address.getLocalHost().getHostAddress();
+
             System.out.println("Starting RMI Server...");
             rmiServer = new RMIServer(this, registryName, rmiPort);
-            System.out.println("RMI Server started on port " + rmiPort + " with name " + registryName);
+            System.out.println("RMI Server started on " + ipAddress + ":" + rmiPort + " with name " + registryName);
 
             System.out.println("Starting Socket Server...");
             socketServer = new SocketServer(this, socketPort);
-            System.out.println("Socket Server started on port " + socketPort);
+            System.out.println("Socket Server started on " + ipAddress + ":" + socketPort);
 
             Thread packetHandlerThread = new Thread(new PacketHandlerThread(this));
             packetHandlerThread.start();

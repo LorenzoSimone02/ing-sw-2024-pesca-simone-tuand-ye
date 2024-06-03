@@ -14,6 +14,10 @@ import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.PlayerToken;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
+import it.polimi.ingsw.server.model.resources.Object;
+import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.resources.Resource;
+import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.io.*;
 import java.util.*;
@@ -201,22 +205,22 @@ public class GameController {
         game.getInfo().setGameStatus(GameStatusEnum.valueOf(save.getGameStatus()));
 
         Deck objectiveDeck = new Deck();
-        for(CardSave cardSave : save.getObjectiveDeck()) {
+        for (CardSave cardSave : save.getObjectiveDeck()) {
             objectiveDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setObjectiveDeck(objectiveDeck);
         Deck resourceDeck = new Deck();
-        for(CardSave cardSave : save.getResourceDeck()) {
+        for (CardSave cardSave : save.getResourceDeck()) {
             resourceDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setResourceDeck(resourceDeck);
         Deck goldDeck = new Deck();
-        for(CardSave cardSave : save.getGoldDeck()) {
+        for (CardSave cardSave : save.getGoldDeck()) {
             goldDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setGoldDeck(goldDeck);
         Deck starterDeck = new Deck();
-        for(CardSave cardSave : save.getStarterDeck()) {
+        for (CardSave cardSave : save.getStarterDeck()) {
             starterDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setStarterDeck(starterDeck);
@@ -249,9 +253,17 @@ public class GameController {
                     }
                 }
             }
+            for (String resOrObj : playerSave.getResourcesAndObjects().keySet()) {
+                for (int i = 0; i < playerSave.getResourcesAndObjects().getOrDefault(resOrObj, 0); i++) {
+                    try {
+                        player.addResource(new Resource(ResourceTypeEnum.valueOf(resOrObj)));
+                    } catch (IllegalArgumentException e) {
+                        player.addObject(new Object(ObjectTypeEnum.valueOf(resOrObj)));
+                    }
+                }
+            }
             game.getPlayers().add(player);
         }
-        //TODO: Player resources
     }
 
     public synchronized void saveGameToFile() {

@@ -18,6 +18,7 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().removeCardInHand(card);
             clientManager.getGameState().setScore(placeCardPacket.getNewScore());
             clientManager.getGameState().setResources(placeCardPacket.getResources());
+            clientManager.getGameState().addOrderedCard(card);
             System.out.println(Printer.GREEN + "Card placed successfully\nNow draw a card with /drawCard" + Printer.RESET);
         } else {
             for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
@@ -25,7 +26,7 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
                     ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(placeCardPacket.getCardId());
                     playerState.setScore(placeCardPacket.getNewScore());
                     playerState.setCardPlaced(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
-
+                    playerState.addOrderedCard(card);
                     break;
                 }
             }

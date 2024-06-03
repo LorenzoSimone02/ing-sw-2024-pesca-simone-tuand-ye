@@ -41,6 +41,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
                 guiClient.updateScene(clientManager.getGameState().getClientStatus());
             }
         } catch (NotBoundException | RemoteException e) {
+            System.err.println("Error while connecting to the game server");
             throw new RuntimeException(e);
         }
     }

@@ -6,7 +6,6 @@ import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -26,23 +25,25 @@ public class GameState {
     private long lastPing;
     private final ArrayList<Card> allCards;
     private final ResourceCard[][] cardsPlaced;
+    private final ArrayList<ResourceCard> orderedCardsPlaced;
     private final ArrayList<ResourceCard> cardsInHand;
     private final ArrayList<Card> cardsOnGround;
     private StarterCard starterCard;
-    private final ArrayList<ObjectiveCard> proposedCards;
     private StarterCard givenStarter;
+    private final ArrayList<ObjectiveCard> proposedCards;
     private ObjectiveCard objectiveCard;
     private final HashMap<String, Integer> resources;
 
     private final ArrayList<PlayerState> playerStates;
     private String firstPlayer;
     private String activePlayer;
-    private ArrayList<String> winners;
+    private final ArrayList<String> winners;
 
     public GameState() {
         this.uuid = UUID.randomUUID();
         score = 0;
         allCards = new ArrayList<>(80);
+        orderedCardsPlaced = new ArrayList<>();
         cardsPlaced = new ResourceCard[81][81];
         playerStates = new ArrayList<>(3);
         cardsOnGround = new ArrayList<>(6);
@@ -166,7 +167,6 @@ public class GameState {
         setCardPlaced(starterCard, 40, 40);
     }
 
-
     public void setGivenStarter(StarterCard card) {
         this.givenStarter = card;
     }
@@ -285,6 +285,14 @@ public class GameState {
 
     public void setCardPlaced(ResourceCard card, int x, int y) {
         cardsPlaced[x][y] = card;
+    }
+
+    public ArrayList<ResourceCard> getOrderedCardsPlaced() {
+        return orderedCardsPlaced;
+    }
+
+    public void addOrderedCard(ResourceCard card) {
+        orderedCardsPlaced.add(card);
     }
 
     public ArrayList<ResourceCard> getCardsInHand() {
