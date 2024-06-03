@@ -26,7 +26,6 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
                 newHandler.setClientManager(clientManager);
                 clientManager.setNetworkHandler(newHandler);
                 clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGGED);
-                clientManager.getGameState().setGameID(joinPacket.getGameID());
                 if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                     GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
                     guiClient.updateScene(clientManager.getGameState().getClientStatus());
@@ -38,7 +37,6 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
             newHandler.setClientManager(clientManager);
             clientManager.setNetworkHandler(newHandler);
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CONNECTED);
-            clientManager.getGameState().setGameID(joinPacket.getGameID());
             if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
                 guiClient.updateScene(clientManager.getGameState().getClientStatus());

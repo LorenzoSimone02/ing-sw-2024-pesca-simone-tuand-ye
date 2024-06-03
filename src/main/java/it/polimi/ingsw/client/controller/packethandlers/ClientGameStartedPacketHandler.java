@@ -14,7 +14,6 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
     public void handlePacket(Packet packet, ClientManager clientManager) {
         GameStartedPacket gameStartedPacket = (GameStartedPacket) packet;
 
-        clientManager.getGameState().setGameID(gameStartedPacket.getGameID());
         clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().getPlayerStates().clear();

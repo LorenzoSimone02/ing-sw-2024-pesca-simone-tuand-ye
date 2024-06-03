@@ -13,7 +13,6 @@ import java.util.*;
 public class GameState {
 
     private final UUID uuid;
-    private int gameID;
     private String username;
     private int score;
     private String tokenColor;
@@ -81,14 +80,6 @@ public class GameState {
 
     public void setTokenColor(String tokenColor) {
         this.tokenColor = tokenColor;
-    }
-
-    public int getGameID() {
-        return gameID;
-    }
-
-    public void setGameID(int gameID) {
-        this.gameID = gameID;
     }
 
     public ArrayList<PlayerState> getPlayerStates() {
@@ -263,13 +254,13 @@ public class GameState {
         return null;
     }
 
-    public PlayerState getPlayerStateByNick(String nickname) {
+    public PlayerState getOrCreatePlayerStateByNick(String nickname) {
         for (PlayerState state : playerStates) {
             if (state.getUsername().equals(nickname)) {
                 return state;
             }
         }
-        return null;
+        return new PlayerState(nickname);
     }
 
     public void removePlayerStateByNick(String nickname) {

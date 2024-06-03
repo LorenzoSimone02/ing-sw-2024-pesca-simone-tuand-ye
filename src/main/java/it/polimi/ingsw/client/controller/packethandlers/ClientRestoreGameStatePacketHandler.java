@@ -61,7 +61,7 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 clientManager.getGameState().getResources().putAll(playerSave.getResourcesAndObjects());
                 clientManager.getGameState().setClientStatus(ClientStatusEnum.PLAYING);
             } else {
-                PlayerState playerState = clientManager.getGameState().getPlayerStateByNick(playerSave.getUsername());
+                PlayerState playerState = clientManager.getGameState().getOrCreatePlayerStateByNick(playerSave.getUsername());
                 playerState.setScore(playerSave.getScore());
                 playerState.setTokenColor(playerSave.getTokenColor());
                 StarterCard starterCard = (StarterCard) clientManager.getGameState().getCardById(playerSave.getStarterCard().getId());

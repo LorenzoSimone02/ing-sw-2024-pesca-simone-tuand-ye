@@ -25,6 +25,5 @@ public class ServerChooseStarterFacePacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacketToAll(new ChooseStarterFacePacket(chosenStarterFace, starterCard.getId(), clientConnection.getUsername()));
             controller.checkPreGameConditions();
         }
-
     }
 }

@@ -16,7 +16,7 @@ public class ClientChooseStarterFacePacketHandler extends ClientPacketHandler {
         ChooseStarterFacePacket chooseStarterFacePacket = (ChooseStarterFacePacket) packet;
         StarterCard card = (StarterCard) clientManager.getGameState().getCardById(chooseStarterFacePacket.getStarterID());
         if (!chooseStarterFacePacket.getUsername().equals(clientManager.getGameState().getUsername())) {
-            clientManager.getGameState().getPlayerStateByNick(chooseStarterFacePacket.getUsername()).setStarterCard(card);
+            clientManager.getGameState().getOrCreatePlayerStateByNick(chooseStarterFacePacket.getUsername()).setStarterCard(card);
             return;
         }
 

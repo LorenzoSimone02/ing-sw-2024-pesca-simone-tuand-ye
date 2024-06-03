@@ -32,7 +32,7 @@ public class PlaceCardCommand extends Command {
                 System.err.println("Usage: /placeCard <id> <x> <y>");
             }
         } else {
-            System.err.println("You can't place a Card now.");
+            System.err.println("You can't place a Card now. CLIENT");
         }
     }
 

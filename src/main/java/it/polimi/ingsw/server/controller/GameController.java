@@ -29,6 +29,7 @@ import java.util.*;
 public class GameController {
 
     private Game game;
+    private final int saveGameId;
     private final ArrayList<Card> allCards;
     private final ArrayList<PlayerController> playerControllers;
     private final ServerNetworkHandler networkHandler;
@@ -37,6 +38,7 @@ public class GameController {
         this.networkHandler = networkHandler;
         this.playerControllers = new ArrayList<>();
         this.allCards = new ArrayList<>(80);
+        this.saveGameId = new Random().nextInt(99999);
     }
 
     public Game getGame() {
@@ -92,7 +94,6 @@ public class GameController {
         PlayerController controller = new PlayerController(player);
         playerControllers.add(controller);
         game.getPlayers().add(player);
-
     }
 
     public void reconnectPlayer(String player) {
@@ -101,6 +102,8 @@ public class GameController {
             Player p = iterator.next();
             if (p.getUsername().equalsIgnoreCase(player)) {
                 game.getPlayers().add(p);
+                PlayerController controller = new PlayerController(p);
+                playerControllers.add(controller);
                 iterator.remove();
                 networkHandler.sendPacketToAll(new ConnectionEventPacket(player, false, true));
                 if (game.getPlayers().size() > 1)
@@ -158,6 +161,12 @@ public class GameController {
 
     public synchronized void checkStartCondition() {
         if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
+            GameSave save = checkExistingSave();
+            if (save != null) {
+                System.out.println("Previous save found, loading...");
+                loadGameFromSave(save);
+                return;
+            }
             startGame();
         }
     }
@@ -192,6 +201,7 @@ public class GameController {
             game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
             networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Objective Cards, the first turn is starting." + Printer.RESET));
             networkHandler.sendPacketToAll(new EndTurnPacket(game.getInfo().getFirstPlayer().getUsername()));
+            saveGameToFile();
         }
     }
 
@@ -226,56 +236,68 @@ public class GameController {
         }
     }
 
-    public synchronized boolean checkExistingSaves() {
+    public synchronized GameSave checkExistingSave() {
         File saveFolder = new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/");
-        return saveFolder.listFiles() != null && Objects.requireNonNull(saveFolder.listFiles()).length > 0;
+        for (File file : Objects.requireNonNull(saveFolder.listFiles())) {
+            GameSave save;
+            try (FileInputStream fileIn = new FileInputStream(file);
+                 ObjectInputStream in = new ObjectInputStream(fileIn)) {
+                save = (GameSave) in.readObject();
+                if (save.getPlayerSaves().size() == game.getInfo().getPlayersNumber()) {
+                    for (PlayerSave playerSave : save.getPlayerSaves()) {
+                        if (getPlayerByNick(playerSave.getUsername()).isEmpty()) {
+                            return null;
+                        }
+                    }
+                    in.close();
+                    fileIn.close();
+                    file.delete();
+                    return save;
+                }
+            } catch (Exception ignored) {
+            }
+        }
+        return null;
     }
 
-    public synchronized void loadGameFromFile() {
-        File saveDir = new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/");
-        File saveFile = Objects.requireNonNull(saveDir.listFiles())[0];
-        GameSave save = null;
-        try (FileInputStream fileIn = new FileInputStream(saveFile);
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            save = (GameSave) in.readObject();
-        } catch (Exception e) {
-            System.err.println("Error while loading the game: " + e.getMessage());
+    public synchronized void loadGameFromSave(GameSave gameSave) {
+        try {
+            instantiateCards();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        if (save == null) return;
-
-        createGame(save.getId());
-        game.getInfo().setMaxPlayers(save.getMaxPlayers());
-        game.getInfo().setGameStatus(GameStatusEnum.valueOf(save.getGameStatus()));
+        game.getInfo().setMaxPlayers(gameSave.getMaxPlayers());
+        game.getInfo().setGameStatus(GameStatusEnum.valueOf(gameSave.getGameStatus()));
 
         Deck objectiveDeck = new Deck();
-        for (CardSave cardSave : save.getObjectiveDeck()) {
+        for (CardSave cardSave : gameSave.getObjectiveDeck()) {
             objectiveDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setObjectiveDeck(objectiveDeck);
         Deck resourceDeck = new Deck();
-        for (CardSave cardSave : save.getResourceDeck()) {
+        for (CardSave cardSave : gameSave.getResourceDeck()) {
             resourceDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setResourceDeck(resourceDeck);
         Deck goldDeck = new Deck();
-        for (CardSave cardSave : save.getGoldDeck()) {
+        for (CardSave cardSave : gameSave.getGoldDeck()) {
             goldDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setGoldDeck(goldDeck);
         Deck starterDeck = new Deck();
-        for (CardSave cardSave : save.getStarterDeck()) {
+        for (CardSave cardSave : gameSave.getStarterDeck()) {
             starterDeck.addCard(getCardById(cardSave.getId()));
         }
         game.getTable().setStarterDeck(starterDeck);
-        for (CardSave cardSave : save.getCardsOnGround()) {
+        for (CardSave cardSave : gameSave.getCardsOnGround()) {
             game.getTable().addCardOnGround(getCardById(cardSave.getId()));
         }
-        for (CardSave cardSave : save.getObjectiveCards()) {
+        for (CardSave cardSave : gameSave.getObjectiveCards()) {
             game.getTable().addObjectiveCard((ObjectiveCard) getCardById(cardSave.getId()));
         }
 
-        for (PlayerSave playerSave : save.getPlayerSaves()) {
-            Player player = new Player(playerSave.getUsername(), game);
+        for (PlayerSave playerSave : gameSave.getPlayerSaves()) {
+            Player player = getPlayerByNick(playerSave.getUsername()).orElseThrow();
             player.setScore(playerSave.getScore());
             player.setToken(new PlayerToken(TokenColorEnum.valueOf(playerSave.getTokenColor())));
             player.setObjectiveCard((ObjectiveCard) getCardById(playerSave.getObjectiveCard().getId()));
@@ -284,7 +306,6 @@ public class GameController {
                 Card card = getCardById(cardSave.getId());
                 card.setFace(FaceEnum.valueOf(cardSave.getFace()));
                 player.addCardInHand(card);
-
             }
             for (int i = 0; i < 81; i++) {
                 for (int j = 0; j < 81; j++) {
@@ -305,12 +326,17 @@ public class GameController {
                     }
                 }
             }
-            game.getPlayers().add(player);
-            PlayerController controller = new PlayerController(player);
-            playerControllers.add(controller);
-        }
-        for (Player player : game.getPlayers()) {
-            networkHandler.sendPacket(networkHandler.getConnectionByNickname(player.getUsername()), new RestoreGameStatePacket(player.getUsername(), save.getPlayerSaves()));
+            if (player.getUsername().equals(gameSave.getActivePlayer())) {
+                game.getInfo().setActivePlayer(player);
+            }
+            if (player.getUsername().equals(gameSave.getFirstPlayer())) {
+                game.getInfo().setFirstPlayer(player);
+            }
+            ClientConnection connection = networkHandler.getConnectionByNickname(player.getUsername());
+            networkHandler.sendPacket(connection, new GameStartedPacket(game, true));
+            networkHandler.sendPacket(connection, new RestoreGameStatePacket(player.getUsername(), gameSave.getPlayerSaves()));
+            networkHandler.sendPacket(connection, new InfoPacket(Printer.GREEN + "You previous Game has been restored." + Printer.RESET));
+            networkHandler.sendPacket(connection, new EndTurnPacket(game.getInfo().getActivePlayer().getUsername()));
         }
     }
 
@@ -319,7 +345,7 @@ public class GameController {
             GameSave save = new GameSave(game);
             File saveDir = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves");
             saveDir.mkdirs();
-            File saveFile = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves\\game" + game.getInfo().getId() + ".save");
+            File saveFile = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves\\game" + saveGameId + ".save");
             saveFile.createNewFile();
             FileOutputStream fileOut = new FileOutputStream(saveFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -352,7 +378,7 @@ public class GameController {
     }
 
     public synchronized void instantiateCards() throws IOException {
-        BufferedReader reader;
+        BufferedReader reader = null;
         Deck resourceDeck = new Deck();
         for (int i = 1; i <= 40; i++) {
             reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
@@ -414,6 +440,7 @@ public class GameController {
             objectiveDeck.addCard(card);
             allCards.add(card);
         }
+        reader.close();
         objectiveDeck.shuffleDeck();
         game.getTable().setObjectiveDeck(objectiveDeck);
     }
@@ -462,6 +489,7 @@ public class GameController {
     public synchronized void endGame() {
 
         if (!game.getInfo().getGameStatus().equals(GameStatusEnum.ENDING)) {
+            game.getInfo().setGameStatus(GameStatusEnum.ENDING);
             ServerMain.removeMatch(networkHandler);
             ServerNetworkHandler lobby = ServerMain.getLobby();
             for (Player p : game.getPlayers()) {

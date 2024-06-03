@@ -20,6 +20,7 @@ import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Objects;
 
@@ -27,11 +28,11 @@ public class GUIClient extends Application implements UserInterface {
 
     private static Stage stage;
     private MediaPlayer mediaPlayer;
-    private final HashMap<ClientStatusEnum, FXMLLoader> loadersMap;
+    private final HashMap<ClientStatusEnum, URL> resourcesMap;
     private final HashMap<ClientStatusEnum, SceneController> controllersMap;
 
     public GUIClient() {
-        loadersMap = new HashMap<>();
+        resourcesMap = new HashMap<>();
         controllersMap = new HashMap<>();
         loadScenes();
     }
@@ -43,8 +44,10 @@ public class GUIClient extends Application implements UserInterface {
 
     @Override
     public void showMessage(String message) {
+        message = message.replace("\u001B[0m", "");
+        String finalMessage = message;
         Platform.runLater(() -> {
-            Notifications.create().darkStyle().title("").text(message).position(Pos.BOTTOM_RIGHT).show();
+            Notifications.create().darkStyle().title("").text(finalMessage).position(Pos.BOTTOM_RIGHT).show();
         });
     }
 
@@ -79,20 +82,15 @@ public class GUIClient extends Application implements UserInterface {
     }
 
     public void loadScenes() {
-        FXMLLoader login = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-        loadersMap.put(ClientStatusEnum.LOBBY, login);
-
-        FXMLLoader createGame = new FXMLLoader(getClass().getResource("/fxml/CreateGame.fxml"));
-        loadersMap.put(ClientStatusEnum.LOGGED, createGame);
-
-        FXMLLoader gameLobby = new FXMLLoader(getClass().getResource("/fxml/GameLobby.fxml"));
-        loadersMap.put(ClientStatusEnum.CONNECTED, gameLobby);
+        resourcesMap.put(ClientStatusEnum.LOBBY, getClass().getResource("/fxml/Login.fxml"));
+        resourcesMap.put(ClientStatusEnum.LOGGED, getClass().getResource("/fxml/CreateGame.fxml"));
+        resourcesMap.put(ClientStatusEnum.CONNECTED, getClass().getResource("/fxml/GameLobby.fxml"));
     }
 
     public void updateScene(ClientStatusEnum status) {
         Platform.runLater(() -> {
             try {
-                FXMLLoader loader = loadersMap.get(status);
+                FXMLLoader loader = new FXMLLoader(resourcesMap.get(status));
                 Scene scene = new Scene(loader.load());
                 controllersMap.put(status, loader.getController());
                 stage.setScene(scene);
@@ -110,8 +108,8 @@ public class GUIClient extends Application implements UserInterface {
         return mediaPlayer;
     }
 
-    public HashMap<ClientStatusEnum, FXMLLoader> getLoadersMap() {
-        return loadersMap;
+    public HashMap<ClientStatusEnum, URL> getResourcesMap() {
+        return resourcesMap;
     }
 
     public HashMap<ClientStatusEnum, SceneController> getControllersMap() {

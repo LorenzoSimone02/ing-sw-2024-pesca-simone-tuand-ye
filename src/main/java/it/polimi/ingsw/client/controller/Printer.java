@@ -432,4 +432,14 @@ public class Printer {
             System.out.println();
         }
     }
+
+    public static String getColorByToken(String color){
+        return switch (color) {
+            case "BLUE" -> BLUE;
+            case "GREEN" -> GREEN;
+            case "RED" -> RED;
+            case "YELLOW" -> YELLOW;
+            default -> "";
+        };
+    }
 }

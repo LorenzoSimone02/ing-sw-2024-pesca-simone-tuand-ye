@@ -11,7 +11,6 @@ import java.util.Stack;
 
 public class GameSave implements Serializable {
 
-    private final int id;
     private final int maxPlayers;
     private final String firstPlayer;
     private final String activePlayer;
@@ -27,7 +26,6 @@ public class GameSave implements Serializable {
     private final ArrayList<CardSave> cardsOnGround;
 
     public GameSave(Game game) {
-        this.id = game.getInfo().getId();
         this.maxPlayers = game.getInfo().getMaxPlayers();
         this.firstPlayer = game.getInfo().getFirstPlayer().getUsername();
         this.activePlayer = game.getInfo().getActivePlayer().getUsername();
@@ -62,10 +60,6 @@ public class GameSave implements Serializable {
         for (Player player : game.getPlayers()) {
             playerSaves.add(new PlayerSave(player));
         }
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getMaxPlayers() {
