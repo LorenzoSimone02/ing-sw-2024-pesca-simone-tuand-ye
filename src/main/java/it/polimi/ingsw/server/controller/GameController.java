@@ -1,6 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.client.controller.Printer;
+import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
@@ -117,9 +118,10 @@ public class GameController {
             }
             removePlayer(player.get());
             networkHandler.sendPacketToAll(new ConnectionEventPacket(username, true, false));
-            if (game.getInfo().getActivePlayer().getUsername().equals(username)) {
+            if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING) && game.getInfo().getActivePlayer().getUsername().equals(username)) {
                 nextTurn();
             }
+            checkPreGameConditions();
         }
     }
 
@@ -129,8 +131,15 @@ public class GameController {
         playerControllers.remove(getPlayerController(player));
         game.getPlayers().remove(player);
 
-        if (game.getInfo().getPlayersNumber() == 1)
-            game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
+        if (game.getInfo().getPlayersNumber() == 1) {
+            if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING)) {
+                game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
+                networkHandler.sendPacketToAll(new InfoPacket(Printer.RED + "There is currently only one player connected, wait for someone to reconnect." + Printer.RESET));
+            } else {
+                networkHandler.sendPacketToAll(new InfoPacket(Printer.RED + "There aren't enough player to proceed, game forcefully terminated." + Printer.RESET));
+                endGame();
+            }
+        }
     }
 
     public boolean hasDisconnected(String player) {
@@ -150,6 +159,39 @@ public class GameController {
     public synchronized void checkStartCondition() {
         if (game.getPlayers().size() == game.getInfo().getMaxPlayers()) {
             startGame();
+        }
+    }
+
+    public synchronized void checkPreGameConditions() {
+        if (game.getInfo().getGameStatus().equals(GameStatusEnum.CHOOSING_COLOR)) {
+            for (PlayerController playerController : getPlayerControllers()) {
+                if (playerController.getPlayer().getToken() == null) {
+                    return;
+                }
+            }
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Token Color." + Printer.RESET));
+            game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_STARTER_FACE);
+            proposeStarterCardFace();
+        }
+        if (game.getInfo().getGameStatus().equals(GameStatusEnum.CHOOSING_STARTER_FACE)) {
+            for (PlayerController playerController : getPlayerControllers()) {
+                if (playerController.getPlayer().getStarterCard() == null) {
+                    return;
+                }
+            }
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Starter Card face." + Printer.RESET));
+            game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
+            proposeObjectiveCards();
+        }
+        if (game.getInfo().getGameStatus().equals(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE)) {
+            for (PlayerController playerController : getPlayerControllers()) {
+                if (playerController.getPlayer().getObjectiveCard() == null) {
+                    return;
+                }
+            }
+            game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
+            networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Objective Cards, the first turn is starting." + Printer.RESET));
+            networkHandler.sendPacketToAll(new EndTurnPacket(game.getInfo().getFirstPlayer().getUsername()));
         }
     }
 
@@ -264,6 +306,11 @@ public class GameController {
                 }
             }
             game.getPlayers().add(player);
+            PlayerController controller = new PlayerController(player);
+            playerControllers.add(controller);
+        }
+        for (Player player : game.getPlayers()) {
+            networkHandler.sendPacket(networkHandler.getConnectionByNickname(player.getUsername()), new RestoreGameStatePacket(player.getUsername(), save.getPlayerSaves()));
         }
     }
 
@@ -414,6 +461,19 @@ public class GameController {
 
     public synchronized void endGame() {
 
+        if (!game.getInfo().getGameStatus().equals(GameStatusEnum.ENDING)) {
+            ServerMain.removeMatch(networkHandler);
+            ServerNetworkHandler lobby = ServerMain.getLobby();
+            for (Player p : game.getPlayers()) {
+                ClientConnection connection = networkHandler.getConnectionByNickname(p.getUsername());
+                lobby.addConnection(connection);
+                lobby.sendPacket(connection, new InfoPacket("You have been connected to the Lobby"));
+                lobby.sendPacket(connection, new JoinPacket(-1));
+            }
+            networkHandler.stop();
+            return;
+        }
+
         HashMap<Player, Integer> objectiveCardsScored = new HashMap<>();
         HashMap<String, Integer> playerScores = new HashMap<>();
 
@@ -459,8 +519,8 @@ public class GameController {
                 networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             }
         }
-        getNetworkHandler().stop();
-        ServerMain.removeMatch(getNetworkHandler());
+        networkHandler.stop();
+        ServerMain.removeMatch(networkHandler);
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {

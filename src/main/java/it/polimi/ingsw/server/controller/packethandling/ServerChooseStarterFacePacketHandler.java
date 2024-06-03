@@ -6,12 +6,11 @@ import it.polimi.ingsw.network.packets.ChooseStarterFacePacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
-public class ServerChooseStarterFacePacketHandler extends ServerPacketHandler{
+public class ServerChooseStarterFacePacketHandler extends ServerPacketHandler {
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         ChooseStarterFacePacket chooseStarterFacePacket = (ChooseStarterFacePacket) packet;
@@ -24,14 +23,7 @@ public class ServerChooseStarterFacePacketHandler extends ServerPacketHandler{
             StarterCard starterCard = (StarterCard) controller.getCardById(chooseStarterFacePacket.getStarterID());
             controller.getPlayerController(clientConnection.getUsername()).setStarterCard(starterCard, chooseStarterFacePacket.getChosenStarterFace());
             controller.getNetworkHandler().sendPacketToAll(new ChooseStarterFacePacket(chosenStarterFace, starterCard.getId(), clientConnection.getUsername()));
-            for (PlayerController playerController: controller.getPlayerControllers()) {
-                if (playerController.getPlayer().getStarterCard() == null) {
-                    return;
-                }
-            }
-            controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Starter Card face." + Printer.RESET));
-            controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
-            controller.proposeObjectiveCards();
+            controller.checkPreGameConditions();
         }
 
     }

@@ -25,14 +25,7 @@ public class ServerChooseObjectivePacketHandler extends ServerPacketHandler {
             ObjectiveCard card = (ObjectiveCard) controller.getCardById(chosenCardID);
             controller.getPlayerController(clientConnection.getUsername()).chooseObjectiveCard(card);
             controller.getNetworkHandler().sendPacket(clientConnection, chooseObjectivePacket);
-            for (PlayerController playerController : controller.getPlayerControllers()) {
-                if (playerController.getPlayer().getObjectiveCard() == null) {
-                    return;
-                }
-            }
-            controller.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);
-            controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.GREEN + "All players have chosen their Objective Cards, the first turn is starting." + Printer.RESET));
-            controller.getNetworkHandler().sendPacketToAll(new EndTurnPacket(controller.getGame().getInfo().getFirstPlayer().getUsername()));
+            controller.checkPreGameConditions();
         }
     }
 }

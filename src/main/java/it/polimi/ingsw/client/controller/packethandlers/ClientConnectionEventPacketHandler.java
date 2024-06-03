@@ -13,7 +13,6 @@ public class ClientConnectionEventPacketHandler extends ClientPacketHandler {
         ConnectionEventPacket connectionEventPacket = (ConnectionEventPacket) packet;
         String username = connectionEventPacket.getUsername();
 
-
         if (connectionEventPacket.isDisconnection()) {
             System.out.println(Printer.YELLOW + "Player " + username + " has disconnected from the Game." + Printer.RESET);
             clientManager.getGameState().removePlayerStateByNick(username);

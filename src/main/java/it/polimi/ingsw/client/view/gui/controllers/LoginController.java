@@ -40,6 +40,7 @@ public class LoginController implements SceneController, Initializable {
         if (username.isBlank()) {
             return;
         }
+        System.out.println("Login: " + username);
         ClientManager.getInstance().getNetworkHandler().sendPacket(new LoginPacket(username));
     }
 

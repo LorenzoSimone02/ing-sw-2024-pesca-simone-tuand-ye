@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public class ServerMain {
 
+    private static ServerNetworkHandler lobby;
     private static List<ServerNetworkHandler> matches;
     private static int nextGameId = 0;
     private static final int RMI_PORT = 1099;
@@ -19,11 +20,15 @@ public class ServerMain {
 
         matches = new ArrayList<>();
 
-        ServerNetworkHandler lobby = new ServerNetworkHandler("CodexNaturalisServer", RMI_PORT, SOCKET_PORT);
+        lobby = new ServerNetworkHandler("CodexNaturalisServer", RMI_PORT, SOCKET_PORT);
         lobby.setLobby(true);
         lobby.start();
 
         System.out.println("Lobby Server ready");
+    }
+
+    public static ServerNetworkHandler getLobby() {
+        return lobby;
     }
 
     public static List<ServerNetworkHandler> getMatches() {
@@ -40,6 +45,10 @@ public class ServerMain {
 
     public static Optional<ServerNetworkHandler> getMatch(int id) {
         return matches.stream().filter(match -> match.getGameController().getGame().getInfo().getId() == id).findFirst();
+    }
+
+    public static int getLastGameId() {
+        return nextGameId;
     }
 
     public static int getNextGameId() {

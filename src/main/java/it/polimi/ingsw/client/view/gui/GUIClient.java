@@ -9,12 +9,14 @@ import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -41,6 +43,9 @@ public class GUIClient extends Application implements UserInterface {
 
     @Override
     public void showMessage(String message) {
+        Platform.runLater(() -> {
+            Notifications.create().darkStyle().title("").text(message).position(Pos.BOTTOM_RIGHT).show();
+        });
     }
 
     @Override
@@ -49,15 +54,14 @@ public class GUIClient extends Application implements UserInterface {
         updateScene(ClientStatusEnum.LOBBY);
         stage.setTitle("Codex Naturalis");
         stage.setMinHeight(600);
-        stage.setHeight(600);
         stage.setMinWidth(900);
-        stage.setWidth(900);
+        stage.setHeight(1080);
+        stage.setWidth(1920);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png"))));
-        stage.requestFocus();
         stage.show();
+        stage.requestFocus();
 
         stage.setOnCloseRequest(e -> System.exit(0));
-
 
         try {
             Media music = new Media(Objects.requireNonNull(getClass().getResource("/music/preGameMusic.mp3")).toURI().toString());

@@ -105,6 +105,7 @@ public class ServerNetworkHandler {
      * The method stops the server
      */
     public synchronized void stop(){
+        connections.clear();
         socketServer.stopServer();
         rmiServer.stopServer();
     }

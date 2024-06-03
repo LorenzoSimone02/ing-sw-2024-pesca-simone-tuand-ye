@@ -23,7 +23,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
 
         int gameID;
         ServerNetworkHandler oldMatch = null;
-        for (gameID = 1; gameID <= ServerMain.getMatches().size(); gameID++) {
+        for (gameID = 1; gameID <= ServerMain.getLastGameId(); gameID++) {
             if (ServerMain.getMatch(gameID).isPresent()) {
                 ServerNetworkHandler temp = ServerMain.getMatch(gameID).get();
                 if (temp.getConnections().size() < temp.getGameController().getGame().getInfo().getMaxPlayers()
@@ -49,7 +49,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
         }
 
         ServerNetworkHandler foundNewMatch = null;
-        for (gameID = 1; gameID <= ServerMain.getMatches().size(); gameID++) {
+        for (gameID = 1; gameID <= ServerMain.getLastGameId(); gameID++) {
             if (ServerMain.getMatch(gameID).isPresent()) {
                 ServerNetworkHandler temp = ServerMain.getMatch(gameID).get();
                 if (temp.getConnections().size() < temp.getGameController().getGame().getInfo().getMaxPlayers()
@@ -85,7 +85,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect to is already started"));
             }
         } else {
-            controller.getNetworkHandler().sendPacket(connection, new JoinPacket(-1));
+            controller.getNetworkHandler().sendPacket(connection, new InfoPacket("There are no available Games at the moment. Use /createGame to create one or /join to try again."));
         }
     }
 }

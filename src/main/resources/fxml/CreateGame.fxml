@@ -28,6 +28,7 @@
                          onAction="#setNumberOfPlayers" text="4" toggleGroup="$playersNumber"/>
 
             <Button mnemonicParsing="false" onAction="#createGame" text="Create Game"/>
+            <Button mnemonicParsing="false" onAction="#joinGame" text="Search for a Game"/>
         </VBox>
     </center>
 </BorderPane>
