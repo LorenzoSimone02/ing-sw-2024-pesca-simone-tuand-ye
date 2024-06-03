@@ -48,6 +48,7 @@ public class GameStartedPacket extends Packet {
     /**
      * Constructor of the class
      * @param game the game that has started
+     * @param reconnection the boolean that indicates if the game is a reconnection
      */
     public GameStartedPacket(Game game, boolean reconnection) {
         this.gameID = game.getInfo().getId();
