@@ -8,10 +8,7 @@ import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class GameState {
 
@@ -19,13 +16,13 @@ public class GameState {
     private int gameID;
     private String username;
     private int score;
-    private String color;
+    private String tokenColor;
     private final ArrayList<String> chatMessages;
     private ClientStatusEnum clientStatus;
     private long lastPing;
     private final ArrayList<Card> allCards;
     private final ResourceCard[][] cardsPlaced;
-    private final ArrayList<ResourceCard> orderedCardsPlaced;
+    private final LinkedList<ResourceCard> orderedCardsPlaced;
     private final ArrayList<ResourceCard> cardsInHand;
     private final ArrayList<Card> cardsOnGround;
     private StarterCard starterCard;
@@ -43,7 +40,7 @@ public class GameState {
         this.uuid = UUID.randomUUID();
         score = 0;
         allCards = new ArrayList<>(80);
-        orderedCardsPlaced = new ArrayList<>();
+        orderedCardsPlaced = new LinkedList<>();
         cardsPlaced = new ResourceCard[81][81];
         playerStates = new ArrayList<>(3);
         cardsOnGround = new ArrayList<>(6);
@@ -78,12 +75,12 @@ public class GameState {
         this.score = score;
     }
 
-    public String getColor() {
-        return color;
+    public String getTokenColor() {
+        return tokenColor;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setTokenColor(String tokenColor) {
+        this.tokenColor = tokenColor;
     }
 
     public int getGameID() {
@@ -287,7 +284,7 @@ public class GameState {
         cardsPlaced[x][y] = card;
     }
 
-    public ArrayList<ResourceCard> getOrderedCardsPlaced() {
+    public LinkedList<ResourceCard> getOrderedCardsPlaced() {
         return orderedCardsPlaced;
     }
 

@@ -3,15 +3,13 @@ package it.polimi.ingsw.server.controller.packethandling;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.ServerNetworkHandler;
-import it.polimi.ingsw.network.packets.ConnectionEventPacket;
-import it.polimi.ingsw.network.packets.InfoPacket;
-import it.polimi.ingsw.network.packets.JoinPacket;
-import it.polimi.ingsw.network.packets.Packet;
+import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
+import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
 public class ServerJoinPacketHandler extends ServerPacketHandler {
@@ -42,9 +40,11 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             networkHandler.addConnection(connection);
 
             oldMatch.getGameController().reconnectPlayer(connection.getUsername());
-            System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
+            GameSave gameSave = new GameSave(oldMatch.getGameController().getGame());
             networkHandler.sendPacket(connection, new JoinPacket(gameID));
-            networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, true));
+            networkHandler.sendPacket(connection, new GameStartedPacket(oldMatch.getGameController().getGame(), true));
+            networkHandler.sendPacketToAll(new RestoreGameStatePacket(connection.getUsername(), gameSave.getPlayerSaves()));
+            System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
             return;
         }
 
@@ -82,7 +82,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The lobby you are trying to join is full."));
             } catch (IllegalOperationForStateException e) {
                 System.err.println("Received a Join request while the game is already started.");
-                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect is already started"));
+                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect to is already started"));
             }
         } else {
             controller.getNetworkHandler().sendPacket(connection, new JoinPacket(-1));

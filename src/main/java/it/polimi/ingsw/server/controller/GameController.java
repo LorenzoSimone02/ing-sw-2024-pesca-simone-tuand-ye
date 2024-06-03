@@ -4,7 +4,10 @@ import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
-import it.polimi.ingsw.server.controller.exceptions.*;
+import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
+import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
+import it.polimi.ingsw.server.controller.exceptions.GameStartException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.controller.save.CardSave;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.controller.save.PlayerSave;
@@ -98,6 +101,9 @@ public class GameController {
             if (p.getUsername().equalsIgnoreCase(player)) {
                 game.getPlayers().add(p);
                 iterator.remove();
+                networkHandler.sendPacketToAll(new ConnectionEventPacket(player, false, true));
+                if (game.getPlayers().size() > 1)
+                    game.getInfo().setGameStatus(GameStatusEnum.PLAYING);
                 return;
             }
         }
@@ -109,27 +115,22 @@ public class GameController {
             if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING)) {
                 game.getOfflinePlayers().add(player.get());
             }
-            removePlayer(username);
+            removePlayer(player.get());
             networkHandler.sendPacketToAll(new ConnectionEventPacket(username, true, false));
+            if (game.getInfo().getActivePlayer().getUsername().equals(username)) {
+                nextTurn();
+            }
         }
     }
 
-    public synchronized void removePlayer(String player) {
+    public synchronized void removePlayer(Player player) {
         if (game == null) return;
 
-        Player playerToRemove = null;
-        for (Player currPlayer : game.getPlayers()) {
-            if (currPlayer.getUsername().equals(player)) {
-                playerToRemove = currPlayer;
-            }
-        }
-        if (playerToRemove != null) {
-            playerControllers.remove(getPlayerController(playerToRemove));
-            game.getPlayers().remove(playerToRemove);
+        playerControllers.remove(getPlayerController(player));
+        game.getPlayers().remove(player);
 
-        } else {
-            throw new PlayerNotFoundException(player);
-        }
+        if (game.getInfo().getPlayersNumber() == 1)
+            game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
     }
 
     public boolean hasDisconnected(String player) {
@@ -172,7 +173,7 @@ public class GameController {
                 p.addCardInHand(game.getTable().getGoldDeck().drawCard());
             }
 
-            GameStartedPacket gameStartedPacket = new GameStartedPacket(game);
+            GameStartedPacket gameStartedPacket = new GameStartedPacket(game, false);
             networkHandler.sendPacketToAll(gameStartedPacket);
 
             game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
@@ -234,7 +235,7 @@ public class GameController {
         for (PlayerSave playerSave : save.getPlayerSaves()) {
             Player player = new Player(playerSave.getUsername(), game);
             player.setScore(playerSave.getScore());
-            player.setToken(new PlayerToken(TokenColorEnum.valueOf(playerSave.getToken())));
+            player.setToken(new PlayerToken(TokenColorEnum.valueOf(playerSave.getTokenColor())));
             player.setObjectiveCard((ObjectiveCard) getCardById(playerSave.getObjectiveCard().getId()));
             player.setStarterCard((StarterCard) getCardById(playerSave.getStarterCard().getId()));
             for (CardSave cardSave : playerSave.getCardsInHand()) {

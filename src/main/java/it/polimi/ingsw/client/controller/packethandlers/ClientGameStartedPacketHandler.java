@@ -35,7 +35,9 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
             }
         }
 
-        clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_COLOR);
-        System.out.println(Printer.CYAN + "Before playing, choose your Token color with the command /chooseColor <color>" + Printer.RESET);
+        if (!gameStartedPacket.isReconnection()) {
+            clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_COLOR);
+            System.out.println(Printer.CYAN + "Before playing, choose your Token color with the command /chooseColor <color>" + Printer.RESET);
+        }
     }
 }

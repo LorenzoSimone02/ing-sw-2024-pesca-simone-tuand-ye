@@ -9,10 +9,9 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.resources.Object;
-import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
-import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.util.HashMap;
 
@@ -25,6 +24,10 @@ public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't place a Card now." + Printer.RESET));
             return;
         }
+        if(controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_PLAYERS && controller.getGame().getInfo().getPlayersNumber() == 1){
+            controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You are the only Player connected, wait for someone else to connect." + Printer.RESET));
+            return;
+        }
         try {
             ResourceCard card = (ResourceCard) controller.getCardById(placeCardPacket.getCardId());
             PlayerController playerController = controller.getPlayerController(clientConnection.getUsername());
@@ -32,18 +35,11 @@ public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
                 playerController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
                 playerController.getPlayer().removeCardInHand(card);
                 HashMap<String, Integer> resources = new HashMap<>();
-                for (ResourceTypeEnum res: ResourceTypeEnum.values()) {
-                    resources.put(res.name(), 0);
-                }
                 for (Resource resource : playerController.getPlayer().getResources()) {
-                    resources.put(resource.getType().name(), resources.get(resource.getType().name()) + 1);
-                }
-
-                for (ObjectTypeEnum obj: ObjectTypeEnum.values()) {
-                    resources.put(obj.name(), 0);
+                    resources.put(resource.getType().name(), resources.getOrDefault(resource.getType().name(), 0) + 1);
                 }
                 for (Object object : playerController.getPlayer().getObjects()) {
-                    resources.put(object.getType().name(), resources.get(object.getType().name()) + 1);
+                    resources.put(object.getType().name(), resources.getOrDefault(object.getType().name(), 0) + 1);
                 }
                 controller.getNetworkHandler().sendPacketToAll(new PlaceCardPacket(clientConnection.getUsername(), playerController.getPlayer().getScore(), resources, placeCardPacket.getCardId(), placeCardPacket.getXCoord(), placeCardPacket.getYCoord()));
             } else {

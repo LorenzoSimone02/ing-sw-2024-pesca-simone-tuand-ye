@@ -2,13 +2,7 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
-import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
-import it.polimi.ingsw.server.controller.exceptions.WrongTokenException;
-import it.polimi.ingsw.server.model.card.FaceEnum;
-import it.polimi.ingsw.server.model.card.ResourceCard;
-import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 import org.junit.jupiter.api.BeforeEach;
@@ -61,14 +55,10 @@ public class PlayerTest {
             fail("Token color already taken.");
         }
 
-        try {
-            assertEquals(TokenColorEnum.RED, controller.getGame().getPlayers().getFirst().getToken().getColor());
-            assertEquals(TokenColorEnum.GREEN, controller.getGame().getPlayers().get(1).getToken().getColor());
-            assertEquals(TokenColorEnum.BLUE, controller.getGame().getPlayers().get(2).getToken().getColor());
-            assertEquals(TokenColorEnum.YELLOW, controller.getGame().getPlayers().get(3).getToken().getColor());
-        } catch (WrongTokenException e) {
-            fail("Wrong token assigned.");
-        }
+        assertEquals(TokenColorEnum.RED, controller.getGame().getPlayers().getFirst().getToken().getColor());
+        assertEquals(TokenColorEnum.GREEN, controller.getGame().getPlayers().get(1).getToken().getColor());
+        assertEquals(TokenColorEnum.BLUE, controller.getGame().getPlayers().get(2).getToken().getColor());
+        assertEquals(TokenColorEnum.YELLOW, controller.getGame().getPlayers().get(3).getToken().getColor());
     }
 
     @Test

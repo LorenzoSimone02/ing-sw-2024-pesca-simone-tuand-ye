@@ -18,6 +18,7 @@ public class LoginCommand extends Command {
             String username = input.split(" ")[0];
             if (username.matches("[a-zA-Z0-9]+") && input.split(" ").length == 1) {
                 LoginPacket loginRequestPacket = new LoginPacket(username);
+                clientManager.getGameState().setLastPing(System.currentTimeMillis());
                 clientManager.getNetworkHandler().sendPacket(loginRequestPacket);
             } else {
                 System.err.println("That username is not valid, please choose another one using only letters and numbers.");

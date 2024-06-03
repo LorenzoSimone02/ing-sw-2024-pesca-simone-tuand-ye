@@ -52,8 +52,8 @@ public class SocketClient extends ClientNetworkHandler {
             try {
                 super.sendPacket(packet);
                 out.writeObject(packet);
-                out.reset();
                 out.flush();
+                out.reset();
             } catch (IOException e) {
                 System.err.println("Error sending packet: " + e);
             }

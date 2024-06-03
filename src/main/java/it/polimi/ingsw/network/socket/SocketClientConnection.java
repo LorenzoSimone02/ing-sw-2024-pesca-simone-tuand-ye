@@ -66,8 +66,8 @@ public class SocketClientConnection extends ClientConnection implements Runnable
     public void receivePacket(Packet packet) {
         try {
             out.writeObject(packet);
-            out.reset();
             out.flush();
+            out.reset();
         } catch (IOException e) {
             System.err.println("Error sending packet: " + e);
         }

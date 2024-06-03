@@ -41,14 +41,20 @@ public class GameStartedPacket extends Packet {
     private final String firstPlayer;
 
     /**
+     * The boolean that indicates if the game is a reconnection
+     */
+    private final boolean reconnection;
+
+    /**
      * Constructor of the class
      * @param game the game that has started
      */
-    public GameStartedPacket(Game game) {
+    public GameStartedPacket(Game game, boolean reconnection) {
         this.gameID = game.getInfo().getId();
         this.players = new ArrayList<>();
         this.cardsInHands = new HashMap<>();
         this.cardsOnGround = new ArrayList<>();
+        this.reconnection = reconnection;
 
         for (Player player : game.getPlayers()) {
             players.add(player.getUsername());
@@ -105,6 +111,14 @@ public class GameStartedPacket extends Packet {
     }
 
     /**
+     * The method returns the boolean that indicates if the game is a reconnection
+     * @return the boolean that indicates if the game is a reconnection
+     */
+    public boolean isReconnection() {
+        return reconnection;
+    }
+
+    /**
      * The method returns the client-side game starting packets handler
      * @return the client-side game starting packets handler
      */
@@ -121,4 +135,5 @@ public class GameStartedPacket extends Packet {
     public ServerPacketHandler getServerPacketHandler() {
         return null;
     }
+
 }

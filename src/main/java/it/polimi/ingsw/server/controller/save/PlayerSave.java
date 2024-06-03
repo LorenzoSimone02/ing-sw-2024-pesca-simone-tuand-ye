@@ -13,7 +13,7 @@ public class PlayerSave implements Serializable {
 
     private final String username;
     private final int score;
-    private final String token;
+    private final String tokenColor;
     private final CardSave[][] cards;
     private final ArrayList<CardSave> cardsInHand;
     private final CardSave starterCard;
@@ -23,7 +23,7 @@ public class PlayerSave implements Serializable {
     public PlayerSave(Player player) {
         this.username = player.getUsername();
         this.score = player.getScore();
-        this.token = player.getToken().toString();
+        this.tokenColor = player.getToken().toString();
         this.cards = new CardSave[81][81];
         for (int i = 0; i < 81; i++) {
             for (int j = 0; j < 81; j++) {
@@ -55,8 +55,8 @@ public class PlayerSave implements Serializable {
         return score;
     }
 
-    public String getToken() {
-        return token;
+    public String getTokenColor() {
+        return tokenColor;
     }
 
     public CardSave[][] getCards() {

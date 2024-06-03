@@ -3,20 +3,20 @@ package it.polimi.ingsw.client.controller.clientstate;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class PlayerState {
 
     private final String username;
-    private String color;
+    private String tokenColor;
     private final ResourceCard[][] cardsPlaced;
-    private final ArrayList<ResourceCard> orderedCardsPlaced;
+    private final LinkedList<ResourceCard> orderedCardsPlaced;
     int score;
 
     public PlayerState(String username) {
         this.username = username;
         this.cardsPlaced = new ResourceCard[81][81];
-        this.orderedCardsPlaced = new ArrayList<>();
+        this.orderedCardsPlaced = new LinkedList<>();
         this.score = 0;
     }
 
@@ -32,19 +32,19 @@ public class PlayerState {
         this.score = score;
     }
 
-    public String getColor() {
-        return color;
+    public String getTokenColor() {
+        return tokenColor;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setTokenColor(String tokenColor) {
+        this.tokenColor = tokenColor;
     }
 
     public ResourceCard[][] getCardsPlaced() {
         return cardsPlaced;
     }
 
-    public ArrayList<ResourceCard> getOrderedCardsPlaced() {
+    public LinkedList<ResourceCard> getOrderedCardsPlaced() {
         return orderedCardsPlaced;
     }
 

@@ -9,6 +9,7 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
 public class ServerDrawCardPacketHandler extends ServerPacketHandler {
 
@@ -17,6 +18,10 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
         DrawCardPacket drawCardPacket = (DrawCardPacket) packet;
         if (!controller.getGame().getInfo().getActivePlayer().getUsername().equals(clientConnection.getUsername()) || controller.getPlayerController(clientConnection.getUsername()).getPlayer().getCardsInHand().size() != 2) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't draw a Card now." + Printer.RESET));
+            return;
+        }
+        if(controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_PLAYERS && controller.getGame().getInfo().getPlayersNumber() == 1){
+            controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You are the only Player connected, wait for someone else to connect." + Printer.RESET));
             return;
         }
         if (drawCardPacket.getCardID() > 0) {

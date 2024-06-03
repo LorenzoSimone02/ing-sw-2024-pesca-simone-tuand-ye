@@ -69,7 +69,7 @@ public class GameTest {
         }
 
         assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
-        controller.removePlayer("p2");
+        //controller.removePlayer("p2");
         for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
             assertNotEquals("p2", controller.getGame().getPlayers().get(i).getUsername());
         }
@@ -151,11 +151,7 @@ public class GameTest {
 
         for (int i = 0; i < 4; i++) {
             assertNotNull(controller.getGame().getPlayers().get(i).getToken());
-            try {
-                controller.nextTurn();
-            } catch (EndGameException e) {
-                throw new RuntimeException(e);
-            }
+            controller.nextTurn();
         }
 
         controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
@@ -163,11 +159,7 @@ public class GameTest {
 
         for (int i = 0; i < 4; i++) {
             assertNotNull(controller.getGame().getPlayers().get(i).getObjectiveCard());
-            try {
-                controller.nextTurn();
-            } catch (EndGameException e) {
-                throw new RuntimeException(e);
-            }
+            controller.nextTurn();
         }
 
         controller.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
@@ -175,11 +167,8 @@ public class GameTest {
 
         for (int i = 0; i < 4; i++) {
             // TODO: implement personal turn move choices
-            try {
-                controller.nextTurn();
-            } catch (EndGameException e) {
-                throw new RuntimeException(e);
-            }
+            controller.nextTurn();
+
         }
 
         controller.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);

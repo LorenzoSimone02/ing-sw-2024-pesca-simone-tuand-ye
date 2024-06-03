@@ -1,6 +1,7 @@
 package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.PingPacket;
+import it.polimi.ingsw.server.ServerMain;
 
 import java.util.Iterator;
 import java.util.concurrent.Executors;
@@ -18,6 +19,7 @@ public class ClientPingerThread implements Runnable {
 
     /**
      * Constructor of the class
+     *
      * @param serverNetworkHandler the ServerNetworkHandler
      */
     public ClientPingerThread(ServerNetworkHandler serverNetworkHandler) {
@@ -35,14 +37,19 @@ public class ClientPingerThread implements Runnable {
                 ClientConnection conn = iter.next();
                 serverNetworkHandler.sendPacket(conn, new PingPacket());
                 long latency = System.currentTimeMillis() - conn.getLastPing();
-                if(latency > 7000) {
+                if (latency > 5000) {
                     iter.remove();
-                    if(conn.getUsername() != null) {
-                        System.err.println("Lost connection with " + conn.getUsername() + " due to timeout");
+                    if (conn.getUsername() != null) {
+                        System.err.println("Lost connection with client " + conn.getUsername());
+                        for (ServerNetworkHandler serverNetworkHandlers : ServerMain.getMatches()) {
+                            serverNetworkHandlers.getGameController().onDisconnect(conn.getUsername());
+                            serverNetworkHandlers.removeConnection(conn);
+                        }
                         serverNetworkHandler.getGameController().onDisconnect(conn.getUsername());
+                        serverNetworkHandler.removeConnection(conn);
                     }
                 }
             }
-        }, 0, 3, TimeUnit.SECONDS);
+        }, 0, 2, TimeUnit.SECONDS);
     }
 }

@@ -22,20 +22,7 @@ public record PlayerController(Player player) {
         if (canPlaceCard(x, y, card)) {
             player.setCard(card, x, y);
 
-            if (card.getFace().equals(FaceEnum.BACK)) {
-                for (Resource res : card.getBackResources()) {
-                    player.addResource(res);
-                }
-            }
-
-            for (Corner corner : card.getCorners()) {
-                if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
-                    player.addResource(corner.getResource());
-                }
-                if (corner.isVisible() && corner.getObject() != null && corner.getObject().getType() != ObjectTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
-                    player.addObject(corner.getObject());
-                }
-            }
+            addResourcesAndObjects(card);
 
             ResourceCard currCard;
             CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
@@ -111,6 +98,23 @@ public record PlayerController(Player player) {
         return false;
     }
 
+    public synchronized void addResourcesAndObjects(ResourceCard card) {
+        if (card.getFace().equals(FaceEnum.BACK)) {
+            for (Resource res : card.getBackResources()) {
+                player.addResource(res);
+            }
+        }
+
+        for (Corner corner : card.getCorners()) {
+            if (corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
+                player.addResource(corner.getResource());
+            }
+            if (corner.isVisible() && corner.getObject() != null && corner.getObject().getType() != ObjectTypeEnum.EMPTY && corner.getFace() == card.getFace()) {
+                player.addObject(corner.getObject());
+            }
+        }
+    }
+
     public synchronized void chooseToken(TokenColorEnum tokenColor) {
         for (Player player : player.getGame().getPlayers()) {
             if (player.getToken() != null && player.getToken().color().equals(tokenColor)) {
@@ -128,16 +132,7 @@ public record PlayerController(Player player) {
         starterCard.setFace(chosenFace);
         player.setStarterCard(starterCard);
         player.setCard(starterCard, 40, 40);
-        for (Corner corner : starterCard.getCorners()) {
-            if (corner.getResource() != null && corner.getResource().getType() != ResourceTypeEnum.EMPTY && corner.getFace().equals(starterCard.getFace())) {
-                player.addResource(corner.getResource());
-            }
-        }
-        if (starterCard.getFace().equals(FaceEnum.BACK)) {
-            for (Resource res : starterCard.getBackResources()) {
-                player.addResource(res);
-            }
-        }
+        addResourcesAndObjects(starterCard);
     }
 
     public synchronized void turnCard(Card card) {

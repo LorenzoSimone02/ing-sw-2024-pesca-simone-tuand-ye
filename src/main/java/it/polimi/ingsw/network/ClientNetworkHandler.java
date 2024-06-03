@@ -13,7 +13,7 @@ import java.rmi.server.UnicastRemoteObject;
 public class ClientNetworkHandler extends UnicastRemoteObject {
 
     /**
-     * The client manager
+     * The client manager that contains every information about the client
      */
     private ClientManager clientManager;
 
@@ -26,8 +26,7 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
     }
 
     /**
-     * The method tries to send a packet to the server, if it is not possible
-     *      or if the packet is null it prints two different error message
+     * The method tries to send a packet to the server
      * @param packet the packet to send
      */
     public synchronized void sendPacket(Packet packet) {
@@ -40,8 +39,7 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
     }
 
     /**
-     * The method tries to receive a packet from the server, if it is not possible
-     *      or if the packet is null it prints two different error messages
+     * The method tries to receive a packet from the server
      * @param packet the packet received
      */
     public synchronized void receivePacket(Packet packet) {

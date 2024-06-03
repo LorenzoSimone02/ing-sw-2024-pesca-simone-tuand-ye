@@ -14,12 +14,12 @@ public class ClientChooseColorPacketHandler extends ClientPacketHandler {
         ChooseColorPacket chooseColorPacket = (ChooseColorPacket) packet;
         System.out.println(Printer.GREEN + chooseColorPacket.getUsername() + " has chosen the color " + chooseColorPacket.getColor() + Printer.RESET);
         if (chooseColorPacket.getUsername().equals(clientManager.getGameState().getUsername())) {
-            clientManager.getGameState().setColor(chooseColorPacket.getColor());
+            clientManager.getGameState().setTokenColor(chooseColorPacket.getColor());
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_OBJECTIVE);
         } else {
             for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
                 if (playerState.getUsername().equals(chooseColorPacket.getUsername())) {
-                    playerState.setColor(chooseColorPacket.getColor());
+                    playerState.setTokenColor(chooseColorPacket.getColor());
                 }
             }
         }
