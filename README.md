@@ -17,7 +17,7 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 
 ## Funzionalità Implementate
 | Funzionalità | Stato |
-|:-----------------------|:------------------------------------:|
+|:-----------------------|:-----------------------------------:|
 | Regole semplificate |✅|
 | Regole complete |✅|
 | Socket |✅|
@@ -27,7 +27,7 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 | Chat|✅|
 | Persistenza connessioni |✅|
 | Partite multiple |✅|
-| Persistenza partite |⛔|
+| Persistenza partite |✅|
 
 #### Legenda
 [✅]() Implementato &nbsp;&nbsp;&nbsp;&nbsp;[⛔]() Non implementato

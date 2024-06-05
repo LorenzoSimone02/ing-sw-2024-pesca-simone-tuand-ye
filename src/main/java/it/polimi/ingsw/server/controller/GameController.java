@@ -30,6 +30,7 @@ public class GameController {
 
     private Game game;
     private final int saveGameId;
+    private File saveGameFile;
     private final ArrayList<Card> allCards;
     private final ArrayList<PlayerController> playerControllers;
     private final ServerNetworkHandler networkHandler;
@@ -331,8 +332,9 @@ public class GameController {
             }
             if (player.getUsername().equals(gameSave.getFirstPlayer())) {
                 game.getInfo().setFirstPlayer(player);
-                System.out.println("First player: " + player.getUsername());
             }
+        }
+        for (Player player : game.getPlayers()) {
             ClientConnection connection = networkHandler.getConnectionByNickname(player.getUsername());
             networkHandler.sendPacket(connection, new GameStartedPacket(game, true));
             networkHandler.sendPacket(connection, new RestoreGameStatePacket(player.getUsername(), gameSave.getPlayerSaves()));
@@ -347,7 +349,8 @@ public class GameController {
             File saveDir = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves");
             saveDir.mkdirs();
             File saveFile = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves\\game" + saveGameId + ".save");
-            saveFile.createNewFile();
+            if (saveFile.createNewFile())
+                saveGameFile = saveFile;
             FileOutputStream fileOut = new FileOutputStream(saveFile);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(save);
@@ -549,6 +552,7 @@ public class GameController {
         }
         networkHandler.stop();
         ServerMain.removeMatch(networkHandler);
+        saveGameFile.delete();
     }
 
     public synchronized Optional<Player> getPlayerByNick(String nick) {
