@@ -17,7 +17,7 @@
       "location": "TOP_RIGHT"
     },
     {
-      "visible": false,
+      "visible": true,
       "face": "FRONT",
       "location": "BOTTOM_LEFT",
       "resource": {

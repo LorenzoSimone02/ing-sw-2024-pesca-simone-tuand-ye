@@ -25,7 +25,7 @@
       }
     },
     {
-      "visible": true,
+      "visible": false,
       "face": "FRONT",
       "location": "BOTTOM_RIGHT"
     }
