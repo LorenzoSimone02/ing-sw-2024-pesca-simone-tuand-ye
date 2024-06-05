@@ -26,7 +26,7 @@
       "face": "FRONT",
       "location": "BOTTOM_RIGHT",
       "object": {
-        "type": "INKWELL"
+        "type": "QUILL"
       }
     }
   ],

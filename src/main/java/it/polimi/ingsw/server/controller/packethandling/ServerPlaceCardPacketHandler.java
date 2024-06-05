@@ -8,7 +8,6 @@ import it.polimi.ingsw.network.packets.PlaceCardPacket;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
-import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.resources.Object;
@@ -44,9 +43,6 @@ public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
                 }
                 controller.getNetworkHandler().sendPacketToAll(new PlaceCardPacket(clientConnection.getUsername(), playerController.getPlayer().getScore(), resources, placeCardPacket.getCardId(), placeCardPacket.getXCoord(), placeCardPacket.getYCoord()));
             } else {
-                for(Card card2 : playerController.getPlayer().getCardsInHand()){
-                    System.out.println(card2.getId());
-                }
                 controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You don't have that Card." + Printer.RESET));
             }
         } catch (IllegalCardPlacementException ex) {

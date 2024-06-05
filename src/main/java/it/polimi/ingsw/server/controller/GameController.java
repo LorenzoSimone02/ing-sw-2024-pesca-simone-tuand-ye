@@ -331,6 +331,7 @@ public class GameController {
             }
             if (player.getUsername().equals(gameSave.getFirstPlayer())) {
                 game.getInfo().setFirstPlayer(player);
+                System.out.println("First player: " + player.getUsername());
             }
             ClientConnection connection = networkHandler.getConnectionByNickname(player.getUsername());
             networkHandler.sendPacket(connection, new GameStartedPacket(game, true));
@@ -446,13 +447,12 @@ public class GameController {
     }
 
     public synchronized void nextTurn() {
-        saveGameToFile();
-
         checkEndCondition();
 
         Player next = nextPlayer();
         game.getInfo().setActivePlayer(next);
         networkHandler.sendPacketToAll(new EndTurnPacket(next.getUsername()));
+        saveGameToFile();
     }
 
     public synchronized Player nextPlayer() {

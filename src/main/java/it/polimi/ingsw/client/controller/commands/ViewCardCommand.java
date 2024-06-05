@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
+import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.StarterCard;
 
 public class ViewCardCommand extends Command {
@@ -30,7 +31,7 @@ public class ViewCardCommand extends Command {
                     if (x == 40 && y == 40) {
                         Printer.printCard(clientManager.getGameState().getStarterCard());
                     } else {
-                        Printer.printCard(clientManager.getGameState().getCardsPlaced()[x][y]);
+                        Printer.printCard((Card)clientManager.getGameState().getCardsPlaced()[x][y]);
                     }
                 } catch (NumberFormatException e) {
                     System.err.println("Usage: /viewCard <x> <y> <player>");
@@ -41,6 +42,10 @@ public class ViewCardCommand extends Command {
                         try {
                             int x = Integer.parseInt(split[0]);
                             int y = Integer.parseInt(split[1]);
+                            if (playerState.getCardsPlaced()[x][y] == null) {
+                                System.err.println("No card at position " + x + " " + y + " of " + playerState.getUsername());
+                                return;
+                            }
                             System.out.println(Printer.GREEN + "Card at position " + x + " " + y + " of " + playerState.getUsername() + ":" + Printer.RESET);
                             if (x == 40 && y == 40) {
                                 Printer.printCard((StarterCard) playerState.getCardsPlaced()[x][y]);

@@ -30,11 +30,6 @@ public class ClientNetworkHandler extends UnicastRemoteObject {
      * @param packet the packet to send
      */
     public synchronized void sendPacket(Packet packet) {
-        long time = System.currentTimeMillis() - clientManager.getGameState().getLastPing();
-        if (time > 7000) {
-            System.err.println("Lost connection with the Server");
-            clientManager.getGameState().setClientStatus(ClientStatusEnum.DISCONNECTED);
-        }
         packet.setSender(clientManager.getGameState().getUuid());
     }
 

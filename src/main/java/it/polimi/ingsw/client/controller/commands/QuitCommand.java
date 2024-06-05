@@ -11,6 +11,10 @@ public class QuitCommand extends Command {
 
         addValidStatus(ClientStatusEnum.LOBBY);
         addValidStatus(ClientStatusEnum.LOGGED);
+        addValidStatus(ClientStatusEnum.CONNECTED);
+        addValidStatus(ClientStatusEnum.CHOOSING_OBJECTIVE);
+        addValidStatus(ClientStatusEnum.CHOOSING_COLOR);
+        addValidStatus(ClientStatusEnum.CHOOSING_STARTER_FACE);
         addValidStatus(ClientStatusEnum.PLAYING);
         addValidStatus(ClientStatusEnum.LAST_TURN);
         addValidStatus(ClientStatusEnum.ENDED);

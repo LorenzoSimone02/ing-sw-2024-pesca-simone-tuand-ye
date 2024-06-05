@@ -40,7 +40,7 @@ public class ClientPingerThread implements Runnable {
                 if (latency > 5000) {
                     iter.remove();
                     if (conn.getUsername() != null) {
-                        System.err.println("Lost connection with client " + conn.getUsername());
+                        System.err.println("Lost connection with client " + conn.getUsername() + " due to Timeout");
                         for (ServerNetworkHandler serverNetworkHandlers : ServerMain.getMatches()) {
                             serverNetworkHandlers.getGameController().onDisconnect(conn.getUsername());
                             serverNetworkHandlers.removeConnection(conn);

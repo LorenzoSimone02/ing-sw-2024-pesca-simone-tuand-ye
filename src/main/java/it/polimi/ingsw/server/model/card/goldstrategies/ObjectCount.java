@@ -40,7 +40,7 @@ public class ObjectCount implements GoldStrategy {
      */
     @Override
     public int calculatePoints(Player player, int xCoord, int yCoord) {
-        int objectCounter = 1;
+        int objectCounter = 0;
         for (Object obj: player.getObjects()) {
             if (obj.type().equals(objectNeeded)) {
                 objectCounter++;

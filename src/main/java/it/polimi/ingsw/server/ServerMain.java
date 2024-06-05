@@ -2,6 +2,8 @@ package it.polimi.ingsw.server;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +16,9 @@ public class ServerMain {
     private static final int RMI_PORT = 1099;
     private static final int SOCKET_PORT = 5000;
 
-    public static void main(String[] args) {
-        if (args.length == 1)
-            System.setProperty("java.rmi.server.hostname", args[0]);
+    public static void main(String[] args) throws UnknownHostException {
+        String ipAddress = Inet4Address.getLocalHost().getHostAddress();
+        System.setProperty("java.rmi.server.hostname", ipAddress);
 
         matches = new ArrayList<>();
 

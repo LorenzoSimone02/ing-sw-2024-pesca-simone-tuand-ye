@@ -55,6 +55,7 @@ public class ClientMain {
             }
         } while (!(nextLine.equals("1") || nextLine.equals("2") || nextLine.equalsIgnoreCase("Socket") || nextLine.equalsIgnoreCase("RMI")));
 
+        System.setProperty("sun.rmi.transport.tcp.responseTimeout", "1500");
         ClientManager clientManager = new ClientManager(networkHandler, viewMode, serverIP);
         clientManager.getGameState().setClientStatus(ClientStatusEnum.LOBBY);
         System.out.println("Successfully connected to the Lobby.\nUse /login to choose an Username.");
