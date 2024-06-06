@@ -16,31 +16,42 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 **Voto**: -/30
 
 ## Funzionalità Implementate
-| Funzionalità | Stato |
-|:-----------------------|:-----------------------------------:|
-| Regole semplificate |✅|
-| Regole complete |✅|
-| Socket |✅|
-| RMI |✅|
-| GUI |✅|
-| TUI |✅|
-| Chat|✅|
-| Persistenza connessioni |✅|
-| Partite multiple |✅|
-| Persistenza partite |✅|
+| Funzionalità            | Stato |
+|:------------------------|:-----:|
+| Regole semplificate     |   ✅   |
+| Regole complete         |   ✅   |
+| Socket                  |   ✅   |
+| RMI                     |   ✅   |
+| GUI                     |   ✅   |
+| TUI                     |   ✅   |
+| Chat                    |   ✅   |
+| Persistenza connessioni |   ✅   |
+| Partite multiple        |   ✅   |
+| Persistenza partite     |   ✅   |
 
 #### Legenda
 [✅]() Implementato &nbsp;&nbsp;&nbsp;&nbsp;[⛔]() Non implementato
 
 ## Tests
 
-| Package | Classi testate | Copertura |
-|:-----------------------|:------------------|:------------------------------------:|
-| Controller | // | //
-| Model | // | //
+| Package    | Classi testate | Copertura |
+|:-----------|:---------------|:---------:|
+| Controller | //             |    //     |
+| Model      | //             |    //     |
 
 ## Utilizzo dei jar
-Da definire
+### Client
+
+```bash
+java -jar GC24-client.jar serverIp
+```
+Nel caso non venga specificato un serverIp, il client utilizzerà `localhost` come default.
+
+### Server
+
+```bash
+java -jar GC24-server.jar
+```
 
 <hr>
 

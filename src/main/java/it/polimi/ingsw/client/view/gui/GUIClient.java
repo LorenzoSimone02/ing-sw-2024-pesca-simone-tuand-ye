@@ -45,10 +45,8 @@ public class GUIClient extends Application implements UserInterface {
     @Override
     public void showMessage(String message) {
         message = message.replace("\u001B[0m", "");
-        String finalMessage = message;
-        Platform.runLater(() -> {
-            Notifications.create().darkStyle().title("").text(finalMessage).position(Pos.BOTTOM_RIGHT).show();
-        });
+        String finalMessage = message.startsWith("\u001B") ? message.substring(9) : message;
+        Platform.runLater(() -> Notifications.create().darkStyle().title("").text(finalMessage).position(Pos.BOTTOM_RIGHT).show());
     }
 
     @Override

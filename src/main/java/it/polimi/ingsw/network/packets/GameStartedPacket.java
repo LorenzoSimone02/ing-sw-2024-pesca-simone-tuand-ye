@@ -16,11 +16,6 @@ import java.util.HashMap;
 public class GameStartedPacket extends Packet {
 
     /**
-     * The ID of the game
-     */
-    private final int gameID;
-
-    /**
      * The list of the usernames of the players
      */
     private final ArrayList<String> players;
@@ -51,7 +46,6 @@ public class GameStartedPacket extends Packet {
      * @param reconnection the boolean that indicates if the game is a reconnection
      */
     public GameStartedPacket(Game game, boolean reconnection) {
-        this.gameID = game.getInfo().getId();
         this.players = new ArrayList<>();
         this.cardsInHands = new HashMap<>();
         this.cardsOnGround = new ArrayList<>();
@@ -70,14 +64,6 @@ public class GameStartedPacket extends Packet {
             cardsOnGround.add(card.getId());
         }
         this.firstPlayer = game.getInfo().getFirstPlayer().getUsername();
-    }
-
-    /**
-     * The method returns the ID of the game
-     * @return the ID of the game
-     */
-    public int getGameID() {
-        return gameID;
     }
 
     /**

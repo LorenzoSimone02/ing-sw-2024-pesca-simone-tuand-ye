@@ -1,15 +1,13 @@
 package it.polimi.ingsw.server.model.card;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 import it.polimi.ingsw.server.model.card.goldstrategies.GoldStrategyType;
 import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * The class GoldCard represents a gold card in the game

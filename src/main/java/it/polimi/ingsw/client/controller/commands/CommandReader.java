@@ -28,11 +28,21 @@ public class CommandReader implements Runnable {
     public void evaluateCommand(String command) {
         String[] arguments = command.split(" ");
 
-        if (inputCommandMap.containsKey(arguments[0])) {
-            inputCommandMap.get(arguments[0]).executeCommand(command.substring(arguments[0].length()).trim(), clientManager);
+        String cmd = isValidCommand(arguments[0]);
+        if (cmd != null) {
+            inputCommandMap.get(cmd).executeCommand(command.substring(cmd.length()).trim(), clientManager);
         } else {
             System.out.println("Invalid command, type /help to see the list of available commands");
         }
+    }
+
+    private String isValidCommand(String command){
+        for(String key : inputCommandMap.keySet()) {
+            if (command.equalsIgnoreCase(key)) {
+                return key;
+            }
+        }
+        return null;
     }
 
     private void loadCommands() {

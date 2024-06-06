@@ -1,11 +1,9 @@
 package it.polimi.ingsw.server.controller.packethandling;
 
 import it.polimi.ingsw.network.ClientConnection;
-import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.PeekDeckPacket;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.model.card.GoldCard;
 
 public class ServerPeekDeckPacketHandler extends ServerPacketHandler{
     @Override

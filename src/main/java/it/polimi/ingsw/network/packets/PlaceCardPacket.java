@@ -43,6 +43,11 @@ public class PlaceCardPacket extends Packet {
     private final int yCoord;
 
     /**
+     * The face of the card that has been placed
+     */
+    private String cardFace;
+
+    /**
      * Constructor of the class
      * @param player the username of the player who is placing the card
      * @param newScore the new score of the player who is placing the card
@@ -50,14 +55,16 @@ public class PlaceCardPacket extends Packet {
      * @param cardId the ID of the card that has been placed
      * @param xCoord the x coordinate of the card that has been placed
      * @param yCoord the y coordinate of the card that has been placed
+     * @param cardFace the face of the card that has been placed
      */
-    public PlaceCardPacket(String player, int newScore, HashMap<String, Integer> resources, int cardId, int xCoord, int yCoord) {
+    public PlaceCardPacket(String player, int newScore, HashMap<String, Integer> resources, int cardId, int xCoord, int yCoord, String cardFace) {
         this.player = player;
         this.newScore = newScore;
         this.resources = resources;
         this.cardId = cardId;
         this.xCoord = xCoord;
         this.yCoord = yCoord;
+        this.cardFace = cardFace;
     }
 
     /**
@@ -118,6 +125,14 @@ public class PlaceCardPacket extends Packet {
      */
     public HashMap<String, Integer> getResources() {
         return resources;
+    }
+
+    /**
+     * The method returns the face of the card that has been placed
+     * @return the face of the card that has been placed
+     */
+    public String getCardFace() {
+        return cardFace;
     }
 
     /**

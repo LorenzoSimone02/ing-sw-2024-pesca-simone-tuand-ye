@@ -22,8 +22,6 @@ public class LoginController implements SceneController, Initializable {
     @FXML
     private BorderPane loginPane;
     @FXML
-    private HBox footerHBox;
-    @FXML
     private Region spacer;
 
     @Override
@@ -40,7 +38,6 @@ public class LoginController implements SceneController, Initializable {
         if (username.isBlank()) {
             return;
         }
-        System.out.println("Login: " + username);
         ClientManager.getInstance().getNetworkHandler().sendPacket(new LoginPacket(username));
     }
 

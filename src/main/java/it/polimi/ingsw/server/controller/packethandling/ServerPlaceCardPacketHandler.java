@@ -41,7 +41,7 @@ public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
                 for (Object object : playerController.getPlayer().getObjects()) {
                     resources.put(object.getType().name(), resources.getOrDefault(object.getType().name(), 0) + 1);
                 }
-                controller.getNetworkHandler().sendPacketToAll(new PlaceCardPacket(clientConnection.getUsername(), playerController.getPlayer().getScore(), resources, placeCardPacket.getCardId(), placeCardPacket.getXCoord(), placeCardPacket.getYCoord()));
+                controller.getNetworkHandler().sendPacketToAll(new PlaceCardPacket(clientConnection.getUsername(), playerController.getPlayer().getScore(), resources, placeCardPacket.getCardId(), placeCardPacket.getXCoord(), placeCardPacket.getYCoord(), card.getFace().toString()));
             } else {
                 controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You don't have that Card." + Printer.RESET));
             }

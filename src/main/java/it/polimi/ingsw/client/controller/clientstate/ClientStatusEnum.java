@@ -7,10 +7,10 @@ public enum ClientStatusEnum {
     LOGGED,
     CONNECTED,
     CHOOSING_COLOR,
+    CHOOSING_STARTER_FACE,
     CHOOSING_OBJECTIVE,
     PLAYING,
     LAST_TURN,
     ENDED,
-    CHOOSING_STARTER_FACE,
     ERROR
 }

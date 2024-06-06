@@ -2,9 +2,7 @@ package it.polimi.ingsw.client.controller.commands;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
-import it.polimi.ingsw.network.packets.ChooseStarterFacePacket;
 import it.polimi.ingsw.network.packets.PeekDeckPacket;
-import it.polimi.ingsw.server.model.card.FaceEnum;
 
 public class PeekDeckCommand extends Command {
 

@@ -8,6 +8,5 @@ public enum CardColorEnum {
     GREEN,
     BLUE,
     PURPLE,
-    RED,
-    GOLD
+    RED
 }

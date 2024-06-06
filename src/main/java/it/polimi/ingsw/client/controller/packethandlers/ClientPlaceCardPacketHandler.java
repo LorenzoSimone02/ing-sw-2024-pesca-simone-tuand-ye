@@ -5,6 +5,7 @@ import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.PlaceCardPacket;
+import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
 public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
@@ -24,6 +25,7 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
             for (PlayerState playerState : clientManager.getGameState().getPlayerStates()) {
                 if (playerState.getUsername().equals(placeCardPacket.getPlayer())) {
                     ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(placeCardPacket.getCardId());
+                    card.setFace(FaceEnum.valueOf(placeCardPacket.getCardFace()));
                     playerState.setScore(placeCardPacket.getNewScore());
                     playerState.setCardPlaced(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
                     playerState.addOrderedCard(card);
