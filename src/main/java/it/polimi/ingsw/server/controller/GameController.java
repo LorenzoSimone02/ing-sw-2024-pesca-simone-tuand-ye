@@ -237,8 +237,22 @@ public class GameController {
         }
     }
 
+    private String setDefaultDirectory() {
+        String OS = System.getProperty("os.name").toUpperCase();
+        if (OS.contains("WIN"))
+            return System.getenv("APPDATA")+"/CodexNaturalisSaves/";
+        else if (OS.contains("MAC"))
+            return System.getProperty("user.home") + "/Library/Application "
+                    + "Support" + "/CodexNaturalisSaves/";
+        else if (OS.contains("NUX")){
+            new File(System.getProperty("user.home") + "/.codexNaturalisSaves/").mkdirs();
+            return System.getProperty("user.home") + "/.codexNaturalisSaves/";
+        }
+        return System.getProperty("user.dir");
+    }
+
     public synchronized GameSave checkExistingSave() {
-        File saveFolder = new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/");
+        File saveFolder = new File(setDefaultDirectory());
         for (File file : Objects.requireNonNull(saveFolder.listFiles())) {
             GameSave save;
             try (FileInputStream fileIn = new FileInputStream(file);
@@ -346,9 +360,9 @@ public class GameController {
     public synchronized void saveGameToFile() {
         try {
             GameSave save = new GameSave(game);
-            File saveDir = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves");
+            File saveDir = new File(setDefaultDirectory());
             saveDir.mkdirs();
-            File saveFile = new File(System.getenv("APPDATA") + "\\CodexNaturalisSaves\\game" + saveGameId + ".save");
+            File saveFile = new File(setDefaultDirectory() + "/game" + saveGameId + ".save");
             if (saveFile.createNewFile())
                 saveGameFile = saveFile;
             FileOutputStream fileOut = new FileOutputStream(saveFile);
