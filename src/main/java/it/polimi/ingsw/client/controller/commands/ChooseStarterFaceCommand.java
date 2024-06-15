@@ -5,14 +5,25 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.ChooseStarterFacePacket;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 
+/**
+ * The class represents the command that allows a player to choose the face of the StarterCard
+ */
 public class ChooseStarterFaceCommand extends Command{
 
+    /**
+     * The constructor of the class
+     */
     public ChooseStarterFaceCommand() {
         commandName = "/chooseStarterFace";
         description = "  Choose the face of the StarterCard\n  Usage: /chooseStarterFace <1 or 2>";
         addValidStatus(ClientStatusEnum.CHOOSING_STARTER_FACE);
     }
 
+    /**
+     * The method executes the command that allows a player to choose the face of the StarterCard
+     * @param input the face to choose
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -34,6 +45,11 @@ public class ChooseStarterFaceCommand extends Command{
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

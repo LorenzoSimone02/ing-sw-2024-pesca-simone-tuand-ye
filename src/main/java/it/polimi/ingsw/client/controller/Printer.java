@@ -5,16 +5,51 @@ import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
 
+/**
+ * The class that represents the TUI printer
+ */
 public class Printer {
 
+    /**
+     * The ANSI escape code for the RESET string color
+     */
     public static final String RESET = "\u001B[0m";
+
+    /**
+     * The ANSI escape code for the RED string color
+     */
     public static final String RED = "\u001B[31m";
+
+    /**
+     * The ANSI escape code for the GREEN string color
+     */
     public static final String GREEN = "\u001B[32m";
+
+    /**
+     * The ANSI escape code for the YELLOW string color
+     */
     public static final String YELLOW = "\u001B[33m";
+
+    /**
+     * The ANSI escape code for the BLUE string color
+     */
     public static final String BLUE = "\u001B[34m";
+
+    /**
+     * The ANSI escape code for the PURPLE string color
+     */
     public static final String PURPLE = "\u001B[35m";
+
+    /**
+     * The ANSI escape code for the CYAN string color
+     */
     public static final String CYAN = "\u001B[36m";
 
+    /**
+     * The method prints the given card
+     * @param card the card to print,
+     *             it could be of type {@link GoldCard}, {@link StarterCard}, {@link ResourceCard}, or {@link ObjectiveCard}
+     */
     public static void printCard(Card card) {
         if (card instanceof GoldCard goldCard) {
             printCard(goldCard);
@@ -33,6 +68,10 @@ public class Printer {
         }
     }
 
+    /**
+     * The method prints the given resource card
+     * @param card the resource card to print
+     */
     public static void printCard(ResourceCard card) {
         String cardColor = switch (card.getBackResources().getFirst().getType()) {
             case INSECT -> PURPLE;
@@ -131,6 +170,10 @@ public class Printer {
         }
     }
 
+    /**
+     * The method prints the given gold card
+     * @param card the gold card to print
+     */
     public static void printCard(GoldCard card) {
         String cardColor = switch (card.getBackResources().getFirst().getType()) {
             case INSECT -> PURPLE;
@@ -244,6 +287,10 @@ public class Printer {
         }
     }
 
+    /**
+     * The method prints the given objective card
+     * @param card the objective card to print
+     */
     public static void printCard(ObjectiveCard card) {
         String cardStr = """
                 _______________
@@ -256,6 +303,10 @@ public class Printer {
         System.out.println(card.getObjectiveDescription());
     }
 
+    /**
+     * The method prints the given starter card
+     * @param card the starter card to print
+     */
     public static void printCard(StarterCard card) {
         if (card.getFace() == FaceEnum.FRONT) {
             String t_l_res = "", t_r_res = "", b_l_res = "", b_r_res = "";
@@ -401,6 +452,10 @@ public class Printer {
         }
     }
 
+    /**
+     * The method prints the given placed cards of a player
+     * @param cards a 2D array of the placed cards to print
+     */
     public static void printCardsPlaced(ResourceCard[][] cards) {
         int minX = cards.length, maxX = 0, minY = cards.length, maxY = 0;
         for (int i = 0; i < cards.length; i++) {
@@ -433,6 +488,11 @@ public class Printer {
         }
     }
 
+    /**
+     * The method returns the color of the given token
+     * @param color the token color
+     * @return the color of the token
+     */
     public static String getColorByToken(String color){
         return switch (color) {
             case "BLUE" -> BLUE;

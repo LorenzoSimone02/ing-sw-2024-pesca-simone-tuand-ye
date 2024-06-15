@@ -8,14 +8,25 @@ import it.polimi.ingsw.server.model.card.ObjectiveCard;
 
 import java.util.ArrayList;
 
+/**
+ * The class represents the command that allows a player to draw a Card
+ */
 public class DrawCardCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public DrawCardCommand() {
         commandName = "/drawCard";
         description = "  Draw a Card on the ground or from a Deck\n  Usage: /drawCard <1/2/3/4/resources/gold>";
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 
+    /**
+     * The method executes the command that allows a player to draw a Card
+     * @param input the Card to draw
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -57,6 +68,11 @@ public class DrawCardCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus()) && clientManager.getGameState().getCardsInHand().size() < 3;
     }

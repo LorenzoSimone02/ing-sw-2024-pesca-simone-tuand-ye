@@ -8,8 +8,16 @@ import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
+/**
+ * The class that handles the card drawing packets from the server
+ */
 public class ClientDrawCardPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the card drawing packet
+     * @param packet the draw card packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         DrawCardPacket drawCardPacket = (DrawCardPacket) packet;

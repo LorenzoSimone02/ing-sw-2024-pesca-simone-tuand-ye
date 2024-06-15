@@ -3,8 +3,14 @@ package it.polimi.ingsw.client.controller.commands;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 
+/**
+ * The class represents the command that allows a player to quit from the current game
+ */
 public class QuitCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public QuitCommand() {
         commandName = "/quit";
         description = "  Quits from the current Server \n  Usage: /quit";
@@ -20,6 +26,11 @@ public class QuitCommand extends Command {
         addValidStatus(ClientStatusEnum.ENDED);
     }
 
+    /**
+     * The method executes the command that allows a player to quit from the current game
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -33,6 +44,11 @@ public class QuitCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

@@ -7,7 +7,16 @@ import it.polimi.ingsw.network.packets.PeekDeckPacket;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 
+/**
+ * The class that handles the deck peeking packets from the server
+ */
 public class ClientPeekDeckPacketHandler extends ClientPacketHandler{
+
+    /**
+     * The method handles the deck peeking packet
+     * @param packet the deck peeking packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
 

@@ -5,8 +5,14 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 
+/**
+ * The class represents the command that shows the scores of every Player in the Game
+ */
 public class ScoresCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public ScoresCommand() {
         commandName = "/scores";
         description = "  Shows the scores of every Player in the Game \n  Usage: /scores";
@@ -15,6 +21,11 @@ public class ScoresCommand extends Command {
         addValidStatus(ClientStatusEnum.ENDED);
     }
 
+    /**
+     * The method executes the command that shows the scores of every Player in the Game
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -32,6 +43,11 @@ public class ScoresCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

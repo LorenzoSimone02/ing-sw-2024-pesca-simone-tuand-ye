@@ -8,8 +8,16 @@ import it.polimi.ingsw.network.packets.JoinPacket;
 import it.polimi.ingsw.network.packets.LoginPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
+/**
+ * The class that handles the client login packets from the server
+ */
 public class ClientLoginPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the client login packet
+     * @param packet the client login packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         LoginPacket loginPacket = (LoginPacket) packet;

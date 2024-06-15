@@ -7,8 +7,16 @@ import it.polimi.ingsw.network.packets.ChooseObjectivePacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 
+/**
+ * The class that handles the objective card choosing packets from the server
+ */
 public class ClientChooseObjectivePacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the objective card choosing packet
+     * @param packet the choose objective packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         ChooseObjectivePacket chooseObjectivePacket = (ChooseObjectivePacket) packet;

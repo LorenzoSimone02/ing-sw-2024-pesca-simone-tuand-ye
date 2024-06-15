@@ -13,8 +13,16 @@ import it.polimi.ingsw.network.socket.SocketClient;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
+/**
+ * The class that handles the joining client packets from the server
+ */
 public class ClientJoinPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the joining client packet
+     * @param packet the client join packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         JoinPacket joinPacket = (JoinPacket) packet;

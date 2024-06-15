@@ -5,8 +5,14 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.PlaceCardPacket;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
+/**
+ * The class represents the command that allows a player to place a Card
+ */
 public class PlaceCardCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public PlaceCardCommand() {
         commandName = "/placeCard";
         description = "  Place a Card \n  Usage: /placeCard <id> <x> <y>";
@@ -14,6 +20,11 @@ public class PlaceCardCommand extends Command {
         addValidStatus(ClientStatusEnum.LAST_TURN);
     }
 
+    /**
+     * The method executes the command that allows a player to place a Card
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -36,6 +47,11 @@ public class PlaceCardCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus()) && clientManager.getGameState().getCardsInHand().size() == 3;
     }

@@ -10,7 +10,16 @@ import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.resources.Resource;
 
+/**
+ * The class that handles the starter card face choosing packets from the server
+ */
 public class ClientChooseStarterFacePacketHandler extends ClientPacketHandler {
+
+    /**
+     * The method handles the starter card face choosing packet
+     * @param packet the choose starter card face packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         ChooseStarterFacePacket chooseStarterFacePacket = (ChooseStarterFacePacket) packet;

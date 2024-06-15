@@ -8,8 +8,16 @@ import it.polimi.ingsw.network.packets.PlaceCardPacket;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
+/**
+ * The class that handles the card placing packets from the server
+ */
 public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the card placing packet
+     * @param packet the card placing packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         PlaceCardPacket placeCardPacket = (PlaceCardPacket) packet;

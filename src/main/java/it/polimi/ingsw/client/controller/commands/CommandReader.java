@@ -5,15 +5,32 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import java.util.HashMap;
 import java.util.Scanner;
 
+/**
+ * The class represents the command reader
+ */
 public class CommandReader implements Runnable {
 
+    /**
+     * The client manager
+     */
     private final ClientManager clientManager;
+
+    /**
+     * The map of commands
+     */
     private HashMap<String, Command> inputCommandMap;
 
+    /**
+     * The constructor of the class
+     * @param clientManager the client manager
+     */
     public CommandReader(ClientManager clientManager) {
         this.clientManager = clientManager;
     }
 
+    /**
+     * The method runs the command reader
+     */
     @Override
     public void run() {
         Scanner sc = new Scanner(System.in);
@@ -25,6 +42,10 @@ public class CommandReader implements Runnable {
         }
     }
 
+    /**
+     * The method evaluates the command and checks if it is valid
+     * @param command the command to evaluate
+     */
     public void evaluateCommand(String command) {
         String[] arguments = command.split(" ");
 
@@ -36,6 +57,11 @@ public class CommandReader implements Runnable {
         }
     }
 
+    /**
+     * The method checks if the command is valid
+     * @param command the command to check
+     * @return the command if it is valid, null otherwise
+     */
     private String isValidCommand(String command){
         for(String key : inputCommandMap.keySet()) {
             if (command.equalsIgnoreCase(key)) {
@@ -45,6 +71,9 @@ public class CommandReader implements Runnable {
         return null;
     }
 
+    /**
+     * The method loads all the valid commands
+     */
     private void loadCommands() {
         this.inputCommandMap = new HashMap<>();
 

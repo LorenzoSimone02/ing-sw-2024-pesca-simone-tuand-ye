@@ -4,14 +4,25 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.ChooseColorPacket;
 
+/**
+ * The class represents the command that allows a player to choose a token color
+ */
 public class ChooseColorCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public ChooseColorCommand() {
         commandName = "/chooseColor";
         description = "  Chooses a Token Color \n  Usage: /chooseColor <color>";
         addValidStatus(ClientStatusEnum.CHOOSING_COLOR);
     }
 
+    /**
+     * The method executes the command that allows a player to choose a token color
+     * @param input the color to choose
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -30,6 +41,11 @@ public class ChooseColorCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

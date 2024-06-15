@@ -4,14 +4,25 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.LoginPacket;
 
+/**
+ * The class represents the command that logs a player in
+ */
 public class LoginCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public LoginCommand() {
         commandName = "/login";
         description = "  Sets your Username \n  Usage: /login <username>";
         addValidStatus(ClientStatusEnum.LOBBY);
     }
 
+    /**
+     * The method executes the command that logs a player in
+     * @param input the username
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -28,6 +39,11 @@ public class LoginCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

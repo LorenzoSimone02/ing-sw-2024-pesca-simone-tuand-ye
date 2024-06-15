@@ -4,14 +4,25 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.ChooseObjectivePacket;
 
+/**
+ * The class represents the command that allows a player to choose a personal Objective Card
+ */
 public class ChooseObjectiveCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public ChooseObjectiveCommand() {
         commandName = "/chooseObjective";
         description = "  Chooses a personal Objective Card \n  Usage: /chooseObjective <1 or 2>";
         addValidStatus(ClientStatusEnum.CHOOSING_OBJECTIVE);
     }
 
+    /**
+     * The method executes the command that allows a player to choose a personal Objective Card
+     * @param input the Objective Card to choose
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -32,6 +43,11 @@ public class ChooseObjectiveCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

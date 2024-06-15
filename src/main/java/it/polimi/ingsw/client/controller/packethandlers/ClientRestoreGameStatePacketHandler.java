@@ -12,8 +12,16 @@ import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 
+/**
+ * The class that handles the game state restoring packets from the server
+ */
 public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the game state restoring packet
+     * @param packet the game state restoring packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         RestoreGameStatePacket restoreGameStatePacket = (RestoreGameStatePacket) packet;

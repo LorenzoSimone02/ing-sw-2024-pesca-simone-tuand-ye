@@ -1,5 +1,8 @@
 package it.polimi.ingsw.client.controller.clientstate;
 
+/**
+ * The enum represents all the possible states of a client in the game
+ */
 public enum ClientStatusEnum {
 
     DISCONNECTED,

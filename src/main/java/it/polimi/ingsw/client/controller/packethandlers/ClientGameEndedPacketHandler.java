@@ -7,8 +7,16 @@ import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.GameEndedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
+/**
+ * The class that handles the ending game packets from the server
+ */
 public class ClientGameEndedPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the ending game packet
+     * @param packet the game ended packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         GameEndedPacket gameEndedPacket = (GameEndedPacket) packet;

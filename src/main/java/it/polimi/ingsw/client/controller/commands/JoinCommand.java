@@ -4,6 +4,9 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.JoinPacket;
 
+/**
+ * The class represents the command that allows a player to join an existing Game
+ */
 public class JoinCommand extends Command {
 
     public JoinCommand() {
@@ -12,6 +15,11 @@ public class JoinCommand extends Command {
         addValidStatus(ClientStatusEnum.LOGGED);
     }
 
+    /**
+     * The method executes the command that allows a player to join an existing Game
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -25,6 +33,11 @@ public class JoinCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

@@ -7,8 +7,16 @@ import it.polimi.ingsw.network.packets.TurnCardPacket;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 
+/**
+ * The class that handles the turning card packets from the server
+ */
 public class ClientTurnCardPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the turning card packet
+     * @param packet the card turning packet
+     * @param clientManager the client manager
+     */
     public void handlePacket(Packet packet, ClientManager clientManager) {
         TurnCardPacket turnCardPacket = (TurnCardPacket) packet;
         Card card = clientManager.getGameState().getCardById(turnCardPacket.getCardId());

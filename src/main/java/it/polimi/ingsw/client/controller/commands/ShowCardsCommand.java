@@ -7,6 +7,9 @@ import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 
+/**
+ * The class represents the command that shows the player's cards in the hand, the placed cards, the objective card, the placed cards of another Player
+ */
 public class ShowCardsCommand extends Command {
 
     public ShowCardsCommand() {
@@ -16,6 +19,11 @@ public class ShowCardsCommand extends Command {
         addValidStatus(ClientStatusEnum.PLAYING);
     }
 
+    /**
+     * The method executes the command that shows the player's cards in the hand, the placed cards, the objective card, the placed cards of another Player
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -55,6 +63,11 @@ public class ShowCardsCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

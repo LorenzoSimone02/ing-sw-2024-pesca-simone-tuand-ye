@@ -5,8 +5,14 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.TurnCardPacket;
 import it.polimi.ingsw.server.model.card.Card;
 
+/**
+ * The class represents the command that allows a player to turn a Card and change its face
+ */
 public class TurnCardCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public TurnCardCommand() {
         commandName = "/turnCard";
         description = "  Turns a Card \n  Usage: /turnCard <1/2/3>";
@@ -14,6 +20,11 @@ public class TurnCardCommand extends Command {
         addValidStatus(ClientStatusEnum.LAST_TURN);
     }
 
+    /**
+     * The method executes the command that allows a player to turn a Card and change its face
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -43,6 +54,11 @@ public class TurnCardCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return clientManager.getGameState().getActivePlayer().equalsIgnoreCase(clientManager.getGameState().getUsername()) && getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

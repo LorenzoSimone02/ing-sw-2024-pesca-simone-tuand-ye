@@ -8,8 +8,16 @@ import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 
+/**
+ * The class that handles the starting game packets from the server
+ */
 public class ClientGameStartedPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the starting game packet
+     * @param packet the game starting packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         GameStartedPacket gameStartedPacket = (GameStartedPacket) packet;

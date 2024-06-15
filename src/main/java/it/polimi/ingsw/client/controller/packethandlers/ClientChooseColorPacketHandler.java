@@ -7,8 +7,16 @@ import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.network.packets.ChooseColorPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
+/**
+ * The class that handles the token color choosing packets from the server
+ */
 public class ClientChooseColorPacketHandler extends ClientPacketHandler {
 
+    /**
+     * The method handles the token color choosing packet
+     * @param packet the choose color packet
+     * @param clientManager the client manager
+     */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         ChooseColorPacket chooseColorPacket = (ChooseColorPacket) packet;

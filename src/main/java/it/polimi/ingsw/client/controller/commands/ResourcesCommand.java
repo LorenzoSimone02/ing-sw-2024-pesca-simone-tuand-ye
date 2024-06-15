@@ -6,8 +6,14 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
+/**
+ * The class represents the command that allows a player to view his Resources
+ */
 public class ResourcesCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public ResourcesCommand() {
         commandName = "/resources";
         description = "  Shows your Resources or the ones of another Player" +
@@ -16,6 +22,11 @@ public class ResourcesCommand extends Command {
         addValidStatus(ClientStatusEnum.LAST_TURN);
     }
 
+    /**
+     * The method executes the command that allows a player to view his Resources
+     * @param input the input of the command
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -37,6 +48,11 @@ public class ResourcesCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

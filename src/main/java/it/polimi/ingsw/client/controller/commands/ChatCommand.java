@@ -4,8 +4,14 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.ChatPacket;
 
+/**
+ * The class represents the command that allows a player to send a message in the chat
+ */
 public class ChatCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public ChatCommand() {
         commandName = "/chat";
         description = "  Shows the Chat messages or send a new one \n  Usage: /chat <message> /chat -to=player <message> or /chat to see the Chat messages";
@@ -14,6 +20,11 @@ public class ChatCommand extends Command {
         addValidStatus(ClientStatusEnum.ENDED);
     }
 
+    /**
+     * The method executes the command that allows a player to send a message in the chat
+     * @param input the message to send
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -45,6 +56,11 @@ public class ChatCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }

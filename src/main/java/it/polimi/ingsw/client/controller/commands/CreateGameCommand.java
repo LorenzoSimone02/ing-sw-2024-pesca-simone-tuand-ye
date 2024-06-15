@@ -4,15 +4,25 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.network.packets.CreateGamePacket;
 
+/**
+ * The class represents the command that creates a game
+ */
 public class CreateGameCommand extends Command {
 
+    /**
+     * The constructor of the class
+     */
     public CreateGameCommand() {
         commandName = "/createGame";
         description = "  Creates a game with a given number of Players \n  Usage: /createGame <playersNumber>";
         addValidStatus(ClientStatusEnum.LOGGED);
     }
 
-
+    /**
+     * The method executes the command that creates a game
+     * @param input the number of players
+     * @param clientManager the client manager
+     */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
         if (isExecutable(clientManager)) {
@@ -32,6 +42,11 @@ public class CreateGameCommand extends Command {
         }
     }
 
+    /**
+     * The method checks if the command is executable
+     * @param clientManager the client manager
+     * @return true if the command is executable, false otherwise
+     */
     public boolean isExecutable(ClientManager clientManager) {
         return getValidStatuses().contains(clientManager.getGameState().getClientStatus());
     }
