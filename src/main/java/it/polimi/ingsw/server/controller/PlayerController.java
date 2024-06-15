@@ -12,12 +12,25 @@ import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
+/**
+ * The controller class of a player that handles the player's actions
+ */
 public record PlayerController(Player player) {
 
+    /**
+     * The method returns the given player
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * The method places a card on the player's cards' matrix
+     * @param card the card to place
+     * @param x the x coordinate of the card
+     * @param y the y coordinate of the card
+     * @throws IllegalCardPlacementException if the card cannot be placed
+     */
     public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
         if (canPlaceCard(x, y, card)) {
             player.setCard(card, x, y);
@@ -62,6 +75,13 @@ public record PlayerController(Player player) {
         }
     }
 
+    /**
+     * The method checks if a card can be placed on the player's cards' matrix
+     * @param x the x coordinate of the card
+     * @param y the y coordinate of the card
+     * @param card the card to place
+     * @return true if the card can be placed, false otherwise
+     */
     public synchronized boolean canPlaceCard(int x, int y, ResourceCard card) {
 
         if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
@@ -98,6 +118,10 @@ public record PlayerController(Player player) {
         return false;
     }
 
+    /**
+     * The method adds the resources and objects of a card to the player's list of resources and objects upon a card placement
+     * @param card the card to add
+     */
     public synchronized void addResourcesAndObjects(ResourceCard card) {
         if (card.getFace().equals(FaceEnum.BACK)) {
             for (Resource res : card.getBackResources()) {
@@ -115,6 +139,10 @@ public record PlayerController(Player player) {
         }
     }
 
+    /**
+     * The method allows the player to choose a token color
+     * @param tokenColor the chosen token color
+     */
     public synchronized void chooseToken(TokenColorEnum tokenColor) {
         for (Player player : player.getGame().getPlayers()) {
             if (player.getToken() != null && player.getToken().color().equals(tokenColor)) {
@@ -124,10 +152,19 @@ public record PlayerController(Player player) {
         player.setToken(new PlayerToken(tokenColor));
     }
 
+    /**
+     * The method allows the player to choose an objective card
+     * @param objectiveCard the chosen objective card
+     */
     public synchronized void chooseObjectiveCard(ObjectiveCard objectiveCard) {
         player.setObjectiveCard(objectiveCard);
     }
 
+    /**
+     * The method allows the player to choose a starter card and its face
+     * @param starterCard the chosen starter card
+     * @param chosenFace the chosen face of the starter card
+     */
     public synchronized void setStarterCard(StarterCard starterCard, FaceEnum chosenFace) {
         starterCard.setFace(chosenFace);
         player.setStarterCard(starterCard);
@@ -135,6 +172,10 @@ public record PlayerController(Player player) {
         addResourcesAndObjects(starterCard);
     }
 
+    /**
+     * The method allows the player to turn a card
+     * @param card the card to turn
+     */
     public synchronized void turnCard(Card card) {
         if (card.getFace() == FaceEnum.FRONT) {
             card.setFace(FaceEnum.BACK);

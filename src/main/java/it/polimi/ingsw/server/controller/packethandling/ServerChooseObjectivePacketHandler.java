@@ -9,8 +9,17 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
+/**
+ * The class that handles the objective card choosing packets from the clients
+ */
 public class ServerChooseObjectivePacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the objective card choosing packets from the client
+     * @param packet the choose objective card packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         ChooseObjectivePacket chooseObjectivePacket = (ChooseObjectivePacket) packet;

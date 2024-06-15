@@ -9,17 +9,55 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * The class that represents the player status saving in case of disconnection
+ */
 public class PlayerSave implements Serializable {
 
+    /**
+     * The saved username of the player
+     */
     private final String username;
+
+    /**
+     * The saved score of the player
+     */
     private final int score;
+
+    /**
+     * The saved token color of the player
+     */
     private final String tokenColor;
+
+    /**
+     * The saved placed cards of the player
+     */
     private final CardSave[][] cards;
+
+    /**
+     * The saved in hands card of the player
+     */
     private final ArrayList<CardSave> cardsInHand;
+
+    /**
+     * The saved starter card of the player
+     */
     private final CardSave starterCard;
+
+    /**
+     * The saved objective card of the player
+     */
     private final CardSave objectiveCard;
+
+    /**
+     * The saved resources and objects of the player
+     */
     private final HashMap<String, Integer> resourcesAndObjects;
 
+    /**
+     * The constructor of the class
+     * @param player the player
+     */
     public PlayerSave(Player player) {
         this.username = player.getUsername();
         this.score = player.getScore();
@@ -47,34 +85,66 @@ public class PlayerSave implements Serializable {
         }
     }
 
+    /**
+     * The method returns the saved username of the player
+     * @return the saved username of the player
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * The method returns the saved score of the player
+     * @return the saved score of the player
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * The method returns the saved token color of the player
+     * @return the saved token color of the player
+     */
     public String getTokenColor() {
         return tokenColor;
     }
 
+    /**
+     * The method returns the saved placed cards of the player
+     * @return the saved placed cards of the player
+     */
     public CardSave[][] getCards() {
         return cards;
     }
 
+    /**
+     * The method returns the saved in hands card of the player
+     * @return the saved in hands card of the player
+     */
     public ArrayList<CardSave> getCardsInHand() {
         return cardsInHand;
     }
 
+    /**
+     * The method returns the saved starter card of the player
+     * @return the saved starter card of the player
+     */
     public CardSave getStarterCard() {
         return starterCard;
     }
 
+    /**
+     * The method returns the saved objective card of the player
+     * @return the saved objective card of the player
+     */
     public CardSave getObjectiveCard() {
         return objectiveCard;
     }
 
+    /**
+     * The method returns the saved resources and objects of the player
+     * @return the saved resources and objects of the player
+     */
     public HashMap<String, Integer> getResourcesAndObjects() {
         return resourcesAndObjects;
     }

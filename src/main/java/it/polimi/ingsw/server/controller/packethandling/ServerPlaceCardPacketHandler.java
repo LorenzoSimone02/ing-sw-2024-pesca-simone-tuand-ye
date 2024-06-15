@@ -15,8 +15,17 @@ import it.polimi.ingsw.server.model.resources.Resource;
 
 import java.util.HashMap;
 
+/**
+ * The class that handles the card placing packets from the clients
+ */
 public class ServerPlaceCardPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the card placing packets from the client
+     * @param packet the place card packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         PlaceCardPacket placeCardPacket = (PlaceCardPacket) packet;

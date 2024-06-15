@@ -11,7 +11,7 @@ import it.polimi.ingsw.network.packets.Packet;
 public class ClientChatPacketHandler extends ClientPacketHandler {
 
     /**
-     * The method handles the chat packet
+     * The method handles the chat packet from the server
      * @param packet the chat packet
      * @param clientManager the client manager
      */

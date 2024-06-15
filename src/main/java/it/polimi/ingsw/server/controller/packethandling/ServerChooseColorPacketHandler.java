@@ -10,8 +10,17 @@ import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 
+/**
+ * The class that handles the color choosing packets from the clients
+ */
 public class ServerChooseColorPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the color choosing packets from the client
+     * @param packet the choose color packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         ChooseColorPacket chooseColorPacket = (ChooseColorPacket) packet;

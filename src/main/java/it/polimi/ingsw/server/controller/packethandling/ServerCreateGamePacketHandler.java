@@ -8,8 +8,17 @@ import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.GameController;
 
+/**
+ * The class that handles the game creation packets from the clients
+ */
 public class ServerCreateGamePacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the game creation packets from the client
+     * @param packet the game creation packet
+     * @param controller the game controller
+     * @param connection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
         CreateGamePacket createGamePacket = (CreateGamePacket) packet;

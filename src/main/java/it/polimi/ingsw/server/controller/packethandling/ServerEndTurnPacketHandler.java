@@ -8,8 +8,17 @@ import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
+/**
+ * The class that handles the turn ending packets from the clients
+ */
 public class ServerEndTurnPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the turn ending packets from the client
+     * @param packet the end turn packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         EndTurnPacket endTurnPacket = (EndTurnPacket) packet;

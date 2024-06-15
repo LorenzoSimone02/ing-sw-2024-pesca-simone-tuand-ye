@@ -12,8 +12,17 @@ import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateExce
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
+/**
+ * The class that handles the joining client packets from the clients
+ */
 public class ServerJoinPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the joining client packets from the client
+     * @param packet the join packet
+     * @param controller the game controller
+     * @param connection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
         if (!controller.getNetworkHandler().isLobby()) {

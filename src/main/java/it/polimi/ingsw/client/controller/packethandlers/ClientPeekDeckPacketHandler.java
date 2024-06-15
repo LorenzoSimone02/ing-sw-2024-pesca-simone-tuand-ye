@@ -8,12 +8,12 @@ import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.FaceEnum;
 
 /**
- * The class that handles the deck peeking packets from the server
+ * The class that handles the client's deck peeking packets from the server
  */
 public class ClientPeekDeckPacketHandler extends ClientPacketHandler{
 
     /**
-     * The method handles the deck peeking packet
+     * The method handles the client's deck peeking packet
      * @param packet the deck peeking packet
      * @param clientManager the client manager
      */

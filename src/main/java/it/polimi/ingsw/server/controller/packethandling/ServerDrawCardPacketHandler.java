@@ -11,8 +11,17 @@ import it.polimi.ingsw.server.model.card.GoldCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
+/**
+ * The class that handles the card drawing packets from the clients
+ */
 public class ServerDrawCardPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the card drawing packets from the client
+     * @param packet the draw card packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         DrawCardPacket drawCardPacket = (DrawCardPacket) packet;

@@ -9,8 +9,17 @@ import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.PlayerController;
 import it.polimi.ingsw.server.model.card.Card;
 
+/**
+ * The class that handles the card face turning packets from the clients
+ */
 public class ServerTurnCardPacketHandler extends ServerPacketHandler {
 
+    /**
+     * The method handles the card face turning packets from the client
+     * @param packet the turn card packet
+     * @param controller the game controller
+     * @param connection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection connection) {
         TurnCardPacket turnCardPacket = (TurnCardPacket) packet;

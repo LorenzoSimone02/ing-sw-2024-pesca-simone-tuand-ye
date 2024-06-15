@@ -9,8 +9,16 @@ import it.polimi.ingsw.network.socket.SocketClient;
 
 import java.util.Scanner;
 
+/**
+ * The main class of the client
+ */
 public class ClientMain {
 
+    /**
+     * The main method of the client, in which it interacts with the user
+     *      to allow them to choose the view mode and the network technology
+     * @param args the arguments of the main method
+     */
     public static void main(String[] args) {
         String serverIP = args.length == 1 ? args[0] : "localhost";
 

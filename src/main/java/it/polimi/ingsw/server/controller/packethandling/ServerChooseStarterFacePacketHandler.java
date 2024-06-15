@@ -10,7 +10,17 @@ import it.polimi.ingsw.server.model.card.FaceEnum;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
+/**
+ * The class that handles the starter card face choosing packets from the clients
+ */
 public class ServerChooseStarterFacePacketHandler extends ServerPacketHandler {
+
+    /**
+     * The method handles the starter card face choosing packets from the client
+     * @param packet the choose starter card face packet
+     * @param controller the game controller
+     * @param clientConnection the connection of the client
+     */
     @Override
     public void handlePacket(Packet packet, GameController controller, ClientConnection clientConnection) {
         ChooseStarterFacePacket chooseStarterFacePacket = (ChooseStarterFacePacket) packet;

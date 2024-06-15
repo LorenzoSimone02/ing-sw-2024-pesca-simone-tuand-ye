@@ -5,12 +5,12 @@ import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 
 /**
- * The class that handles the info packets from the server
+ * The class that handles the information packets from the server
  */
 public class ClientInfoPacketHandler extends ClientPacketHandler {
 
     /**
-     * The method handles the info packet
+     * The method handles the information packet
      * @param packet the info packet
      * @param clientManager the client manager
      */
