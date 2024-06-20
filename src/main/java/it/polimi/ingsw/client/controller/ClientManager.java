@@ -56,7 +56,7 @@ public class ClientManager {
         this.networkHandler.setClientManager(this);
         this.serverIP = serverIP;
         this.viewMode = viewMode;
-        this.userInterface = viewMode == ViewModeEnum.TUI ? new TUIClient(this) : new GUIClient();
+        this.userInterface = viewMode == ViewModeEnum.TUI ? new TUIClient(this) : new GUIClient(this);
         this.gameState = new GameState();
     }
 

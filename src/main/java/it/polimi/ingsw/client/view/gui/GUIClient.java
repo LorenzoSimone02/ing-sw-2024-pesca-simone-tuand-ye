@@ -1,5 +1,7 @@
 package it.polimi.ingsw.client.view.gui;
 
+import it.polimi.ingsw.client.ClientMain;
+import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.view.UserInterface;
 import it.polimi.ingsw.client.view.gui.controllers.SceneController;
@@ -31,7 +33,7 @@ public class GUIClient extends Application implements UserInterface {
     private final HashMap<ClientStatusEnum, URL> resourcesMap;
     private final HashMap<ClientStatusEnum, SceneController> controllersMap;
 
-    public GUIClient() {
+    public GUIClient(ClientManager clientManager) {
         resourcesMap = new HashMap<>();
         controllersMap = new HashMap<>();
         loadScenes();
