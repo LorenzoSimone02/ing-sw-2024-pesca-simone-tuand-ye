@@ -311,6 +311,8 @@ public class GUI extends Application {
                                     if(event.isSecondaryButtonDown() || !moovable[0])
                                         return;
 
+
+
                                     double scale = playerTable.getScale();
 
                                     Node node = (Node) event.getSource();
@@ -325,7 +327,16 @@ public class GUI extends Application {
                                     int gridX = (int) floor(bounds.getCenterX() / (double) squareSize);
                                     int gridY = (int) floor(bounds.getCenterY() / (double) squareSize);
 
-                                    int x = (gridX * squareSize) + (squareSize / 2);
+                                    int matrixX = (int)Math.round((float)gridX/2.0); /*index for server matrix*/
+                                    int matrixY = (int)Math.round(gridY - 40.0); /*index for server matrix*/
+
+                                    int x;
+                                    if(gridX % 2 == 0){
+                                        x = (gridX * squareSize) + (squareSize / 2);
+                                    } else {
+                                        x = ((int)Math.round(gridX/2.0)* 2 * squareSize) + (squareSize / 2);
+                                    }
+
                                     int y = (gridY * squareSize) + (squareSize / 2);
 
                                     node.setTranslateX(-node.getLayoutBounds().getCenterX() + x);
@@ -449,7 +460,7 @@ public class GUI extends Application {
         card.setY(((80 * playerTable.getSquareSize()) + playerTable.getSquareSize()/2.0) - (card.getBoundsInLocal().getHeight()/2.0));
     }
 
-    void setCardPlaced(boolean cardPlaced){cardPlaced = true;}
+    void setCardPlaced(boolean cardPlaced){ cardPlaced = true; }
 
     public boolean isTurn(){return true;} /*Change with get player turn*/
 }
