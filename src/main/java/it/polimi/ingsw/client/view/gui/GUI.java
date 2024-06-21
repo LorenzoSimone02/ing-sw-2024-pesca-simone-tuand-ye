@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -52,6 +53,8 @@ public class GUI extends Application {
 
         private Button skipOpponentTurn;
 
+    private StackPane playerBoardView;
+
 
 
     @Override
@@ -70,7 +73,7 @@ public class GUI extends Application {
         stage.show();
         playerTable.addGrid();
         opponentTable.addGrid();
-
+        setPoints(playerBoardView, 0);
         if(isTurn()){
             turn();
         } else {
@@ -167,10 +170,7 @@ public class GUI extends Application {
             hBox.setAlignment(Pos.CENTER);
             hBox.setStyle("-fx-background-color: brown");
 
-            Image board = new Image("board.png");
-            ImageView boardView = new ImageView(board);
-            boardView.setFitHeight(350);
-            boardView.setPreserveRatio(true);
+            playerBoardView = newBoard();
 
             VBox deck1 = new VBox(20);
 
@@ -214,7 +214,7 @@ public class GUI extends Application {
             deck2.getChildren().addAll(card4Hand, card5Hand, card6Hand);
             /**/
 
-            hBox.getChildren().addAll(boardView, deck1, deck2);
+            hBox.getChildren().addAll(playerBoardView, deck1, deck2);
 
             deck1.setAlignment(Pos.CENTER);
             deck2.setAlignment(Pos.CENTER);
@@ -463,4 +463,163 @@ public class GUI extends Application {
     void setCardPlaced(boolean cardPlaced){ cardPlaced = true; }
 
     public boolean isTurn(){return true;} /*Change with get player turn*/
+
+    public StackPane newBoard(){
+        StackPane board = new StackPane();
+
+        Image boardImage = new Image("board.png");
+        ImageView boardView = new ImageView(boardImage);
+        boardView.setFitHeight(350);
+        boardView.setPreserveRatio(true);
+
+        Image tokenImage = new Image("token.png");
+        ImageView tokenView = new ImageView(tokenImage);
+        tokenView.setFitHeight(30);
+        tokenView.setFitWidth(30);
+
+        board.getChildren().addFirst(boardView);
+        board.getChildren().addLast(tokenView);
+
+        return board;
+    }
+    public void setPoints(StackPane board, int points){
+        System.out.println("Points: " + points);
+        List<Node> nodes = board.getChildren();
+        for(Node node : nodes){
+            if(node instanceof ImageView && node.getLayoutX() != 0 && node.getLayoutY() != 0){
+
+                float x = - (float)node.getLayoutX() - (float)node.getBoundsInLocal().getCenterX();
+                float y = - (float)node.getLayoutY() - (float)node.getBoundsInLocal().getCenterY();
+
+                node.setTranslateX(x + 87);
+                node.setTranslateY(y + 325);
+
+                switch(points){
+                    case 0:
+                        node.setTranslateX(x + 46);
+                        node.setTranslateY(y + 325);
+                        break;
+                    case 1:
+                        node.setTranslateX(x + 87);
+                        node.setTranslateY(y + 325);
+                        break;
+                    case 2:
+                        node.setTranslateX(x + 128.375);
+                        node.setTranslateY(y + 325);
+                        break;
+                    case 3:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 288);
+                        break;
+                    case 4:
+                        node.setTranslateX(x + 108);
+                        node.setTranslateY(y + 288);
+                        break;
+                    case 5:
+                        node.setTranslateX(x + 66.5);
+                        node.setTranslateY(y + 288);
+                        break;
+                    case 6:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 288);
+                        break;
+                    case 7:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 250);
+                        break;
+                    case 8:
+                        node.setTranslateX(x + 66.5);
+                        node.setTranslateY(y + 250);
+                        break;
+                    case 9:
+                        node.setTranslateX(x + 108);
+                        node.setTranslateY(y + 250);
+                        break;
+                    case 10:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 250);
+                        break;
+                    case 11:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 212);
+                        break;
+                    case 12:
+                        node.setTranslateX(x + 108);
+                        node.setTranslateY(y + 212);
+                        break;
+                    case 13:
+                        node.setTranslateX(x + 66.5);
+                        node.setTranslateY(y + 212);
+                        break;
+                    case 14:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 212);
+                        break;
+                    case 15:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 175);
+                        break;
+                    case 16:
+                        node.setTranslateX(x + 66.5);
+                        node.setTranslateY(y + 175);
+                        break;
+                    case 17:
+                        node.setTranslateX(x + 108);
+                        node.setTranslateY(y + 175);
+                        break;
+                    case 18:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 175);
+                        break;
+                    case 19:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 137);
+                        break;
+                    case 20:
+                        node.setTranslateX(x + 87.25);
+                        node.setTranslateY(y + 120);
+                        break;
+                    case 21:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 137);
+                        break;
+                    case 22:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 99);
+                        break;
+                    case 23:
+                        node.setTranslateX(x + 25.5);
+                        node.setTranslateY(y + 61);
+                        break;
+                    case 24:
+                        node.setTranslateX(x + 49.25);
+                        node.setTranslateY(y + 30);
+                        break;
+                    case 25:
+                        node.setTranslateX(x + 87.25);
+                        node.setTranslateY(y + 24);
+                        break;
+                    case 26:
+                        node.setTranslateX(x + 125);
+                        node.setTranslateY(y + 30);
+                        break;
+                    case 27:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 61);
+                        break;
+                    case 28:
+                        node.setTranslateX(x + 149);
+                        node.setTranslateY(y + 99);
+                        break;
+                    case 29:
+                        node.setTranslateX(x + 87.25);
+                        node.setTranslateY(y + 70);
+                        break;
+                    default:
+                        node.setTranslateX(x + 46);
+                        node.setTranslateY(y + 325);
+                }
+            }
+        }
+    }
 }
