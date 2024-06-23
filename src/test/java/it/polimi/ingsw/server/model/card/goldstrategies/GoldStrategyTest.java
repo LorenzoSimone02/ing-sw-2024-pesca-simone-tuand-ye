@@ -60,9 +60,9 @@ public class GoldStrategyTest {
 
     @Test
     public void strategyGetterTest() {
-        GoldStrategyType goldStratTestType = GoldStrategyType.OBJECT_COUNT_INKWELL;
+        GoldStrategyType goldStrategyTestType = GoldStrategyType.OBJECT_COUNT_INKWELL;
 
-        GoldStrategy strategyResult = goldStratTestType.getStrategy();
+        GoldStrategy strategyResult = goldStrategyTestType.getStrategy();
 
         if (strategyResult instanceof ObjectCount) {
             assertTrue(true);

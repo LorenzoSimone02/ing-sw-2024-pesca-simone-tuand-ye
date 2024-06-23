@@ -2,8 +2,11 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.card.CardColorEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
 import it.polimi.ingsw.server.model.player.Player;
+
+import java.util.ArrayList;
 
 /**
  * This class implements the ObjectiveStrategy and represents the strategy for the objective "TOP_LEFT_DIAGONAL".
@@ -42,49 +45,22 @@ public class TopLeftDiagonal implements ObjectiveStrategy {
      */
     public int calculatePoints(Player player) {
         ResourceCard[][] cards = player.getCards();
-        int points = 0;
-        int counter = 0;
-        int len = cards.length;
-        int itemsInDiagonal = 0;
-        int diagonalLines = (len + len) - 1;
-        int midPoint = (diagonalLines / 2) + 1;
-        for (int i = 1; i <= diagonalLines; i++){
-            int rowIndex;
-            int columnIndex;
+        ArrayList<ResourceCard> scoringCards = new ArrayList<>();
 
-            if (i <= midPoint) {
-                itemsInDiagonal++;
-                for (int j = 0; j < itemsInDiagonal; j++) {
-                    rowIndex = (len - 1) - j;
-                    columnIndex = j;
-                    if(cards[rowIndex][columnIndex] != null){
-                        if(cards[rowIndex][columnIndex].getColor() == CardsColor && counter + 1 < 3) {
-                            counter ++;
-                        }
-                        else if(cards[rowIndex][columnIndex].getColor() == CardsColor && counter + 1 == 3) {
-                            points = points + pointsPerPattern;
-                            counter = 0;
-                        }
-                        else {
-                            counter = 0;
-                        }
-                    }
-                }
-            } else {
-                itemsInDiagonal--;
-                for (int j = 0; j < itemsInDiagonal; j++) {
-                    rowIndex = j;
-                    columnIndex = (i - len) + j;
-                    if(cards[rowIndex][columnIndex] != null){
-                        if(cards[rowIndex][columnIndex].getColor() == CardsColor && counter + 1 < 3) {
-                            counter ++;
-                        }
-                        else if(cards[rowIndex][columnIndex].getColor() == CardsColor && counter + 1 == 3) {
-                            points = points + pointsPerPattern;
-                            counter = 0;
-                        }
-                        else {
-                            counter = 0;
+        int points = 0;
+        for (int i = 80; i >= 2; i--) {
+            for (int j = 80; j >= 2; j--) {
+                if (cards[i][j] != null && !(cards[i][j] instanceof StarterCard)) {
+                    if (cards[i][j].getColor() == CardsColor && !scoringCards.contains(cards[i][j])) {
+                        if (cards[i - 1][j - 1] != null && !(cards[i - 1][j - 1] instanceof StarterCard) && cards[i - 1][j - 1].getColor() == CardsColor) {
+                            if (cards[i - 2][j - 2] != null && !(cards[i - 2][j - 2] instanceof StarterCard) && cards[i - 2][j - 2].getColor() == CardsColor) {
+                                points = points + pointsPerPattern;
+
+                                scoringCards.add(cards[i][j]);
+                                scoringCards.add(cards[i - 1][j - 1]);
+                                scoringCards.add(cards[i - 2][j - 2]);
+
+                            }
                         }
                     }
                 }

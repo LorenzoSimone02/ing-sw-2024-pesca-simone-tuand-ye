@@ -2,9 +2,11 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
 import it.polimi.ingsw.server.model.player.Player;
+import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -41,16 +43,36 @@ public class ObjectStrategy implements ObjectiveStrategy {
      */
     public int calculatePoints(Player player) {
         int points;
-        int counter = 0;
+        Object scoringObject;
+        HashMap<ObjectTypeEnum, Integer> objectRequirementsMap = new HashMap<>();
+        int inkwellFrequency = 0, quillFrequency = 0, manuscriptFrequency = 0;
+
         for (ObjectTypeEnum objectTypeEnum : objectRequirement) {
-            if (counter <= 0) {
-                counter = Collections.frequency(player.getObjects(), objectTypeEnum);
+            if (objectRequirementsMap.containsKey(objectTypeEnum)) {
+                objectRequirementsMap.put(objectTypeEnum, objectRequirementsMap.get(objectTypeEnum) + 1);
+
             } else {
-                counter = Math.min(counter, Collections.frequency(player.getObjects(), objectTypeEnum));
+                objectRequirementsMap.put(objectTypeEnum, 1);
             }
         }
-        points = counter * pointsPerPattern;
-        return points;
+
+        for (ObjectTypeEnum objectTypeEnum : objectRequirementsMap.keySet()) {
+            scoringObject = new Object(objectTypeEnum);
+
+            switch (objectTypeEnum) {
+                case INKWELL -> inkwellFrequency = Math.floorDiv(Collections.frequency(player.getObjects(), scoringObject), objectRequirementsMap.get(objectTypeEnum));
+                case QUILL -> quillFrequency = Math.floorDiv(Collections.frequency(player.getObjects(), scoringObject), objectRequirementsMap.get(objectTypeEnum));
+                case MANUSCRIPT -> manuscriptFrequency = Math.floorDiv(Collections.frequency(player.getObjects(), scoringObject), objectRequirementsMap.get(objectTypeEnum));
+            }
+        }
+
+        if (objectRequirementsMap.keySet().size() == 1) {
+            return Math.max(Math.max(inkwellFrequency, quillFrequency), manuscriptFrequency) * pointsPerPattern;
+
+        } else {
+
+            return Math.min(Math.min(inkwellFrequency, quillFrequency), manuscriptFrequency) * pointsPerPattern;
+        }
     }
 
     /**

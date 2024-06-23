@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
 import it.polimi.ingsw.server.model.player.Player;
+import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.util.Collections;
@@ -46,7 +47,8 @@ public class ResourceStrategy implements ObjectiveStrategy {
      * @return the points of the player based on the number of the specified resource types the player has in their card matrix
      */
     public int calculatePoints(Player player) {
-         return Math.floorDiv(Collections.frequency(player.getResources(), resourceRequirement),numberOfResource) * pointsPerPattern;
+        Resource scoringResource = new Resource(ResourceTypeEnum.FUNGI);
+        return Math.floorDiv(Collections.frequency(player.getResources(), scoringResource), numberOfResource) * pointsPerPattern;
     }
 
     /**

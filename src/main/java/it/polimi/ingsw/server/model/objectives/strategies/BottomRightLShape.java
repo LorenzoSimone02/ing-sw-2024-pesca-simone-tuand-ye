@@ -54,7 +54,7 @@ public class BottomRightLShape implements ObjectiveStrategy {
         for (int j = 0; j < 81-1; j++) {
             for (int i = 0 ; i < 81 - 1; i ++) {
                 if(cards[i][j] != null) {
-                    if (counter == 2 && cards[i + 1][j + 1].getColor() == diagonalCardColor) {
+                    if (counter > 0 && cards[i + 1][j + 1] != null && cards[i + 1][j + 1].getColor() == diagonalCardColor && cards[i - 2][j] != null && cards[i - 2][j].getColor() == columnCardsColor) {
                         points = points + pointsPerPattern;
                         counter = 0;
                     }
