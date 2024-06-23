@@ -10,7 +10,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CardTest {
+public class CardTest {
 
     ResourceCard card;
 

@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PlayerTest {
+public class ControllerPlayerTest {
 
     private GameController controller;
     private final File starterJson = Paths.get("src/main/resources/assets/startercards/starterCard1.json").toFile();
