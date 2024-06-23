@@ -2,8 +2,11 @@ package it.polimi.ingsw.server.model.objectives.strategies;
 
 import it.polimi.ingsw.server.model.card.CardColorEnum;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.objectives.ObjectiveStrategy;
 import it.polimi.ingsw.server.model.player.Player;
+
+import java.util.ArrayList;
 
 /**
  * This class implements the ObjectiveStrategy and represents the strategy for the objective "BOTTOM_LEFT_L_SHAPE".
@@ -49,19 +52,24 @@ public class BottomLeftLShape implements ObjectiveStrategy {
      */
     public int calculatePoints(Player player) {
         ResourceCard[][] cards = player.getCards();
+        ArrayList<ResourceCard> scoringCards = new ArrayList<>();
         int points = 0;
-        int counter = 0;
-        for (int j = 1; j < 81; j++) {
-            for (int i = 0 ; i < 81 - 1; i ++) {
-                if(cards[i][j] != null) {
-                    if (counter == 1 && cards[i + 1][j - 1].getColor() == diagonalCardColor) {
-                        points = points + pointsPerPattern;
-                        counter = 0;
+
+        for (int j = 1; j <= 80; j++) {
+            for (int i = 0 ; i < 79; i++) {
+                if (cards[i][j] != null && !(cards[i][j] instanceof StarterCard)) {
+                    if (cards[i][j].getColor() == columnCardsColor && !scoringCards.contains(cards[i][j])) {
+                        if (cards[i + 2][j] != null && !scoringCards.contains(cards[i + 2][j]) && !(cards[i + 2][j] instanceof StarterCard) && cards[i + 2][j].getColor() == columnCardsColor && !scoringCards.contains(cards[i + 2][j])) {
+                            if (cards[i + 3][j - 1] != null && !(cards[i + 3][j - 1] instanceof StarterCard) && cards[i + 3][j - 1].getColor() == diagonalCardColor && !scoringCards.contains(cards[i + 3][j - 1])) {
+                                points = points + pointsPerPattern;
+
+                                scoringCards.add(cards[i][j]);
+                                scoringCards.add(cards[i + 2][j]);
+                                scoringCards.add(cards[i + 3][j - 1]);
+
+                            }
+                        }
                     }
-                    else if (cards[i][j].getColor() == columnCardsColor) {
-                        counter++;
-                    }
-                    else {counter = 0;}
                 }
             }
         }

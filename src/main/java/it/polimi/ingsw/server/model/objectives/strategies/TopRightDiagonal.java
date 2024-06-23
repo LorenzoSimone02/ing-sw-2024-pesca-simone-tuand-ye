@@ -53,8 +53,8 @@ public class TopRightDiagonal implements ObjectiveStrategy {
             for (int j = 0; j <= 78; j++) {
                 if (cards[i][j] != null && !(cards[i][j] instanceof StarterCard)) {
                     if (cards[i][j].getColor() == CardsColor && !scoringCards.contains(cards[i][j])) {
-                        if (cards[i - 1][j + 1] != null && !(cards[i - 1][j + 1] instanceof StarterCard) && cards[i - 1][j + 1].getColor() == CardsColor) {
-                            if (cards[i - 2][j + 2] != null && !(cards[i - 2][j + 2] instanceof StarterCard) && cards[i - 2][j + 2].getColor() == CardsColor) {
+                        if (cards[i - 1][j + 1] != null && !(cards[i - 1][j + 1] instanceof StarterCard) && cards[i - 1][j + 1].getColor() == CardsColor && !scoringCards.contains(cards[i - 1][j + 1])) {
+                            if (cards[i - 2][j + 2] != null && !(cards[i - 2][j + 2] instanceof StarterCard) && cards[i - 2][j + 2].getColor() == CardsColor && !scoringCards.contains(cards[i - 2][j + 2])) {
                                 points = points + pointsPerPattern;
 
                                 scoringCards.add(cards[i][j]);
