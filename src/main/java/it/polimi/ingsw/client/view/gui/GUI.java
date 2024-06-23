@@ -1,5 +1,9 @@
 package it.polimi.ingsw.client.view.gui;
 
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -21,6 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.List;
@@ -274,9 +279,9 @@ public class GUI extends Application {
 
                                     Node node = (Node) event.getSource();
 
-                                    Bloom bloom = new Bloom();
-                                    bloom.setThreshold(0.5);
-                                    node.setEffect(bloom);
+//                                    Bloom bloom = new Bloom();
+//                                    bloom.setThreshold(0.5);
+//                                    node.setEffect(bloom);
 
                                     //DropShadow dropShadow = new DropShadow();
                                     //node.setEffect(dropShadow);
@@ -339,18 +344,34 @@ public class GUI extends Application {
 
                                     int y = (gridY * squareSize) + (squareSize / 2);
 
-                                    node.setTranslateX(-node.getLayoutBounds().getCenterX() + x);
-                                    node.setTranslateY(-node.getLayoutBounds().getCenterY() + y);
+                                    Timeline snapTimeline = new Timeline(
+                                            new KeyFrame(Duration.millis(200),
+                                                    new KeyValue(node.translateXProperty(),-node.getLayoutBounds().getCenterX() + x, Interpolator.EASE_IN)),
+                                            new KeyFrame(Duration.millis(200),
+                                                    new KeyValue(node.translateYProperty(), -node.getLayoutBounds().getCenterY() + y, Interpolator.EASE_IN))
+                                    );
 
-                                    Bloom bloom = (Bloom) node.getEffect();
-                                    bloom.setThreshold(1.0);
+                                    //node.setTranslateX(-node.getLayoutBounds().getCenterX() + x);
+                                    //node.setTranslateY(-node.getLayoutBounds().getCenterY() + y);
+
+                                    Bloom bloom = new Bloom();
+                                    bloom.setThreshold(1);
                                     node.setEffect(bloom);
 
-                                    //DropShadow dropShadow = (DropShadow) node.getEffect();
-                                    //dropShadow.setColor(Color.TRANSPARENT);
-                                    //node.setEffect(dropShadow);
+                                    Timeline bloomTimeline = new Timeline(
+                                            new KeyFrame(Duration.millis(250),
+                                                    new KeyValue(bloom.thresholdProperty(), 1, Interpolator.EASE_IN)),
+                                            new KeyFrame(Duration.millis(750),
+                                                    new KeyValue(bloom.thresholdProperty(), 0, Interpolator.EASE_BOTH)),
+                                            new KeyFrame(Duration.millis(1250),
+                                                    new KeyValue(bloom.thresholdProperty(), 1, Interpolator.EASE_OUT))
+                                    );
+
+                                    snapTimeline.play();
+                                    bloomTimeline.play();
 
                                     moovable[0] = false;
+
                                     event.consume();
                                     draw();
                                 }
