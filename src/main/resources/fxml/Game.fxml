@@ -109,9 +109,12 @@
             </ImageView>
             <Label fx:id="quill" text="x0"/>
         </HBox>
+        <VBox alignment="CENTER" style="-fx-background-color: brown; -fx-padding: 0 0 10 0;" >
+            <Label fx:id="turn" style="-fx-font-weight: bold; -fx-font-size: 16"/>
+        </VBox>
         <VBox fx:id="chat" minHeight="250" alignment="BOTTOM_CENTER">
             <ScrollPane fx:id="scrollPane" fitToHeight="true">
-                <VBox fx:id="messagesBox" style="-fx-padding: 15 15 15 15;"/>
+                <VBox fx:id="messagesBox" style="-fx-padding: 15 15 15 15; -fx-font-size: 15"/>
             </ScrollPane>
             <HBox spacing="10" style="-fx-padding: 10 10 10 10;" alignment="CENTER">
                 <TextField fx:id="messageInput" HBox.hgrow="ALWAYS" promptText="Enter your message here..."/>

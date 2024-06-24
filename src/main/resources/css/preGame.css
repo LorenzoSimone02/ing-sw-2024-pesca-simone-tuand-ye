@@ -1,5 +1,5 @@
 .root {
-    -fx-background-image: url('../images/preGameBackground.jpg');
+    -fx-background-image: url('../images/background.jpg');
     -fx-background-size: 100% 100%;
     -fx-background-repeat: stretch;
     -fx-background-position: center center;

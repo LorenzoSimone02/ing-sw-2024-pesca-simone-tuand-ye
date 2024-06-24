@@ -1,7 +1,0 @@
-.custom-vbox {
-    -fx-background-color: #FFDDC1; /* Colore di sfondo del VBox */
-}
-
-.custom-vbox * {
-    -fx-background-color: inherit; /* Eredita il colore del VBox */
-}

@@ -2,6 +2,8 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
+import it.polimi.ingsw.client.view.gui.GUIClient;
+import it.polimi.ingsw.network.packets.JoinPacket;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +20,7 @@ import java.util.ResourceBundle;
 public class EndGameController implements SceneController, Initializable {
 
     @FXML
-    private Label player1, player2, player3, player4;
+    private Label winner, player1, player2, player3, player4;
     @FXML
     private Pane pane;
     @FXML
@@ -39,24 +41,36 @@ public class EndGameController implements SceneController, Initializable {
 
         HashMap<String, Integer> players = new HashMap<>();
         players.put(ClientManager.getInstance().getGameState().getUsername(), ClientManager.getInstance().getGameState().getScore());
-        for(PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
+        for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
             players.put(state.getUsername(), state.getScore());
         }
 
         ArrayList<String> orderedPlayers = new ArrayList<>();
         players.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue())).forEach(e -> orderedPlayers.add(e.getKey()));
 
-        player1.setText(orderedPlayers.get(0) + "   " + players.get(orderedPlayers.get(0) + " points"));
-        player2.setText(orderedPlayers.get(1) + "   " + players.get(orderedPlayers.get(1)) + " points");
-        if(orderedPlayers.size() == 3){
-            player3.setVisible(true);
-            player3.setText(orderedPlayers.get(2) + "   " + players.get(orderedPlayers.get(2)) + " points");
+        StringBuilder winnerText = new StringBuilder("Winner: ");
+        for(String player : ClientManager.getInstance().getGameState().getWinners()){
+            winnerText.append(player).append(", ");
         }
-        if(orderedPlayers.size() == 4){
+        winner.setText(winnerText.substring(0, winnerText.length() - 2));
+
+        player1.setText(orderedPlayers.get(0) + "       " + players.get(orderedPlayers.get(0)) + " points");
+        player2.setText(orderedPlayers.get(1) + "       " + players.get(orderedPlayers.get(1)) + " points");
+        if (orderedPlayers.size() == 3) {
+            player3.setVisible(true);
+            player3.setText(orderedPlayers.get(2) + "       " + players.get(orderedPlayers.get(2)) + " points");
+        }
+        if (orderedPlayers.size() == 4) {
             player3.setVisible(true);
             player4.setVisible(true);
-            player3.setText(orderedPlayers.get(2) + "   " + players.get(orderedPlayers.get(2)) + " points");
-            player4.setText(orderedPlayers.get(3) + "   " + players.get(orderedPlayers.get(3)) + " points");
+            player3.setText(orderedPlayers.get(2) + "       " + players.get(orderedPlayers.get(2)) + " points");
+            player4.setText(orderedPlayers.get(3) + "       " + players.get(orderedPlayers.get(3)) + " points");
         }
+    }
+
+    @FXML
+    private void menuButtonPressed() {
+        GUIClient guiClient = (GUIClient) ClientManager.getInstance().getUserInterface();
+        guiClient.changeScene(ClientManager.getInstance().getGameState().getClientStatus());
     }
 }

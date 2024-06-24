@@ -18,7 +18,7 @@ import java.util.ResourceBundle;
 public class LoginController implements SceneController, Initializable {
 
     @FXML
-    TextField loginUsernameTextField;
+    private TextField loginUsernameTextField;
     @FXML
     private BorderPane loginPane;
     @FXML

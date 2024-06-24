@@ -335,10 +335,9 @@ public class GameController {
     private String setDefaultDirectory() {
         String OS = System.getProperty("os.name").toUpperCase();
         if (OS.contains("WIN"))
-            return System.getenv("APPDATA")+"/CodexNaturalisSaves/";
+            return System.getenv("APPDATA") + "/CodexNaturalisSaves/";
         else if (OS.contains("MAC"))
-            return System.getProperty("user.home") + "/Library/Application "
-                    + "Support" + "/CodexNaturalisSaves/";
+            return System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/";
         else if (OS.contains("NUX")){
             new File(System.getProperty("user.home") + "/.codexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/.codexNaturalisSaves/";
@@ -698,9 +697,10 @@ public class GameController {
                 networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             }
         }
+        System.out.println(saveGameFile.getAbsolutePath());
+        System.out.println(saveGameFile.delete());
         networkHandler.stop();
         ServerMain.removeMatch(networkHandler);
-        saveGameFile.delete();
     }
 
     /**

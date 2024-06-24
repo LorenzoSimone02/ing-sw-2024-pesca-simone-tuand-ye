@@ -101,7 +101,6 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseClickedEventHandler = event -> {
-        System.out.println(tabPane.getSelectionModel().getSelectedIndex());
         if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.SECONDARY) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3 || !tabPane.getSelectionModel().isSelected(0))
             return;
         ClientManager.getInstance().getNetworkHandler().sendPacket(new TurnCardPacket(Integer.parseInt(node.getId())));

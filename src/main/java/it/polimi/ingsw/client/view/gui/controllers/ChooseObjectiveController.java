@@ -25,9 +25,7 @@ import java.util.ResourceBundle;
 public class ChooseObjectiveController implements SceneController, Initializable {
 
     @FXML
-    private ImageView obj1;
-    @FXML
-    private ImageView obj2;
+    private ImageView obj1, obj2;
     @FXML
     private BorderPane pane;
     @FXML

@@ -681,7 +681,10 @@ public class GameState {
             ArrayList<Resource> resArr = new ArrayList<>();
             for (String res : resources.keySet()) {
                 for (int i = 0; i < resources.get(res); i++) {
-                    resArr.add(new Resource(ResourceTypeEnum.valueOf(res)));
+                    try {
+                        resArr.add(new Resource(ResourceTypeEnum.valueOf(res)));
+                    } catch (IllegalArgumentException ignored) {
+                    }
                 }
             }
             if (!goldCard.meetRequirements(resArr)) {
