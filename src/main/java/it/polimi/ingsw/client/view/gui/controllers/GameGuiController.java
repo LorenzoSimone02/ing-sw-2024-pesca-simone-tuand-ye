@@ -47,9 +47,7 @@ public class GameGuiController implements SceneController, Initializable {
     @FXML
     private Pane playerTable;
     @FXML
-    private Tab playerTab;
-    @FXML
-    private Tab opponentTab, opponentTab2, opponentTab3;
+    private Tab playerTab, opponentTab, opponentTab2, opponentTab3;
     @FXML
     private Pane opponentTable, opponentTable2, opponentTable3;
     private ArrayList<Pane> tablesPanes;
@@ -80,7 +78,7 @@ public class GameGuiController implements SceneController, Initializable {
             new TableGestures(opponentTable);
             for (Node card : hand.getChildren()) {
                 if (card.getId().equals("cardObj")) continue;
-                new HandCardGestures(playerTable, card);
+                new HandCardGestures(playerTable, card, tables);
             }
 
             initializeOpponents();
@@ -306,7 +304,7 @@ public class GameGuiController implements SceneController, Initializable {
             clip.setArcWidth(10);
             clip.setArcHeight(10);
             imageView.setClip(clip);
-            new HandCardGestures(playerTable, imageView);
+            new HandCardGestures(playerTable, imageView, tables);
             hand.getChildren().add(imageView);
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);

@@ -4,6 +4,7 @@ import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
+import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
 import java.io.BufferedReader;
@@ -676,13 +677,17 @@ public class GameState {
      * @return true if the card can be placed, false otherwise
      */
     public boolean canPlaceCard(int x, int y, ResourceCard card) {
-        /*if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
+        if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
+            ArrayList<Resource> resArr = new ArrayList<>();
             for (String res : resources.keySet()) {
-                if (!goldCard.meetRequirements(player.getResources())) {
-                    return false;
+                for (int i = 0; i < resources.get(res); i++) {
+                    resArr.add(new Resource(ResourceTypeEnum.valueOf(res)));
                 }
             }
-        }*/
+            if (!goldCard.meetRequirements(resArr)) {
+                return false;
+            }
+        }
 
         if (getCardsPlaced()[x][y] == null) {
             boolean isPlaceable = false;
@@ -690,32 +695,28 @@ public class GameState {
             if (getCardsPlaced()[x - 1][y - 1] != null) {
                 isPlaceable = true;
                 ResourceCard neighbour = getCardsPlaced()[x - 1][y - 1];
-                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible()){
-                    System.out.println("No bottom right");
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible()) {
                     return false;
                 }
             }
             if (getCardsPlaced()[x + 1][y + 1] != null) {
                 isPlaceable = true;
                 ResourceCard neighbour = getCardsPlaced()[x + 1][y + 1];
-                if (!neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible()){
-                    System.out.println("No top left");
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible()) {
                     return false;
                 }
             }
             if (getCardsPlaced()[x - 1][y + 1] != null) {
                 isPlaceable = true;
                 ResourceCard neighbour = getCardsPlaced()[x - 1][y + 1];
-                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible()){
-                    System.out.println("No bottom left");
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible()) {
                     return false;
                 }
             }
             if (getCardsPlaced()[x + 1][y - 1] != null) {
                 isPlaceable = true;
                 ResourceCard neighbour = getCardsPlaced()[x + 1][y - 1];
-                if (!neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible()){
-                    System.out.println("No top right");
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible()) {
                     return false;
                 }
             }
