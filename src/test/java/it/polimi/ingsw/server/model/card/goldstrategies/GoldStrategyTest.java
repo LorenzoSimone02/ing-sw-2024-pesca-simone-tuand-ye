@@ -2,6 +2,7 @@ package it.polimi.ingsw.server.model.card.goldstrategies;
 
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldCard;
+import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.player.Player;
@@ -19,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GoldStrategyTest {
 
@@ -64,11 +64,7 @@ public class GoldStrategyTest {
 
         GoldStrategy strategyResult = goldStrategyTestType.getStrategy();
 
-        if (strategyResult instanceof ObjectCount) {
-            assertTrue(true);
-        } else {
-            fail();
-        }
+        assertTrue(strategyResult instanceof ObjectCount);
     }
 
     @Test
@@ -76,12 +72,7 @@ public class GoldStrategyTest {
         GoldStrategy cornerCount = new CornerCount(2);
         int cornerCountResult = cornerCount.calculatePoints(testPlayer, 40, 40);
 
-        if (cornerCountResult == 4) {
-            assertTrue(true);
-
-        } else {
-            fail();
-        }
+        assertEquals(4, cornerCountResult);
     }
 
     @Test
@@ -89,11 +80,7 @@ public class GoldStrategyTest {
         GoldStrategy plainPoints = new PlainPoints(5);
         int plainPointsResult = plainPoints.calculatePoints(testPlayer, 40, 40);
 
-        if (plainPointsResult == 5) {
-            assertTrue(true);
-        } else {
-            fail();
-        }
+        assertEquals(5, plainPointsResult);
     }
 
     @Test
@@ -101,10 +88,6 @@ public class GoldStrategyTest {
         GoldStrategy objectCount = new ObjectCount(1, ObjectTypeEnum.INKWELL);
         int objectCountResult = objectCount.calculatePoints(testPlayer, 40, 40);
 
-        if (objectCountResult == 2) {
-            assertTrue(true);
-        } else {
-            fail();
-        }
+        assertEquals(2, objectCountResult);
     }
 }

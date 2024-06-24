@@ -20,8 +20,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PlayerTest {
 
@@ -74,168 +73,94 @@ public class PlayerTest {
             ObjectiveCard card = new ObjectiveCard(jsonData);
             objectiveCardArray.add(card);
         }
-
     }
 
     @Test
-    public void setCardTest(){
+    public void setAndGetCardTest(){
+
         testPlayer.setCard(goldCardArray.get(9), 41, 41);
 
-        if (testPlayer.getCards()[41][41].equals(goldCardArray.get(9))) {
-            if (testPlayer.getCardAt(41, 41).get().equals(goldCardArray.get(9))) {
-                assertTrue(true);
-            } else {
-                fail();
-            }
-
-        } else {
-            fail();
-
-        }
+        assertEquals(goldCardArray.get(9), testPlayer.getCards()[41][41]);
+        assertEquals(goldCardArray.get(9), testPlayer.getCardAt(41, 41).get());
 
     }
 
     @Test
-    public void resourceAddTest() {
+    public void resourceAddAndRemoveTest() {
+
         testPlayer.addResource(new Resource(ResourceTypeEnum.FUNGI));
-
-        if (testPlayer.getResources().contains(new Resource(ResourceTypeEnum.FUNGI))) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
+        assertTrue(testPlayer.getResources().contains(new Resource(ResourceTypeEnum.FUNGI)));
 
         testPlayer.removeResource(new Resource(ResourceTypeEnum.FUNGI));
+        assertFalse(testPlayer.getResources().contains(new Resource(ResourceTypeEnum.FUNGI)));
 
-        if (testPlayer.getResources().contains(new Resource(ResourceTypeEnum.FUNGI))) {
-            fail();
-
-        } else {
-            assertTrue(true);
-
-        }
     }
 
     @Test
-    public void objectAddRemoveTest() {
+    public void objectAddAndRemoveTest() {
+
         testPlayer.addObject(new Object(ObjectTypeEnum.INKWELL));
-
-        if (testPlayer.getObjects().contains(new Object(ObjectTypeEnum.INKWELL))) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
+        assertTrue(testPlayer.getObjects().contains(new Object(ObjectTypeEnum.INKWELL)));
 
         testPlayer.removeObject(new Object(ObjectTypeEnum.INKWELL));
-
-        if (testPlayer.getObjects().contains(new Object(ObjectTypeEnum.INKWELL))) {
-            fail();
-
-        } else {
-            assertTrue(true);
-
-        }
-
+        assertFalse(testPlayer.getObjects().contains(new Object(ObjectTypeEnum.INKWELL)));
 
     }
 
     @Test
     public void usernameGetterTest(){
-        if (testPlayer.getUsername().equals("testNick")) {
-            assertTrue(true);
 
-        } else {
-            fail();
+        assertEquals("testNick", testPlayer.getUsername());
 
-        }
     }
 
     @Test
-    public void cardInHandAddRemoveTest(){
+    public void cardInHandAddAndRemoveTest(){
+
         testPlayer.addCardInHand(goldCardArray.get(9));
-        if (testPlayer.getCardsInHand().contains(goldCardArray.get(9))) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
+        assertTrue(testPlayer.getCardsInHand().contains(goldCardArray.get(9)));
 
         testPlayer.removeCardInHand(goldCardArray.get(9));
-        if (testPlayer.getCardsInHand().contains(goldCardArray.get(9))) {
-            fail();
+        assertFalse(testPlayer.getCardsInHand().contains(goldCardArray.get(9)));
 
-        } else {
-            assertTrue(true);
-
-        }
     }
 
     @Test
     public void scoreTest() {
+
         testPlayer.setScore(12);
+        assertEquals(12, testPlayer.getScore());
 
-        if (testPlayer.getScore() == 12) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
     }
 
     @Test
     public void tokenTest() {
+
         testPlayer.setToken(new PlayerToken(TokenColorEnum.RED));
+        assertEquals(TokenColorEnum.RED, testPlayer.getToken().getColor());
 
-        if (testPlayer.getToken().getColor().equals(TokenColorEnum.RED)) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
     }
 
     @Test
     public void setStarterCardTest() {
+
         testPlayer.setStarterCard(starterCardArray.get(3));
+        assertEquals(starterCardArray.get(3), testPlayer.getStarterCard());
 
-        if (testPlayer.getStarterCard().equals(starterCardArray.get(3))) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
     }
 
     @Test
     public void setObjectiveCardTest() {
+
         testPlayer.setObjectiveCard(objectiveCardArray.get(3));
+        assertEquals(objectiveCardArray.get(3), testPlayer.getObjectiveCard());
 
-        if (testPlayer.getObjectiveCard().equals(objectiveCardArray.get(3))) {
-            assertTrue(true);
-
-        } else {
-            fail();
-
-        }
     }
 
     @Test
     public void gameGetterTest() {
 
-        if (testPlayer.getGame().getInfo().getId() == 999) {
-            assertTrue(true);
+        assertEquals(999, testPlayer.getGame().getInfo().getId());
 
-        } else {
-            fail();
-
-        }
     }
 }

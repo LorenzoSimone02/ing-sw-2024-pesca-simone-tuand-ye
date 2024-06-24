@@ -39,13 +39,8 @@ public class DeckTest {
         }
 
         resCardDeck.shuffleDeck();
+        assertNotEquals(resCardDeck.getCards(), previousResCardDeck.getCards());
 
-        if (previousResCardDeck.getCards().equals(resCardDeck.getCards())) {
-            fail();
-
-        } else {
-            assertTrue(true);
-        }
     }
 
     @Test
@@ -54,11 +49,8 @@ public class DeckTest {
         int prevSize = resCardDeck.getCards().size();
         Card drawnCard = resCardDeck.drawCard();
 
-        if ((resCardDeck.getCards().size() == prevSize - 1) && drawnCard instanceof ResourceCard) {
-            assertTrue(true);
-        } else {
-            fail();
-        }
+        assertTrue((resCardDeck.getCards().size() == prevSize - 1) && drawnCard instanceof ResourceCard);
+
     }
 
 }

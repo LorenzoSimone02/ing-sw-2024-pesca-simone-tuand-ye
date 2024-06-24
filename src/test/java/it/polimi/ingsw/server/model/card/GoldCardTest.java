@@ -47,6 +47,7 @@ public class GoldCardTest {
         boolean result = testCard.meetRequirements(playerResources);
 
         assertTrue(result);
+
     }
 
     @Test
@@ -55,7 +56,8 @@ public class GoldCardTest {
         GoldCard testCard = goldCardArray.get(4);
         boolean result = testCard.meetRequirements(playerResources);
 
-        assertTrue(!result);
+        assertFalse(result);
+
     }
 
 }

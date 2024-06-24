@@ -79,26 +79,20 @@ class TableTest {
 
     @Test
     void addCardOnGround() {
+
         table.addCardOnGround(objectiveDeck.drawCard());
+        assertFalse(table.getCardsOnGround().isEmpty());
 
-        if (!table.getCardsOnGround().isEmpty()) assertTrue(true);
-
-        if (table.getCardsOnGround().isEmpty()) fail();
     }
 
     @Test
     void removeCardOnGround() {
+
         Card drawnCard = objectiveDeck.drawCard();
 
         table.addCardOnGround(drawnCard);
         table.removeCardOnGround(drawnCard);
-
-        if (table.getCardsOnGround().isEmpty()) assertTrue(true);
-
-        if (!table.getCardsOnGround().isEmpty()) fail();
-
-
-
+        assertTrue(table.getCardsOnGround().isEmpty());
 
     }
 
@@ -109,9 +103,9 @@ class TableTest {
 
     @Test
     void addObjectiveCard() {
-        table.addObjectiveCard((ObjectiveCard)objectiveDeck.drawCard());
 
-        assertTrue(true);
+        table.addObjectiveCard((ObjectiveCard)objectiveDeck.drawCard());
+        assertFalse(table.getObjectiveCards().isEmpty());
 
     }
 }
