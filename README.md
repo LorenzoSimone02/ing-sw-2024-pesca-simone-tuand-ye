@@ -37,7 +37,7 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 | Package    | Classi testate | Copertura |
 |:-----------|:---------------|:---------:|
 | Controller | //             |    //     |
-| Model      | //             |    //     |
+| Model      | 35/35          |   100%    |
 
 ## Utilizzo dei jar
 ### Client
