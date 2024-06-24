@@ -25,8 +25,8 @@ public class ClientLoginPacketHandler extends ClientPacketHandler {
         clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGGED);
         if (clientManager.getViewMode() == ViewModeEnum.GUI) {
             GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-            guiClient.updateScene(clientManager.getGameState().getClientStatus());
+            guiClient.changeScene(clientManager.getGameState().getClientStatus());
         }
-        new Thread(() -> clientManager.getNetworkHandler().sendPacket(new JoinPacket())).start();
+        clientManager.getNetworkHandler().sendPacket(new JoinPacket());
     }
 }

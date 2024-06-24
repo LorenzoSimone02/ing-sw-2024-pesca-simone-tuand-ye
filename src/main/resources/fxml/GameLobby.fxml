@@ -10,12 +10,12 @@
             stylesheets="@../css/preGame.css">
     <center>
         <VBox alignment="CENTER" spacing="20.0">
-            <ImageView fitWidth="250" preserveRatio="true" pickOnBounds="true">
+            <ImageView fitWidth="300" preserveRatio="true" pickOnBounds="true">
                 <Image url="@../images/title.png"/>
             </ImageView>
             <Label text="You are connected to a Game"/>
             <Label fx:id="playersLabel"/>
-            <ImageView fitWidth="100" fitHeight="100" pickOnBounds="true">
+            <ImageView fitWidth="120" preserveRatio="true" pickOnBounds="true">
                 <Image url="@../images/waiting.gif"/>
             </ImageView>
         </VBox>

@@ -36,7 +36,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
                 clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGGED);
                 if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                     GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-                    guiClient.updateScene(clientManager.getGameState().getClientStatus());
+                    guiClient.changeScene(clientManager.getGameState().getClientStatus());
                 }
                 return;
             }
@@ -47,7 +47,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CONNECTED);
             if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-                guiClient.updateScene(clientManager.getGameState().getClientStatus());
+                guiClient.changeScene(clientManager.getGameState().getClientStatus());
             }
         } catch (NotBoundException | RemoteException e) {
             System.err.println("Error while connecting to the game server");

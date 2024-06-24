@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<HBox fx:id="gamePane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameGuiController">
+    <VBox fx:id="gameView">
+        <TabPane fx:id="tables" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+            <Tab fx:id="playerTab" text="Player" closable="false">
+                <Pane fx:id="playerTable" minWidth="4455" minHeight="2349" style="-fx-background-color: #ffb251;"/>
+            </Tab>
+            <Tab fx:id="opponentTab" closable="false">
+                <Pane fx:id="opponentTable" minWidth="4455" minHeight="2349" style="-fx-background-color: #ffb251;"/>
+            </Tab>
+            <Tab fx:id="opponentTab2" closable="false">
+                <Pane fx:id="opponentTable2" minWidth="4455" minHeight="2349" style="-fx-background-color: #ffb251;"/>
+            </Tab>
+            <Tab fx:id="opponentTab3" closable="false">
+                <Pane fx:id="opponentTable3" minWidth="4455" minHeight="2349" style="-fx-background-color: #ffb251;"/>
+            </Tab>
+        </TabPane>
+        <HBox fx:id="hand" spacing="20" alignment="CENTER" minHeight="120"
+              style="-fx-background-color: linear-gradient(to top, brown, #000000);">
+            <ImageView fx:id="cardObj" fitHeight="100" pickOnBounds="true" preserveRatio="true"
+                       style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                <Image url="@../images/cards/front87.png"/>
+                <clip>
+                    <Rectangle width="146" height="100" arcWidth="10" arcHeight="10"/>
+                </clip>
+            </ImageView>
+            <ImageView fx:id="card1" fitHeight="100" pickOnBounds="true" preserveRatio="true"
+                       style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                <Image url="@../images/cards/front1.png"/>
+                <clip>
+                    <Rectangle width="146" height="100" arcWidth="10" arcHeight="10"/>
+                </clip>
+            </ImageView>
+            <ImageView fx:id="card2" fitHeight="100" pickOnBounds="true" preserveRatio="true"
+                       style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                <Image url="@../images/cards/back20.png"/>
+                <clip>
+                    <Rectangle width="146" height="100" arcWidth="10" arcHeight="10"/>
+                </clip>
+            </ImageView>
+            <ImageView fx:id="card3" fitHeight="100" pickOnBounds="true" preserveRatio="true"
+                       style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);">
+                <Image url="@../images/cards/back20.png"/>
+                <clip>
+                    <Rectangle width="146" height="100" arcWidth="10" arcHeight="10"/>
+                </clip>
+            </ImageView>
+        </HBox>
+    </VBox>
+    <VBox fx:id="boardAndChat">
+        <HBox fx:id="board" spacing="5" alignment="CENTER"
+              style="-fx-background-color: linear-gradient(to top, brown, #000000); -fx-padding: 0 2 0 13;">
+            <StackPane fx:id="tokens">
+                <ImageView fitHeight="350" preserveRatio="true">
+                    <Image url="@../images/board.png"/>
+                    <clip>
+                        <Rectangle width="175" height="350" arcWidth="10" arcHeight="10"/>
+                    </clip>
+                </ImageView>
+                <ImageView fx:id="blue_token" fitHeight="30" preserveRatio="true" visible="false">
+                    <Image url="@../images/tokens/token_blue.png"/>
+                </ImageView>
+                <ImageView fx:id="red_token" fitHeight="30" preserveRatio="true" visible="false">
+                    <Image url="@../images/tokens/token_red.png"/>
+                </ImageView>
+                <ImageView fx:id="green_token" fitHeight="30" preserveRatio="true" visible="false">
+                    <Image url="@../images/tokens/token_green.png"/>
+                </ImageView>
+                <ImageView fx:id="yellow_token" fitHeight="30" preserveRatio="true" visible="false">
+                    <Image url="@../images/tokens/token_yellow.png"/>
+                </ImageView>
+            </StackPane>
+            <VBox fx:id="col1" spacing="7" style="-fx-padding: 15 15 15 15;" alignment="CENTER"/>
+            <VBox fx:id="col2" spacing="7" style="-fx-padding: 15 15 15 15;" alignment="CENTER"/>
+        </HBox>
+        <HBox spacing="1" stylesheets="@../css/resources.css" styleClass="hbox-custom" alignment="CENTER">
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/animal.png"/>
+            </ImageView>
+            <Label fx:id="animal" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/fungi.png"/>
+            </ImageView>
+            <Label fx:id="fungi" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/plant.png"/>
+            </ImageView>
+            <Label fx:id="plant" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/insect.png"/>
+            </ImageView>
+            <Label fx:id="insect" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/manuscript.png"/>
+            </ImageView>
+            <Label fx:id="manuscript" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/inkwell.png"/>
+            </ImageView>
+            <Label fx:id="inkwell" text="x0"/>
+            <ImageView fitHeight="40" preserveRatio="true">
+                <Image url="@../images/resources/quill.png"/>
+            </ImageView>
+            <Label fx:id="quill" text="x0"/>
+        </HBox>
+        <VBox fx:id="chat" minHeight="250" alignment="BOTTOM_CENTER">
+            <ScrollPane fx:id="scrollPane" fitToHeight="true">
+                <VBox fx:id="messagesBox" style="-fx-padding: 15 15 15 15;"/>
+            </ScrollPane>
+            <HBox spacing="10" style="-fx-padding: 10 10 10 10;" alignment="CENTER">
+                <TextField fx:id="messageInput" HBox.hgrow="ALWAYS" promptText="Enter your message here..."/>
+                <Button text="Send" onAction="#sendChatMessage" defaultButton="true"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</HBox>
+

@@ -12,7 +12,7 @@
             stylesheets="@../css/preGame.css">
     <center>
         <VBox alignment="CENTER" spacing="20.0">
-            <ImageView fitWidth="200" fitHeight="200" pickOnBounds="true">
+            <ImageView fitWidth="250" preserveRatio="true" pickOnBounds="true">
                 <Image url="@../images/logo.png"/>
             </ImageView>
             <padding>

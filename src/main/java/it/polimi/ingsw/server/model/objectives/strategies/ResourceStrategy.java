@@ -47,7 +47,7 @@ public class ResourceStrategy implements ObjectiveStrategy {
      * @return the points of the player based on the number of the specified resource types the player has in their card matrix
      */
     public int calculatePoints(Player player) {
-        Resource scoringResource = new Resource(ResourceTypeEnum.FUNGI);
+        Resource scoringResource = new Resource(resourceRequirement);
         return Math.floorDiv(Collections.frequency(player.getResources(), scoringResource), numberOfResource) * pointsPerPattern;
     }
 

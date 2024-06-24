@@ -42,7 +42,7 @@ public class LoginController implements SceneController, Initializable {
     }
 
     @Override
-    public void update() {
+    public void updateScene(String data) {
 
     }
 }

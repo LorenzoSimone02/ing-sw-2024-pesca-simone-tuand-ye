@@ -28,6 +28,7 @@ public class LobbyController implements SceneController, Initializable {
     }
 
     @Override
-    public void update() {
+    public void updateScene(String data) {
+
     }
 }

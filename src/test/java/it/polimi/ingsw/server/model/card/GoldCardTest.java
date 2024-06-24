@@ -1,5 +1,6 @@
 package it.polimi.ingsw.server.model.card;
 
+import it.polimi.ingsw.server.model.card.goldstrategies.GoldStrategyType;
 import it.polimi.ingsw.server.model.resources.Resource;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 import org.junit.jupiter.api.BeforeEach;
@@ -58,6 +59,15 @@ public class GoldCardTest {
 
         assertFalse(result);
 
+    }
+
+    @Test
+    public void getPointsStrategyTest() {
+        GoldCard testCard = goldCardArray.get(9);
+        assertEquals(GoldStrategyType.PLAIN_POINTS_5, testCard.getPointsStrategy());
+
+        GoldCard testCard2 = goldCardArray.get(20);
+        assertEquals(GoldStrategyType.OBJECT_COUNT_INKWELL, testCard2.getPointsStrategy());
     }
 
 }

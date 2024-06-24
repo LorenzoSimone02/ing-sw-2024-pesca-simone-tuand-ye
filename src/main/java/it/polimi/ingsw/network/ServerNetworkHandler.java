@@ -8,6 +8,7 @@ import it.polimi.ingsw.server.controller.GameController;
 import java.io.IOException;
 import java.net.Inet4Address;
 import java.util.*;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * ServerNetworkHandler is the class that manages the server-side network
@@ -45,9 +46,9 @@ public class ServerNetworkHandler {
     private final ArrayList<ClientConnection> connections;
 
     /**
-     * The map that associates the packets with the client connections
+     * The queue of packets received by the Clients to be handled
      */
-    private final Map<Packet, ClientConnection> packetQueue;
+    private final LinkedBlockingQueue<Packet> packetQueue;
 
     /**
      * The server-side game controller
@@ -70,7 +71,7 @@ public class ServerNetworkHandler {
         this.rmiPort = rmiPort;
         this.socketPort = socketPort;
         connections = new ArrayList<>();
-        packetQueue = Collections.synchronizedMap(new LinkedHashMap<>());
+        packetQueue = new LinkedBlockingQueue<>();
         isLobby = false;
         gameController = new GameController(this);
     }
@@ -90,7 +91,7 @@ public class ServerNetworkHandler {
             socketServer = new SocketServer(this, socketPort);
             System.out.println("Socket Server started on " + ipAddress + ":" + socketPort);
 
-            Thread packetHandlerThread = new Thread(new PacketHandlerThread(this));
+            Thread packetHandlerThread = new Thread(new ServerPacketHandlerThread(this));
             packetHandlerThread.start();
 
             Thread clientPingerThread = new Thread(new ClientPingerThread(this));
@@ -136,11 +137,10 @@ public class ServerNetworkHandler {
      * @param packet the packet received
      * @param connection the client connection that sent the packet
      */
-    public synchronized void receivePacket(Packet packet, ClientConnection connection) {
+    public synchronized void receivePacket(Packet packet, ClientConnection connection) throws InterruptedException {
         if (packet.getServerPacketHandler() != null) {
             connection.setLastPing(System.currentTimeMillis());
-            packetQueue.put(packet, connection);
-            notifyAll();
+            packetQueue.put(packet);
         } else {
             System.err.println("Received an unsupported packet");
         }
@@ -214,7 +214,7 @@ public class ServerNetworkHandler {
      * The method returns the map that associates the client connections with their packets
      * @return the map that associates the client connections with their packets
      */
-    public Map<Packet, ClientConnection> getPacketQueue() {
+    public synchronized LinkedBlockingQueue<Packet> getPacketQueue() {
         return packetQueue;
     }
 

@@ -16,6 +16,6 @@ public interface RMIServerInterface extends Remote {
      * @param clientInterface the client-side RMI interface
      * @throws RemoteException if there is an error with the remote connection
      */
-    void receivePacket(Packet packet, RMIClientInterface clientInterface) throws RemoteException;
+    void receivePacket(Packet packet, RMIClientInterface clientInterface) throws RemoteException, InterruptedException;
 
 }

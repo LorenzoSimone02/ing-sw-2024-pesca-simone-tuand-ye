@@ -74,6 +74,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             try {
                 ServerNetworkHandler networkHandler = ServerMain.getMatch(gameID).get();
                 controller.getNetworkHandler().removeConnection(connection);
+                System.out.println("Removed connection from old lobby with username " + connection.getUsername());
                 networkHandler.addConnection(connection);
 
                 foundNewMatch.getGameController().addPlayer(connection.getUsername());

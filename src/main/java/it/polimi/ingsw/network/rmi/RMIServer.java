@@ -37,7 +37,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
      * @param packet the packet received
      * @param clientInterface the client-side RMI interface
      */
-    public synchronized void receivePacket(Packet packet, RMIClientInterface clientInterface) {
+    public void receivePacket(Packet packet, RMIClientInterface clientInterface) throws InterruptedException {
         RMIClientConnection conn = (RMIClientConnection) networkHandler.getConnectionByUUID(packet.getSender());
         if (conn != null) {
             networkHandler.receivePacket(packet, conn);
@@ -52,7 +52,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     /**
      * The method tries to stop the RMI server, if it is not possible it prints an error message
      */
-    public synchronized void stopServer(){
+    public void stopServer(){
         try {
             UnicastRemoteObject.unexportObject(this, true);
         } catch (RemoteException e) {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.client.view.gui.controllers.ChooseColorController"
+            stylesheets="@../css/preGame.css">
+    <center>
+        <VBox alignment="CENTER" spacing="40.0">
+            <Label text="Choose your Token Color" style="-fx-font-size: 40;"/>
+            <HBox fx:id="colors" spacing="60" alignment="CENTER">
+                <ImageView fx:id="blue_token" fitWidth="100" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseColorBlue">
+                    <Image url="@../images/tokens/token_blue.png" />
+                </ImageView>
+                <ImageView fx:id="red_token" fitWidth="100" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseColorRed">
+                    <Image url="@../images/tokens/token_red.png"/>
+                </ImageView>
+                <ImageView fx:id="green_token" fitWidth="100" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseColorGreen">
+                    <Image url="@../images/tokens/token_green.png"/>
+                </ImageView>
+                <ImageView fx:id="yellow_token" fitWidth="100" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseColorYellow">
+                    <Image url="@../images/tokens/token_yellow.png"/>
+                </ImageView>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

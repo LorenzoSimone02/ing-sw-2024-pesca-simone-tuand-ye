@@ -1,0 +1,6 @@
+.hbox-custom {
+    -fx-background-color: brown;
+    -fx-font-size: 15;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 10 0;
+}

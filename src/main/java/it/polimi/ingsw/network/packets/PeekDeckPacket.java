@@ -32,8 +32,9 @@ public class PeekDeckPacket extends Packet {
      * Constructor of the class
      * @param cardId the ID of the card that has been peeked
      */
-    public PeekDeckPacket(int cardId) {
+    public PeekDeckPacket(int cardId, boolean gold) {
         this.cardId = cardId;
+        this.gold = gold;
     }
 
     /**

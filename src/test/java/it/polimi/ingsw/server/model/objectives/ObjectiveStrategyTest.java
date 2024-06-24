@@ -107,7 +107,7 @@ public class ObjectiveStrategyTest {
         testPlayer.setCard(resCardArray.get(27), 40, 36);
 
         //TRLShape
-        testPlayer.setCard(resCardArray.get(0), 37, 37);
+        testPlayer.setCard(resCardArray.getFirst(), 37, 37);
         testPlayer.setCard(resCardArray.get(29), 38, 36);
 
 
@@ -137,87 +137,99 @@ public class ObjectiveStrategyTest {
     @Test
     public void BottomLeftLShapeTest() {
         ObjectiveStrategy BottomLeftLShapeStrategy = ObjectiveType.BOTTOM_LEFT_L_SHAPE.getStrategy();
-
         int result = BottomLeftLShapeStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = BottomLeftLShapeStrategy.getPointsPerPattern();
 
         assertEquals(3, result);
-
+        assertEquals(3, pointsPerPattern);
     }
 
     @Test
     public void BottomRightLShapeTest() {
         ObjectiveStrategy BottomRightLShapeStrategy = ObjectiveType.BOTTOM_RIGHT_L_SHAPE.getStrategy();
-
         int result = BottomRightLShapeStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = BottomRightLShapeStrategy.getPointsPerPattern();
 
         assertEquals(3, result);
+        assertEquals(3, pointsPerPattern);
 
     }
 
     @Test
     public void TopLeftLShapeTest() {
-        ObjectiveStrategy TopLeftLShapeStrategy = ObjectiveType.TOP_LEFT_L_SHAPE.getStrategy();
-
-        int result = TopLeftLShapeStrategy.calculatePoints(testPlayer);
+        ObjectiveStrategy topLeftLShapeStrategy = ObjectiveType.TOP_LEFT_L_SHAPE.getStrategy();
+        int result = topLeftLShapeStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = topLeftLShapeStrategy.getPointsPerPattern();
 
         assertEquals(3, result);
+        assertEquals(3, pointsPerPattern);
 
     }
     @Test
     public void TopRightLShapeTest() {
-        ObjectiveStrategy TopRightLShapeStrategy = ObjectiveType.TOP_RIGHT_L_SHAPE.getStrategy();
-
-        int result = TopRightLShapeStrategy.calculatePoints(testPlayer);
+        ObjectiveStrategy topRightLShapeStrategy = ObjectiveType.TOP_RIGHT_L_SHAPE.getStrategy();
+        int result = topRightLShapeStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = topRightLShapeStrategy.getPointsPerPattern();
 
         assertEquals(3, result);
+        assertEquals(3, pointsPerPattern);
 
     }
     @Test
     public void TopLeftDiagonalTest() {
-        ObjectiveStrategy TopLeftDiagonalStrategy = ObjectiveType.TOP_LEFT_DIAGONAL_PURPLE.getStrategy();
-
-        int result = TopLeftDiagonalStrategy.calculatePoints(testPlayer);
+        ObjectiveStrategy topLeftDiagonalStrategy = ObjectiveType.TOP_LEFT_DIAGONAL_PURPLE.getStrategy();
+        int result = topLeftDiagonalStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = topLeftDiagonalStrategy.getPointsPerPattern();
 
         assertEquals(2, result);
-
+        assertEquals(2, pointsPerPattern);
     }
     @Test
     public void TopRightDiagonalTest() {
-        ObjectiveStrategy TopRightDiagonalStrategy = ObjectiveType.TOP_RIGHT_DIAGONAL_RED.getStrategy();
-        int result = TopRightDiagonalStrategy.calculatePoints(testPlayer);
+        ObjectiveStrategy topRightDiagonalStrategy = ObjectiveType.TOP_RIGHT_DIAGONAL_RED.getStrategy();
+        int result = topRightDiagonalStrategy.calculatePoints(testPlayer);
+        int pointsPerPattern = topRightDiagonalStrategy.getPointsPerPattern();
 
         assertEquals(2, result);
-
+        assertEquals(2, pointsPerPattern);
     }
 
     @Test
     public void ResourceStrategyTest() {
-        ObjectiveStrategy ResourceStrategyTest = ObjectiveType.RESOURCE_FUNGI.getStrategy();
-        int result = ResourceStrategyTest.calculatePoints(testPlayer);
+        ObjectiveStrategy resourceStrategyTest = ObjectiveType.RESOURCE_FUNGI.getStrategy();
+        int result = resourceStrategyTest.calculatePoints(testPlayer);
+        int pointsPerPattern = resourceStrategyTest.getPointsPerPattern();
 
         assertEquals(6, result);
+        assertEquals(2, pointsPerPattern);
     }
 
     @Test
     public void ObjectStrategyTest() {
-        ObjectiveStrategy ObjectStrategyTest = ObjectiveType.OBJECT_INKWELL.getStrategy();
-        int result = ObjectStrategyTest.calculatePoints(testPlayer);
+        ObjectiveStrategy objectStrategyTest = ObjectiveType.OBJECT_INKWELL.getStrategy();
+        int result = objectStrategyTest.calculatePoints(testPlayer);
+        int pointsPerPattern = objectStrategyTest.getPointsPerPattern();
 
         assertEquals(6, result);
+        assertEquals(2, pointsPerPattern);
 
-        ObjectStrategyTest = ObjectiveType.OBJECT_QUILL_INKWELL_MANUSCRIPT.getStrategy();
-        result = ObjectStrategyTest.calculatePoints(testPlayer);
+        objectStrategyTest = ObjectiveType.OBJECT_QUILL_INKWELL_MANUSCRIPT.getStrategy();
+        result = objectStrategyTest.calculatePoints(testPlayer);
+        pointsPerPattern = objectStrategyTest.getPointsPerPattern();
 
         assertEquals(21, result);
+        assertEquals(3, pointsPerPattern);
 
     }
 
     @Test
     public void ObjectiveCardPointsTest() {
-        ObjectiveCard objectiveCardTest = objectiveCardArray.get(0);
+        ObjectiveCard objectiveCardTest = objectiveCardArray.getFirst();
         int result = objectiveCardTest.calculatePoints(testPlayer);
+        int pointsPerPattern = objectiveCardTest.getObjectiveType().getStrategy().getPointsPerPattern();
 
         assertEquals(2, result);
+        assertEquals(2, pointsPerPattern);
 
     }
 

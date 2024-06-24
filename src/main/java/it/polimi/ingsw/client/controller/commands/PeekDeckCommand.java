@@ -38,8 +38,6 @@ public class PeekDeckCommand extends Command {
                 } else {
                     System.err.println("Invalid choice. Type 'gold' or 'resource'");
                 }
-
-
             } else {
                 System.err.println("Usage: /peekDeck <'resource' or 'gold'>");
             }

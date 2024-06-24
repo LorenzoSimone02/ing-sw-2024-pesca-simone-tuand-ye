@@ -2,6 +2,7 @@ package it.polimi.ingsw.client.controller.clientstate;
 
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.server.model.card.*;
+import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
 import it.polimi.ingsw.server.model.resources.ObjectTypeEnum;
 import it.polimi.ingsw.server.model.resources.ResourceTypeEnum;
 
@@ -96,6 +97,16 @@ public class GameState {
     private ObjectiveCard objectiveCard;
 
     /**
+     * The first card of the resources deck
+     */
+    private Card topResourcesDeckCard;
+
+    /**
+     * The first card of the gold deck
+     */
+    private Card topGoldDeckCard;
+
+    /**
      * The player's resources
      */
     private final HashMap<String, Integer> resources;
@@ -144,6 +155,7 @@ public class GameState {
 
     /**
      * The method returns the active player's UUID
+     *
      * @return the active player's UUID
      */
     public UUID getUuid() {
@@ -152,6 +164,7 @@ public class GameState {
 
     /**
      * The method returns the active player's username
+     *
      * @return the active player's username
      */
     public String getUsername() {
@@ -160,6 +173,7 @@ public class GameState {
 
     /**
      * The method sets the active player's username
+     *
      * @param username the active player's username
      */
     public void setUsername(String username) {
@@ -168,6 +182,7 @@ public class GameState {
 
     /**
      * The method returns the active player's score
+     *
      * @return the active player's score
      */
     public int getScore() {
@@ -176,6 +191,7 @@ public class GameState {
 
     /**
      * The method sets the active player's score
+     *
      * @param score the active player's score
      */
     public void setScore(int score) {
@@ -184,6 +200,7 @@ public class GameState {
 
     /**
      * The method returns the active player's token color
+     *
      * @return the active player's token color
      */
     public String getTokenColor() {
@@ -192,6 +209,7 @@ public class GameState {
 
     /**
      * The method sets the active player's token color
+     *
      * @param tokenColor the active player's token color
      */
     public void setTokenColor(String tokenColor) {
@@ -200,6 +218,7 @@ public class GameState {
 
     /**
      * The method returns the game's list of all players states
+     *
      * @return the game's list of all players states
      */
     public ArrayList<PlayerState> getPlayerStates() {
@@ -208,6 +227,7 @@ public class GameState {
 
     /**
      * The method adds a player state to the game's list of player states
+     *
      * @param playerState the player state to add
      */
     public void addPlayerState(PlayerState playerState) {
@@ -216,6 +236,7 @@ public class GameState {
 
     /**
      * The method returns the game's active player
+     *
      * @return the game's active player
      */
     public String getActivePlayer() {
@@ -224,6 +245,7 @@ public class GameState {
 
     /**
      * The method sets the game's active player
+     *
      * @param activePlayer the game's active player
      */
     public void setActivePlayer(String activePlayer) {
@@ -231,7 +253,17 @@ public class GameState {
     }
 
     /**
+     * The method returns if the active player is the current client
+     *
+     * @return if the active player is the current client
+     */
+    public boolean isActivePlayer() {
+        return this.activePlayer.equals(this.username);
+    }
+
+    /**
      * The method returns the game's first player
+     *
      * @return the game's first player
      */
     public String getFirstPlayer() {
@@ -240,6 +272,7 @@ public class GameState {
 
     /**
      * The method sets the game's first player
+     *
      * @param firstPlayer the game's first player
      */
     public void setFirstPlayer(String firstPlayer) {
@@ -248,6 +281,7 @@ public class GameState {
 
     /**
      * The method returns the game's chat messages list
+     *
      * @return the game's chat messages list
      */
     public ArrayList<String> getChatMessages() {
@@ -256,8 +290,9 @@ public class GameState {
 
     /**
      * The method adds a chat message to the game's chat messages list
+     *
      * @param username the username of the message sender
-     * @param message the message to add
+     * @param message  the message to add
      */
     public void addChatMessage(String username, String message) {
         chatMessages.add(Printer.CYAN + username + ": " + Printer.RESET + message);
@@ -265,6 +300,7 @@ public class GameState {
 
     /**
      * The method returns the active player's client status
+     *
      * @return the active player's client status
      */
     public ClientStatusEnum getClientStatus() {
@@ -273,6 +309,7 @@ public class GameState {
 
     /**
      * The method sets the active player's client status
+     *
      * @param clientStatus the active player's client status
      */
     public void setClientStatus(ClientStatusEnum clientStatus) {
@@ -281,6 +318,7 @@ public class GameState {
 
     /**
      * The method returns the game's proposed objective cards
+     *
      * @return the game's proposed objective cards
      */
     public ArrayList<ObjectiveCard> getProposedCards() {
@@ -289,6 +327,7 @@ public class GameState {
 
     /**
      * The method adds a proposed card to the game's proposed cards list
+     *
      * @param card the card to add
      */
     public void addProposedCard(ObjectiveCard card) {
@@ -296,7 +335,44 @@ public class GameState {
     }
 
     /**
+     * The method returns the first card of the resources deck
+     *
+     * @return the first card of the resources deck
+     */
+    public Card getTopResourcesDeckCard() {
+        return topResourcesDeckCard;
+    }
+
+    /**
+     * The method sets the first card of the resources deck
+     *
+     * @param topResourcesDeckCard the first card of the resources deck
+     */
+    public void setTopResourcesDeckCard(Card topResourcesDeckCard) {
+        this.topResourcesDeckCard = topResourcesDeckCard;
+    }
+
+    /**
+     * The method returns the first card of the gold deck
+     *
+     * @return the first card of the gold deck
+     */
+    public Card getTopGoldDeckCard() {
+        return topGoldDeckCard;
+    }
+
+    /**
+     * The method sets the first card of the gold deck
+     *
+     * @param topGoldDeckCard the first card of the gold deck
+     */
+    public void setTopGoldDeckCard(Card topGoldDeckCard) {
+        this.topGoldDeckCard = topGoldDeckCard;
+    }
+
+    /**
      * The method returns the game's last ping to the active client
+     *
      * @return the game's last ping to the active client
      */
     public long getLastPing() {
@@ -305,6 +381,7 @@ public class GameState {
 
     /**
      * The method sets the game's last ping to the active client
+     *
      * @param lastPing the game's last ping to the active client
      */
     public void setLastPing(long lastPing) {
@@ -313,6 +390,7 @@ public class GameState {
 
     /**
      * The method returns the game's list of winners
+     *
      * @return the game's list of winners
      */
     public ArrayList<String> getWinners() {
@@ -321,6 +399,7 @@ public class GameState {
 
     /**
      * The method adds a winner to the game's list of winners
+     *
      * @param winner the winner to add
      */
     public void addWinner(String winner) {
@@ -329,6 +408,7 @@ public class GameState {
 
     /**
      * The method returns the player's chosen starter card
+     *
      * @return the player's chosen starter card
      */
     public StarterCard getStarterCard() {
@@ -337,6 +417,7 @@ public class GameState {
 
     /**
      * The method sets the player's chosen starter card
+     *
      * @param starterCard the player's chosen starter card
      */
     public void setStarterCard(StarterCard starterCard) {
@@ -346,6 +427,7 @@ public class GameState {
 
     /**
      * The method sets the player's given starter card they have to choose the face of
+     *
      * @param card the player's given starter card they have to choose the face of
      */
     public void setGivenStarter(StarterCard card) {
@@ -354,6 +436,7 @@ public class GameState {
 
     /**
      * The method returns the player's given starter card they have to choose the face of
+     *
      * @return the player's given starter card they have to choose the face of
      */
     public StarterCard getGivenStarter() {
@@ -362,6 +445,7 @@ public class GameState {
 
     /**
      * The method returns the player's chosen objective card
+     *
      * @return the player's chosen objective card
      */
     public ObjectiveCard getObjectiveCard() {
@@ -370,6 +454,7 @@ public class GameState {
 
     /**
      * The method sets the player's chosen objective card
+     *
      * @param objectiveCard the player's chosen objective card
      */
     public void setObjectiveCard(ObjectiveCard objectiveCard) {
@@ -378,6 +463,7 @@ public class GameState {
 
     /**
      * The method returns the player's resources
+     *
      * @return the player's resources
      */
     public HashMap<String, Integer> getResources() {
@@ -386,6 +472,7 @@ public class GameState {
 
     /**
      * The method sets the player's resources
+     *
      * @param resources the player's resources
      */
     public void setResources(HashMap<String, Integer> resources) {
@@ -402,6 +489,7 @@ public class GameState {
 
     /**
      * The method adds a resource to the player's resources
+     *
      * @param type the resource type to add
      */
     public void addResource(String type) {
@@ -425,7 +513,7 @@ public class GameState {
                 allCards.add(card);
             }
 
-            for(int i = 1; i <= 40; i++) {
+            for (int i = 1; i <= 40; i++) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line;
@@ -437,7 +525,7 @@ public class GameState {
                 allCards.add(card);
             }
 
-            for(int i = 1; i <= 6; i++) {
+            for (int i = 1; i <= 6; i++) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line;
@@ -449,7 +537,7 @@ public class GameState {
                 allCards.add(card);
             }
 
-            for(int i = 1; i <= 16; i++) {
+            for (int i = 1; i <= 16; i++) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/objectivecards/objectiveCard" + i + ".json"))));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line;
@@ -467,6 +555,7 @@ public class GameState {
 
     /**
      * The method returns the card with the given ID if it's in the active player's cards
+     *
      * @param id the card ID
      * @return the card with the given ID if it's in the active player's cards
      */
@@ -481,7 +570,8 @@ public class GameState {
 
     /**
      * The method returns the player's state by the given nickname if it's in the game's list of player states,
-     *      otherwise it creates a new player state
+     * otherwise it creates a new player state
+     *
      * @param nickname the player's nickname
      * @return the player's state by the given nickname if it's in the game's list of player states
      */
@@ -496,6 +586,7 @@ public class GameState {
 
     /**
      * The method removes the player's state by the given nickname if it's in the game's list of player states
+     *
      * @param nickname the player's nickname
      */
     public void removePlayerStateByNick(String nickname) {
@@ -504,6 +595,7 @@ public class GameState {
 
     /**
      * The method returns the active player's placed cards
+     *
      * @return the active player's placed cards
      */
     public ResourceCard[][] getCardsPlaced() {
@@ -512,9 +604,10 @@ public class GameState {
 
     /**
      * The method places the given card on the board at the given coordinates
+     *
      * @param card the card to place
-     * @param x the x coordinate of the card
-     * @param y the y coordinate of the card
+     * @param x    the x coordinate of the card
+     * @param y    the y coordinate of the card
      */
     public void setCardPlaced(ResourceCard card, int x, int y) {
         cardsPlaced[x][y] = card;
@@ -522,6 +615,7 @@ public class GameState {
 
     /**
      * The method returns the active player's ordered placed cards
+     *
      * @return the active player's ordered placed cards
      */
     public LinkedList<ResourceCard> getOrderedCardsPlaced() {
@@ -530,6 +624,7 @@ public class GameState {
 
     /**
      * The method adds a card to the active player's ordered placed cards
+     *
      * @param card the card to add
      */
     public void addOrderedCard(ResourceCard card) {
@@ -538,6 +633,7 @@ public class GameState {
 
     /**
      * The method returns the active player's list of in hand cards
+     *
      * @return the active player's list of in hand cards
      */
     public ArrayList<ResourceCard> getCardsInHand() {
@@ -546,6 +642,7 @@ public class GameState {
 
     /**
      * The method adds a card to the active player's in hand cards
+     *
      * @param card the card to add
      */
     public void addCardInHand(ResourceCard card) {
@@ -554,6 +651,7 @@ public class GameState {
 
     /**
      * The method removes a card from the active player's in hand cards
+     *
      * @param card the card to remove
      */
     public void removeCardInHand(ResourceCard card) {
@@ -562,6 +660,7 @@ public class GameState {
 
     /**
      * The method returns the game's cards on the ground
+     *
      * @return the game's cards on the ground
      */
     public ArrayList<Card> getCardsOnGround() {
@@ -569,7 +668,65 @@ public class GameState {
     }
 
     /**
+     * Client side method to check if a card can be placed on the board
+     *
+     * @param x    the x coordinate of the card to place
+     * @param y    the y coordinate of the card to place
+     * @param card the card to place
+     * @return true if the card can be placed, false otherwise
+     */
+    public boolean canPlaceCard(int x, int y, ResourceCard card) {
+        /*if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
+            for (String res : resources.keySet()) {
+                if (!goldCard.meetRequirements(player.getResources())) {
+                    return false;
+                }
+            }
+        }*/
+
+        if (getCardsPlaced()[x][y] == null) {
+            boolean isPlaceable = false;
+
+            if (getCardsPlaced()[x - 1][y - 1] != null) {
+                isPlaceable = true;
+                ResourceCard neighbour = getCardsPlaced()[x - 1][y - 1];
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_RIGHT).isVisible()){
+                    System.out.println("No bottom right");
+                    return false;
+                }
+            }
+            if (getCardsPlaced()[x + 1][y + 1] != null) {
+                isPlaceable = true;
+                ResourceCard neighbour = getCardsPlaced()[x + 1][y + 1];
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_LEFT).isVisible()){
+                    System.out.println("No top left");
+                    return false;
+                }
+            }
+            if (getCardsPlaced()[x - 1][y + 1] != null) {
+                isPlaceable = true;
+                ResourceCard neighbour = getCardsPlaced()[x - 1][y + 1];
+                if (!neighbour.getCorner(CornerLocationEnum.BOTTOM_LEFT).isVisible()){
+                    System.out.println("No bottom left");
+                    return false;
+                }
+            }
+            if (getCardsPlaced()[x + 1][y - 1] != null) {
+                isPlaceable = true;
+                ResourceCard neighbour = getCardsPlaced()[x + 1][y - 1];
+                if (!neighbour.getCorner(CornerLocationEnum.TOP_RIGHT).isVisible()){
+                    System.out.println("No top right");
+                    return false;
+                }
+            }
+            return isPlaceable;
+        }
+        return false;
+    }
+
+    /**
      * The method adds a card to the game's cards on the ground
+     *
      * @param card the card to add
      */
     public void addCardOnGround(Card card) {
@@ -578,6 +735,7 @@ public class GameState {
 
     /**
      * The method removes a card from the game's cards on the ground
+     *
      * @param card the card to remove
      */
     public void removeCardOnGround(Card card) {

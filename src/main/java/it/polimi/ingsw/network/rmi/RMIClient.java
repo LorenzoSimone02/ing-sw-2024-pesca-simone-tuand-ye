@@ -20,11 +20,12 @@ public class RMIClient extends ClientNetworkHandler implements RMIClientInterfac
 
     /**
      * Constructor of the class
+     *
      * @param registryName the name of the registry
-     * @param serverIP the IP address of the server
-     * @param port the port of the server
+     * @param serverIP     the IP address of the server
+     * @param port         the port of the server
      * @throws NotBoundException if the registry is not bound
-     * @throws RemoteException if there is an error with the remote connection
+     * @throws RemoteException   if there is an error with the remote connection
      */
     public RMIClient(String registryName, String serverIP, int port) throws NotBoundException, RemoteException {
         super();
@@ -33,21 +34,16 @@ public class RMIClient extends ClientNetworkHandler implements RMIClientInterfac
     }
 
     /**
-     * The method tries to send a packet to the server, if it is not possible
-     *      or if the packet is null it prints two different error messages
+     * The method tries to send a packet to the server
+     *
      * @param packet the packet to send
      */
     public void sendPacket(Packet packet) {
-        if (packet != null) {
-            try {
-                super.sendPacket(packet);
-                serverInterface.receivePacket(packet, this);
-            } catch (RemoteException e) {
-                System.err.println("Error sending packet: " + e);
-            }
-        } else {
-            System.err.println("Packet is null");
+        try {
+            super.sendPacket(packet);
+            serverInterface.receivePacket(packet, this);
+        } catch (RemoteException | InterruptedException e) {
+            System.err.println("Error sending packet: " + e);
         }
     }
-
 }

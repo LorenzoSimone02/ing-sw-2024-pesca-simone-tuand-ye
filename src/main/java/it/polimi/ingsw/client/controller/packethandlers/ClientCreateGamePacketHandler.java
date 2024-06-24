@@ -16,6 +16,6 @@ public class ClientCreateGamePacketHandler extends ClientPacketHandler {
      */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
-        new Thread(() -> clientManager.getNetworkHandler().sendPacket(new JoinPacket())).start();
+        clientManager.getNetworkHandler().sendPacket(new JoinPacket());
     }
 }

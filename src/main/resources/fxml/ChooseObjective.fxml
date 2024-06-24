@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.shape.Rectangle?>
+<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.client.view.gui.controllers.ChooseObjectiveController"
+            stylesheets="@../css/preGame.css">
+    <center>
+        <VBox alignment="CENTER" spacing="40.0">
+            <Label text="Choose your Objective Card" style="-fx-font-size: 40;"/>
+            <HBox fx:id="objectives" spacing="70" alignment="CENTER">
+                <ImageView fx:id="obj1" fitHeight="200" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseObj1">
+                    <clip>
+                        <Rectangle width="292" height="200" arcWidth="15" arcHeight="15"/>
+                    </clip>
+                </ImageView>
+                <ImageView fx:id="obj2" fitHeight="200" preserveRatio="true" pickOnBounds="true" onMouseClicked="#chooseObj2">
+                    <clip>
+                        <Rectangle width="292" height="200" arcWidth="15" arcHeight="15"/>
+                    </clip>
+                </ImageView>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

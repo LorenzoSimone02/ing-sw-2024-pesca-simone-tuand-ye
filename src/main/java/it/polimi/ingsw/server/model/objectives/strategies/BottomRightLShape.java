@@ -59,7 +59,7 @@ public class BottomRightLShape implements ObjectiveStrategy {
             for (int i = 0 ; i < 79; i++) {
                 if (cards[i][j] != null && !(cards[i][j] instanceof StarterCard)) {
                     if (cards[i][j].getColor() == columnCardsColor && !scoringCards.contains(cards[i][j])) {
-                        if (cards[i + 2][j] != null && !scoringCards.contains(cards[i + 2][j]) && !(cards[i + 2][j] instanceof StarterCard) && cards[i + 2][j].getColor() == columnCardsColor && !scoringCards.contains(cards[i + 2][j])) {
+                        if (cards[i + 2][j] != null && !(cards[i + 2][j] instanceof StarterCard) && cards[i + 2][j].getColor() == columnCardsColor && !scoringCards.contains(cards[i + 2][j])) {
                             if (cards[i + 3][j + 1] != null && !(cards[i + 3][j + 1] instanceof StarterCard) && cards[i + 3][j + 1].getColor() == diagonalCardColor && !scoringCards.contains(cards[i + 3][j + 1])) {
                                 points = points + pointsPerPattern;
 

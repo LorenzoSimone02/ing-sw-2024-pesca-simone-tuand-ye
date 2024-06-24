@@ -1,6 +1,5 @@
 package it.polimi.ingsw.client.view.gui;
 
-import it.polimi.ingsw.client.ClientMain;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.view.UserInterface;
@@ -33,7 +32,7 @@ public class GUIClient extends Application implements UserInterface {
     private final HashMap<ClientStatusEnum, URL> resourcesMap;
     private final HashMap<ClientStatusEnum, SceneController> controllersMap;
 
-    public GUIClient(ClientManager clientManager) {
+    public GUIClient() {
         resourcesMap = new HashMap<>();
         controllersMap = new HashMap<>();
         loadScenes();
@@ -54,12 +53,13 @@ public class GUIClient extends Application implements UserInterface {
     @Override
     public void start(Stage stage) {
         GUIClient.stage = stage;
-        updateScene(ClientStatusEnum.LOBBY);
+
+        changeScene(ClientStatusEnum.LOBBY);
         stage.setTitle("Codex Naturalis");
-        stage.setMinHeight(600);
-        stage.setMinWidth(900);
-        stage.setHeight(1080);
-        stage.setWidth(1920);
+        stage.setMinHeight(800);
+        stage.setMinWidth(1300);
+        stage.setHeight(800);
+        stage.setWidth(1300);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png"))));
         stage.show();
         stage.requestFocus();
@@ -73,7 +73,7 @@ public class GUIClient extends Application implements UserInterface {
             mediaPlayer.setVolume(0);
             mediaPlayer.play();
             Timeline fadeIn = new Timeline(
-                    new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0.15))
+                    new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0))
             );
             fadeIn.play();
         } catch (URISyntaxException e) {
@@ -85,9 +85,13 @@ public class GUIClient extends Application implements UserInterface {
         resourcesMap.put(ClientStatusEnum.LOBBY, getClass().getResource("/fxml/Login.fxml"));
         resourcesMap.put(ClientStatusEnum.LOGGED, getClass().getResource("/fxml/CreateGame.fxml"));
         resourcesMap.put(ClientStatusEnum.CONNECTED, getClass().getResource("/fxml/GameLobby.fxml"));
+        resourcesMap.put(ClientStatusEnum.CHOOSING_COLOR, getClass().getResource("/fxml/ChooseColor.fxml"));
+        resourcesMap.put(ClientStatusEnum.CHOOSING_STARTER_FACE, getClass().getResource("/fxml/ChooseStarterFace.fxml"));
+        resourcesMap.put(ClientStatusEnum.CHOOSING_OBJECTIVE, getClass().getResource("/fxml/ChooseObjective.fxml"));
+        resourcesMap.put(ClientStatusEnum.PLAYING, getClass().getResource("/fxml/Game.fxml"));
     }
 
-    public void updateScene(ClientStatusEnum status) {
+    public void changeScene(ClientStatusEnum status) {
         Platform.runLater(() -> {
             try {
                 FXMLLoader loader = new FXMLLoader(resourcesMap.get(status));
@@ -98,6 +102,11 @@ public class GUIClient extends Application implements UserInterface {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void updateCurrentScene(String data){
+        SceneController controller = controllersMap.get(ClientManager.getInstance().getGameState().getClientStatus());
+        Platform.runLater(() -> controller.updateScene(data));
     }
 
     public static Stage getStage() {
@@ -115,4 +124,5 @@ public class GUIClient extends Application implements UserInterface {
     public HashMap<ClientStatusEnum, SceneController> getControllersMap() {
         return controllersMap;
     }
+
 }

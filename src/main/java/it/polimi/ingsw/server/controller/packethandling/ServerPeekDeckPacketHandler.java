@@ -23,11 +23,10 @@ public class ServerPeekDeckPacketHandler extends ServerPacketHandler{
 
         if (peekDeckPacket.isGold()) {
             topCardID = controller.getGame().getTable().getGoldDeck().getCards().peek().getId();
-
         } else {
             topCardID = controller.getGame().getTable().getResourceDeck().getCards().peek().getId();
 
         }
-        controller.getNetworkHandler().sendPacket(clientConnection, new PeekDeckPacket(topCardID));
+        controller.getNetworkHandler().sendPacket(clientConnection, new PeekDeckPacket(topCardID, peekDeckPacket.isGold()));
     }
 }

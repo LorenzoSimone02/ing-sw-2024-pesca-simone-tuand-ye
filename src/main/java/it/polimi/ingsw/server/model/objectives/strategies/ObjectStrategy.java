@@ -27,8 +27,9 @@ public class ObjectStrategy implements ObjectiveStrategy {
 
     /**
      * Constructor of the class
+     *
      * @param objectRequirement the list of object types that the player must have in their card matrix
-     * @param pointsPerPattern the number of points that the player gets for each pattern of the specified object types
+     * @param pointsPerPattern  the number of points that the player gets for each pattern of the specified object types
      */
     public ObjectStrategy(List<ObjectTypeEnum> objectRequirement, int pointsPerPattern) {
         this.objectRequirement = objectRequirement;
@@ -37,23 +38,18 @@ public class ObjectStrategy implements ObjectiveStrategy {
 
     /**
      * This method calculates the points of the player based on the number
-     *      of the specified object types the player has in their card matrix
+     * of the specified object types the player has in their card matrix
+     *
      * @param player the player whose points are being calculated
      * @return the points of the player based on the number of the specified object types the player has in their card matrix
      */
     public int calculatePoints(Player player) {
-        int points;
         Object scoringObject;
         HashMap<ObjectTypeEnum, Integer> objectRequirementsMap = new HashMap<>();
         int inkwellFrequency = 0, quillFrequency = 0, manuscriptFrequency = 0;
 
         for (ObjectTypeEnum objectTypeEnum : objectRequirement) {
-            if (objectRequirementsMap.containsKey(objectTypeEnum)) {
-                objectRequirementsMap.put(objectTypeEnum, objectRequirementsMap.get(objectTypeEnum) + 1);
-
-            } else {
-                objectRequirementsMap.put(objectTypeEnum, 1);
-            }
+            objectRequirementsMap.put(objectTypeEnum, objectRequirementsMap.getOrDefault(objectTypeEnum, 0) + 1);
         }
 
         for (ObjectTypeEnum objectTypeEnum : objectRequirementsMap.keySet()) {
@@ -68,16 +64,15 @@ public class ObjectStrategy implements ObjectiveStrategy {
 
         if (objectRequirementsMap.keySet().size() == 1) {
             return Math.max(Math.max(inkwellFrequency, quillFrequency), manuscriptFrequency) * pointsPerPattern;
-
         } else {
-
             return Math.min(Math.min(inkwellFrequency, quillFrequency), manuscriptFrequency) * pointsPerPattern;
         }
     }
 
     /**
      * This method returns the number of points that the player gets for each pattern
-     *      of the specified object types in their card matrix
+     * of the specified object types in their card matrix
+     *
      * @return the number of points that the player gets for each pattern of the specified object types in their card matrix
      */
     public int getPointsPerPattern() {

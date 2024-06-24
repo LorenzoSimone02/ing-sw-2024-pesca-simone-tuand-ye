@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.rmi.RemoteException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class SocketClient extends ClientNetworkHandler {
 
@@ -15,11 +17,16 @@ public class SocketClient extends ClientNetworkHandler {
     private final int port;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+    /**
+     * Executor service used to send packets
+     */
+    private final ExecutorService executorService;
 
     public SocketClient(String ip, int port) throws RemoteException {
         super();
         this.ip = ip;
         this.port = port;
+        this.executorService = Executors.newSingleThreadExecutor();
         init();
     }
 
@@ -47,8 +54,8 @@ public class SocketClient extends ClientNetworkHandler {
         }).start();
     }
 
-    public void sendPacket(Packet packet) {
-        new Thread(() -> {
+    public synchronized void sendPacket(Packet packet) {
+        executorService.submit(() -> {
             try {
                 super.sendPacket(packet);
                 out.writeObject(packet);
@@ -57,6 +64,6 @@ public class SocketClient extends ClientNetworkHandler {
             } catch (IOException e) {
                 System.err.println("Error sending packet: " + e);
             }
-        }).start();
+        });
     }
 }

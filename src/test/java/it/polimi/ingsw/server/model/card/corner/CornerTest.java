@@ -21,19 +21,15 @@ public class CornerTest {
     ResourceCard testCard;
 
     @BeforeEach
-    public void setUp() {
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard2.json"))));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            String jsonData = stringBuilder.toString();
-            testCard = new ResourceCard(jsonData);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public void setUp() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard2.json"))));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while ((line = reader.readLine()) != null) {
+            stringBuilder.append(line);
         }
+        String jsonData = stringBuilder.toString();
+        testCard = new ResourceCard(jsonData);
     }
 
     @Test
@@ -48,15 +44,16 @@ public class CornerTest {
         int blCount = 0;
 
         for (Corner corner : currCorners) {
-
             if (corner.getLocation() == CornerLocationEnum.TOP_LEFT) tlCount++;
             if (corner.getLocation() == CornerLocationEnum.TOP_RIGHT) trCount++;
             if (corner.getLocation() == CornerLocationEnum.BOTTOM_RIGHT) brCount++;
             if (corner.getLocation() == CornerLocationEnum.BOTTOM_LEFT) blCount++;
-
         }
-        if (!(trCount == 2 && tlCount == 2 && brCount == 2 && blCount == 2))
-            fail("CornerLocationEnum counters are not equals to 2");
+
+        assertEquals(tlCount, 2);
+        assertEquals(trCount, 2);
+        assertEquals(brCount, 2);
+        assertEquals(blCount, 2);
     }
 
     @Test

@@ -46,7 +46,6 @@ public class DrawCardCommand extends Command {
                 if (selected > 0 && selected < 5 && selected <= (clientManager.getGameState().getCardsOnGround().size() - 2) ) {
 
                     ArrayList<Card> drawableGroundCards = new ArrayList<>(4);
-
                     for (Card currCard: clientManager.getGameState().getCardsOnGround()) {
                         if (!(currCard instanceof ObjectiveCard)) drawableGroundCards.add(currCard);
                     }

@@ -10,7 +10,7 @@
             stylesheets="@../css/preGame.css">
     <center>
         <VBox alignment="CENTER" spacing="20.0">
-            <ImageView fitWidth="250" preserveRatio="true" pickOnBounds="true">
+            <ImageView fitWidth="300" preserveRatio="true" pickOnBounds="true">
                 <Image url="@../images/title.png"/>
             </ImageView>
             <Label fx:id="welcoleLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="31.0" prefHeight="128.0"

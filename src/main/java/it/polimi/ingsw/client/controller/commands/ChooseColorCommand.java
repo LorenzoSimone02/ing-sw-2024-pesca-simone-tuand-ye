@@ -25,7 +25,7 @@ public class ChooseColorCommand extends Command {
      */
     @Override
     public void executeCommand(String input, ClientManager clientManager) {
-        if (isExecutable(clientManager)) {
+        if (isExecutable(clientManager) && clientManager.getGameState().getTokenColor() == null) {
             if (input.split(" ").length == 1) {
                 String color = input.split(" ")[0];
                 if (color.equalsIgnoreCase("red") || color.equalsIgnoreCase("yellow") || color.equalsIgnoreCase("green") || color.equalsIgnoreCase("blue")) {

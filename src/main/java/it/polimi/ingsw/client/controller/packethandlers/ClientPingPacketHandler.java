@@ -17,6 +17,6 @@ public class ClientPingPacketHandler extends ClientPacketHandler {
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         clientManager.getGameState().setLastPing(System.currentTimeMillis());
-        new Thread(() -> clientManager.getNetworkHandler().sendPacket(new PingPacket())).start();
+        clientManager.getNetworkHandler().sendPacket(new PingPacket());
     }
 }

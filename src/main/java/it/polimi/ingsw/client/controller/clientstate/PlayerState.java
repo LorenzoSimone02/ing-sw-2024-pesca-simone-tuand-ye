@@ -37,6 +37,7 @@ public class PlayerState {
 
     /**
      * The constructor of the class
+     *
      * @param username the player's username
      */
     public PlayerState(String username) {
@@ -48,6 +49,7 @@ public class PlayerState {
 
     /**
      * The method returns the player's username
+     *
      * @return the player's username
      */
     public String getUsername() {
@@ -56,6 +58,7 @@ public class PlayerState {
 
     /**
      * The method returns the player's score
+     *
      * @return the player's score
      */
     public int getScore() {
@@ -64,6 +67,7 @@ public class PlayerState {
 
     /**
      * The method sets the player's score
+     *
      * @param score the player's score
      */
     public void setScore(int score) {
@@ -72,6 +76,7 @@ public class PlayerState {
 
     /**
      * The method returns the player's token color
+     *
      * @return the player's token color
      */
     public String getTokenColor() {
@@ -80,6 +85,7 @@ public class PlayerState {
 
     /**
      * The method sets the player's token color
+     *
      * @param tokenColor the player's token color
      */
     public void setTokenColor(String tokenColor) {
@@ -88,6 +94,7 @@ public class PlayerState {
 
     /**
      * The method returns the player's placed cards
+     *
      * @return the player's placed cards
      */
     public ResourceCard[][] getCardsPlaced() {
@@ -96,6 +103,7 @@ public class PlayerState {
 
     /**
      * The method returns the player's ordered placed cards
+     *
      * @return the player's ordered placed cards
      */
     public LinkedList<ResourceCard> getOrderedCardsPlaced() {
@@ -104,6 +112,7 @@ public class PlayerState {
 
     /**
      * The method adds a card to the player's ordered placed cards
+     *
      * @param card the card to add
      */
     public void addOrderedCard(ResourceCard card) {
@@ -112,9 +121,10 @@ public class PlayerState {
 
     /**
      * The method sets a card to the player's placed cards matrix
+     *
      * @param card the card to set
-     * @param x the x coordinate
-     * @param y the y coordinate
+     * @param x    the x coordinate
+     * @param y    the y coordinate
      */
     public void setCardPlaced(ResourceCard card, int x, int y) {
         cardsPlaced[x][y] = card;
@@ -122,9 +132,19 @@ public class PlayerState {
 
     /**
      * The method sets the player's starter card at the center of the player's placed cards matrix
+     *
      * @param card the starter card
      */
-    public void setStarterCard(StarterCard card){
+    public void setStarterCard(StarterCard card) {
         setCardPlaced(card, 40, 40);
+    }
+
+    /**
+     * The method returns the player's starter card
+     *
+     * @return the player's starter card
+     */
+    public StarterCard getStarterCard() {
+        return (StarterCard) cardsPlaced[40][40];
     }
 }

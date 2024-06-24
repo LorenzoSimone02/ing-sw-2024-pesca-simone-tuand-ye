@@ -56,14 +56,14 @@ public class SocketClientConnection extends ClientConnection implements Runnable
                 }
                 socketServer.getServerNetworkHandler().removeConnection(this);
                 Thread.currentThread().interrupt();
-            } catch (ClassNotFoundException e) {
+            } catch (ClassNotFoundException | InterruptedException e) {
                 System.err.println("Could not read the packet " + e);
             }
         }
     }
 
     @Override
-    public void receivePacket(Packet packet) {
+    public synchronized void receivePacket(Packet packet) {
         try {
             out.writeObject(packet);
             out.flush();

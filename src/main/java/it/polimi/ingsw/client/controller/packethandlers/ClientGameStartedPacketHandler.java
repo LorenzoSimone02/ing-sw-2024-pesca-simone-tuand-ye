@@ -4,6 +4,8 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
+import it.polimi.ingsw.client.view.ViewModeEnum;
+import it.polimi.ingsw.client.view.gui.GUIClient;
 import it.polimi.ingsw.network.packets.GameStartedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.model.card.ResourceCard;
@@ -15,14 +17,14 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
 
     /**
      * The method handles the starting game packet
-     * @param packet the game starting packet
+     *
+     * @param packet        the game starting packet
      * @param clientManager the client manager
      */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         GameStartedPacket gameStartedPacket = (GameStartedPacket) packet;
 
-        clientManager.getGameState().setActivePlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().setFirstPlayer(gameStartedPacket.getFirstPlayer());
         clientManager.getGameState().getPlayerStates().clear();
 
@@ -44,6 +46,9 @@ public class ClientGameStartedPacketHandler extends ClientPacketHandler {
 
         if (!gameStartedPacket.isReconnection()) {
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CHOOSING_COLOR);
+            if (ClientManager.getInstance().getViewMode() == ViewModeEnum.GUI) {
+                ((GUIClient) ClientManager.getInstance().getUserInterface()).changeScene(ClientManager.getInstance().getGameState().getClientStatus());
+            }
             System.out.println(Printer.CYAN + "Before playing, choose your Token color with the command /chooseColor <color>" + Printer.RESET);
         }
     }

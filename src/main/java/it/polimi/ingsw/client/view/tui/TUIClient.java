@@ -7,14 +7,14 @@ import it.polimi.ingsw.client.view.UserInterface;
 /**
  * Text User Interface client view
  */
-public record TUIClient(ClientManager clientManager) implements UserInterface {
+public class TUIClient implements UserInterface {
 
     /**
      * The method runs the TUI client view
      */
     @Override
     public void runView() {
-        CommandReader commandReader = new CommandReader(clientManager);
+        CommandReader commandReader = new CommandReader(ClientManager.getInstance());
         commandReader.run();
     }
 

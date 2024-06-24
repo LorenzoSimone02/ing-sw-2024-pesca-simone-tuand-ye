@@ -5,6 +5,7 @@ module it.polimi.ingsw.progetto {
     requires org.controlsfx.controls;
     requires com.google.gson;
     requires java.rmi;
+    requires java.desktop;
 
     exports it.polimi.ingsw.client;
     exports it.polimi.ingsw.client.view;
@@ -40,4 +41,6 @@ module it.polimi.ingsw.progetto {
     opens it.polimi.ingsw.client.controller.clientstate to javafx.fxml;
     opens it.polimi.ingsw.server.model.card.goldstrategies to com.google.gson;
     opens it.polimi.ingsw.client.view.gui.controllers to javafx.fxml;
+    exports it.polimi.ingsw.client.view.gui.gestures to javafx.graphics;
+    opens it.polimi.ingsw.client.view.gui.gestures to javafx.fxml;
 }
