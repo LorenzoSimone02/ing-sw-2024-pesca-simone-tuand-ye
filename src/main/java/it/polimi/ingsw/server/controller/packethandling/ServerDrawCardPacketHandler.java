@@ -5,6 +5,7 @@ import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.packets.DrawCardPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
+import it.polimi.ingsw.network.packets.PeekDeckPacket;
 import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.GoldCard;
@@ -41,9 +42,11 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
                 if (card instanceof GoldCard) {
                     newCard = controller.getGame().getTable().getGoldDeck().drawCard();
                     controller.getGame().getTable().getCardsOnGround().add(newCard);
+                    controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
                 } else if (card instanceof ResourceCard) {
                     newCard = controller.getGame().getTable().getResourceDeck().drawCard();
                     controller.getGame().getTable().getCardsOnGround().add(newCard);
+                    controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
                 }
                 controller.getNetworkHandler().sendPacketToAll(new DrawCardPacket(card.getId(), newCard.getId()));
                 controller.getPlayerController(clientConnection.getUsername()).getPlayer().addCardInHand(card);
@@ -59,12 +62,14 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
                 return;
             }
             card = controller.getGame().getTable().getGoldDeck().drawCard();
+            controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
         } else {
             if(controller.getGame().getTable().getResourceDeck().getCards().isEmpty()) {
-                controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
+                controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
                 return;
             }
             card = controller.getGame().getTable().getResourceDeck().drawCard();
+            controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
         }
         controller.getNetworkHandler().sendPacket(clientConnection, new DrawCardPacket(card.getId()));
         controller.getPlayerController(clientConnection.getUsername()).getPlayer().addCardInHand(card);

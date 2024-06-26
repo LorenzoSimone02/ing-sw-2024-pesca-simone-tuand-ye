@@ -19,7 +19,8 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
 
     /**
      * The method handles the joining client packets from the client
-     * @param packet the join packet
+     *
+     * @param packet     the join packet
      * @param controller the game controller
      * @param connection the connection of the client
      */
@@ -52,6 +53,8 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             GameSave gameSave = new GameSave(oldMatch.getGameController().getGame());
             networkHandler.sendPacket(connection, new JoinPacket(gameID));
             networkHandler.sendPacket(connection, new GameStartedPacket(oldMatch.getGameController().getGame(), true));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(oldMatch.getGameController().getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(oldMatch.getGameController().getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
             networkHandler.sendPacketToAll(new RestoreGameStatePacket(connection.getUsername(), gameSave.getPlayerSaves()));
             System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
             return;

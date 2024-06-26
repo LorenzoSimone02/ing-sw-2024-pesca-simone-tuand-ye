@@ -18,7 +18,8 @@ public class ClientTurnCardPacketHandler extends ClientPacketHandler {
 
     /**
      * The method handles the card face turning packet
-     * @param packet the card turning packet
+     *
+     * @param packet        the card turning packet
      * @param clientManager the client manager
      */
     public void handlePacket(Packet packet, ClientManager clientManager) {
@@ -29,12 +30,13 @@ public class ClientTurnCardPacketHandler extends ClientPacketHandler {
         } else {
             card.setFace(FaceEnum.FRONT);
         }
-        if(clientManager.getViewMode() == ViewModeEnum.GUI){
+        if (clientManager.getViewMode() == ViewModeEnum.GUI) {
             Platform.runLater(() -> {
                 GameGuiController gameGuiController = (GameGuiController) ((GUIClient) clientManager.getUserInterface()).getControllersMap().get(clientManager.getGameState().getClientStatus());
                 gameGuiController.turnCard(card);
             });
+        } else {
+            System.out.println(Printer.GREEN + "Card turned successfully." + Printer.RESET);
         }
-        System.out.println(Printer.GREEN + "Card turned successfully." + Printer.RESET);
     }
 }

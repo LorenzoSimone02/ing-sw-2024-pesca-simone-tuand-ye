@@ -48,8 +48,8 @@ public class DrawCardPacket extends Packet {
      * @param gold a boolean that is true if the card is a gold card
      */
     public DrawCardPacket(boolean gold) {
-        cardID = -1;
-        newCardID = -1;
+        this.cardID = -1;
+        this.newCardID = -1;
         this.gold = gold;
     }
 

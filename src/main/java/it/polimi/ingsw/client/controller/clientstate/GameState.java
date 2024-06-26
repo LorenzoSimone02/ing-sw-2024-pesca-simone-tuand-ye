@@ -100,12 +100,12 @@ public class GameState {
     /**
      * The first card of the resources deck
      */
-    private Card topResourcesDeckCard;
+    private ResourceCard topResourcesDeckCard;
 
     /**
      * The first card of the gold deck
      */
-    private Card topGoldDeckCard;
+    private GoldCard topGoldDeckCard;
 
     /**
      * The player's resources
@@ -340,7 +340,7 @@ public class GameState {
      *
      * @return the first card of the resources deck
      */
-    public Card getTopResourcesDeckCard() {
+    public ResourceCard getTopResourcesDeckCard() {
         return topResourcesDeckCard;
     }
 
@@ -349,7 +349,7 @@ public class GameState {
      *
      * @param topResourcesDeckCard the first card of the resources deck
      */
-    public void setTopResourcesDeckCard(Card topResourcesDeckCard) {
+    public void setTopResourcesDeckCard(ResourceCard topResourcesDeckCard) {
         this.topResourcesDeckCard = topResourcesDeckCard;
     }
 
@@ -358,7 +358,7 @@ public class GameState {
      *
      * @return the first card of the gold deck
      */
-    public Card getTopGoldDeckCard() {
+    public GoldCard getTopGoldDeckCard() {
         return topGoldDeckCard;
     }
 
@@ -367,7 +367,7 @@ public class GameState {
      *
      * @param topGoldDeckCard the first card of the gold deck
      */
-    public void setTopGoldDeckCard(Card topGoldDeckCard) {
+    public void setTopGoldDeckCard(GoldCard topGoldDeckCard) {
         this.topGoldDeckCard = topGoldDeckCard;
     }
 

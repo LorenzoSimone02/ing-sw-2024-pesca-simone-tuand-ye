@@ -317,8 +317,9 @@ public class GameController {
                 p.addCardInHand(game.getTable().getGoldDeck().drawCard());
             }
 
-            GameStartedPacket gameStartedPacket = new GameStartedPacket(game, false);
-            networkHandler.sendPacketToAll(gameStartedPacket);
+            networkHandler.sendPacketToAll(new GameStartedPacket(game, false));
+            networkHandler.sendPacketToAll(new PeekDeckPacket(getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
+            networkHandler.sendPacketToAll(new PeekDeckPacket(getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
 
             game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
         } catch (Exception e) {
@@ -454,6 +455,8 @@ public class GameController {
         for (Player player : game.getPlayers()) {
             ClientConnection connection = networkHandler.getConnectionByNickname(player.getUsername());
             networkHandler.sendPacket(connection, new GameStartedPacket(game, true));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getResourceDeck().getCards().peek().getId(),false));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getGoldDeck().getCards().peek().getId(),true));
             networkHandler.sendPacket(connection, new RestoreGameStatePacket(player.getUsername(), gameSave.getPlayerSaves()));
             networkHandler.sendPacket(connection, new InfoPacket(Printer.GREEN + "You previous Game has been restored." + Printer.RESET));
             networkHandler.sendPacket(connection, new EndTurnPacket(game.getInfo().getActivePlayer().getUsername()));

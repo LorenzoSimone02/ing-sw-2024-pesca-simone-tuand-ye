@@ -6,7 +6,6 @@ import it.polimi.ingsw.client.view.gui.gestures.GroundCardGestures;
 import it.polimi.ingsw.client.view.gui.gestures.HandCardGestures;
 import it.polimi.ingsw.client.view.gui.gestures.TableGestures;
 import it.polimi.ingsw.network.packets.ChatPacket;
-import it.polimi.ingsw.network.packets.PeekDeckPacket;
 import it.polimi.ingsw.server.model.card.Card;
 import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
@@ -88,9 +87,7 @@ public class GameGuiController implements SceneController, Initializable {
             updateResources();
             updatePoints();
             updateTurn();
-
-            ClientManager.getInstance().getNetworkHandler().sendPacket(new PeekDeckPacket(true));
-            ClientManager.getInstance().getNetworkHandler().sendPacket(new PeekDeckPacket(false));
+            updateTopDeckCards();
 
             FadeTransition fadeTransition = new FadeTransition(Duration.millis(750), gamePane);
             fadeTransition.setFromValue(0);
@@ -252,10 +249,12 @@ public class GameGuiController implements SceneController, Initializable {
     private void restoreCards() {
         for (ResourceCard card : ClientManager.getInstance().getGameState().getOrderedCardsPlaced()) {
             boolean found = false;
+            System.out.println("Searching card " + card.getId());
             for (int x = 0; x < 81; x++) {
                 for (int y = 0; y < 81; y++) {
                     ResourceCard c = ClientManager.getInstance().getGameState().getCardsPlaced()[x][y];
                     if (c != null && c.getId() == card.getId()) {
+                        System.out.println("Placing card " + card.getId() + " at " + x + " " + y);
                         placeCard(card, x, y, ClientManager.getInstance().getGameState().getUsername());
                         found = true;
                         break;
@@ -355,7 +354,7 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
-    public void updateTopDeckCards() {
+    private void updateTopDeckCards() {
         try {
             for (Node node : col2.getChildren()) {
                 if (node.getId().equals("goldDeck")) {
@@ -697,6 +696,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
         if (data.equals("resources")) {
             updateResources();
+        }
+        if(data.equals("updateDecks")) {
+            updateTopDeckCards();
         }
     }
 }

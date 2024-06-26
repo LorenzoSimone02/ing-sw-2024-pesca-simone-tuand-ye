@@ -28,8 +28,7 @@ public class RestoreGameStatePacket extends Packet {
      * @param playerSaves the list of the players' saved data
      */
     public RestoreGameStatePacket(String playerRestored, ArrayList<PlayerSave> playerSaves) {
-        this.playerSaves = new ArrayList<>();
-        this.playerSaves.addAll(playerSaves);
+        this.playerSaves = new ArrayList<>(playerSaves);
         this.playerRestored = playerRestored;
     }
 

@@ -124,6 +124,7 @@ public class GUIClient extends Application implements UserInterface {
 
     public void updateCurrentScene(String data) {
         SceneController controller = controllersMap.get(ClientManager.getInstance().getGameState().getClientStatus());
+        if (controller == null) return;
         Platform.runLater(() -> controller.updateScene(data));
     }
 

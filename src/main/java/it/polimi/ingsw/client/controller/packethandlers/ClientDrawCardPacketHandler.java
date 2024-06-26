@@ -20,7 +20,8 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
 
     /**
      * The method handles the card drawing packet
-     * @param packet the draw card packet
+     *
+     * @param packet        the draw card packet
      * @param clientManager the client manager
      */
     @Override
@@ -32,7 +33,7 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
             Card newCard = clientManager.getGameState().getCardById(drawCardPacket.getNewCardID());
             clientManager.getGameState().removeCardOnGround(card);
             clientManager.getGameState().addCardOnGround(newCard);
-            if(clientManager.getViewMode() == ViewModeEnum.GUI){
+            if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 Platform.runLater(() -> {
                     UserInterface userInterface = clientManager.getUserInterface();
                     GameGuiController gameGuiController = (GameGuiController) ((GUIClient) userInterface).getControllersMap().get(clientManager.getGameState().getClientStatus());
@@ -46,7 +47,7 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().addCardInHand(card);
 
             UserInterface userInterface = clientManager.getUserInterface();
-            if(clientManager.getViewMode() == ViewModeEnum.GUI){
+            if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 Platform.runLater(() -> {
                     GameGuiController gameGuiController = (GameGuiController) ((GUIClient) userInterface).getControllersMap().get(clientManager.getGameState().getClientStatus());
                     gameGuiController.addCardToHand(card);
@@ -56,6 +57,5 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
 
             clientManager.getNetworkHandler().sendPacket(new EndTurnPacket(clientManager.getGameState().getUsername()));
         }
-
     }
 }

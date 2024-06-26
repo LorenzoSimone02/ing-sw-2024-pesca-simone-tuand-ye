@@ -42,7 +42,8 @@ public class GameStartedPacket extends Packet {
 
     /**
      * Constructor of the class
-     * @param game the game that has started
+     *
+     * @param game         the game that has started
      * @param reconnection the boolean that indicates if the game is a reconnection
      */
     public GameStartedPacket(Game game, boolean reconnection) {
@@ -60,7 +61,7 @@ public class GameStartedPacket extends Packet {
         for (Card card : game.getTable().getCardsOnGround()) {
             cardsOnGround.add(card.getId());
         }
-        for(Card card : game.getTable().getObjectiveCards()){
+        for (Card card : game.getTable().getObjectiveCards()) {
             cardsOnGround.add(card.getId());
         }
         this.firstPlayer = game.getInfo().getFirstPlayer().getUsername();
@@ -68,13 +69,16 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the list of the usernames of the players
+     *
      * @return the list of the usernames of the players
      */
     public ArrayList<String> getPlayers() {
         return players;
     }
 
-    /** The method returns the username of the first player
+    /**
+     * The method returns the username of the first player
+     *
      * @return the username of the first player
      */
     public String getFirstPlayer() {
@@ -83,6 +87,7 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the map that associates the players' usernames with the IDs of the cards in their hands
+     *
      * @return the map that associates the players' usernames with the IDs of the cards in their hands
      */
     public HashMap<Integer, String> getCardsInHands() {
@@ -91,6 +96,7 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the list of the IDs of the cards on the ground
+     *
      * @return the list of the IDs of the cards on the ground
      */
     public ArrayList<Integer> getCardsOnGround() {
@@ -99,6 +105,7 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the boolean that indicates if the game is a reconnection
+     *
      * @return the boolean that indicates if the game is a reconnection
      */
     public boolean isReconnection() {
@@ -107,6 +114,7 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the client-side game starting packets handler
+     *
      * @return the client-side game starting packets handler
      */
     @Override
@@ -116,6 +124,7 @@ public class GameStartedPacket extends Packet {
 
     /**
      * The method returns the server-side game starting packets handler
+     *
      * @return the server-side game starting packets handler
      */
     @Override
