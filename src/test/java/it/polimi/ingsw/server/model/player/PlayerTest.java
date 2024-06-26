@@ -162,4 +162,14 @@ public class PlayerTest {
         assertEquals(999, testPlayer.getGame().getInfo().getId());
 
     }
+
+    @Test
+    public void addAndGetOrderedCardsTest() {
+
+        testPlayer.addOrderedCard(goldCardArray.get(3));
+        testPlayer.addOrderedCard(goldCardArray.get(7));
+
+        assertTrue(testPlayer.getOrderedCards().contains(goldCardArray.get(3)) && testPlayer.getOrderedCards().contains(goldCardArray.get(7)));
+
+    }
 }

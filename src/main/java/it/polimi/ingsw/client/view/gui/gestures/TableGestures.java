@@ -68,7 +68,7 @@ public class TableGestures {
 
             if (event.getDeltaY() < 0)
                 scale /= delta;
-            else
+            else if (event.getDeltaY() > 0)
                 scale *= delta;
 
             if (scale < MIN_SCALE || scale > MAX_SCALE)
