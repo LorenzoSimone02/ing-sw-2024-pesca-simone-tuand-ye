@@ -336,8 +336,10 @@ public class GameController {
         String OS = System.getProperty("os.name").toUpperCase();
         if (OS.contains("WIN"))
             return System.getenv("APPDATA") + "/CodexNaturalisSaves/";
-        else if (OS.contains("MAC"))
+        else if (OS.contains("MAC")){
+            new File(System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/";
+        }
         else if (OS.contains("NUX")){
             new File(System.getProperty("user.home") + "/.codexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/.codexNaturalisSaves/";
