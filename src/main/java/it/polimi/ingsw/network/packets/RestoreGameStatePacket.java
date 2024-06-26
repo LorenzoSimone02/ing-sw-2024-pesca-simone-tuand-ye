@@ -18,26 +18,11 @@ public class RestoreGameStatePacket extends Packet {
     private final ArrayList<PlayerSave> playerSaves;
 
     /**
-     * The username of the player that has been restored
-     */
-    private final String playerRestored;
-
-    /**
      * Constructor of the class
-     * @param playerRestored the username of the player that has been restored
      * @param playerSaves the list of the players' saved data
      */
-    public RestoreGameStatePacket(String playerRestored, ArrayList<PlayerSave> playerSaves) {
+    public RestoreGameStatePacket(ArrayList<PlayerSave> playerSaves) {
         this.playerSaves = new ArrayList<>(playerSaves);
-        this.playerRestored = playerRestored;
-    }
-
-    /**
-     * The method returns the username of the player that has been restored
-     * @return the username of the player that has been restored
-     */
-    public String getPlayerRestored() {
-        return playerRestored;
     }
 
     /**

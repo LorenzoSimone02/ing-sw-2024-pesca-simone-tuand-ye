@@ -8,7 +8,6 @@ import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.controller.exceptions.GameStartException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.controller.save.CardSave;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.controller.save.PlayerSave;
@@ -63,6 +62,7 @@ public class GameController {
 
     /**
      * The constructor of the class
+     *
      * @param networkHandler the network handler of the game
      */
     public GameController(ServerNetworkHandler networkHandler) {
@@ -74,6 +74,7 @@ public class GameController {
 
     /**
      * The method returns the current game
+     *
      * @return the current game
      */
     public Game getGame() {
@@ -82,6 +83,7 @@ public class GameController {
 
     /**
      * The method returns the network handler of the game
+     *
      * @return the network handler of the game
      */
     public ServerNetworkHandler getNetworkHandler() {
@@ -90,6 +92,7 @@ public class GameController {
 
     /**
      * The method returns the list of the player controllers
+     *
      * @return the list of the player controllers
      */
     public synchronized List<PlayerController> getPlayerControllers() {
@@ -98,6 +101,7 @@ public class GameController {
 
     /**
      * The method returns the player controller of the player
+     *
      * @param player the player whose controller is being returned
      * @return the controller of the player
      */
@@ -112,6 +116,7 @@ public class GameController {
 
     /**
      * The method returns the player controller of the player given the nickname
+     *
      * @param nickname the nickname of the player whose controller is being returned
      * @return the controller of the player
      */
@@ -126,6 +131,7 @@ public class GameController {
 
     /**
      * The method sets the maximum number of players
+     *
      * @param playersNumber the maximum number of players
      */
     public synchronized void setMaxPlayers(int playersNumber) {
@@ -134,6 +140,7 @@ public class GameController {
 
     /**
      * The method adds a player to the game
+     *
      * @param username the username of the player to add
      */
     public synchronized void addPlayer(String username) throws DuplicatePlayerException, FullLobbyException {
@@ -159,6 +166,7 @@ public class GameController {
 
     /**
      * The method reconnects a player to the game
+     *
      * @param player the player to reconnect
      */
     public void reconnectPlayer(String player) {
@@ -180,12 +188,13 @@ public class GameController {
 
     /**
      * The method defines the controller's behavior whenever a player disconnects
+     *
      * @param username the username of the player who disconnected
      */
     public synchronized void onDisconnect(String username) {
         Optional<Player> player = getPlayerByNick(username);
         if (player.isPresent()) {
-            if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING)) {
+            if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING) || game.getInfo().getGameStatus().equals(GameStatusEnum.WAITING_FOR_RECONNECTION)) {
                 game.getOfflinePlayers().add(player.get());
             }
             removePlayer(player.get());
@@ -199,6 +208,7 @@ public class GameController {
 
     /**
      * The method removes a player from the game
+     *
      * @param player the player to remove
      */
     public synchronized void removePlayer(Player player) {
@@ -220,6 +230,7 @@ public class GameController {
 
     /**
      * The method checks if the player has disconnected
+     *
      * @param player the player to check
      * @return true if the player has disconnected
      */
@@ -235,6 +246,7 @@ public class GameController {
 
     /**
      * The method creates a new game
+     *
      * @param gameId the ID assigned to the game
      */
     public synchronized void createGame(int gameId) {
@@ -295,6 +307,7 @@ public class GameController {
 
     /**
      * The method starts the game
+     *
      * @throws GameStartException if an error occurs while starting the game
      */
     public synchronized void startGame() throws GameStartException {
@@ -331,17 +344,17 @@ public class GameController {
 
     /**
      * The method sets the default directory for the saved games
+     *
      * @return the default directory for the saved games
      */
     private String setDefaultDirectory() {
         String OS = System.getProperty("os.name").toUpperCase();
         if (OS.contains("WIN"))
             return System.getenv("APPDATA") + "/CodexNaturalisSaves/";
-        else if (OS.contains("MAC")){
+        else if (OS.contains("MAC")) {
             new File(System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/";
-        }
-        else if (OS.contains("NUX")){
+        } else if (OS.contains("NUX")) {
             new File(System.getProperty("user.home") + "/.codexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/.codexNaturalisSaves/";
         }
@@ -376,6 +389,7 @@ public class GameController {
 
     /**
      * The method loads a previously saved game
+     *
      * @param gameSave the saved game to load
      */
     public synchronized void loadGameFromSave(GameSave gameSave) {
@@ -425,6 +439,9 @@ public class GameController {
                 card.setFace(FaceEnum.valueOf(cardSave.getFace()));
                 player.addCardInHand(card);
             }
+            for (CardSave cardSave : playerSave.getOrderedCards()) {
+                player.addOrderedCard((ResourceCard) getCardById(cardSave.getId()));
+            }
             for (int i = 0; i < 81; i++) {
                 for (int j = 0; j < 81; j++) {
                     CardSave cardSave = playerSave.getCards()[i][j];
@@ -454,9 +471,9 @@ public class GameController {
         for (Player player : game.getPlayers()) {
             ClientConnection connection = networkHandler.getConnectionByNickname(player.getUsername());
             networkHandler.sendPacket(connection, new GameStartedPacket(game, true));
-            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getResourceDeck().getCards().peek().getId(),false));
-            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getGoldDeck().getCards().peek().getId(),true));
-            networkHandler.sendPacket(connection, new RestoreGameStatePacket(player.getUsername(), gameSave.getPlayerSaves()));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
+            networkHandler.sendPacket(connection, new PeekDeckPacket(getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
+            networkHandler.sendPacket(connection, new RestoreGameStatePacket(gameSave.getPlayerSaves()));
             networkHandler.sendPacket(connection, new InfoPacket(Printer.GREEN + "You previous Game has been restored." + Printer.RESET));
             networkHandler.sendPacket(connection, new EndTurnPacket(game.getInfo().getActivePlayer().getUsername()));
         }
@@ -515,6 +532,7 @@ public class GameController {
 
     /**
      * The method instantiates all the cards of the game
+     *
      * @throws IOException if an error occurs while instantiating the cards
      */
     public synchronized void instantiateCards() throws IOException {
@@ -599,6 +617,7 @@ public class GameController {
 
     /**
      * The method returns the next player
+     *
      * @return the next player
      */
     public synchronized Player nextPlayer() {
@@ -710,6 +729,7 @@ public class GameController {
 
     /**
      * The method returns the player with the given nickname
+     *
      * @return the player with the given nickname
      */
     public synchronized Optional<Player> getPlayerByNick(String nick) {
@@ -724,6 +744,7 @@ public class GameController {
 
     /**
      * The method returns the card with the given ID
+     *
      * @return the card with the given ID
      */
     public synchronized Card getCardById(int ID) {

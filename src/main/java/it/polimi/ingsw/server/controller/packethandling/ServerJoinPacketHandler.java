@@ -55,7 +55,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
             networkHandler.sendPacket(connection, new GameStartedPacket(oldMatch.getGameController().getGame(), true));
             networkHandler.sendPacket(connection, new PeekDeckPacket(oldMatch.getGameController().getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
             networkHandler.sendPacket(connection, new PeekDeckPacket(oldMatch.getGameController().getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
-            networkHandler.sendPacketToAll(new RestoreGameStatePacket(connection.getUsername(), gameSave.getPlayerSaves()));
+            networkHandler.sendPacketToAll(new RestoreGameStatePacket(gameSave.getPlayerSaves()));
             System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has reconnected to the game " + oldMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
             return;
         }

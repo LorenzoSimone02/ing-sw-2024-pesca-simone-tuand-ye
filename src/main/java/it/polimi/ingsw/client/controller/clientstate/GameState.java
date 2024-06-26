@@ -582,7 +582,9 @@ public class GameState {
                 return state;
             }
         }
-        return new PlayerState(nickname);
+        PlayerState playerState = new PlayerState(nickname);
+        playerStates.add(playerState);
+        return playerState;
     }
 
     /**
