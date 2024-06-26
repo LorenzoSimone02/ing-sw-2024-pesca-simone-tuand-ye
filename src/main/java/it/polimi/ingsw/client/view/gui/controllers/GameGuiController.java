@@ -17,8 +17,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
@@ -27,8 +25,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.util.Duration;
 
 import java.net.URISyntaxException;
@@ -60,13 +59,15 @@ public class GameGuiController implements SceneController, Initializable {
     @FXML
     private VBox col1, col2;
     @FXML
-    private Label animal, fungi, plant, insect, manuscript, inkwell, quill;
-    @FXML
-    private HBox board;
+    private Label animal, fungi, plant, insect, manuscript, inkwell, quill, turn;
     @FXML
     private StackPane tokens;
     @FXML
     private TextField messageInput;
+    @FXML
+    private ComboBox<String> messageRecipient;
+    @FXML
+    private ScrollPane scrollPane;
     @FXML
     private VBox messagesBox;
 
@@ -83,8 +84,10 @@ public class GameGuiController implements SceneController, Initializable {
 
             initializeOpponents();
             initializeCards();
+            restoreCards();
             updateResources();
             updatePoints();
+            updateTurn();
 
             ClientManager.getInstance().getNetworkHandler().sendPacket(new PeekDeckPacket(true));
             ClientManager.getInstance().getNetworkHandler().sendPacket(new PeekDeckPacket(false));
@@ -96,53 +99,40 @@ public class GameGuiController implements SceneController, Initializable {
         });
     }
 
-    public void addPoints() {
-        int SPOTS = 81;
-        double distX = 55;
-        double distY = 29;
-        double w = SPOTS * distX;
-        double h = SPOTS * distY;
-
-        Canvas grid = new Canvas(w, h);
-        grid.setMouseTransparent(true);
-        GraphicsContext gc = grid.getGraphicsContext2D();
-        gc.setStroke(Color.BLACK);
-        gc.setLineWidth(0.5);
-
-        for (int i = 1; i <= SPOTS; i++) {
-            double x = i * distX;
-            for (int j = 1; j <= SPOTS; j++) {
-                double y = j * distY;
-                gc.fillOval(x, y, 3, 3);
-            }
-        }
-
-        playerTable.getChildren().add(grid);
-        grid.toBack();
-    }
-
     @FXML
     private void sendChatMessage() {
         String message = messageInput.getText();
         String username = ClientManager.getInstance().getGameState().getUsername();
         if (!message.trim().isEmpty()) {
             messageInput.clear();
-            ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, null, message));
+            if (messageRecipient.getValue() == null || messageRecipient.getValue().equals("Everyone")) {
+                ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, null, message));
+            } else {
+                ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, messageRecipient.getValue(), message));
+            }
         }
     }
 
     public void addMessage(String sender, String recipient, String message) {
-        Label messageLabel;
+        TextFlow messageFlow;
         if (recipient != null) {
-            messageLabel = new Label(sender + " -> " + recipient + ": " + message);
+            messageFlow = new TextFlow();
+            Text senderText = new Text(sender + " -> " + recipient + ": ");
+            senderText.setStyle("-fx-font-weight: bold;");
+            Text messageText = new Text(message);
+            messageFlow.getChildren().addAll(senderText, messageText);
         } else {
-            messageLabel = new Label(sender + ": " + message);
+            messageFlow = new TextFlow();
+            Text senderText = new Text(sender + ": ");
+            senderText.setStyle("-fx-font-weight: bold;");
+            Text messageText = new Text(message);
+            messageFlow.getChildren().addAll(senderText, messageText);
         }
-        messageLabel.setWrapText(true);
-        messagesBox.getChildren().add(messageLabel);
+        messagesBox.getChildren().add(messageFlow);
+        scrollPane.setVvalue(1);
     }
 
-    public void updateResources() {
+    private void updateResources() {
         for (String resources : ClientManager.getInstance().getGameState().getResources().keySet()) {
             switch (resources) {
                 case "ANIMAL":
@@ -178,10 +168,13 @@ public class GameGuiController implements SceneController, Initializable {
             int id2 = ClientManager.getInstance().getGameState().getCardsInHand().get(1).getId();
             card2.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id2 + ".png")).toURI().toString()));
             card2.setId(String.valueOf(id2));
-            int id3 = ClientManager.getInstance().getGameState().getCardsInHand().get(2).getId();
-            card3.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id3 + ".png")).toURI().toString()));
-            card3.setId(String.valueOf(id3));
-
+            if (ClientManager.getInstance().getGameState().getCardsInHand().size() == 3) {
+                int id3 = ClientManager.getInstance().getGameState().getCardsInHand().get(2).getId();
+                card3.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id3 + ".png")).toURI().toString()));
+                card3.setId(String.valueOf(id3));
+            } else {
+                hand.getChildren().remove(card3);
+            }
             ObjectiveCard objCard = ClientManager.getInstance().getGameState().getObjectiveCard();
             Tooltip tooltipObj = new Tooltip(objCard.getObjectiveDescription());
             Tooltip.install(cardObj, tooltipObj);
@@ -256,6 +249,38 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    private void restoreCards() {
+        for (ResourceCard card : ClientManager.getInstance().getGameState().getOrderedCardsPlaced()) {
+            boolean found = false;
+            for (int x = 0; x < 81; x++) {
+                for (int y = 0; y < 81; y++) {
+                    ResourceCard c = ClientManager.getInstance().getGameState().getCardsPlaced()[x][y];
+                    if (c != null && c.getId() == card.getId()) {
+                        placeCard(card, x, y, ClientManager.getInstance().getGameState().getUsername());
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+        }
+        for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
+            for (ResourceCard card : state.getOrderedCardsPlaced()) {
+                boolean found = false;
+                for (int x = 0; x < 81; x++) {
+                    for (int y = 0; y < 81; y++) {
+                        if (state.getCardsPlaced()[x][y] == card) {
+                            placeCard(card, x, y, state.getUsername());
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+            }
+        }
+    }
+
     private void initializeOpponents() {
         tablesPanes = new ArrayList<>();
         playerTable.setId(ClientManager.getInstance().getGameState().getUsername());
@@ -291,6 +316,10 @@ public class GameGuiController implements SceneController, Initializable {
             tablesPanes.add(opponentTable);
             tablesPanes.add(opponentTable2);
             tablesPanes.add(opponentTable3);
+        }
+        for (Pane panes : tablesPanes) {
+            if (panes.getId().equals(ClientManager.getInstance().getGameState().getUsername())) continue;
+            messageRecipient.getItems().add(panes.getId());
         }
     }
 
@@ -386,7 +415,15 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
-    public void placeCard(ResourceCard card, int x, int y) {
+    public void placeCard(ResourceCard card, int x, int y, String playerName) {
+        Pane pane = null;
+        for (Pane p : tablesPanes) {
+            if (p.getId().equals(playerName)) {
+                pane = p;
+                break;
+            }
+        }
+        if (pane == null) return;
         try {
             String face = card.getFace().name().toLowerCase();
             ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/" + face + card.getId() + ".png")).toURI().toString()));
@@ -402,7 +439,7 @@ public class GameGuiController implements SceneController, Initializable {
             clip.setArcHeight(10);
             imageView.setClip(clip);
             imageView.setId(String.valueOf(card.getId()));
-            playerTable.getChildren().add(imageView);
+            pane.getChildren().add(imageView);
             Bloom bloom = new Bloom();
             bloom.setThreshold(1);
             imageView.setEffect(bloom);
@@ -486,7 +523,7 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
-    public void updatePoints() {
+    private void updatePoints() {
         setPoints(ClientManager.getInstance().getGameState().getScore(), ClientManager.getInstance().getGameState().getTokenColor().toLowerCase());
         for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
             setPoints(state.getScore(), state.getTokenColor().toLowerCase());
@@ -513,7 +550,7 @@ public class GameGuiController implements SceneController, Initializable {
         for (Node node : nodes) {
             if (node.getId() != null && node.getId().contains(color)) {
                 node.setVisible(true);
-                node.setOpacity(0.7);
+                node.setOpacity(0.8);
                 double x = -node.getLayoutX() - node.getBoundsInLocal().getCenterX();
                 double y = -node.getLayoutY() - node.getBoundsInLocal().getCenterY();
 
@@ -544,35 +581,35 @@ public class GameGuiController implements SceneController, Initializable {
                         break;
                     case 7:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 265);
+                        node.setTranslateY(y + 262);
                         break;
                     case 8:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 265);
+                        node.setTranslateY(y + 262);
                         break;
                     case 9:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 265);
+                        node.setTranslateY(y + 262);
                         break;
                     case 10:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 265);
+                        node.setTranslateY(y + 262);
                         break;
                     case 11:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 212);
+                        node.setTranslateY(y + 220);
                         break;
                     case 12:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 212);
+                        node.setTranslateY(y + 220);
                         break;
                     case 13:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 212);
+                        node.setTranslateY(y + 220);
                         break;
                     case 14:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 212);
+                        node.setTranslateY(y + 220);
                         break;
                     case 15:
                         node.setTranslateX(x + 25.5);
@@ -642,8 +679,24 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    private void updateTurn() {
+        if (ClientManager.getInstance().getGameState().getActivePlayer().equals(ClientManager.getInstance().getGameState().getUsername())) {
+            turn.setText("It's your turn");
+        } else {
+            turn.setText("It's " + ClientManager.getInstance().getGameState().getActivePlayer() + "'s turn");
+        }
+    }
+
     @Override
     public void updateScene(String data) {
-
+        if (data.equals("endTurn")) {
+            updateTurn();
+        }
+        if (data.equals("points")) {
+            updatePoints();
+        }
+        if (data.equals("resources")) {
+            updateResources();
+        }
     }
 }

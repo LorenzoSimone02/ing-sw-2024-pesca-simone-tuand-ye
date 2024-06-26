@@ -3,6 +3,8 @@ package it.polimi.ingsw.client.controller.packethandlers;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
+import it.polimi.ingsw.client.view.ViewModeEnum;
+import it.polimi.ingsw.client.view.gui.GUIClient;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.RestoreGameStatePacket;
 import it.polimi.ingsw.server.controller.save.CardSave;
@@ -19,7 +21,8 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
 
     /**
      * The method handles the game state restoring packet
-     * @param packet the game state restoring packet
+     *
+     * @param packet        the game state restoring packet
      * @param clientManager the client manager
      */
     @Override
@@ -33,6 +36,9 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 playerState.setTokenColor(playerSave.getTokenColor());
                 StarterCard starterCard = (StarterCard) clientManager.getGameState().getCardById(playerSave.getStarterCard().getId());
                 playerState.setStarterCard(starterCard);
+                for (CardSave cSave : playerSave.getOrderedCards()) {
+                    playerState.getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
+                }
                 for (int i = 0; i < 81; i++) {
                     for (int j = 0; j < 81; j++) {
                         CardSave cardSave = playerSave.getCards()[i][j];
@@ -49,6 +55,12 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
         }
 
         for (PlayerSave playerSave : restoreGameStatePacket.getPlayerSaves()) {
+            if (playerSave.isFirstPlayer()) {
+                clientManager.getGameState().setFirstPlayer(playerSave.getUsername());
+            }
+            if (playerSave.isActive()) {
+                clientManager.getGameState().setActivePlayer(playerSave.getUsername());
+            }
             if (playerSave.getUsername().equals(clientManager.getGameState().getUsername())) {
                 clientManager.getGameState().setScore(playerSave.getScore());
                 clientManager.getGameState().setTokenColor(playerSave.getTokenColor());
@@ -56,6 +68,9 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 clientManager.getGameState().setStarterCard(starterCard);
                 ObjectiveCard objectiveCard = (ObjectiveCard) clientManager.getGameState().getCardById(playerSave.getObjectiveCard().getId());
                 clientManager.getGameState().setObjectiveCard(objectiveCard);
+                for(CardSave cSave : playerSave.getOrderedCards()) {
+                    clientManager.getGameState().getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
+                }
                 for (int i = 0; i < 81; i++) {
                     for (int j = 0; j < 81; j++) {
                         CardSave cardSave = playerSave.getCards()[i][j];
@@ -74,6 +89,9 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 playerState.setTokenColor(playerSave.getTokenColor());
                 StarterCard starterCard = (StarterCard) clientManager.getGameState().getCardById(playerSave.getStarterCard().getId());
                 playerState.setStarterCard(starterCard);
+                for(CardSave cSave : playerSave.getOrderedCards()) {
+                    playerState.getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
+                }
                 for (int i = 0; i < 81; i++) {
                     for (int j = 0; j < 81; j++) {
                         CardSave cardSave = playerSave.getCards()[i][j];
@@ -85,6 +103,10 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                     }
                 }
             }
+        }
+        if (clientManager.getViewMode() == ViewModeEnum.GUI) {
+            GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+            guiClient.changeScene(clientManager.getGameState().getClientStatus());
         }
     }
 }

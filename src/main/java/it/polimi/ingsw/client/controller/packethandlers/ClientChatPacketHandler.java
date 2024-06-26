@@ -25,11 +25,13 @@ public class ClientChatPacketHandler extends ClientPacketHandler {
         ChatPacket chatPacket = (ChatPacket) packet;
         if (chatPacket.getRecipient() != null) {
             if (chatPacket.getRecipient().equalsIgnoreCase(clientManager.getGameState().getUsername()) || chatPacket.getUsername().equalsIgnoreCase(clientManager.getGameState().getUsername())) {
-                System.out.println(Printer.CYAN + chatPacket.getUsername() + " -> " + chatPacket.getRecipient() + ": " + Printer.RESET + chatPacket.getMessage());
+                if (clientManager.getViewMode() == ViewModeEnum.GUI)
+                    System.out.println(Printer.CYAN + chatPacket.getUsername() + " -> " + chatPacket.getRecipient() + ": " + Printer.RESET + chatPacket.getMessage());
                 clientManager.getGameState().addChatMessage(chatPacket.getUsername() + " -> " + chatPacket.getRecipient(), chatPacket.getMessage());
             }
         } else {
-            System.out.println(Printer.CYAN + chatPacket.getUsername() + ": " + Printer.RESET + chatPacket.getMessage());
+            if (clientManager.getViewMode() == ViewModeEnum.TUI)
+                System.out.println(Printer.CYAN + chatPacket.getUsername() + ": " + Printer.RESET + chatPacket.getMessage());
             clientManager.getGameState().addChatMessage(chatPacket.getUsername(), chatPacket.getMessage());
         }
         if (clientManager.getViewMode() == ViewModeEnum.GUI) {

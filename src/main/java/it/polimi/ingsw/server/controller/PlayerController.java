@@ -34,6 +34,7 @@ public record PlayerController(Player player) {
     public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
         if (canPlaceCard(x, y, card)) {
             player.setCard(card, x, y);
+            player.addOrderedCard(card);
 
             addResourcesAndObjects(card);
 

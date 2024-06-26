@@ -34,10 +34,11 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().addOrderedCard(card);
             if(clientManager.getViewMode() == ViewModeEnum.GUI){
                 Platform.runLater(() -> {
-                    GameGuiController gameGuiController = (GameGuiController) ((GUIClient) clientManager.getUserInterface()).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                    gameGuiController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord());
-                    gameGuiController.updateResources();
-                    gameGuiController.updatePoints();
+                    GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+                    GameGuiController gameGuiController = (GameGuiController) guiClient.getControllersMap().get(clientManager.getGameState().getClientStatus());
+                    gameGuiController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord(), placeCardPacket.getPlayer());
+                    guiClient.updateCurrentScene("resources");
+                    guiClient.updateCurrentScene("points");
                 });
             }
             System.out.println(Printer.GREEN + "Card placed successfully\nNow draw a card with /drawCard" + Printer.RESET);
@@ -51,8 +52,10 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
                     playerState.addOrderedCard(card);
                     if(clientManager.getViewMode() == ViewModeEnum.GUI){
                         Platform.runLater(() -> {
-                            GameGuiController gameGuiController = (GameGuiController) ((GUIClient) clientManager.getUserInterface()).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                            gameGuiController.updatePoints();
+                            GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+                            GameGuiController gameGuiController = (GameGuiController) guiClient.getControllersMap().get(clientManager.getGameState().getClientStatus());
+                            gameGuiController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord(), placeCardPacket.getPlayer());
+                            guiClient.updateCurrentScene("points");
                         });
                     }
                     break;

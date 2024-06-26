@@ -13,9 +13,9 @@ import java.util.ResourceBundle;
 public class LobbyController implements SceneController, Initializable {
 
     @FXML
-    Label playersLabel;
+    private Label playersLabel;
     @FXML
-    BorderPane lobbyPane;
+    private BorderPane lobbyPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

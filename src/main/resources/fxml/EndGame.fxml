@@ -3,60 +3,57 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="it.polimi.ingsw.client.view.gui.controllers.EndGameController">
+<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="it.polimi.ingsw.client.view.gui.controllers.EndGameController"
+            stylesheets="@../css/endGame.css">
     <center>
-        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-              prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
-              style="-fx-background-image: url('../images/preGameBackground.jpg');">
-            <Label fx:id="gameEndedLable" alignment="CENTER" layoutY="1.0" prefHeight="98.0" prefWidth="600.0"
-                   text="Game Ended" textAlignment="CENTER">
+        <VBox alignment="CENTER" spacing="30">
+            <Label text="Game Ended">
                 <font>
                     <Font name="Old London" size="72.0"/>
                 </font>
             </Label>
-            <VBox layoutX="134.0" layoutY="103.0" prefHeight="236.0" prefWidth="328.0">
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <Label fx:id="player1" alignment="CENTER" prefHeight="65.0" prefWidth="163.0"
-                           text="Player 1:" textAlignment="CENTER">
-                        <font>
-                            <Font name="Old London" size="36.0"/>
-                        </font>
-                    </Label>
-                </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <Label fx:id="player2" alignment="CENTER" prefHeight="52.0" prefWidth="163.0"
-                           text="Player 2:" textAlignment="CENTER">
-                        <font>
-                            <Font name="Old London" size="36.0"/>
-                        </font>
-                    </Label>
-                </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <Label fx:id="player3" alignment="CENTER" prefHeight="54.0" prefWidth="163.0"
-                           text="Player 3:" textAlignment="CENTER" visible="false">
-                        <font>
-                            <Font name="Old London" size="36.0"/>
-                        </font>
-                    </Label>
-                </HBox>
-                <HBox prefHeight="100.0" prefWidth="154.0">
-                    <Label fx:id="player4" alignment="CENTER" prefHeight="53.0" prefWidth="163.0"
-                           text="Player 4:" textAlignment="CENTER" visible="false">
-                        <font>
-                            <Font name="Old London" size="36.0"/>
-                        </font>
-                    </Label>
-                </HBox>
-            </VBox>
-            <Button fx:id="menuButton" alignment="CENTER" layoutX="254.0" layoutY="346.0"
-                    mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0"
-                    style="-fx-background-color: #dca156;" text="Menu" textAlignment="CENTER">
+            <HBox alignment="CENTER">
+                <Label fx:id="winner" text="Winner:">
+                    <font>
+                        <Font name="Old London" size="36.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="player1" text="Player 1:">
+                    <font>
+                        <Font name="Old London" size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="player2" text="Player 2:">
+                    <font>
+                        <Font name="Old London" size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="player3" text="Player 3:" visible="false">
+                    <font>
+                        <Font name="Old London" size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <HBox alignment="CENTER">
+                <Label fx:id="player4" text="Player 4:" visible="false">
+                    <font>
+                        <Font name="Old London" size="24.0"/>
+                    </font>
+                </Label>
+            </HBox>
+            <Button fx:id="menuButton" alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: #dca156;"
+                    text="Menu" onAction="#menuButtonPressed" textAlignment="CENTER">
                 <font>
-                    <Font name="Old London" size="24.0"/>
+                    <Font name="Old London" size="20.0"/>
                 </font>
             </Button>
-        </Pane>
+        </VBox>
     </center>
 </BorderPane>

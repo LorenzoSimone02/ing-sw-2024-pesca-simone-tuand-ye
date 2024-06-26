@@ -50,7 +50,7 @@ public class ClientMain {
                 nextLine = scanner.nextLine().trim();
                 if (nextLine.equals("1") || nextLine.equals("Socket")) {
                     System.out.println("You have selected Socket technology.");
-                    networkHandler = new SocketClient(serverIP, 5000);
+                    networkHandler = new SocketClient(serverIP, 4900);
                 } else if (nextLine.equals("2") || nextLine.equals("RMI")) {
                     System.out.println("You have selected RMI technology.");
                     networkHandler = new RMIClient("CodexNaturalisServer", serverIP, 1099);

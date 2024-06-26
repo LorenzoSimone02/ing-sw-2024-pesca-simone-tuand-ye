@@ -17,11 +17,11 @@ import java.util.ResourceBundle;
 public class CreateGameController implements SceneController, Initializable {
 
     @FXML
-    Label welcoleLabel;
+    private Label welcoleLabel;
     @FXML
-    RadioButton rButton2, rButton3, rButton4;
+    private RadioButton rButton2, rButton3, rButton4;
     @FXML
-    BorderPane createGamePane;
+    private BorderPane createGamePane;
     @FXML
     private int numberOfPlayers = 2;
 

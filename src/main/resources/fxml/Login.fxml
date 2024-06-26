@@ -5,8 +5,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.layout.AnchorPane?>
 <BorderPane fx:id="loginPane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="it.polimi.ingsw.client.view.gui.controllers.LoginController"
             stylesheets="@../css/preGame.css">
@@ -27,7 +28,6 @@
     <bottom>
         <VBox alignment="CENTER">
             <Label text="Gruppo 24 | Pesca, Simone, Tuand, Ye"/>
-            <Region fx:id="spacer"/>
             <Label text="Codex Naturalis | © 2024 - Cranio Creations"/>
         </VBox>
     </bottom>

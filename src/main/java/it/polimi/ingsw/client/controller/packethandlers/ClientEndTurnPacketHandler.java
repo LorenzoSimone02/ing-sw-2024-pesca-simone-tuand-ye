@@ -14,15 +14,22 @@ public class ClientEndTurnPacketHandler extends ClientPacketHandler {
 
     /**
      * The method handles the ending turn packet
-     * @param packet the end turn packet
+     *
+     * @param packet        the end turn packet
      * @param clientManager the client manager
      */
     @Override
     public void handlePacket(Packet packet, ClientManager clientManager) {
         EndTurnPacket endTurnPacket = (EndTurnPacket) packet;
-        if (clientManager.getGameState().getActivePlayer() == null && ClientManager.getInstance().getViewMode() == ViewModeEnum.GUI) {
-            ((GUIClient) clientManager.getUserInterface()).changeScene(ClientManager.getInstance().getGameState().getClientStatus());
+        if (ClientManager.getInstance().getViewMode() == ViewModeEnum.GUI) {
+            GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+            if (clientManager.getGameState().getActivePlayer() == null) {
+                guiClient.changeScene(ClientManager.getInstance().getGameState().getClientStatus());
+            } else {
+                guiClient.updateCurrentScene("endTurn");
+            }
         }
+
         clientManager.getGameState().setActivePlayer(endTurnPacket.getActivePlayer());
         clientManager.getUserInterface().showMessage(Printer.CYAN + "It's now " + endTurnPacket.getActivePlayer() + "'s turn!" + Printer.RESET);
     }
