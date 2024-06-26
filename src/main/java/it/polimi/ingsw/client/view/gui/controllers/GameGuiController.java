@@ -17,8 +17,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
 import javafx.scene.effect.Bloom;
 import javafx.scene.image.Image;
@@ -27,7 +25,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -68,6 +65,8 @@ public class GameGuiController implements SceneController, Initializable {
     @FXML
     private TextField messageInput;
     @FXML
+    private ComboBox<String> messageRecipient;
+    @FXML
     private ScrollPane scrollPane;
     @FXML
     private VBox messagesBox;
@@ -85,6 +84,7 @@ public class GameGuiController implements SceneController, Initializable {
 
             initializeOpponents();
             initializeCards();
+            restoreCards();
             updateResources();
             updatePoints();
             updateTurn();
@@ -105,7 +105,11 @@ public class GameGuiController implements SceneController, Initializable {
         String username = ClientManager.getInstance().getGameState().getUsername();
         if (!message.trim().isEmpty()) {
             messageInput.clear();
-            ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, null, message));
+            if (messageRecipient.getValue() == null || messageRecipient.getValue().equals("Everyone")) {
+                ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, null, message));
+            } else {
+                ClientManager.getInstance().getNetworkHandler().sendPacket(new ChatPacket(username, messageRecipient.getValue(), message));
+            }
         }
     }
 
@@ -164,10 +168,13 @@ public class GameGuiController implements SceneController, Initializable {
             int id2 = ClientManager.getInstance().getGameState().getCardsInHand().get(1).getId();
             card2.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id2 + ".png")).toURI().toString()));
             card2.setId(String.valueOf(id2));
-            int id3 = ClientManager.getInstance().getGameState().getCardsInHand().get(2).getId();
-            card3.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id3 + ".png")).toURI().toString()));
-            card3.setId(String.valueOf(id3));
-
+            if (ClientManager.getInstance().getGameState().getCardsInHand().size() == 3) {
+                int id3 = ClientManager.getInstance().getGameState().getCardsInHand().get(2).getId();
+                card3.setImage(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + id3 + ".png")).toURI().toString()));
+                card3.setId(String.valueOf(id3));
+            } else {
+                hand.getChildren().remove(card3);
+            }
             ObjectiveCard objCard = ClientManager.getInstance().getGameState().getObjectiveCard();
             Tooltip tooltipObj = new Tooltip(objCard.getObjectiveDescription());
             Tooltip.install(cardObj, tooltipObj);
@@ -242,6 +249,38 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    private void restoreCards() {
+        for (ResourceCard card : ClientManager.getInstance().getGameState().getOrderedCardsPlaced()) {
+            boolean found = false;
+            for (int x = 0; x < 81; x++) {
+                for (int y = 0; y < 81; y++) {
+                    ResourceCard c = ClientManager.getInstance().getGameState().getCardsPlaced()[x][y];
+                    if (c != null && c.getId() == card.getId()) {
+                        placeCard(card, x, y, ClientManager.getInstance().getGameState().getUsername());
+                        found = true;
+                        break;
+                    }
+                }
+                if (found) break;
+            }
+        }
+        for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
+            for (ResourceCard card : state.getOrderedCardsPlaced()) {
+                boolean found = false;
+                for (int x = 0; x < 81; x++) {
+                    for (int y = 0; y < 81; y++) {
+                        if (state.getCardsPlaced()[x][y] == card) {
+                            placeCard(card, x, y, state.getUsername());
+                            found = true;
+                            break;
+                        }
+                    }
+                    if (found) break;
+                }
+            }
+        }
+    }
+
     private void initializeOpponents() {
         tablesPanes = new ArrayList<>();
         playerTable.setId(ClientManager.getInstance().getGameState().getUsername());
@@ -277,6 +316,10 @@ public class GameGuiController implements SceneController, Initializable {
             tablesPanes.add(opponentTable);
             tablesPanes.add(opponentTable2);
             tablesPanes.add(opponentTable3);
+        }
+        for (Pane panes : tablesPanes) {
+            if (panes.getId().equals(ClientManager.getInstance().getGameState().getUsername())) continue;
+            messageRecipient.getItems().add(panes.getId());
         }
     }
 
@@ -649,7 +692,7 @@ public class GameGuiController implements SceneController, Initializable {
         if (data.equals("endTurn")) {
             updateTurn();
         }
-        if(data.equals("points")) {
+        if (data.equals("points")) {
             updatePoints();
         }
         if (data.equals("resources")) {

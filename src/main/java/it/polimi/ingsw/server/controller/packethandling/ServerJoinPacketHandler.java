@@ -95,7 +95,7 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
                 controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect to is already started"));
             }
         } else {
-            controller.getNetworkHandler().sendPacket(connection, new InfoPacket("There are no available Games at the moment. Use /createGame to create one or /join to try again."));
+            controller.getNetworkHandler().sendPacket(connection, new InfoPacket("There are no available Games at the moment. Create a new Game or try again."));
         }
     }
 }

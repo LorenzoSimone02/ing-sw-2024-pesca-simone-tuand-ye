@@ -8,6 +8,7 @@ import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.Resource;
 
+import javax.lang.model.util.AbstractElementVisitor7;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -41,6 +42,11 @@ public class Player {
      *  The player's in hand cards
      */
     private final List<Card> cardsInHand;
+
+    /**
+     *  The player's ordered cards
+     */
+    private final ArrayList<ResourceCard> orderedCards;
 
     /**
      *  The player's starter card
@@ -77,6 +83,7 @@ public class Player {
         this.game = game;
         this.score = 0;
         this.cards = new ResourceCard[81][81];
+        this.orderedCards = new ArrayList<>();
         this.cardsInHand = new ArrayList<>();
         this.resources = new ArrayList<>();
         this.objects = new ArrayList<>();
@@ -130,6 +137,22 @@ public class Player {
      */
     public Optional<ResourceCard> getCardAt(int x, int y) {
         return Optional.ofNullable(cards[x][y]);
+    }
+
+    /**
+     * This method returns the player's ordered cards
+     * @return the player's ordered cards
+     */
+    public ArrayList<ResourceCard> getOrderedCards() {
+        return orderedCards;
+    }
+
+    /**
+     * This method adds a card to the player's list of ordered cards
+     * @param card the card to add to the player's list of ordered cards
+     */
+    public void addOrderedCard(ResourceCard card) {
+        orderedCards.add(card);
     }
 
     /**
