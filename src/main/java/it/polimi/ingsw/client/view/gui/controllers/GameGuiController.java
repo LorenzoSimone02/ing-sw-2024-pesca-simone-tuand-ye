@@ -74,8 +74,6 @@ public class GameGuiController implements SceneController, Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gamePane.setOpacity(0.0);
         Platform.runLater(() -> {
-            new TableGestures(playerTable);
-            new TableGestures(opponentTable);
             for (Node card : hand.getChildren()) {
                 if (card.getId().equals("cardObj")) continue;
                 new HandCardGestures(playerTable, card, tables);
@@ -315,6 +313,7 @@ public class GameGuiController implements SceneController, Initializable {
             tablesPanes.add(opponentTable3);
         }
         for (Pane panes : tablesPanes) {
+            new TableGestures(panes);
             if (panes.getId().equals(ClientManager.getInstance().getGameState().getUsername())) continue;
             messageRecipient.getItems().add(panes.getId());
         }

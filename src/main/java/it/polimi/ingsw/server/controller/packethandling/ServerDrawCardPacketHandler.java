@@ -30,7 +30,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't draw a Card now." + Printer.RESET));
             return;
         }
-        if(controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_PLAYERS && controller.getGame().getInfo().getPlayersNumber() == 1){
+        if(controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_RECONNECTION && controller.getGame().getInfo().getPlayersNumber() == 1){
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You are the only Player connected, wait for someone else to connect." + Printer.RESET));
             return;
         }

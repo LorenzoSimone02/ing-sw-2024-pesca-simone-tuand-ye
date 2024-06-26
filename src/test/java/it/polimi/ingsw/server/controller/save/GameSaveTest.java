@@ -7,6 +7,10 @@ import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
+import it.polimi.ingsw.server.model.player.Player;
+import it.polimi.ingsw.server.model.player.PlayerToken;
+import it.polimi.ingsw.server.model.player.TokenColorEnum;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,19 +29,19 @@ class GameSaveTest {
     private ArrayList<ResourceCard> resourceCardArray;
     private ArrayList<StarterCard> starterCardArray;
     private ArrayList<ObjectiveCard> objectiveCardArray;
+    static int id = 5;
 
     @BeforeEach
     void setUp() throws IOException {
 
-        serverNetworkHandler = new ServerNetworkHandler("Server", 1099, 5001);
+        serverNetworkHandler = new ServerNetworkHandler("Server", 1099 + id, 5001);
+        serverNetworkHandler.setDebug(true);
         serverNetworkHandler.start();
 
         gameController = new GameController(serverNetworkHandler);
         gameController.createGame(1);
 
         gameController.addPlayer("p1");
-
-        gameController.startGame();
 
         resourceCardArray = new ArrayList<>();
         starterCardArray = new ArrayList<>();
@@ -79,6 +83,19 @@ class GameSaveTest {
             objectiveCardArray.add(card);
         }
 
+        Player p = gameController.getPlayerController("p1").getPlayer();
+        p.setToken(new PlayerToken(TokenColorEnum.YELLOW));
+        p.setStarterCard(starterCardArray.get(1));
+        p.setObjectiveCard(objectiveCardArray.get(1));
+
+        gameController.startGame();
+
+        id++;
+    }
+
+    @AfterEach
+    void tearDown() {
+        serverNetworkHandler.stop();
     }
 
     @Test
@@ -117,7 +134,7 @@ class GameSaveTest {
         gameController.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);
         GameSave gameSave = new GameSave(gameController.getGame());
 
-        assertEquals(GameStatusEnum.PLAYING, gameSave.getGameStatus());
+        assertEquals(GameStatusEnum.PLAYING, GameStatusEnum.valueOf(gameSave.getGameStatus()));
 
     }
 
@@ -125,21 +142,32 @@ class GameSaveTest {
     void getResourceDeck() {
 
         Deck testDeck = new Deck();
+        for(int i = 0; i < 40; i++){
+            testDeck.addCard(resourceCardArray.get(i));
+        }
         gameController.getGame().getTable().setResourceDeck(testDeck);
 
         GameSave gameSave = new GameSave(gameController.getGame());
-        assertEquals(testDeck, gameSave.getResourceDeck());
-
+        assertEquals(40, gameSave.getResourceDeck().size());
+        for(int i = 0; i < 40; i++){
+            assertEquals(resourceCardArray.get(i).getId(), gameSave.getResourceDeck().get(i).getId());
+        }
     }
 
     @Test
     void getGoldDeck() {
 
         Deck testDeck = new Deck();
+        for(int i = 0; i < 40; i++){
+            testDeck.addCard(resourceCardArray.get(i));
+        }
         gameController.getGame().getTable().setGoldDeck(testDeck);
 
         GameSave gameSave = new GameSave(gameController.getGame());
-        assertEquals(testDeck, gameSave.getGoldDeck());
+        assertEquals(40, gameSave.getGoldDeck().size());
+        for(int i = 0; i < 40; i++){
+            assertEquals(resourceCardArray.get(i).getId(), gameSave.getGoldDeck().get(i).getId());
+        }
 
     }
 
@@ -147,10 +175,16 @@ class GameSaveTest {
     void getObjectiveDeck() {
 
         Deck testDeck = new Deck();
+        for(int i = 0; i < 16; i++){
+            testDeck.addCard(objectiveCardArray.get(i));
+        }
         gameController.getGame().getTable().setObjectiveDeck(testDeck);
 
         GameSave gameSave = new GameSave(gameController.getGame());
-        assertEquals(testDeck, gameSave.getObjectiveDeck());
+        assertEquals(16, gameSave.getObjectiveDeck().size());
+        for (int i = 0; i < 16; i++) {
+            assertEquals(objectiveCardArray.get(i).getId(), gameSave.getObjectiveDeck().get(i).getId());
+        }
 
     }
 
@@ -158,46 +192,49 @@ class GameSaveTest {
     void getStarterDeck() {
 
         Deck testDeck = new Deck();
+        for(int i = 0; i < 6; i++){
+            testDeck.addCard(starterCardArray.get(i));
+        }
         gameController.getGame().getTable().setStarterDeck(testDeck);
 
         GameSave gameSave = new GameSave(gameController.getGame());
-        assertEquals(testDeck, gameSave.getStarterDeck());
+        assertEquals(6, gameSave.getStarterDeck().size());
+        for (int i = 0; i < 6; i++) {
+            assertEquals(starterCardArray.get(i).getId(), gameSave.getStarterDeck().get(i).getId());
+        }
 
     }
 
     @Test
     void getObjectiveCards() {
 
-        gameController.getGame().getTable().addObjectiveCard(objectiveCardArray.get(0));
+        gameController.getGame().getTable().getObjectiveCards().clear();
+        gameController.getGame().getTable().addObjectiveCard(objectiveCardArray.getFirst());
         GameSave gameSave = new GameSave(gameController.getGame());
 
-        assertEquals(objectiveCardArray.get(0), gameSave.getObjectiveCards());
+        assertEquals(objectiveCardArray.getFirst().getId(), gameSave.getObjectiveCards().getFirst().getId());
 
     }
 
     @Test
     void getCardsOnGround() {
 
-        gameController.getGame().getTable().addCardOnGround(resourceCardArray.get(0));
+        gameController.getGame().getTable().getCardsOnGround().clear();
+        gameController.getGame().getTable().addCardOnGround(resourceCardArray.getFirst());
         GameSave gameSave = new GameSave(gameController.getGame());
 
-        assertEquals(resourceCardArray.get(0), gameSave.getCardsOnGround());
+        assertEquals(resourceCardArray.getFirst().getId(), gameSave.getCardsOnGround().getFirst().getId());
 
     }
 
     @Test
     void getPlayerSaves() {
-
-        gameController.addPlayer("p2");
-        gameController.addPlayer("p3");
-        gameController.addPlayer("p4");
-
         GameSave gameSave = new GameSave(gameController.getGame());
 
-        assertEquals(4, gameSave.getPlayerSaves().size());
+        assertEquals(1, gameSave.getPlayerSaves().size());
         for (int i = 0; i < gameSave.getPlayerSaves().size(); i++) {
             assertNotNull(gameSave.getPlayerSaves().get(i));
-            assertEquals(gameController.getPlayerController("p" + (i + 1)).getPlayer(), gameSave.getPlayerSaves().get(i));
+            assertEquals(gameController.getPlayerController("p" + (i + 1)).getPlayer().getUsername(), gameSave.getPlayerSaves().get(i).getUsername());
         }
 
     }

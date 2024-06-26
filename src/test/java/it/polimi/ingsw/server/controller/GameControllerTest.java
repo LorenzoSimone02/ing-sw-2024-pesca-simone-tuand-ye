@@ -1,14 +1,10 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
-import it.polimi.ingsw.network.rmi.RMIClientConnection;
-import it.polimi.ingsw.network.socket.SocketClientConnection;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.controller.exceptions.GameStartException;
 import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.model.card.GoldCard;
-import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
@@ -17,8 +13,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import javax.management.remote.rmi.RMIServer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -202,7 +196,7 @@ public class GameControllerTest {
         try {
             gameController.startGame();
             assertEquals(gameController.getGame().getInfo().getGameStatus(), GameStatusEnum.STARTING);
-        } catch (GameStartException e) {
+        } catch (Exception e) {
             assertEquals(gameController.getGame().getInfo().getGameStatus(), GameStatusEnum.ERROR);
             fail("Game not correctly started.");
         }

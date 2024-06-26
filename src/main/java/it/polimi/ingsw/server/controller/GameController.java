@@ -7,7 +7,6 @@ import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.controller.exceptions.GameStartException;
 import it.polimi.ingsw.server.controller.save.CardSave;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.controller.save.PlayerSave;
@@ -306,15 +305,12 @@ public class GameController {
     }
 
     /**
-     * The method starts the game
-     *
-     * @throws GameStartException if an error occurs while starting the game
+     * The method starts the game initializing all the necessary components
      */
-    public synchronized void startGame() throws GameStartException {
+    public synchronized void startGame() {
         try {
             networkHandler.sendPacketToAll(new InfoPacket(Printer.GREEN + "\nThe required number of players has been reached. The game is starting.\n" + Printer.RESET));
             game.getInfo().setGameStatus(GameStatusEnum.STARTING);
-
             instantiateCards();
             assignCommonObjectives();
             chooseFirstPlayer();
@@ -337,8 +333,7 @@ public class GameController {
             game.getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
         } catch (Exception e) {
             game.getInfo().setGameStatus(GameStatusEnum.ERROR);
-            System.err.println(e.getMessage());
-            throw new GameStartException();
+            System.err.println("Error while starting the game: " + e.getMessage());
         }
     }
 

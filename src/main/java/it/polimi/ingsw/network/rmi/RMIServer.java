@@ -3,6 +3,7 @@ package it.polimi.ingsw.network.rmi;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.Packet;
 
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -17,6 +18,15 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
      * The server-side network handler
      */
     private final ServerNetworkHandler networkHandler;
+    /**
+     * The RMI registry
+     */
+    private final Registry registry;
+
+    /**
+     * The name of the registry
+     */
+    private final String registryName;
 
     /**
      * Constructor of the class
@@ -28,7 +38,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     public RMIServer(ServerNetworkHandler networkHandler, String registryName, int port) throws RemoteException {
         super();
         this.networkHandler = networkHandler;
-        Registry registry = LocateRegistry.createRegistry(port);
+        this.registryName = registryName;
+        registry = LocateRegistry.createRegistry(port);
         registry.rebind(registryName, this);
     }
 
@@ -54,8 +65,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
      */
     public void stopServer(){
         try {
+            registry.unbind(registryName);
             UnicastRemoteObject.unexportObject(this, true);
-        } catch (RemoteException e) {
+        } catch (Exception e) {
             System.err.println("Could not stop the RMI server " + e);
         }
     }

@@ -7,7 +7,8 @@ import it.polimi.ingsw.server.controller.GameController;
 
 import java.io.IOException;
 import java.net.Inet4Address;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**
@@ -61,10 +62,16 @@ public class ServerNetworkHandler {
     private boolean isLobby;
 
     /**
+     * The boolean that indicates if the server is in debug or test mode
+     */
+    private boolean debug;
+
+    /**
      * Constructor of the class
+     *
      * @param registryName the name of the registry
-     * @param rmiPort the port of the RMI server
-     * @param socketPort the port of the socket server
+     * @param rmiPort      the port of the RMI server
+     * @param socketPort   the port of the socket server
      */
     public ServerNetworkHandler(String registryName, int rmiPort, int socketPort) {
         this.registryName = registryName;
@@ -73,6 +80,7 @@ public class ServerNetworkHandler {
         connections = new ArrayList<>();
         packetQueue = new LinkedBlockingQueue<>();
         isLobby = false;
+        debug = false;
         gameController = new GameController(this);
     }
 
@@ -105,7 +113,7 @@ public class ServerNetworkHandler {
     /**
      * The method stops the server
      */
-    public synchronized void stop(){
+    public synchronized void stop() {
         connections.clear();
         socketServer.stopServer();
         rmiServer.stopServer();
@@ -113,20 +121,24 @@ public class ServerNetworkHandler {
 
     /**
      * The method sends a packet to a client connection
+     *
      * @param connection the client connection
-     * @param packet the packet to send
+     * @param packet     the packet to send
      */
     public synchronized void sendPacket(ClientConnection connection, Packet packet) {
+        if (debug) return;
         packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
         connection.receivePacket(packet);
     }
 
     /**
      * The method sends a packet to all the client connections
+     *
      * @param packet the packet to send
      */
     public synchronized void sendPacketToAll(Packet packet) {
         packet.setSender(UUID.fromString("00000000-0000-0000-0000-000000000000"));
+        if (debug) return;
         for (ClientConnection connection : connections) {
             connection.receivePacket(packet);
         }
@@ -134,10 +146,12 @@ public class ServerNetworkHandler {
 
     /**
      * The method handles incoming packets if they are supported by the server
-     * @param packet the packet received
+     *
+     * @param packet     the packet received
      * @param connection the client connection that sent the packet
      */
     public synchronized void receivePacket(Packet packet, ClientConnection connection) throws InterruptedException {
+        if (debug) return;
         if (packet.getServerPacketHandler() != null) {
             connection.setLastPing(System.currentTimeMillis());
             packetQueue.put(packet);
@@ -148,6 +162,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method adds a client connection to the list
+     *
      * @param connection the client connection to add
      */
     public synchronized void addConnection(ClientConnection connection) {
@@ -158,6 +173,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method removes a client connection from the list
+     *
      * @param connection the client connection to remove
      */
     public synchronized void removeConnection(ClientConnection connection) {
@@ -166,6 +182,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns the list of the client connections
+     *
      * @return the list of the client connections
      */
     public ArrayList<ClientConnection> getConnections() {
@@ -174,6 +191,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns a client connection by its nickname
+     *
      * @param username the nickname of the client connection
      * @return the client connection
      */
@@ -189,6 +207,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns a client connection by its UUID
+     *
      * @param uuid the UUID of the client connection
      * @return the client connection
      */
@@ -204,6 +223,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns the server-side game controller
+     *
      * @return the server-side game controller
      */
     public GameController getGameController() {
@@ -212,6 +232,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns the map that associates the client connections with their packets
+     *
      * @return the map that associates the client connections with their packets
      */
     public synchronized LinkedBlockingQueue<Packet> getPacketQueue() {
@@ -220,6 +241,7 @@ public class ServerNetworkHandler {
 
     /**
      * The method returns the boolean that indicates if the server is a lobby
+     *
      * @return the boolean that indicates if the server is a lobby
      */
     public boolean isLobby() {
@@ -227,7 +249,15 @@ public class ServerNetworkHandler {
     }
 
     /**
+     * The method sets the boolean that indicates if the server is in debug or test mode
+     */
+    public void setDebug(boolean debug) {
+        this.debug = debug;
+    }
+
+    /**
      * The method sets the boolean that indicates if the server is a lobby
+     *
      * @param isLobby the boolean that indicates if the server is a lobby
      */
     public void setLobby(boolean isLobby) {
