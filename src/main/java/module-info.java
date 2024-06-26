@@ -5,6 +5,7 @@ module it.polimi.ingsw.progetto {
     requires org.controlsfx.controls;
     requires com.google.gson;
     requires java.rmi;
+    requires java.management.rmi;
     requires java.desktop;
     requires java.compiler;
 

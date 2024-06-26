@@ -249,12 +249,10 @@ public class GameGuiController implements SceneController, Initializable {
     private void restoreCards() {
         for (ResourceCard card : ClientManager.getInstance().getGameState().getOrderedCardsPlaced()) {
             boolean found = false;
-            System.out.println("Searching card " + card.getId());
             for (int x = 0; x < 81; x++) {
                 for (int y = 0; y < 81; y++) {
                     ResourceCard c = ClientManager.getInstance().getGameState().getCardsPlaced()[x][y];
                     if (c != null && c.getId() == card.getId()) {
-                        System.out.println("Placing card " + card.getId() + " at " + x + " " + y);
                         placeCard(card, x, y, ClientManager.getInstance().getGameState().getUsername());
                         found = true;
                         break;

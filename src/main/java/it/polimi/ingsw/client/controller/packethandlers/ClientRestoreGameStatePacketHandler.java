@@ -29,31 +29,6 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
     public void handlePacket(Packet packet, ClientManager clientManager) {
         RestoreGameStatePacket restoreGameStatePacket = (RestoreGameStatePacket) packet;
 
-        if (!clientManager.getGameState().getUsername().equals(restoreGameStatePacket.getPlayerRestored())) {
-            PlayerState playerState = new PlayerState(restoreGameStatePacket.getPlayerRestored());
-            for (PlayerSave playerSave : restoreGameStatePacket.getPlayerSaves()) {
-                playerState.setScore(playerSave.getScore());
-                playerState.setTokenColor(playerSave.getTokenColor());
-                StarterCard starterCard = (StarterCard) clientManager.getGameState().getCardById(playerSave.getStarterCard().getId());
-                playerState.setStarterCard(starterCard);
-                for (CardSave cSave : playerSave.getOrderedCards()) {
-                    playerState.getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
-                }
-                for (int i = 0; i < 81; i++) {
-                    for (int j = 0; j < 81; j++) {
-                        CardSave cardSave = playerSave.getCards()[i][j];
-                        if (cardSave != null) {
-                            ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(playerSave.getCards()[i][j].getId());
-                            card.setFace(FaceEnum.valueOf(cardSave.getFace()));
-                            playerState.setCardPlaced(card, i, j);
-                        }
-                    }
-                }
-            }
-            clientManager.getGameState().getPlayerStates().add(playerState);
-            return;
-        }
-
         for (PlayerSave playerSave : restoreGameStatePacket.getPlayerSaves()) {
             if (playerSave.isFirstPlayer()) {
                 clientManager.getGameState().setFirstPlayer(playerSave.getUsername());
@@ -68,14 +43,14 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 clientManager.getGameState().setStarterCard(starterCard);
                 ObjectiveCard objectiveCard = (ObjectiveCard) clientManager.getGameState().getCardById(playerSave.getObjectiveCard().getId());
                 clientManager.getGameState().setObjectiveCard(objectiveCard);
-                for(CardSave cSave : playerSave.getOrderedCards()) {
+                for (CardSave cSave : playerSave.getOrderedCards()) {
                     clientManager.getGameState().getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
                 }
                 for (int i = 0; i < 81; i++) {
                     for (int j = 0; j < 81; j++) {
                         CardSave cardSave = playerSave.getCards()[i][j];
                         if (cardSave != null) {
-                            ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(playerSave.getCards()[i][j].getId());
+                            ResourceCard card = (ResourceCard) clientManager.getGameState().getCardById(cardSave.getId());
                             card.setFace(FaceEnum.valueOf(cardSave.getFace()));
                             clientManager.getGameState().setCardPlaced(card, i, j);
                         }
@@ -89,7 +64,7 @@ public class ClientRestoreGameStatePacketHandler extends ClientPacketHandler {
                 playerState.setTokenColor(playerSave.getTokenColor());
                 StarterCard starterCard = (StarterCard) clientManager.getGameState().getCardById(playerSave.getStarterCard().getId());
                 playerState.setStarterCard(starterCard);
-                for(CardSave cSave : playerSave.getOrderedCards()) {
+                for (CardSave cSave : playerSave.getOrderedCards()) {
                     playerState.getOrderedCardsPlaced().add((ResourceCard) clientManager.getGameState().getCardById(cSave.getId()));
                 }
                 for (int i = 0; i < 81; i++) {

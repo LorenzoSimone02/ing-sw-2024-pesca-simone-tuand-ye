@@ -104,8 +104,11 @@ public class GameSave implements Serializable {
             this.cardsOnGround.add(new CardSave(card));
         }
 
-        this.playerSaves = new ArrayList<>(game.getPlayers().size());
+        this.playerSaves = new ArrayList<>(4);
         for (Player player : game.getPlayers()) {
+            playerSaves.add(new PlayerSave(player));
+        }
+        for(Player player : game.getOfflinePlayers()){
             playerSaves.add(new PlayerSave(player));
         }
     }
