@@ -8,18 +8,44 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * SocketClientConnection is the class that represents the server-side socket client connection
+ */
 public class SocketClientConnection extends ClientConnection implements Runnable {
 
+    /**
+     * The socket of the connection
+     */
     private final Socket socket;
+
+    /**
+     * The server-side socket handler
+     */
     private final SocketServer socketServer;
+
+    /**
+     * The output stream of the connection
+     */
     private ObjectOutputStream out;
+
+    /**
+     * The input stream of the connection
+     */
     private ObjectInputStream in;
 
+    /**
+     * Constructor of the class
+     * @param socket the socket of the connection
+     * @param socketServer the server-side socket handler
+     */
     public SocketClientConnection(Socket socket, SocketServer socketServer) {
         this.socket = socket;
         this.socketServer = socketServer;
     }
 
+    /**
+     * The method runs the connection
+     */
     @Override
     public void run() {
         try {
@@ -62,6 +88,10 @@ public class SocketClientConnection extends ClientConnection implements Runnable
         }
     }
 
+    /**
+     * The method tries to receive a packet from the server
+     * @param packet the packet to receive
+     */
     @Override
     public synchronized void receivePacket(Packet packet) {
         try {

@@ -111,7 +111,7 @@ public class GameController {
     }
 
     /**
-     * The method returns the player controller of the player
+     * The method returns the player controller of the player given the nickname
      * @param nickname the nickname of the player whose controller is being returned
      * @return the controller of the player
      */

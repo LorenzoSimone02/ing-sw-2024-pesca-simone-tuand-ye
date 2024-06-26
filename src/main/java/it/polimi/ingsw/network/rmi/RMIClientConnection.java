@@ -25,7 +25,7 @@ public class RMIClientConnection extends ClientConnection {
 
     /**
      * The method tries to receive a packet from the server
-     * @param packet the packet received
+     * @param packet the packet to receive
      */
     @Override
     public void receivePacket(Packet packet) {

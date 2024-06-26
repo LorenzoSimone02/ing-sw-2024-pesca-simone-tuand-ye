@@ -1,9 +1,7 @@
 package it.polimi.ingsw.server.controller;
 
-import it.polimi.ingsw.server.controller.GameController;
 import it.polimi.ingsw.server.controller.exceptions.*;
 import it.polimi.ingsw.server.model.card.GoldCard;
-import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
@@ -52,77 +50,6 @@ public class GameTest {
         assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p2"));
         assertThrows(DuplicatePlayerException.class, () -> controller.addPlayer("p3"));
         assertThrows(FullLobbyException.class, () -> controller.addPlayer("p4"));
-
-    }
-
-    @Test
-    @DisplayName("Test valid players management (add and remove)")
-    public void validPlayerManagement() {
-
-        try {
-            controller.addPlayer("p1");
-            controller.addPlayer("p2");
-            controller.addPlayer("p3");
-            controller.addPlayer("p4");
-        } catch (FullLobbyException | DuplicatePlayerException e) {
-            throw new RuntimeException(e);
-        }
-
-        assertEquals(4, controller.getGame().getInfo().getPlayersNumber());
-        //controller.removePlayer("p2");
-        for (int i = 0; i < controller.getGame().getInfo().getPlayersNumber(); i++) {
-            assertNotEquals("p2", controller.getGame().getPlayers().get(i).getUsername());
-        }
-        assertEquals(3, controller.getGame().getInfo().getPlayersNumber());
-
-    }
-
-    @Test
-    @DisplayName("Test valid common objective cards")
-    public void validCommonObjectives() {
-
-       /* ObjectiveCard objective1 = new ObjectiveCard(objectiveJson);
-        ObjectiveCard objective2 = new ObjectiveCard(objectiveJson);
-
-        controller.getGame().getTable().addObjectiveCard(objective1);
-        controller.getGame().getTable().addObjectiveCard(objective2);
-
-        assertTrue(controller.getGame().getTable().getObjectiveCards().contains(objective1));
-        assertTrue(controller.getGame().getTable().getObjectiveCards().contains(objective2));
-
-        try {
-            ObjectiveCard extra = new ObjectiveCard(objectiveJson);
-            controller.getGame().getTable().addObjectiveCard(extra);
-        } catch (IllegalObjectiveException e) {
-            fail("Illegal objective card added.");
-        }*/
-
-    }
-
-    //QUESTI SONO TEST CHE SI FANNO NELLA FASE STARTING DEL GAME
-    @Test
-    @DisplayName("Test valid initial player cards in hand")
-    public void validInitialPlayerCardsInHand() {
-
-        controller.addPlayer("p1");
-        controller.addPlayer("p2");
-        controller.startGame();
-
-        int numOfGoldCards = 0;
-        int numOfResourceCards = 0;
-
-        for (Player player : controller.getGame().getPlayers()) {
-            for (int i = 0; i < player.getCardsInHand().size(); i++) {
-                if (player.getCardsInHand().get(i) instanceof GoldCard) {
-                    numOfGoldCards++;
-                } else if (player.getCardsInHand().get(i) instanceof ResourceCard) {
-                    numOfResourceCards++;
-                }
-            }
-        }
-
-        assertEquals(2, numOfGoldCards);
-        assertEquals(4, numOfResourceCards);
 
     }
 

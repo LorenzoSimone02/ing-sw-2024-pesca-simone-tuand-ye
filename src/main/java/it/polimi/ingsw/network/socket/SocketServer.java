@@ -7,12 +7,32 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+/**
+ * SocketServer is the class that represents the server-side socket network handler
+ */
 public class SocketServer extends Thread {
 
+    /**
+     * The server socket
+     */
     private final ServerSocket serverSocket;
+
+    /**
+     * The server-side network handler
+     */
     private final ServerNetworkHandler serverNetworkHandler;
+
+    /**
+     * The list of the clients' threads
+     */
     private final ArrayList<Thread> clientThreads;
 
+    /**
+     * Constructor of the class
+     * @param networkHandler the server-side network handler
+     * @param port the port of the server
+     * @throws IOException if an I/O error occurs when creating the server socket
+     */
     public SocketServer(ServerNetworkHandler networkHandler, int port) throws IOException {
         this.serverNetworkHandler = networkHandler;
         serverSocket = new ServerSocket(port);
@@ -20,6 +40,9 @@ public class SocketServer extends Thread {
         start();
     }
 
+    /**
+     * The method runs the server
+     */
     @Override
     public void run() {
         while (!Thread.currentThread().isInterrupted()) {
@@ -37,10 +60,17 @@ public class SocketServer extends Thread {
         }
     }
 
+    /**
+     * The method returns the server-side network handler
+     * @return the server-side network handler
+     */
     public ServerNetworkHandler getServerNetworkHandler() {
         return serverNetworkHandler;
     }
 
+    /**
+     * The method stops the server
+     */
     public void stopServer() {
         try {
             this.interrupt();
