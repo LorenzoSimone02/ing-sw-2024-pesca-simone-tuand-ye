@@ -47,7 +47,7 @@ public class GUIClient extends Application implements UserInterface {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-        }), 3000, 400, TimeUnit.MILLISECONDS);
+        }), 3000, 500, TimeUnit.MILLISECONDS);
         loadScenes();
     }
 
@@ -71,13 +71,13 @@ public class GUIClient extends Application implements UserInterface {
     public void start(Stage stage) {
         GUIClient.stage = stage;
 
-        changeScene(ClientStatusEnum.LOBBY);
         stage.setTitle("Codex Naturalis");
         stage.setMinHeight(800);
         stage.setMinWidth(1300);
         stage.setHeight(800);
         stage.setWidth(1300);
         stage.getIcons().add(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png"))));
+        changeScene(ClientStatusEnum.LOBBY);
         stage.show();
         stage.requestFocus();
 
@@ -90,7 +90,7 @@ public class GUIClient extends Application implements UserInterface {
             mediaPlayer.setVolume(0);
             mediaPlayer.play();
             Timeline fadeIn = new Timeline(
-                    new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0))
+                    new KeyFrame(Duration.seconds(5), new KeyValue(mediaPlayer.volumeProperty(), 0.1))
             );
             fadeIn.play();
         } catch (URISyntaxException e) {

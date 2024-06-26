@@ -476,6 +476,7 @@ public class GameController {
             fileOut.close();
         } catch (IOException e) {
             System.err.println("Error while saving the game: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

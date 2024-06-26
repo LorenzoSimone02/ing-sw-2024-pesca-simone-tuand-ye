@@ -6,6 +6,7 @@ module it.polimi.ingsw.progetto {
     requires com.google.gson;
     requires java.rmi;
     requires java.desktop;
+    requires java.compiler;
 
     exports it.polimi.ingsw.client;
     exports it.polimi.ingsw.client.view;

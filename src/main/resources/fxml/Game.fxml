@@ -4,6 +4,8 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
 <HBox fx:id="gamePane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="it.polimi.ingsw.client.view.gui.controllers.GameGuiController">
     <VBox fx:id="gameView">
@@ -112,13 +114,20 @@
         <VBox alignment="CENTER" style="-fx-background-color: brown; -fx-padding: 0 0 10 0;" >
             <Label fx:id="turn" style="-fx-font-weight: bold; -fx-font-size: 16"/>
         </VBox>
-        <VBox fx:id="chat" minHeight="250" alignment="BOTTOM_CENTER">
-            <ScrollPane fx:id="scrollPane" fitToHeight="true">
+        <VBox fx:id="chat" alignment="BOTTOM_CENTER">
+            <ScrollPane fx:id="scrollPane" fitToHeight="true" VBox.vgrow="ALWAYS" minHeight="235">
                 <VBox fx:id="messagesBox" style="-fx-padding: 15 15 15 15; -fx-font-size: 15"/>
             </ScrollPane>
             <HBox spacing="10" style="-fx-padding: 10 10 10 10;" alignment="CENTER">
                 <TextField fx:id="messageInput" HBox.hgrow="ALWAYS" promptText="Enter your message here..."/>
                 <Button text="Send" onAction="#sendChatMessage" defaultButton="true"/>
+                <ComboBox fx:id="messageRecipient" promptText="Send to">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Everyone"/>
+                        </FXCollections>
+                    </items>
+                </ComboBox>
             </HBox>
         </VBox>
     </VBox>
