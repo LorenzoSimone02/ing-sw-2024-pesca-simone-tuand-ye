@@ -11,7 +11,6 @@ import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,7 +62,6 @@ public class PlayerControllerTest {
 //        clientConnection3.setUsername(controller.getPlayerController("p3").getPlayer().getUsername());
 //        clientConnection4.setUsername(controller.getPlayerController("p4").getPlayer().getUsername());
 //
-
         controller.startGame();
 
         resourceCardArray = new ArrayList<>();

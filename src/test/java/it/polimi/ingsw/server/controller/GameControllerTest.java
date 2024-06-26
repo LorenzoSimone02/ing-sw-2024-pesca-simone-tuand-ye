@@ -5,8 +5,12 @@ import it.polimi.ingsw.network.rmi.RMIClientConnection;
 import it.polimi.ingsw.network.socket.SocketClientConnection;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
+import it.polimi.ingsw.server.controller.exceptions.GameStartException;
+import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.model.card.GoldCard;
+import it.polimi.ingsw.server.model.card.ObjectiveCard;
 import it.polimi.ingsw.server.model.card.ResourceCard;
+import it.polimi.ingsw.server.model.card.StarterCard;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.Player;
 import org.junit.jupiter.api.AfterEach;
@@ -16,20 +20,69 @@ import org.junit.jupiter.api.Test;
 
 import javax.management.remote.rmi.RMIServer;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameControllerTest {
 
     private ServerNetworkHandler serverNetworkHandler;
     private GameController gameController;
+    private ArrayList<GoldCard> goldCardArray;
+    private ArrayList<StarterCard> starterCardArray;
+    private ArrayList<ResourceCard> resourceCardArray;
 
     @BeforeEach
-    void setup() {
+    void setup() throws IOException {
+
         serverNetworkHandler = new ServerNetworkHandler("CodexNaturalisServer", 1099, 5001);
         serverNetworkHandler.start();
 
         gameController = new GameController(serverNetworkHandler);
         gameController.createGame(1);
+
+        resourceCardArray = new ArrayList<>();
+        goldCardArray = new ArrayList<>();
+        starterCardArray = new ArrayList<>();
+
+        for(int i = 1; i <= 40; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            ResourceCard card = new ResourceCard(jsonData);
+            resourceCardArray.add(card);
+        }
+
+        for(int i = 1; i <= 40; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/goldcards/goldCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            GoldCard card = new GoldCard(jsonData);
+            goldCardArray.add(card);
+        }
+        for(int i = 1; i <= 6; i++) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/startercards/starterCard" + i + ".json"))));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+            String jsonData = stringBuilder.toString();
+            StarterCard card = new StarterCard(jsonData);
+            starterCardArray.add(card);
+        }
 
     }
 
@@ -45,8 +98,17 @@ public class GameControllerTest {
     }
 
     @Test
+    @DisplayName("Test card given ID")
+    public void validCardGivenID() {
+
+        ResourceCard chosenCard = resourceCardArray.get(0);
+        assertEquals(chosenCard.getId(), resourceCardArray.get(0).getId());
+    }
+
+    @Test
     @DisplayName("Test valid network handler")
     public void validNetworkHandler() {
+
         assertNotNull(gameController.getNetworkHandler());
         assertEquals(serverNetworkHandler, gameController.getNetworkHandler());
     }
@@ -75,6 +137,7 @@ public class GameControllerTest {
     @Test
     @DisplayName("Test valid player number")
     public void validPlayerNumber() {
+
         gameController.addPlayer("p1");
         gameController.addPlayer("p2");
 
@@ -83,19 +146,30 @@ public class GameControllerTest {
     }
 
     @Test
-    @DisplayName("Test valid players management (add and remove)")
-    public void validPlayerManagement() {
+    @DisplayName("Test valid players management")
+    public void validPlayerList() {
 
-        try {
-            gameController.addPlayer("p1");
-            gameController.addPlayer("p2");
-            gameController.addPlayer("p3");
-            gameController.addPlayer("p4");
-        } catch (FullLobbyException | DuplicatePlayerException e) {
-            throw new RuntimeException(e);
+        for (int i = 0; i < 4; i++) {
+
+            try {
+                gameController.addPlayer("p" + i);
+            } catch (IllegalOperationForStateException e) {
+                fail("Player not added");
+            }
+            if (gameController.getGame().getInfo().getPlayersNumber() != i + 1) {
+                fail("Tried to add a player but the number of players is not correct");
+            }
+            if (!gameController.getGame().getPlayers().get(i).getUsername().equals("p" + i)) {
+                fail("Wrong player added");
+            }
+            assertEquals(gameController.getGame().getPlayers().get(i), gameController.getPlayerByNick("p" + i).orElse(null));
         }
 
-        assertEquals(4, gameController.getGame().getInfo().getPlayersNumber());
+        assertThrows(DuplicatePlayerException.class, () -> gameController.addPlayer("p0"));
+        assertThrows(DuplicatePlayerException.class, () -> gameController.addPlayer("p1"));
+        assertThrows(DuplicatePlayerException.class, () -> gameController.addPlayer("p2"));
+        assertThrows(DuplicatePlayerException.class, () -> gameController.addPlayer("p3"));
+        assertThrows(FullLobbyException.class, () -> gameController.addPlayer("p4"));
 
         gameController.removePlayer(gameController.getPlayerByNick("p2").orElse(null));
 
@@ -107,6 +181,50 @@ public class GameControllerTest {
         gameController.addPlayer("p2");
         assertEquals(4, gameController.getGame().getInfo().getPlayersNumber());
         assertTrue(gameController.getGame().getPlayers().contains(gameController.getPlayerByNick("p2").orElse(null)));
+
+    }
+
+    @Test
+    @DisplayName("Test valid game status")
+    public void validGameStatus() {
+
+        assertEquals(GameStatusEnum.WAITING_FOR_PLAYERS, gameController.getGame().getInfo().getGameStatus());
+
+        try {
+            gameController.addPlayer("p1");
+            gameController.addPlayer("p2");
+            gameController.addPlayer("p3");
+            gameController.addPlayer("p4");
+        } catch (FullLobbyException | DuplicatePlayerException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            gameController.startGame();
+            assertEquals(gameController.getGame().getInfo().getGameStatus(), GameStatusEnum.STARTING);
+        } catch (GameStartException e) {
+            assertEquals(gameController.getGame().getInfo().getGameStatus(), GameStatusEnum.ERROR);
+            fail("Game not correctly started.");
+        }
+
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_COLOR);
+        assertEquals(GameStatusEnum.CHOOSING_COLOR, gameController.getGame().getInfo().getGameStatus());
+
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_STARTER_FACE);
+        assertEquals(GameStatusEnum.CHOOSING_STARTER_FACE, gameController.getGame().getInfo().getGameStatus());
+
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE);
+        assertEquals(GameStatusEnum.CHOOSING_PERSONAL_OBJECTIVE, gameController.getGame().getInfo().getGameStatus());
+
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.LAST_TURN);
+        assertEquals(GameStatusEnum.LAST_TURN, gameController.getGame().getInfo().getGameStatus());
+
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);
+        assertEquals(GameStatusEnum.PLAYING, gameController.getGame().getInfo().getGameStatus());
+
+        gameController.endGame();
+
+        assertEquals(GameStatusEnum.ENDING, gameController.getGame().getInfo().getGameStatus());
 
     }
 
