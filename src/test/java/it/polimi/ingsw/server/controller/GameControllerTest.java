@@ -1,6 +1,8 @@
 package it.polimi.ingsw.server.controller;
 
 import it.polimi.ingsw.network.ServerNetworkHandler;
+import it.polimi.ingsw.network.rmi.RMIClientConnection;
+import it.polimi.ingsw.network.socket.SocketClientConnection;
 import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
 import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.model.card.GoldCard;
@@ -12,27 +14,23 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import javax.management.remote.rmi.RMIServer;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameControllerTest {
 
-    ServerNetworkHandler serverNetworkHandler;
-    GameController gameController;
+    private ServerNetworkHandler serverNetworkHandler;
+    private GameController gameController;
 
     @BeforeEach
     void setup() {
-        serverNetworkHandler = new ServerNetworkHandler("CodexNaturalisServer", 1099, 5000);
+        serverNetworkHandler = new ServerNetworkHandler("CodexNaturalisServer", 1099, 5001);
         serverNetworkHandler.start();
 
         gameController = new GameController(serverNetworkHandler);
         gameController.createGame(1);
 
-        gameController.addPlayer("p1");
-        gameController.addPlayer("p2");
-        gameController.addPlayer("p3");
-        gameController.addPlayer("p4");
-
-        gameController.startGame();
     }
 
     @AfterEach
@@ -57,6 +55,11 @@ public class GameControllerTest {
     @DisplayName("Test valid player controllers")
     public void validPlayerControllers() {
 
+        gameController.addPlayer("p1");
+        gameController.addPlayer("p2");
+        gameController.addPlayer("p3");
+        gameController.addPlayer("p4");
+
         assertEquals(4, gameController.getPlayerControllers().size());
         assertNotNull(gameController.getPlayerController(gameController.getPlayerByNick("p1").orElse(null)));
         assertNotNull(gameController.getPlayerController(gameController.getPlayerByNick("p2").orElse(null)));
@@ -72,7 +75,10 @@ public class GameControllerTest {
     @Test
     @DisplayName("Test valid player number")
     public void validPlayerNumber() {
-        assertEquals(4, gameController.getGame().getPlayers().size());
+        gameController.addPlayer("p1");
+        gameController.addPlayer("p2");
+
+        assertEquals(2, gameController.getGame().getPlayers().size());
         assertEquals(0, gameController.getGame().getOfflinePlayers().size());
     }
 
@@ -154,7 +160,11 @@ public class GameControllerTest {
     @DisplayName("Test valid player reconnection")
     public void validPlayerReconnection() {
 
-        gameController.removePlayer(gameController.getPlayerByNick("p1").orElse(null));
+        gameController.addPlayer("p1");
+        Player p1 = gameController.getPlayerController("p1").getPlayer();
+        gameController.getGame().getInfo().setGameStatus(GameStatusEnum.PLAYING);
+        gameController.getGame().getInfo().setActivePlayer(p1);
+
         gameController.onDisconnect("p1");
 
         assertTrue(gameController.hasDisconnected("p1"));

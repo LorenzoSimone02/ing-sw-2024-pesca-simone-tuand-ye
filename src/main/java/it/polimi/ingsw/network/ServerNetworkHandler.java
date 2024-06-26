@@ -218,6 +218,14 @@ public class ServerNetworkHandler {
         return packetQueue;
     }
 
+    public SocketServer getSocketServer(){
+        return socketServer;
+    }
+
+    public RMIServer getRmiServer(){
+        return rmiServer;
+    }
+
     /**
      * The method returns the boolean that indicates if the server is a lobby
      * @return the boolean that indicates if the server is a lobby
@@ -233,4 +241,5 @@ public class ServerNetworkHandler {
     public void setLobby(boolean isLobby) {
         this.isLobby = isLobby;
     }
+
 }

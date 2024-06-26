@@ -9,6 +9,7 @@ import it.polimi.ingsw.network.packets.JoinPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.rmi.RMIClient;
 import it.polimi.ingsw.network.socket.SocketClient;
+import it.polimi.ingsw.server.ServerMain;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -30,7 +31,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
 
         try {
             if (gameID == -1) {
-                ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("CodexNaturalisServer", clientManager.getServerIP(), 1099) : new SocketClient(clientManager.getServerIP(), 5000);
+                ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("CodexNaturalisServer", clientManager.getServerIP(), ServerMain.getRmiPort()) : new SocketClient(clientManager.getServerIP(), ServerMain.getSocketPort());
                 newHandler.setClientManager(clientManager);
                 clientManager.setNetworkHandler(newHandler);
                 clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGGED);
@@ -41,7 +42,7 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
                 return;
             }
 
-            ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("Game" + gameID, clientManager.getServerIP(), 1099 + gameID) : new SocketClient(clientManager.getServerIP(), 5000 + gameID);
+            ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("Game" + gameID, clientManager.getServerIP(), ServerMain.getRmiPort() + gameID) : new SocketClient(clientManager.getServerIP(), ServerMain.getSocketPort() + gameID);
             newHandler.setClientManager(clientManager);
             clientManager.setNetworkHandler(newHandler);
             clientManager.getGameState().setClientStatus(ClientStatusEnum.CONNECTED);

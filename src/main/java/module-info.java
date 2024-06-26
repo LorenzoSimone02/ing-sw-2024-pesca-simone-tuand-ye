@@ -12,8 +12,9 @@ module it.polimi.ingsw.progetto {
     exports it.polimi.ingsw.client.view;
     exports it.polimi.ingsw.client.view.gui to javafx.graphics;
     exports it.polimi.ingsw.client.view.gui.controllers;
-    exports it.polimi.ingsw.network.rmi;
     exports it.polimi.ingsw.network;
+    exports it.polimi.ingsw.network.socket;
+    exports it.polimi.ingsw.network.rmi;
     exports it.polimi.ingsw.network.packets;
     exports it.polimi.ingsw.client.controller;
     exports it.polimi.ingsw.server.controller.save;

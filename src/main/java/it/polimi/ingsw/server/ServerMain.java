@@ -36,7 +36,7 @@ public class ServerMain {
     /**
      * The server's socket port
      */
-    private static final int SOCKET_PORT = 4900;
+    private static final int SOCKET_PORT = 5001;
 
     /**
      * The main method of the server

@@ -3,6 +3,9 @@ package it.polimi.ingsw.client.controller.commands;
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
+import it.polimi.ingsw.server.model.card.FaceEnum;
+import it.polimi.ingsw.server.model.card.GoldCard;
+import it.polimi.ingsw.server.model.card.ResourceCard;
 
 /**
  * The class represents the command that allows a player to peek the card on top of Resource/Gold deck
@@ -32,9 +35,13 @@ public class PeekDeckCommand extends Command {
                 String deckChoice = input.split(" ")[0];
 
                 if (deckChoice.equalsIgnoreCase("resource")) {
-                    Printer.printCard(clientManager.getGameState().getTopResourcesDeckCard());
+                    ResourceCard card = clientManager.getGameState().getTopResourcesDeckCard();
+                    card.setFace(FaceEnum.BACK);
+                    Printer.printCard(card);
                 } else if (deckChoice.equalsIgnoreCase("gold")) {
-                    Printer.printCard(clientManager.getGameState().getTopGoldDeckCard());
+                    GoldCard card = clientManager.getGameState().getTopGoldDeckCard();
+                    card.setFace(FaceEnum.BACK);
+                    Printer.printCard(card);
                 } else {
                     System.err.println("Invalid choice. Type 'gold' or 'resource'");
                 }
