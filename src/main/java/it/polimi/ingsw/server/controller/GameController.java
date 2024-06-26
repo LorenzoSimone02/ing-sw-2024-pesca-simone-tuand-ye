@@ -142,7 +142,7 @@ public class GameController {
             return;
         }
         if (game.getInfo().getGameStatus() != GameStatusEnum.WAITING_FOR_PLAYERS) {
-            throw new IllegalOperationForStateException(game.getInfo().getGameStatus());
+            return;
         }
         if (getPlayerByNick(username).isPresent()) {
             throw new DuplicatePlayerException(username);
@@ -209,7 +209,7 @@ public class GameController {
 
         if (game.getInfo().getPlayersNumber() == 1) {
             if (game.getInfo().getGameStatus().equals(GameStatusEnum.PLAYING)) {
-                game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_PLAYERS);
+                game.getInfo().setGameStatus(GameStatusEnum.WAITING_FOR_RECONNECTION);
                 networkHandler.sendPacketToAll(new InfoPacket(Printer.RED + "There is currently only one player connected, wait for someone to reconnect." + Printer.RESET));
             } else {
                 networkHandler.sendPacketToAll(new InfoPacket(Printer.RED + "There aren't enough player to proceed, game forcefully terminated." + Printer.RESET));
@@ -366,7 +366,6 @@ public class GameController {
                     }
                     in.close();
                     fileIn.close();
-                    file.delete();
                     return save;
                 }
             } catch (Exception ignored) {
