@@ -5,8 +5,6 @@ import it.polimi.ingsw.network.ClientConnection;
 import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
-import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
-import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
 import it.polimi.ingsw.server.controller.save.CardSave;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.controller.save.PlayerSave;
@@ -142,7 +140,7 @@ public class GameController {
      *
      * @param username the username of the player to add
      */
-    public synchronized void addPlayer(String username) throws DuplicatePlayerException, FullLobbyException {
+    public synchronized void addPlayer(String username) {
         if (hasDisconnected(username)) {
             reconnectPlayer(username);
             return;
@@ -151,10 +149,10 @@ public class GameController {
             return;
         }
         if (getPlayerByNick(username).isPresent()) {
-            throw new DuplicatePlayerException(username);
+            return;
         }
         if (game.getPlayers().size() >= game.getInfo().getMaxPlayers()) {
-            throw new FullLobbyException();
+            return;
         }
 
         Player player = new Player(username, game);
@@ -493,7 +491,6 @@ public class GameController {
             fileOut.close();
         } catch (IOException e) {
             System.err.println("Error while saving the game: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -657,21 +654,6 @@ public class GameController {
      * The method ends the current game by calculating all the players' scores and declare the winner
      */
     public synchronized void endGame() {
-
-        if (!game.getInfo().getGameStatus().equals(GameStatusEnum.ENDING)) {
-            game.getInfo().setGameStatus(GameStatusEnum.ENDING);
-            ServerMain.removeMatch(networkHandler);
-            ServerNetworkHandler lobby = ServerMain.getLobby();
-            for (Player p : game.getPlayers()) {
-                ClientConnection connection = networkHandler.getConnectionByNickname(p.getUsername());
-                lobby.addConnection(connection);
-                lobby.sendPacket(connection, new InfoPacket("You have been connected to the Lobby"));
-                lobby.sendPacket(connection, new JoinPacket(-1));
-            }
-            networkHandler.stop();
-            return;
-        }
-
         HashMap<Player, Integer> objectiveCardsScored = new HashMap<>();
         HashMap<String, Integer> playerScores = new HashMap<>();
 
@@ -718,8 +700,16 @@ public class GameController {
                 networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
             }
         }
-        System.out.println(saveGameFile.getAbsolutePath());
-        System.out.println(saveGameFile.delete());
+
+        if (!game.getInfo().getGameStatus().equals(GameStatusEnum.ENDING)) {
+            game.getInfo().setGameStatus(GameStatusEnum.ENDING);
+            ServerMain.removeMatch(networkHandler);
+            networkHandler.stop();
+            return;
+        }
+
+        saveGameFile.deleteOnExit();
+        saveGameFile.delete();
         networkHandler.stop();
         ServerMain.removeMatch(networkHandler);
     }

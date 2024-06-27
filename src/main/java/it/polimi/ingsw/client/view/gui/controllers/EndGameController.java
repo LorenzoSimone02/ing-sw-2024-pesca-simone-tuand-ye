@@ -2,8 +2,6 @@ package it.polimi.ingsw.client.view.gui.controllers;
 
 import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
-import it.polimi.ingsw.client.view.gui.GUIClient;
-import it.polimi.ingsw.network.packets.JoinPacket;
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -35,13 +33,8 @@ public class EndGameController implements SceneController, Initializable {
     private Pane pane;
 
     /**
-     * The button to go back to the menu
-     */
-    @FXML
-    private Button menuButton;
-
-    /**
      * The method updates the scene
+     *
      * @param data the data to be updated
      */
     @Override
@@ -51,7 +44,8 @@ public class EndGameController implements SceneController, Initializable {
 
     /**
      * The method initializes the scene
-     * @param url the url
+     *
+     * @param url            the url
      * @param resourceBundle the resource bundle
      */
     @Override
@@ -72,7 +66,7 @@ public class EndGameController implements SceneController, Initializable {
         players.entrySet().stream().sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue())).forEach(e -> orderedPlayers.add(e.getKey()));
 
         StringBuilder winnerText = new StringBuilder("Winner: ");
-        for(String player : ClientManager.getInstance().getGameState().getWinners()){
+        for (String player : ClientManager.getInstance().getGameState().getWinners()) {
             winnerText.append(player).append(", ");
         }
         winner.setText(winnerText.substring(0, winnerText.length() - 2));
@@ -92,11 +86,10 @@ public class EndGameController implements SceneController, Initializable {
     }
 
     /**
-     * The method goes back to the menu on pressing the menu button
+     * The method handles the quit button pressed event
      */
     @FXML
-    private void menuButtonPressed() {
-        GUIClient guiClient = (GUIClient) ClientManager.getInstance().getUserInterface();
-        guiClient.changeScene(ClientManager.getInstance().getGameState().getClientStatus());
+    private void quitButtonPressed() {
+        System.exit(0);
     }
 }

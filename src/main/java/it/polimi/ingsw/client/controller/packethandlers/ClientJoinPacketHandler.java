@@ -34,11 +34,6 @@ public class ClientJoinPacketHandler extends ClientPacketHandler {
                 ClientNetworkHandler newHandler = clientManager.getNetworkHandler() instanceof RMIClient ? new RMIClient("CodexNaturalisServer", clientManager.getServerIP(), ServerMain.getRmiPort()) : new SocketClient(clientManager.getServerIP(), ServerMain.getSocketPort());
                 newHandler.setClientManager(clientManager);
                 clientManager.setNetworkHandler(newHandler);
-                clientManager.getGameState().setClientStatus(ClientStatusEnum.LOGGED);
-                if (clientManager.getViewMode() == ViewModeEnum.GUI) {
-                    GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-                    guiClient.changeScene(clientManager.getGameState().getClientStatus());
-                }
                 return;
             }
 

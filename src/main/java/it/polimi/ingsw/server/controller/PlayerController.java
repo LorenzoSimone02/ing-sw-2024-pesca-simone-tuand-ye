@@ -1,7 +1,5 @@
 package it.polimi.ingsw.server.controller;
 
-import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalCardPlacementException;
 import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.card.corner.CornerLocationEnum;
@@ -26,64 +24,61 @@ public record PlayerController(Player player) {
 
     /**
      * The method places a card on the player's cards' matrix
+     *
      * @param card the card to place
-     * @param x the x coordinate of the card
-     * @param y the y coordinate of the card
-     * @throws IllegalCardPlacementException if the card cannot be placed
+     * @param x    the x coordinate of the card
+     * @param y    the y coordinate of the card
      */
-    public synchronized void placeCard(ResourceCard card, int x, int y) throws IllegalCardPlacementException {
-        if (canPlaceCard(x, y, card)) {
-            player.setCard(card, x, y);
-            player.addOrderedCard(card);
+    public synchronized void placeCard(ResourceCard card, int x, int y) {
+        player.setCard(card, x, y);
+        player.addOrderedCard(card);
 
-            addResourcesAndObjects(card);
+        addResourcesAndObjects(card);
 
-            ResourceCard currCard;
-            CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
-            //TopLeftCard -> TopRightCard -> BottomLeftCard -> BottomRightCard
-            for (int i = -1; i <= 1; i += 2) {
-                for (int j = -1; j <= 1; j += 2) {
-                    if (player.getCardAt(x + j, y + i).isPresent()) {
+        ResourceCard currCard;
+        CornerLocationEnum currRemovingCornerLocation = CornerLocationEnum.values()[0];
+        //TopLeftCard -> TopRightCard -> BottomLeftCard -> BottomRightCard
+        for (int i = -1; i <= 1; i += 2) {
+            for (int j = -1; j <= 1; j += 2) {
+                if (player.getCardAt(x + j, y + i).isPresent()) {
 
-                        currCard = player.getCardAt(x + j, y + i).get();
+                    currCard = player.getCardAt(x + j, y + i).get();
 
-                        CornerLocationEnum finalRemovingCornerLocation = currRemovingCornerLocation;
-                        ResourceCard finalCurrCard = currCard;
+                    CornerLocationEnum finalRemovingCornerLocation = currRemovingCornerLocation;
+                    ResourceCard finalCurrCard = currCard;
 
-                        player.getCardAt(x + j, y + i).get().getCorners().stream()
-                                .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
-                                .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
-                                .findFirst().ifPresent(corner -> player.removeObject(corner.getObject()));
+                    player.getCardAt(x + j, y + i).get().getCorners().stream()
+                            .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
+                            .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
+                            .findFirst().ifPresent(corner -> player.removeObject(corner.getObject()));
 
-                        player.getCardAt(x + j, y + i).get().getCorners().stream()
-                                .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
-                                .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
-                                .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
+                    player.getCardAt(x + j, y + i).get().getCorners().stream()
+                            .filter(corner -> corner.getLocation().equals(finalRemovingCornerLocation))
+                            .filter(corner -> corner.getFace().equals(finalCurrCard.getFace()))
+                            .findFirst().ifPresent(corner -> player.removeResource(corner.getResource()));
 
-                    }
-                    if (currRemovingCornerLocation.ordinal() < 3)
-                        currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
                 }
+                if (currRemovingCornerLocation.ordinal() < 3)
+                    currRemovingCornerLocation = CornerLocationEnum.values()[currRemovingCornerLocation.ordinal() + 1];
             }
+        }
 
-            if (card instanceof GoldCard goldCard && card.getFace().equals(FaceEnum.FRONT)) {
-                player.setScore(player.getScore() + goldCard.getPointsStrategy().getStrategy().calculatePoints(player, x, y));
-            } else if (card.getFace().equals(FaceEnum.FRONT)) {
-                player.setScore(player.getScore() + card.getPoints());
-            }
-        } else {
-            throw new IllegalCardPlacementException();
+        if (card instanceof GoldCard goldCard && card.getFace().equals(FaceEnum.FRONT)) {
+            player.setScore(player.getScore() + goldCard.getPointsStrategy().getStrategy().calculatePoints(player, x, y));
+        } else if (card.getFace().equals(FaceEnum.FRONT)) {
+            player.setScore(player.getScore() + card.getPoints());
         }
     }
 
     /**
      * The method checks if a card can be placed on the player's cards' matrix
-     * @param x the x coordinate of the card
-     * @param y the y coordinate of the card
+     *
      * @param card the card to place
+     * @param x    the x coordinate of the card
+     * @param y    the y coordinate of the card
      * @return true if the card can be placed, false otherwise
      */
-    public synchronized boolean canPlaceCard(int x, int y, ResourceCard card) {
+    public synchronized boolean canPlaceCard(ResourceCard card, int x, int y) {
 
         if ((card instanceof GoldCard goldCard) && card.getFace().equals(FaceEnum.FRONT)) {
             if (!goldCard.meetRequirements(player.getResources())) {
@@ -121,6 +116,7 @@ public record PlayerController(Player player) {
 
     /**
      * The method adds the resources and objects of a card to the player's list of resources and objects upon a card placement
+     *
      * @param card the card to add
      */
     public synchronized void addResourcesAndObjects(ResourceCard card) {
@@ -142,19 +138,23 @@ public record PlayerController(Player player) {
 
     /**
      * The method allows the player to choose a token color
+     *
      * @param tokenColor the chosen token color
+     * @return true if the token color can be chosen, false otherwise
      */
-    public synchronized void chooseToken(TokenColorEnum tokenColor) {
+    public synchronized boolean chooseToken(TokenColorEnum tokenColor) {
         for (Player player : player.getGame().getPlayers()) {
             if (player.getToken() != null && player.getToken().color().equals(tokenColor)) {
-                throw new AlreadyTakenColorException(tokenColor);
+                return false;
             }
         }
         player.setToken(new PlayerToken(tokenColor));
+        return true;
     }
 
     /**
      * The method allows the player to choose an objective card
+     *
      * @param objectiveCard the chosen objective card
      */
     public synchronized void chooseObjectiveCard(ObjectiveCard objectiveCard) {
@@ -163,8 +163,9 @@ public record PlayerController(Player player) {
 
     /**
      * The method allows the player to choose a starter card and its face
+     *
      * @param starterCard the chosen starter card
-     * @param chosenFace the chosen face of the starter card
+     * @param chosenFace  the chosen face of the starter card
      */
     public synchronized void setStarterCard(StarterCard starterCard, FaceEnum chosenFace) {
         starterCard.setFace(chosenFace);
@@ -175,6 +176,7 @@ public record PlayerController(Player player) {
 
     /**
      * The method allows the player to turn a card
+     *
      * @param card the card to turn
      */
     public synchronized void turnCard(Card card) {

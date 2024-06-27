@@ -21,7 +21,7 @@ public class CardSaveTest {
     private ServerNetworkHandler serverNetworkHandler;
     private GameController gameController;
     private ArrayList<ResourceCard> resourceCardArray;
-    private static int id = 0;
+    private static int id = 300;
 
     @BeforeEach
     void setUp() throws IOException {

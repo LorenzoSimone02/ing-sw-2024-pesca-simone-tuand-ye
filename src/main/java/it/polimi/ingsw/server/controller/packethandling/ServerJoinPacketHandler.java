@@ -6,9 +6,6 @@ import it.polimi.ingsw.network.ServerNetworkHandler;
 import it.polimi.ingsw.network.packets.*;
 import it.polimi.ingsw.server.ServerMain;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.controller.exceptions.DuplicatePlayerException;
-import it.polimi.ingsw.server.controller.exceptions.FullLobbyException;
-import it.polimi.ingsw.server.controller.exceptions.IllegalOperationForStateException;
 import it.polimi.ingsw.server.controller.save.GameSave;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 
@@ -74,29 +71,17 @@ public class ServerJoinPacketHandler extends ServerPacketHandler {
         }
 
         if (foundNewMatch != null) {
-            try {
-                ServerNetworkHandler networkHandler = ServerMain.getMatch(gameID).get();
-                controller.getNetworkHandler().removeConnection(connection);
-                System.out.println("Removed connection from old lobby with username " + connection.getUsername());
-                networkHandler.addConnection(connection);
+            ServerNetworkHandler networkHandler = ServerMain.getMatch(gameID).get();
+            controller.getNetworkHandler().removeConnection(connection);
+            System.out.println("Removed connection from old lobby with username " + connection.getUsername());
+            networkHandler.addConnection(connection);
 
-                foundNewMatch.getGameController().addPlayer(connection.getUsername());
-                System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has joined the game " + foundNewMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
-                networkHandler.sendPacket(connection, new JoinPacket(gameID));
-                networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, false));
+            foundNewMatch.getGameController().addPlayer(connection.getUsername());
+            System.out.println(Printer.YELLOW + "Player " + connection.getUsername() + " has joined the game " + foundNewMatch.getGameController().getGame().getInfo().getId() + Printer.RESET);
+            networkHandler.sendPacket(connection, new JoinPacket(gameID));
+            networkHandler.sendPacketToAll(new ConnectionEventPacket(connection.getUsername(), false, false));
 
-                foundNewMatch.getGameController().checkStartCondition();
-            } catch (DuplicatePlayerException e) {
-                System.err.println("Received a Join request with an already existing username.");
-                connection.setUsername("Unknown");
-                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The username you are trying to use is already taken."));
-            } catch (FullLobbyException e) {
-                System.err.println("Received a Join request with a full lobby.");
-                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The lobby you are trying to join is full."));
-            } catch (IllegalOperationForStateException e) {
-                System.err.println("Received a Join request while the game is already started.");
-                controller.getNetworkHandler().sendPacket(connection, new InfoPacket("The game you are trying to connect to is already started"));
-            }
+            foundNewMatch.getGameController().checkStartCondition();
         } else {
             controller.getNetworkHandler().sendPacket(connection, new InfoPacket("There are no available Games at the moment. Create a new Game or try again."));
         }

@@ -19,8 +19,9 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
 
     /**
      * The method handles the card drawing packets from the client
-     * @param packet the draw card packet
-     * @param controller the game controller
+     *
+     * @param packet           the draw card packet
+     * @param controller       the game controller
      * @param clientConnection the connection of the client
      */
     @Override
@@ -30,7 +31,7 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You can't draw a Card now." + Printer.RESET));
             return;
         }
-        if(controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_RECONNECTION && controller.getGame().getInfo().getPlayersNumber() == 1){
+        if (controller.getGame().getInfo().getGameStatus() == GameStatusEnum.WAITING_FOR_RECONNECTION && controller.getGame().getInfo().getPlayersNumber() == 1) {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "You are the only Player connected, wait for someone else to connect." + Printer.RESET));
             return;
         }
@@ -53,25 +54,25 @@ public class ServerDrawCardPacketHandler extends ServerPacketHandler {
             } else {
                 controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "Invalid Card." + Printer.RESET));
             }
-            return;
-        }
-        Card card;
-        if (drawCardPacket.isGold()) {
-            if(controller.getGame().getTable().getGoldDeck().getCards().isEmpty()) {
-                controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
-                return;
-            }
-            card = controller.getGame().getTable().getGoldDeck().drawCard();
-            controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
         } else {
-            if(controller.getGame().getTable().getResourceDeck().getCards().isEmpty()) {
-                controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
-                return;
+            Card card;
+            if (drawCardPacket.isGold()) {
+                if (controller.getGame().getTable().getGoldDeck().getCards().isEmpty()) {
+                    controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
+                    return;
+                }
+                card = controller.getGame().getTable().getGoldDeck().drawCard();
+                controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getGoldDeck().getCards().peek().getId(), true));
+            } else {
+                if (controller.getGame().getTable().getResourceDeck().getCards().isEmpty()) {
+                    controller.getNetworkHandler().sendPacketToAll(new InfoPacket(Printer.RED + "That Deck is empty." + Printer.RESET));
+                    return;
+                }
+                card = controller.getGame().getTable().getResourceDeck().drawCard();
+                controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
             }
-            card = controller.getGame().getTable().getResourceDeck().drawCard();
-            controller.getNetworkHandler().sendPacketToAll(new PeekDeckPacket(controller.getGame().getTable().getResourceDeck().getCards().peek().getId(), false));
+            controller.getNetworkHandler().sendPacket(clientConnection, new DrawCardPacket(card.getId()));
+            controller.getPlayerController(clientConnection.getUsername()).getPlayer().addCardInHand(card);
         }
-        controller.getNetworkHandler().sendPacket(clientConnection, new DrawCardPacket(card.getId()));
-        controller.getPlayerController(clientConnection.getUsername()).getPlayer().addCardInHand(card);
     }
 }

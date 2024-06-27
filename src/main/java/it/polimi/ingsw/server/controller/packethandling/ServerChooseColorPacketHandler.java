@@ -6,7 +6,6 @@ import it.polimi.ingsw.network.packets.ChooseColorPacket;
 import it.polimi.ingsw.network.packets.InfoPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.server.controller.GameController;
-import it.polimi.ingsw.server.controller.exceptions.AlreadyTakenColorException;
 import it.polimi.ingsw.server.model.game.GameStatusEnum;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
 
@@ -17,8 +16,9 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
 
     /**
      * The method handles the color choosing packets from the client
-     * @param packet the choose color packet
-     * @param controller the game controller
+     *
+     * @param packet           the choose color packet
+     * @param controller       the game controller
      * @param clientConnection the connection of the client
      */
     @Override
@@ -32,12 +32,12 @@ public class ServerChooseColorPacketHandler extends ServerPacketHandler {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "Invalid Color." + Printer.RESET));
             return;
         }
-        try {
-            controller.getPlayerController(clientConnection.getUsername()).chooseToken(TokenColorEnum.valueOf(chooseColorPacket.getColor()));
+        if (controller.getPlayerController(clientConnection.getUsername()).chooseToken(TokenColorEnum.valueOf(chooseColorPacket.getColor()))) {
             controller.getNetworkHandler().sendPacketToAll(new ChooseColorPacket(clientConnection.getUsername(), chooseColorPacket.getColor()));
             controller.checkPreGameConditions();
-        } catch (AlreadyTakenColorException e) {
+        } else {
             controller.getNetworkHandler().sendPacket(clientConnection, new InfoPacket(Printer.RED + "The " + chooseColorPacket.getColor() + " Token Color has already been chosen." + Printer.RESET));
+
         }
     }
 }

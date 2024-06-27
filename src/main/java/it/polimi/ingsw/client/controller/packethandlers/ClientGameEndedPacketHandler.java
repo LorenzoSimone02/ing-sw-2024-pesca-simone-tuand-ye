@@ -34,12 +34,15 @@ public class ClientGameEndedPacketHandler extends ClientPacketHandler {
             clientManager.getUserInterface().showMessage(winner);
             clientManager.getGameState().addWinner(winner);
         }
-        clientManager.getUserInterface().showMessage("Players Scores:");
-        clientManager.getUserInterface().showMessage(Printer.PURPLE + clientManager.getGameState().getUsername() + ": " + Printer.RESET + clientManager.getGameState().getScore() + " points");
-        for (PlayerState player : clientManager.getGameState().getPlayerStates()) {
-            clientManager.getUserInterface().showMessage(Printer.PURPLE + player.getUsername() + ": " + Printer.RESET + player.getScore() + " points");
-        }
         clientManager.getGameState().setClientStatus(ClientStatusEnum.ENDED);
+
+        if(clientManager.getViewMode() == ViewModeEnum.TUI){
+            clientManager.getUserInterface().showMessage("Players Scores:");
+            clientManager.getUserInterface().showMessage(Printer.PURPLE + clientManager.getGameState().getUsername() + ": " + Printer.RESET + clientManager.getGameState().getScore() + " points");
+            for (PlayerState player : clientManager.getGameState().getPlayerStates()) {
+                clientManager.getUserInterface().showMessage(Printer.PURPLE + player.getUsername() + ": " + Printer.RESET + player.getScore() + " points");
+            }
+        }
         if(clientManager.getViewMode() == ViewModeEnum.GUI){
             Platform.runLater(() -> {
                 GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
