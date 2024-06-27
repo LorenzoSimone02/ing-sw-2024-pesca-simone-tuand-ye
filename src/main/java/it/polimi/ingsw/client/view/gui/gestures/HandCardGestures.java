@@ -43,7 +43,7 @@ public class HandCardGestures {
     }
 
     private final EventHandler<MouseEvent> onMousePressedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
+        if (!ClientManager.getInstance().getGameState().isActivePlayer())
             return;
         mouseAnchorX = event.getSceneX();
         mouseAnchorY = event.getSceneY();
@@ -52,7 +52,7 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseDraggedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.PRIMARY) || !tabPane.getSelectionModel().isSelected(0) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.PRIMARY) || !tabPane.getSelectionModel().isSelected(0))
             return;
 
         double newX = translateAnchorX + event.getSceneX() - mouseAnchorX;
@@ -77,11 +77,11 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseReleasedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !tabPane.getSelectionModel().isSelected(0) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !tabPane.getSelectionModel().isSelected(0))
             return;
         node.setScaleX(1);
         node.setScaleY(1);
-        if (isColliding((ImageView) node)) {
+        if (isColliding((ImageView) node) && ClientManager.getInstance().getGameState().getCardsInHand().size() == 3) {
             Point2D centerInScene = node.localToScene(node.getBoundsInLocal().getCenterX(), node.getBoundsInLocal().getCenterY());
             Point2D centerInTargetPane = pane.sceneToLocal(centerInScene);
             int gridX = (int) Math.round(centerInTargetPane.getY() / 29);
@@ -101,7 +101,7 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseClickedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.SECONDARY) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3 || !tabPane.getSelectionModel().isSelected(0))
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.SECONDARY) || !tabPane.getSelectionModel().isSelected(0))
             return;
         ClientManager.getInstance().getNetworkHandler().sendPacket(new TurnCardPacket(Integer.parseInt(node.getId())));
     };
