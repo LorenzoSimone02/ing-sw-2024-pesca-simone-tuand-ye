@@ -706,6 +706,7 @@ public class GameController {
             game.getInfo().addWinner(winners.getFirst());
             networkHandler.sendPacketToAll(new GameEndedPacket(winners.stream().map(Player::getUsername).toList(), playerScores));
         } else {
+            game.getPlayers().stream().filter(player -> !winners.contains(player)).forEach(objectiveCardsScored::remove);
             Optional<Integer> maxObjectivesScored = objectiveCardsScored.values().stream().max(Integer::compare);
 
             winners.removeIf(p -> maxObjectivesScored.isPresent() && !objectiveCardsScored.get(p).equals(maxObjectivesScored.get()));
