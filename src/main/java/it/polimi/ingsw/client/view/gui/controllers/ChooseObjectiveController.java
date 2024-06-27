@@ -22,15 +22,34 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for the objective choosing scene controller
+ */
 public class ChooseObjectiveController implements SceneController, Initializable {
 
+    /**
+     * The image view of the two objective cards
+     */
     @FXML
     private ImageView obj1, obj2;
+
+    /**
+     * The pane of the scene
+     */
     @FXML
     private BorderPane pane;
+
+    /**
+     * The HBox of the objectives
+     */
     @FXML
     private HBox objectives;
 
+    /**
+     * The method initializes the scene
+     * @param url the url
+     * @param resourceBundle the resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pane.setOpacity(0.3);
@@ -67,6 +86,10 @@ public class ChooseObjectiveController implements SceneController, Initializable
         });
     }
 
+    /**
+     * The method chooses the first objective card
+     * @param mouseEvent the mouse event
+     */
     public void chooseObj1(MouseEvent mouseEvent) {
         if (ClientManager.getInstance().getGameState().getObjectiveCard() != null) {
             ClientManager.getInstance().getUserInterface().showMessage("You have already chosen an Objective Card");
@@ -75,6 +98,10 @@ public class ChooseObjectiveController implements SceneController, Initializable
         ClientManager.getInstance().getNetworkHandler().sendPacket(new ChooseObjectivePacket(id1));
     }
 
+    /**
+     * The method chooses the second objective card
+     * @param mouseEvent the mouse event
+     */
     public void chooseObj2(MouseEvent mouseEvent) {
         if (ClientManager.getInstance().getGameState().getObjectiveCard() != null) {
             ClientManager.getInstance().getUserInterface().showMessage("You have already chosen an Objective Card");
@@ -83,6 +110,10 @@ public class ChooseObjectiveController implements SceneController, Initializable
         ClientManager.getInstance().getNetworkHandler().sendPacket(new ChooseObjectivePacket(id2));
     }
 
+    /**
+     * The method updates the scene
+     * @param data the data to update
+     */
     @Override
     public void updateScene(String data) {
         for(Node node : objectives.getChildren()) {

@@ -28,14 +28,39 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Graphical User Interface client view
+ */
 public class GUIClient extends Application implements UserInterface {
 
+    /**
+     * The stage of the GUI
+     */
     private static Stage stage;
+
+    /**
+     * The media player for the music
+     */
     private MediaPlayer mediaPlayer;
+
+    /**
+     * The map of resources
+     */
     private final HashMap<ClientStatusEnum, URL> resourcesMap;
+
+    /**
+     * The map of controllers
+     */
     private final HashMap<ClientStatusEnum, SceneController> controllersMap;
+
+    /**
+     * The queue of notifications
+     */
     private final LinkedBlockingQueue<String> notificationsQueue;
 
+    /**
+     * Constructor of the class
+     */
     public GUIClient() {
         resourcesMap = new HashMap<>();
         controllersMap = new HashMap<>();
@@ -51,11 +76,18 @@ public class GUIClient extends Application implements UserInterface {
         loadScenes();
     }
 
+    /**
+     * The method runs the GUI client view
+     */
     @Override
     public void runView() {
         launch();
     }
 
+    /**
+     * The method shows a message to the user client
+     * @param message the message to show
+     */
     @Override
     public void showMessage(String message) {
         message = message.replace("\u001B[0m", "");
@@ -67,6 +99,10 @@ public class GUIClient extends Application implements UserInterface {
         }
     }
 
+    /**
+     * The method starts the GUI client view
+     * @param stage the stage of the GUI
+     */
     @Override
     public void start(Stage stage) {
         GUIClient.stage = stage;
@@ -98,6 +134,9 @@ public class GUIClient extends Application implements UserInterface {
         }
     }
 
+    /**
+     * The method loads the scenes of the GUI
+     */
     public void loadScenes() {
         resourcesMap.put(ClientStatusEnum.LOBBY, getClass().getResource("/fxml/Login.fxml"));
         resourcesMap.put(ClientStatusEnum.LOGGED, getClass().getResource("/fxml/CreateGame.fxml"));
@@ -110,6 +149,10 @@ public class GUIClient extends Application implements UserInterface {
         resourcesMap.put(ClientStatusEnum.ENDED, getClass().getResource("/fxml/EndGame.fxml"));
     }
 
+    /**
+     * The method changes the scene of the GUI
+     * @param status the status of the client
+     */
     public void changeScene(ClientStatusEnum status) {
         Platform.runLater(() -> {
             try {
@@ -122,24 +165,44 @@ public class GUIClient extends Application implements UserInterface {
         });
     }
 
+    /**
+     * The method updates the current scene of the GUI
+     * @param data the data to update
+     */
     public void updateCurrentScene(String data) {
         SceneController controller = controllersMap.get(ClientManager.getInstance().getGameState().getClientStatus());
         if (controller == null) return;
         Platform.runLater(() -> controller.updateScene(data));
     }
 
+    /**
+     * The method returns the stage of the GUI
+     * @return the stage of the GUI
+     */
     public static Stage getStage() {
         return stage;
     }
 
+    /**
+     * The method returns the media player
+     * @return the media player
+     */
     public MediaPlayer getMediaPlayer() {
         return mediaPlayer;
     }
 
+    /**
+     * The method returns the map of resources
+     * @return the map of resources
+     */
     public HashMap<ClientStatusEnum, URL> getResourcesMap() {
         return resourcesMap;
     }
 
+    /**
+     * The method returns the map of controllers
+     * @return the map of controllers
+     */
     public HashMap<ClientStatusEnum, SceneController> getControllersMap() {
         return controllersMap;
     }

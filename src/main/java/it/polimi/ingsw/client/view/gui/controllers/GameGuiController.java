@@ -36,40 +36,111 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for the game scene controller
+ */
 public class GameGuiController implements SceneController, Initializable {
 
+    /**
+     * The pane of the game scene
+     */
     @FXML
     private HBox gamePane;
+
+    /**
+     * The tables of the scene
+     */
     @FXML
     private TabPane tables;
+
+    /**
+     * The table of the player
+     */
     @FXML
     private Pane playerTable;
+
+    /**
+     * The tabs of the players
+     */
     @FXML
     private Tab playerTab, opponentTab, opponentTab2, opponentTab3;
+
+    /**
+     * The tables of the opponent players
+     */
     @FXML
     private Pane opponentTable, opponentTable2, opponentTable3;
+
+    /**
+     * The list of the tables panes
+     */
     private ArrayList<Pane> tablesPanes;
+
+    /**
+     * The hand of the player
+     */
     @FXML
     private HBox hand;
+
+    /**
+     * The in hand cards of the player
+     */
     @FXML
     private ImageView card1, card2, card3;
+
+    /**
+     * The objective card of the player
+     */
     @FXML
     private ImageView cardObj;
+
+    /**
+     * The columns containing the cards on the ground
+     */
     @FXML
     private VBox col1, col2;
+
+    /**
+     * The labels for the player's resources and objects
+     */
     @FXML
     private Label animal, fungi, plant, insect, manuscript, inkwell, quill, turn;
+
+    /**
+     * The tokens of the players
+     */
     @FXML
     private StackPane tokens;
+
+    /**
+     * The message input field
+     */
     @FXML
     private TextField messageInput;
+
+    /**
+     * The message recipient combo box
+     */
     @FXML
     private ComboBox<String> messageRecipient;
+
+    /**
+     * The scroll pane of the messages
+     */
     @FXML
     private ScrollPane scrollPane;
+
+    /**
+     * The box of the messages
+     */
     @FXML
     private VBox messagesBox;
 
+    /**
+     * The method initializes the scene
+     * @param url the url
+     * @param resourceBundle the resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         gamePane.setOpacity(0.0);
@@ -94,6 +165,9 @@ public class GameGuiController implements SceneController, Initializable {
         });
     }
 
+    /**
+     * The method sends a message in the chat
+     */
     @FXML
     private void sendChatMessage() {
         String message = messageInput.getText();
@@ -108,6 +182,11 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method adds a message
+     * @param sender the sender of the message
+     * @param recipient the recipient of the message
+     */
     public void addMessage(String sender, String recipient, String message) {
         TextFlow messageFlow;
         if (recipient != null) {
@@ -127,6 +206,9 @@ public class GameGuiController implements SceneController, Initializable {
         scrollPane.setVvalue(1);
     }
 
+    /**
+     * The method updates the resources of the player
+     */
     private void updateResources() {
         for (String resources : ClientManager.getInstance().getGameState().getResources().keySet()) {
             switch (resources) {
@@ -155,6 +237,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method initializes the cards of the player
+     */
     private void initializeCards() {
         try {
             int id = ClientManager.getInstance().getGameState().getCardsInHand().getFirst().getId();
@@ -244,6 +329,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method restores player's placed cards
+     */
     private void restoreCards() {
         for (ResourceCard card : ClientManager.getInstance().getGameState().getOrderedCardsPlaced()) {
             boolean found = false;
@@ -276,6 +364,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method initializes the opponent players
+     */
     private void initializeOpponents() {
         tablesPanes = new ArrayList<>();
         playerTable.setId(ClientManager.getInstance().getGameState().getUsername());
@@ -319,6 +410,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method adds a card to the player's hand
+     * @param card the card to add to the player's hand
+     */
     public void addCardToHand(Card card) {
         try {
             ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + card.getId() + ".png")).toURI().toString()));
@@ -336,6 +431,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method removes a card from the ground
+     * @param card the card to remove from the ground
+     */
     public void removeCardFromGround(Card card) {
         for (Node node : col1.getChildren()) {
             if (node.getId().equals(String.valueOf(card.getId()))) {
@@ -351,6 +450,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method updates the card on the top of the deck
+     */
     private void updateTopDeckCards() {
         try {
             for (Node node : col2.getChildren()) {
@@ -372,6 +474,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method adds a card on the ground
+     * @param card the card to add on the ground
+     */
     public void addCardOnGround(Card card) {
         try {
             ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + card.getId() + ".png")).toURI().toString()));
@@ -411,6 +517,13 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method places a card in the player's matrix
+     * @param card the card to be place in player's the matrix
+     * @param x the x coordinate of the card to be placed in the player's matrix
+     * @param y the y coordinate of the card to be placed in the player's matrix
+     * @param playerName the name of the player
+     */
     public void placeCard(ResourceCard card, int x, int y, String playerName) {
         Pane pane = null;
         for (Pane p : tablesPanes) {
@@ -453,6 +566,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method sets the player's starter card
+     */
     private void setStarterCards() {
         try {
             for (Pane pane : tablesPanes) {
@@ -519,6 +635,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method updates the points of the player
+     */
     private void updatePoints(boolean setOffset) {
         setPoints(ClientManager.getInstance().getGameState().getScore(), ClientManager.getInstance().getGameState().getTokenColor().toLowerCase(), setOffset);
         for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
@@ -526,6 +645,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method changes the card's face
+     * @param card the card which face has to be changed
+     */
     public void turnCard(Card card) {
         for (Node cards : hand.getChildren()) {
             if (cards.getId().equals(String.valueOf(card.getId()))) {
@@ -541,6 +664,12 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method sets the points of the player
+     * @param points the points to set
+     * @param color the color of the player's token
+     * @param setOffset if the offset has to be set
+     */
     public void setPoints(int points, String color, Boolean setOffset) {
         List<Node> nodes = tokens.getChildren();
         for (Node node : nodes) {
@@ -689,6 +818,9 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method updates the current turn
+     */
     private void updateTurn() {
         if (ClientManager.getInstance().getGameState().getActivePlayer().equals(ClientManager.getInstance().getGameState().getUsername())) {
             turn.setText("It's your turn");
@@ -697,6 +829,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method updates the scene
+     * @param data the data to be updated
+     */
     @Override
     public void updateScene(String data) {
         if (data.equals("endTurn")) {

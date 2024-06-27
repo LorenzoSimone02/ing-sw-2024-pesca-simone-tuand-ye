@@ -17,13 +17,28 @@ import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for the starter card face choosing scene controller
+ */
 public class ChooseStarterFaceController implements SceneController, Initializable {
 
+    /**
+     * The pane of the scene
+     */
     @FXML
     private BorderPane pane;
+
+    /**
+     * The image views of the card's front and back
+     */
     @FXML
     private ImageView front, back;
 
+    /**
+     * The method initializes the scene
+     * @param url the url
+     * @param resourceBundle the resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pane.setOpacity(0.3);
@@ -51,6 +66,10 @@ public class ChooseStarterFaceController implements SceneController, Initializab
         });
     }
 
+    /**
+     * The method chooses the front face of the card
+     * @param mouseEvent the mouse event
+     */
     public void chooseFront(MouseEvent mouseEvent) {
         if (ClientManager.getInstance().getGameState().getStarterCard() != null) {
             ClientManager.getInstance().getUserInterface().showMessage("You have already chosen the Starter Card face");
@@ -60,6 +79,10 @@ public class ChooseStarterFaceController implements SceneController, Initializab
         ClientManager.getInstance().getNetworkHandler().sendPacket(new ChooseStarterFacePacket(FaceEnum.FRONT, id1, username));
     }
 
+    /**
+     * The method chooses the back face of the card
+     * @param mouseEvent the mouse event
+     */
     public void chooseBack(MouseEvent mouseEvent) {
         if (ClientManager.getInstance().getGameState().getStarterCard() != null) {
             ClientManager.getInstance().getUserInterface().showMessage("You have already chosen the Starter Card face");
@@ -69,6 +92,10 @@ public class ChooseStarterFaceController implements SceneController, Initializab
         ClientManager.getInstance().getNetworkHandler().sendPacket(new ChooseStarterFacePacket(FaceEnum.BACK, id, username));
     }
 
+    /**
+     * The method updates the scene
+     * @param data the data to be updated
+     */
     @Override
     public void updateScene(String data) {
         if (ClientManager.getInstance().getGameState().getStarterCard().getFace() == FaceEnum.FRONT) {

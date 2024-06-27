@@ -17,20 +17,43 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for the end game scene controller
+ */
 public class EndGameController implements SceneController, Initializable {
 
+    /**
+     * The labels of the winner and the players
+     */
     @FXML
     private Label winner, player1, player2, player3, player4;
+
+    /**
+     * The pane of the scene
+     */
     @FXML
     private Pane pane;
+
+    /**
+     * The button to go back to the menu
+     */
     @FXML
     private Button menuButton;
 
+    /**
+     * The method updates the scene
+     * @param data the data to be updated
+     */
     @Override
     public void updateScene(String data) {
 
     }
 
+    /**
+     * The method initializes the scene
+     * @param url the url
+     * @param resourceBundle the resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         pane.setOpacity(0.3);
@@ -68,6 +91,9 @@ public class EndGameController implements SceneController, Initializable {
         }
     }
 
+    /**
+     * The method goes back to the menu on pressing the menu button
+     */
     @FXML
     private void menuButtonPressed() {
         GUIClient guiClient = (GUIClient) ClientManager.getInstance().getUserInterface();

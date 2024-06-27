@@ -10,13 +10,28 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * JavaFX controller for the lobby scene controller
+ */
 public class LobbyController implements SceneController, Initializable {
 
+    /**
+     * The label of the players
+     */
     @FXML
     private Label playersLabel;
+
+    /**
+     * The pane of the lobby
+     */
     @FXML
     private BorderPane lobbyPane;
 
+    /**
+     * The method initializes the scene
+     * @param url the url
+     * @param resourceBundle the resource bundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lobbyPane.setOpacity(0.3);
@@ -27,6 +42,10 @@ public class LobbyController implements SceneController, Initializable {
         playersLabel.setText("\nWaiting for other Players to join...");
     }
 
+    /**
+     * The method updates the scene
+     * @param data the data to be updated
+     */
     @Override
     public void updateScene(String data) {
 
