@@ -4,7 +4,6 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.gui.GUIClient;
-import it.polimi.ingsw.client.view.gui.controllers.GameGuiController;
 import it.polimi.ingsw.network.packets.Packet;
 import it.polimi.ingsw.network.packets.TurnCardPacket;
 import it.polimi.ingsw.server.model.card.Card;

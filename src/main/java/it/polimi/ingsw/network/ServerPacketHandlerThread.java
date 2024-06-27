@@ -2,8 +2,6 @@ package it.polimi.ingsw.network;
 
 import it.polimi.ingsw.network.packets.Packet;
 
-import java.util.Iterator;
-
 /**
  * ServerPacketHandlerThread is the class that represents the thread that handles the packets received by the server
  */

@@ -698,10 +698,6 @@ public class GameGuiController implements SceneController, Initializable {
                 }
 
                 switch (points) {
-                    case 0:
-                        node.setTranslateX(x + 46);
-                        node.setTranslateY(y + 325 + offset);
-                        break;
                     case 1:
                         node.setTranslateX(x + 87);
                         node.setTranslateY(y + 325 + offset);

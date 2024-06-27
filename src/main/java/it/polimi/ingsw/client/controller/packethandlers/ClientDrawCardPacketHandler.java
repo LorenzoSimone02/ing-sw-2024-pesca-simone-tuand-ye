@@ -5,7 +5,6 @@ import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.view.UserInterface;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.gui.GUIClient;
-import it.polimi.ingsw.client.view.gui.controllers.GameGuiController;
 import it.polimi.ingsw.network.packets.DrawCardPacket;
 import it.polimi.ingsw.network.packets.EndTurnPacket;
 import it.polimi.ingsw.network.packets.Packet;

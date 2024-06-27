@@ -7,7 +7,7 @@ public class ClientPacketHandlerThread implements Runnable {
     /**
      * The ClientNetworkHandler that manages the packets
      */
-    private ClientNetworkHandler clientNetworkHandler;
+    private final ClientNetworkHandler clientNetworkHandler;
 
     /**
      * Constructor of the class

@@ -6,7 +6,6 @@ import it.polimi.ingsw.client.controller.clientstate.ClientStatusEnum;
 import it.polimi.ingsw.client.controller.clientstate.PlayerState;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.gui.GUIClient;
-import it.polimi.ingsw.client.view.gui.controllers.GameGuiController;
 import it.polimi.ingsw.network.packets.GameEndedPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import javafx.application.Platform;

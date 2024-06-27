@@ -8,7 +8,6 @@ import it.polimi.ingsw.server.model.game.Game;
 import it.polimi.ingsw.server.model.resources.Object;
 import it.polimi.ingsw.server.model.resources.Resource;
 
-import javax.lang.model.util.AbstractElementVisitor7;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
