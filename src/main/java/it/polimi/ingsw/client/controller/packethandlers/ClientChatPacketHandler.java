@@ -4,7 +4,6 @@ import it.polimi.ingsw.client.controller.ClientManager;
 import it.polimi.ingsw.client.controller.Printer;
 import it.polimi.ingsw.client.view.ViewModeEnum;
 import it.polimi.ingsw.client.view.gui.GUIClient;
-import it.polimi.ingsw.client.view.gui.controllers.GameGuiController;
 import it.polimi.ingsw.network.packets.ChatPacket;
 import it.polimi.ingsw.network.packets.Packet;
 import javafx.application.Platform;
@@ -36,8 +35,8 @@ public class ClientChatPacketHandler extends ClientPacketHandler {
         }
         if (clientManager.getViewMode() == ViewModeEnum.GUI) {
             Platform.runLater(() -> {
-                GameGuiController gameGuiController = (GameGuiController) ((GUIClient) clientManager.getUserInterface()).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                gameGuiController.addMessage(chatPacket.getUsername(), chatPacket.getRecipient(), chatPacket.getMessage());
+                GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+                guiClient.updateCurrentScene("addMessage#_@" + chatPacket.getUsername() + "#_@" + chatPacket.getRecipient() + "#_@" + chatPacket.getMessage());
             });
         }
     }

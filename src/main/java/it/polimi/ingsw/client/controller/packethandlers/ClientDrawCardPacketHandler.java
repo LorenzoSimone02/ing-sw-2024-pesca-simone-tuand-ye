@@ -35,10 +35,9 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
             clientManager.getGameState().addCardOnGround(newCard);
             if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 Platform.runLater(() -> {
-                    UserInterface userInterface = clientManager.getUserInterface();
-                    GameGuiController gameGuiController = (GameGuiController) ((GUIClient) userInterface).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                    gameGuiController.removeCardFromGround(card);
-                    gameGuiController.addCardOnGround(newCard);
+                    GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+                    guiClient.updateCurrentScene("removeCardFromGround-" + card.getId());
+                    guiClient.updateCurrentScene("addCardOnGround-" + newCard.getId());
                 });
             }
         }
@@ -49,8 +48,8 @@ public class ClientDrawCardPacketHandler extends ClientPacketHandler {
             UserInterface userInterface = clientManager.getUserInterface();
             if (clientManager.getViewMode() == ViewModeEnum.GUI) {
                 Platform.runLater(() -> {
-                    GameGuiController gameGuiController = (GameGuiController) ((GUIClient) userInterface).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                    gameGuiController.addCardToHand(card);
+                    GUIClient guiClient = (GUIClient) userInterface;
+                    guiClient.updateCurrentScene("addCardToHand-" + card.getId());
                 });
             }
             userInterface.showMessage(Printer.GREEN + "Card drawn successfully, your turn has ended." + Printer.RESET);

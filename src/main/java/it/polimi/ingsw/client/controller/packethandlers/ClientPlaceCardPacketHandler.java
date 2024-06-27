@@ -35,8 +35,7 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
             if(clientManager.getViewMode() == ViewModeEnum.GUI){
                 Platform.runLater(() -> {
                     GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-                    GameGuiController gameGuiController = (GameGuiController) guiClient.getControllersMap().get(clientManager.getGameState().getClientStatus());
-                    gameGuiController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord(), placeCardPacket.getPlayer());
+                    guiClient.updateCurrentScene("placeCard-" + card.getId() + "-" + placeCardPacket.getXCoord() + "-" + placeCardPacket.getYCoord() + "-" + placeCardPacket.getPlayer());
                     guiClient.updateCurrentScene("resources");
                     guiClient.updateCurrentScene("points");
                 });
@@ -53,8 +52,7 @@ public class ClientPlaceCardPacketHandler extends ClientPacketHandler {
                     if(clientManager.getViewMode() == ViewModeEnum.GUI){
                         Platform.runLater(() -> {
                             GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
-                            GameGuiController gameGuiController = (GameGuiController) guiClient.getControllersMap().get(clientManager.getGameState().getClientStatus());
-                            gameGuiController.placeCard(card, placeCardPacket.getXCoord(), placeCardPacket.getYCoord(), placeCardPacket.getPlayer());
+                            guiClient.updateCurrentScene("placeCard-" + card.getId() + "-" + placeCardPacket.getXCoord() + "-" + placeCardPacket.getYCoord() + "-" + placeCardPacket.getPlayer());
                             guiClient.updateCurrentScene("points");
                         });
                     }

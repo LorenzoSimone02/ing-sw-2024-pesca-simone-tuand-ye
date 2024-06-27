@@ -32,8 +32,8 @@ public class ClientTurnCardPacketHandler extends ClientPacketHandler {
         }
         if (clientManager.getViewMode() == ViewModeEnum.GUI) {
             Platform.runLater(() -> {
-                GameGuiController gameGuiController = (GameGuiController) ((GUIClient) clientManager.getUserInterface()).getControllersMap().get(clientManager.getGameState().getClientStatus());
-                gameGuiController.turnCard(card);
+                GUIClient guiClient = (GUIClient) clientManager.getUserInterface();
+                guiClient.updateCurrentScene("turnCard-" + card.getId());
             });
         } else {
             System.out.println(Printer.GREEN + "Card turned successfully." + Printer.RESET);

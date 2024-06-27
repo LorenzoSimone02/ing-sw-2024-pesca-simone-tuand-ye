@@ -138,7 +138,8 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method initializes the scene
-     * @param url the url
+     *
+     * @param url            the url
      * @param resourceBundle the resource bundle
      */
     @Override
@@ -184,10 +185,11 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method adds a message
-     * @param sender the sender of the message
+     *
+     * @param sender    the sender of the message
      * @param recipient the recipient of the message
      */
-    public void addMessage(String sender, String recipient, String message) {
+    private void addMessage(String sender, String recipient, String message) {
         TextFlow messageFlow;
         if (recipient != null) {
             messageFlow = new TextFlow();
@@ -412,9 +414,10 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method adds a card to the player's hand
+     *
      * @param card the card to add to the player's hand
      */
-    public void addCardToHand(Card card) {
+    private void addCardToHand(Card card) {
         try {
             ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + card.getId() + ".png")).toURI().toString()));
             imageView.setFitHeight(100);
@@ -433,9 +436,10 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method removes a card from the ground
+     *
      * @param card the card to remove from the ground
      */
-    public void removeCardFromGround(Card card) {
+    private void removeCardFromGround(Card card) {
         for (Node node : col1.getChildren()) {
             if (node.getId().equals(String.valueOf(card.getId()))) {
                 col1.getChildren().remove(node);
@@ -476,9 +480,10 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method adds a card on the ground
+     *
      * @param card the card to add on the ground
      */
-    public void addCardOnGround(Card card) {
+    private void addCardOnGround(Card card) {
         try {
             ImageView imageView = new ImageView(new Image(Objects.requireNonNull(getClass().getResource("/images/cards/front" + card.getId() + ".png")).toURI().toString()));
             imageView.setFitHeight(80);
@@ -519,12 +524,13 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method places a card in the player's matrix
-     * @param card the card to be place in player's the matrix
-     * @param x the x coordinate of the card to be placed in the player's matrix
-     * @param y the y coordinate of the card to be placed in the player's matrix
+     *
+     * @param card       the card to be place in player's the matrix
+     * @param x          the x coordinate of the card to be placed in the player's matrix
+     * @param y          the y coordinate of the card to be placed in the player's matrix
      * @param playerName the name of the player
      */
-    public void placeCard(ResourceCard card, int x, int y, String playerName) {
+    private void placeCard(ResourceCard card, int x, int y, String playerName) {
         Pane pane = null;
         for (Pane p : tablesPanes) {
             if (p.getId().equals(playerName)) {
@@ -647,9 +653,10 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method changes the card's face
+     *
      * @param card the card which face has to be changed
      */
-    public void turnCard(Card card) {
+    private void turnCard(Card card) {
         for (Node cards : hand.getChildren()) {
             if (cards.getId().equals(String.valueOf(card.getId()))) {
                 ImageView imageView = (ImageView) cards;
@@ -666,11 +673,12 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method sets the points of the player
-     * @param points the points to set
-     * @param color the color of the player's token
+     *
+     * @param points    the points to set
+     * @param color     the color of the player's token
      * @param setOffset if the offset has to be set
      */
-    public void setPoints(int points, String color, Boolean setOffset) {
+    private void setPoints(int points, String color, Boolean setOffset) {
         List<Node> nodes = tokens.getChildren();
         for (Node node : nodes) {
             if (node.getId() != null && node.getId().contains(color)) {
@@ -685,11 +693,11 @@ public class GameGuiController implements SceneController, Initializable {
 
                 double offset = 0;
 
-                if(setOffset){
+                if (setOffset) {
                     offset = 10.5;
                 }
 
-                switch(points){
+                switch (points) {
                     case 0:
                         node.setTranslateX(x + 46);
                         node.setTranslateY(y + 325 + offset);
@@ -831,6 +839,7 @@ public class GameGuiController implements SceneController, Initializable {
 
     /**
      * The method updates the scene
+     *
      * @param data the data to be updated
      */
     @Override
@@ -844,8 +853,46 @@ public class GameGuiController implements SceneController, Initializable {
         if (data.equals("resources")) {
             updateResources();
         }
-        if(data.equals("updateDecks")) {
+        if (data.equals("updateDecks")) {
             updateTopDeckCards();
+        }
+        if (data.startsWith("addCardToHand")) {
+            int id = Integer.parseInt(data.split("-")[1]);
+            Card card = ClientManager.getInstance().getGameState().getCardById(id);
+            addCardToHand(card);
+        }
+        if (data.startsWith("addCardOnGround")) {
+            int id = Integer.parseInt(data.split("-")[1]);
+            Card card = ClientManager.getInstance().getGameState().getCardById(id);
+            addCardOnGround(card);
+        }
+        if (data.startsWith("removeCardFromGround")) {
+            int id = Integer.parseInt(data.split("-")[1]);
+            Card card = ClientManager.getInstance().getGameState().getCardById(id);
+            removeCardFromGround(card);
+        }
+        if (data.startsWith("turnCard")) {
+            int id = Integer.parseInt(data.split("-")[1]);
+            Card card = ClientManager.getInstance().getGameState().getCardById(id);
+            turnCard(card);
+        }
+        if (data.startsWith("placeCard")) {
+            int id = Integer.parseInt(data.split("-")[1]);
+            ResourceCard card = (ResourceCard) ClientManager.getInstance().getGameState().getCardById(id);
+            int x = Integer.parseInt(data.split("-")[2]);
+            int y = Integer.parseInt(data.split("-")[3]);
+            String playerName = data.split("-")[4];
+            placeCard(card, x, y, playerName);
+        }
+        if (data.startsWith("addMessage")) {
+            String sender = data.split("#_@")[1];
+            String recipient = data.split("#_@")[2];
+            String message = data.split("#_@")[3];
+            if (recipient.equals("null")) {
+                addMessage(sender, null, message);
+            } else {
+                addMessage(sender, recipient, message);
+            }
         }
     }
 }
