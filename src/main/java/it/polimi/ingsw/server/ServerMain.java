@@ -44,7 +44,16 @@ public class ServerMain {
      * @throws UnknownHostException if the host is unknown
      */
     public static void main(String[] args) throws UnknownHostException {
-        String ipAddress = Inet4Address.getLocalHost().getHostAddress();
+
+        String ipAddress;
+
+        if (!System.getProperty("os.name").toUpperCase().contains("NUX")) {
+            ipAddress = Inet4Address.getLocalHost().getHostAddress();
+
+        } else {
+            ipAddress = args[0] != null ? args[0] : "localhost";
+
+        }
         System.setProperty("java.rmi.server.hostname", ipAddress);
 
         matches = new ArrayList<>();

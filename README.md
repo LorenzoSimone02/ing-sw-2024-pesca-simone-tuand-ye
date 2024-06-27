@@ -47,11 +47,27 @@ java -jar GC24-client.jar serverIp
 ```
 Nel caso non venga specificato un serverIp, il client utilizzerà `localhost` come default.
 
+#### Linux
+
+```bash
+java -Djava.rmi.server.hostname=$clientIp -jar GC24-client.jar serverIp
+```
+Nel caso il client venga avviato su di un sistema operativo Linux, va specificato il proprio ip nella VM-option `Djava.rmi.server.hostname`.
+
 ### Server
 
 ```bash
 java -jar GC24-server.jar
 ```
+
+#### Linux
+
+```bash
+java -jar GC24-server.jar serverIp
+```
+
+Nel caso il server venga avviato su di un sistema operativo Linux, va specificato `serverIp` come argomento.
+
 
 <hr>
 
