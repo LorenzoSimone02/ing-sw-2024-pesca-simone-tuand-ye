@@ -347,8 +347,8 @@ public class GameController {
         if (OS.contains("WIN"))
             return System.getenv("APPDATA") + "/CodexNaturalisSaves/";
         else if (OS.contains("MAC")) {
-            new File(System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/").mkdirs();
-            return System.getProperty("user.home") + "/Library/Application Support/CodexNaturalisSaves/";
+            new File(System.getProperty("user.home") + "/CodexNaturalisSaves/").mkdirs();
+            return System.getProperty("user.home") + "/CodexNaturalisSaves/";
         } else if (OS.contains("NUX")) {
             new File(System.getProperty("user.home") + "/.codexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/.codexNaturalisSaves/";
