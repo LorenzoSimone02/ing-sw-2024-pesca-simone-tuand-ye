@@ -43,7 +43,7 @@ public class HandCardGestures {
     }
 
     private final EventHandler<MouseEvent> onMousePressedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer())
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
             return;
         mouseAnchorX = event.getSceneX();
         mouseAnchorY = event.getSceneY();
@@ -52,7 +52,7 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseDraggedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.PRIMARY) || !tabPane.getSelectionModel().isSelected(0))
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !event.getButton().equals(MouseButton.PRIMARY) || !tabPane.getSelectionModel().isSelected(0) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
             return;
 
         double newX = translateAnchorX + event.getSceneX() - mouseAnchorX;
@@ -77,7 +77,7 @@ public class HandCardGestures {
     };
 
     private final EventHandler<MouseEvent> onMouseReleasedEventHandler = event -> {
-        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !tabPane.getSelectionModel().isSelected(0))
+        if (!ClientManager.getInstance().getGameState().isActivePlayer() || !tabPane.getSelectionModel().isSelected(0) || ClientManager.getInstance().getGameState().getCardsInHand().size() != 3)
             return;
         node.setScaleX(1);
         node.setScaleY(1);

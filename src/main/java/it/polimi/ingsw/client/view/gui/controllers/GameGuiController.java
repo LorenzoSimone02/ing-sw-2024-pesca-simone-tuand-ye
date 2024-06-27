@@ -83,7 +83,7 @@ public class GameGuiController implements SceneController, Initializable {
             initializeCards();
             restoreCards();
             updateResources();
-            updatePoints();
+            updatePoints(false);
             updateTurn();
             updateTopDeckCards();
 
@@ -519,10 +519,10 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
-    private void updatePoints() {
-        setPoints(ClientManager.getInstance().getGameState().getScore(), ClientManager.getInstance().getGameState().getTokenColor().toLowerCase());
+    private void updatePoints(boolean setOffset) {
+        setPoints(ClientManager.getInstance().getGameState().getScore(), ClientManager.getInstance().getGameState().getTokenColor().toLowerCase(), setOffset);
         for (PlayerState state : ClientManager.getInstance().getGameState().getPlayerStates()) {
-            setPoints(state.getScore(), state.getTokenColor().toLowerCase());
+            setPoints(state.getScore(), state.getTokenColor().toLowerCase(), setOffset);
         }
     }
 
@@ -541,135 +541,149 @@ public class GameGuiController implements SceneController, Initializable {
         }
     }
 
-    public void setPoints(int points, String color) {
+    public void setPoints(int points, String color, Boolean setOffset) {
         List<Node> nodes = tokens.getChildren();
         for (Node node : nodes) {
             if (node.getId() != null && node.getId().contains(color)) {
                 node.setVisible(true);
                 node.setOpacity(0.8);
+
                 double x = -node.getLayoutX() - node.getBoundsInLocal().getCenterX();
                 double y = -node.getLayoutY() - node.getBoundsInLocal().getCenterY();
 
-                switch (points) {
+                node.setTranslateX(x + 87);
+                node.setTranslateY(y + 325);
+
+                double offset = 0;
+
+                if(setOffset){
+                    offset = 10.5;
+                }
+
+                switch(points){
+                    case 0:
+                        node.setTranslateX(x + 46);
+                        node.setTranslateY(y + 325 + offset);
+                        break;
                     case 1:
                         node.setTranslateX(x + 87);
-                        node.setTranslateY(y + 335);
+                        node.setTranslateY(y + 325 + offset);
                         break;
                     case 2:
                         node.setTranslateX(x + 128.375);
-                        node.setTranslateY(y + 335);
+                        node.setTranslateY(y + 325 + offset);
                         break;
                     case 3:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 300);
+                        node.setTranslateY(y + 288 + offset);
                         break;
                     case 4:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 300);
+                        node.setTranslateY(y + 288 + offset);
                         break;
                     case 5:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 300);
+                        node.setTranslateY(y + 288 + offset);
                         break;
                     case 6:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 300);
+                        node.setTranslateY(y + 288 + offset);
                         break;
                     case 7:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 262);
+                        node.setTranslateY(y + 250 + offset);
                         break;
                     case 8:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 262);
+                        node.setTranslateY(y + 250 + offset);
                         break;
                     case 9:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 262);
+                        node.setTranslateY(y + 250 + offset);
                         break;
                     case 10:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 262);
+                        node.setTranslateY(y + 250 + offset);
                         break;
                     case 11:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 220);
+                        node.setTranslateY(y + 212 + offset);
                         break;
                     case 12:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 220);
+                        node.setTranslateY(y + 212 + offset);
                         break;
                     case 13:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 220);
+                        node.setTranslateY(y + 212 + offset);
                         break;
                     case 14:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 220);
+                        node.setTranslateY(y + 212 + offset);
                         break;
                     case 15:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 175);
+                        node.setTranslateY(y + 175 + offset);
                         break;
                     case 16:
                         node.setTranslateX(x + 66.5);
-                        node.setTranslateY(y + 175);
+                        node.setTranslateY(y + 175 + offset);
                         break;
                     case 17:
                         node.setTranslateX(x + 108);
-                        node.setTranslateY(y + 175);
+                        node.setTranslateY(y + 175 + offset);
                         break;
                     case 18:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 175);
+                        node.setTranslateY(y + 175 + offset);
                         break;
                     case 19:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 137);
+                        node.setTranslateY(y + 137 + offset);
                         break;
                     case 20:
                         node.setTranslateX(x + 87.25);
-                        node.setTranslateY(y + 120);
+                        node.setTranslateY(y + 120 + offset);
                         break;
                     case 21:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 137);
+                        node.setTranslateY(y + 137 + offset);
                         break;
                     case 22:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 99);
+                        node.setTranslateY(y + 99 + offset);
                         break;
                     case 23:
                         node.setTranslateX(x + 25.5);
-                        node.setTranslateY(y + 61);
+                        node.setTranslateY(y + 61 + offset);
                         break;
                     case 24:
                         node.setTranslateX(x + 49.25);
-                        node.setTranslateY(y + 30);
+                        node.setTranslateY(y + 30 + offset);
                         break;
                     case 25:
                         node.setTranslateX(x + 87.25);
-                        node.setTranslateY(y + 24);
+                        node.setTranslateY(y + 24 + offset);
                         break;
                     case 26:
                         node.setTranslateX(x + 125);
-                        node.setTranslateY(y + 30);
+                        node.setTranslateY(y + 30 + offset);
                         break;
                     case 27:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 61);
+                        node.setTranslateY(y + 61 + offset);
                         break;
                     case 28:
                         node.setTranslateX(x + 149);
-                        node.setTranslateY(y + 99);
+                        node.setTranslateY(y + 99 + offset);
                         break;
                     case 29:
                         node.setTranslateX(x + 87.25);
-                        node.setTranslateY(y + 70);
+                        node.setTranslateY(y + 70 + offset);
                         break;
                     default:
                         node.setTranslateX(x + 46);
-                        node.setTranslateY(y + 335);
+                        node.setTranslateY(y + 325 + offset);
                 }
             }
         }
@@ -689,7 +703,7 @@ public class GameGuiController implements SceneController, Initializable {
             updateTurn();
         }
         if (data.equals("points")) {
-            updatePoints();
+            updatePoints(true);
         }
         if (data.equals("resources")) {
             updateResources();
