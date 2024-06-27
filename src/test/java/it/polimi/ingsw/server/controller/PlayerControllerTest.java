@@ -11,6 +11,7 @@ import it.polimi.ingsw.server.model.card.*;
 import it.polimi.ingsw.server.model.card.corner.Corner;
 import it.polimi.ingsw.server.model.player.Player;
 import it.polimi.ingsw.server.model.player.TokenColorEnum;
+import it.polimi.ingsw.server.model.resources.Resource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -67,6 +68,7 @@ public class PlayerControllerTest {
         resourceCardArray = new ArrayList<>();
         goldCardArray = new ArrayList<>();
         starterCardArray = new ArrayList<>();
+        objectiveCardArray = new ArrayList<>();
 
         for(int i = 1; i <= 40; i++) {
             BufferedReader reader = new BufferedReader(new InputStreamReader(Objects.requireNonNull(getClass().getResourceAsStream("/assets/resourcecards/resourceCard" + i + ".json"))));
@@ -120,7 +122,8 @@ public class PlayerControllerTest {
     @DisplayName("Test valid player")
     public void validPlayer() {
         for(Player player : controller.getGame().getPlayers()) {
-            assertNotNull(controller.getPlayerController(player).getPlayer());        }
+            assertNotNull(controller.getPlayerController(player).getPlayer());
+        }
     }
 
     @Test
@@ -139,7 +142,7 @@ public class PlayerControllerTest {
             controller.getPlayerController(controller.getGame().getPlayers().getFirst()).chooseToken(TokenColorEnum.RED);
             controller.getPlayerController(controller.getGame().getPlayers().get(1)).chooseToken(TokenColorEnum.GREEN);
             controller.getPlayerController(controller.getGame().getPlayers().get(2)).chooseToken(TokenColorEnum.BLUE);
-            controller.getPlayerController(controller.getGame().getPlayers().get(3)).chooseToken(TokenColorEnum.YELLOW);
+            controller.getPlayerController(controller.getGame().getPlayers().get(3)).chooseToken(TokenColorEnum.BLUE);
         } catch (AlreadyTakenColorException e) {
             fail("Token color already taken.");
         }
@@ -154,26 +157,21 @@ public class PlayerControllerTest {
     @DisplayName("Test valid card placement")
     public void validCardPlacement() {
 
-        ResourceCard drawnCard = resourceCardArray.get(1);
-        int numberOfInHandCards = controller.getPlayerController("p1").getPlayer().getCardsInHand().size();
-        int numberOfResources = controller.getPlayerController("p1").getPlayer().getResources().size();
+        ResourceCard drawnCard = goldCardArray.get(5);
 
-        controller.getPlayerController("p1").getPlayer().addCardInHand(resourceCardArray.get(1));
-        controller.getPlayerController("p1").setStarterCard(starterCardArray.get(1), starterCardArray.get(1).getFace());
+        controller.getPlayerController("p1").getPlayer().addCardInHand(goldCardArray.get(5));
+        controller.getPlayerController("p1").setStarterCard(starterCardArray.get(0), starterCardArray.get(0).getFace());
 
-        controller.getPlayerController("p2").placeCard((ResourceCard) controller.getPlayerController("p1").getPlayer().getCardsInHand().getFirst(), 1, 1);
+        controller.getPlayerController("p1").placeCard((ResourceCard) controller.getPlayerController("p1").getPlayer().getCardsInHand().getFirst(), 41, 41);
 
-        assertEquals(numberOfInHandCards - 1, controller.getPlayerController("p1").getPlayer().getCardsInHand().size());
-        assertNotNull(controller.getPlayerController("p2").getPlayer().getCardAt(1, 1));
-        assertEquals(drawnCard, controller.getPlayerController("p2").getPlayer().getCardAt(1, 1).orElse(null));
-
-        for(Corner corner : resourceCardArray.get(1).getCorners()){
-            if(corner.isVisible() && corner.getResource() != null && corner.getResource().getType() != null && corner.getFace() == resourceCardArray.get(1).getFace()){
-                numberOfResources++;
-            }
+        for (Resource resource : goldCardArray.get(5).getResourcesNeeded()) {
+            controller.getPlayerController("p1").getPlayer().addResource(resource);
         }
 
-        assertEquals(numberOfResources, controller.getPlayerController("p2").getPlayer().getResources().size());
+        controller.getPlayerController("p1").placeCard((GoldCard) controller.getPlayerController("p1").getPlayer().getCardsInHand().getFirst(), 41, 41);
+
+        assertNotNull(controller.getPlayerController("p1").getPlayer().getCardAt(41, 41));
+        assertEquals(drawnCard, controller.getPlayerController("p1").getPlayer().getCardAt(41, 41).orElse(null));
 
     }
 
@@ -192,6 +190,7 @@ public class PlayerControllerTest {
     @DisplayName("Test valid starter card")
     public void validStarterCard() {
 
+        FaceEnum oldFace = starterCardArray.get(1).getFace();
         controller.getPlayerController("p1").turnCard(starterCardArray.get(1));
 
         FaceEnum chosenFace = starterCardArray.get(1).getFace();
@@ -200,6 +199,11 @@ public class PlayerControllerTest {
 
         assertNotNull(controller.getPlayerController("p1").getPlayer().getStarterCard());
         assertEquals(chosenFace, controller.getPlayerController("p1").getPlayer().getStarterCard().getFace());
+
+        controller.getPlayerController("p1").turnCard(starterCardArray.get(1));
+
+        assertNotNull(controller.getPlayerController("p1").getPlayer().getStarterCard());
+        assertEquals(oldFace, controller.getPlayerController("p1").getPlayer().getStarterCard().getFace());
 
     }
 }
