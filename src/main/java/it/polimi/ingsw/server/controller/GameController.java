@@ -344,9 +344,10 @@ public class GameController {
      */
     private String setDefaultDirectory() {
         String OS = System.getProperty("os.name").toUpperCase();
-        if (OS.contains("WIN"))
+        if (OS.contains("WIN")) {
+            new File(System.getenv("APPDATA") + "/CodexNaturalisSaves/").mkdirs();
             return System.getenv("APPDATA") + "/CodexNaturalisSaves/";
-        else if (OS.contains("MAC")) {
+        } else if (OS.contains("MAC")) {
             new File(System.getProperty("user.home") + "/CodexNaturalisSaves/").mkdirs();
             return System.getProperty("user.home") + "/CodexNaturalisSaves/";
         } else if (OS.contains("NUX")) {
