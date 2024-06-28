@@ -89,6 +89,7 @@ Nel caso il server venga avviato su di un sistema operativo Linux, va specificat
 
 ## Comandi
 * Click sinistro drag & drop per piazzare una carta dalla mano
+* Click sinistro su di una carta per pescarla.
 * Click destro su di una carta in mano per girarla
 * Click destro e trascinamento per spostarsi nelle table
 * Rotella del mouse per zoomare avanti o indietro sulle table
