@@ -123,3 +123,4 @@ replay_pid*
 GC24.iml
 
 *.save
+dependency-reduced-pom.xml

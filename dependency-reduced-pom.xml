@@ -19,10 +19,10 @@
             <configuration>
               <shadedArtifactAttached>true</shadedArtifactAttached>
               <shadedClassifierName>project-classifier</shadedClassifierName>
-              <outputFile>shade\${project.artifactId}-client.jar</outputFile>
+              <outputFile>shade\${project.artifactId}-server.jar</outputFile>
               <transformers>
                 <transformer>
-                  <mainClass>it.polimi.ingsw.client.ClientMain</mainClass>
+                  <mainClass>it.polimi.ingsw.server.ServerMain</mainClass>
                 </transformer>
               </transformers>
             </configuration>
@@ -36,7 +36,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>it.polimi.ingsw.client.ClientMain</mainClass>
+              <mainClass>it.polimi.ingsw.server.ServerMain</mainClass>
             </manifest>
           </archive>
         </configuration>

@@ -42,6 +42,8 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 ## Utilizzo dei jar
 ### Client
 
+#### Windows
+
 ```bash
 java -jar GC24-client.jar serverIp
 ```
@@ -54,7 +56,23 @@ java -Djava.rmi.server.hostname=$clientIp -jar GC24-client.jar serverIp
 ```
 Nel caso il client venga avviato su di un sistema operativo Linux, va specificato il proprio ip nella VM-option `Djava.rmi.server.hostname`.
 
+#### MacOS (arm64)
+```bash
+chsh -s /bin/bash
+export LD_BIND_NOW=1
+java -jar GC24-client.jar serverIp
+```
+Nel caso il client venga avviato su di un sistema operativo MacOS, bisogna utilizzare bash ed impostare la variabile di ambiente LD_BIND_NOW.
+
+#### MacOS (x86-64)
+```bash
+java -jar GC24-client.jar serverIp
+```
+Nel caso il client venga avviato su di un sistema operativo MacOS x86-64 bisogna ricreare il jar modificando il pom, cambiando i classifier delle dipendenze da 'mac-aarch64' a 'mac'.
+
 ### Server
+
+#### Windows, MacOS
 
 ```bash
 java -jar GC24-server.jar
@@ -68,6 +86,12 @@ java -jar GC24-server.jar serverIp
 
 Nel caso il server venga avviato su di un sistema operativo Linux, va specificato `serverIp` come argomento.
 
+
+## Comandi
+* Click sinistro drag & drop per piazzare una carta dalla mano
+* Click destro su di una carta in mano per girarla
+* Click destro e trascinamento per spostarsi nelle table
+* Rotella del mouse per zoomare avanti o indietro sulle table
 
 <hr>
 
