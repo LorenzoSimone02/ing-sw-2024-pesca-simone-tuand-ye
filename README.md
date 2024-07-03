@@ -13,7 +13,7 @@ La prova finale del corso di **Ingegneria del Software** tenuto al Politecnico d
 
 **Docente**: Cugola Gianpaolo Saverio
 
-**Voto**: -/30
+**Voto**: 30L/30 
 
 ## Funzionalità Implementate
 | Funzionalità            | Stato |
